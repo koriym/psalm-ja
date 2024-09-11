@@ -1,16 +1,16 @@
 # コードの修正
 
-Psalmは大規模なコードベースから潜在的な問題を発見するのは得意だが、いったん発見してしまうと、すべての問題を修正するのは途方もない作業になる。
+Psalmは大規模なコードベースの潜在的な問題を見つけるのが得意ですが、一度見つかると、すべての問題を修正するのは途方もない作業になることがあります。
 
-PsalmにはPsalterというコードが修正できるツールが付属している。
+Psalmには、Psalterという名前のツールが付属しており、コードの修正に役立ちます。
 
-バイナリの
+以下のように、バイナリを通じて実行できます：
 
 ```
 vendor/bin/psalter [args]
 ```
 
-またはPsalmのバイナリ経由で実行できる：
+または、Psalmのバイナリを通じて：
 
 ```
 vendor/bin/psalm --alter [args]
@@ -18,27 +18,32 @@ vendor/bin/psalm --alter [args]
 
 ## 安全機能
 
-コードの更新は本質的にリスクが高く、自動更新はさらにリスクが高い。少しでも安心できるように、いくつかの機能を追加しました：
+コードの更新には本質的にリスクがあり、自動的に行うとさらにリスクが高くなります。少し安心できるように、いくつかの機能を追加しました：
 
-- Psalterがどのような変更を行うのかを事前に確認するには、`--dry-run` を使って実行することができます。 -`--php-version` を使って、特定のバージョンのPHPをターゲットにすることができます。 これにより、(例えば) PHP 7.0のコードにNULL可能なタイプヒントを追加しないようにしたり、 PHP 5.6のコードに全くタイプヒントを追加しないようにしたりすることができます。`--php-version` のデフォルトは現在のバージョンです。-`--safe-types` モードがあり、PHP 7 の return typehint のみを Psalm がドックブロック以外の型情報源から収集した情報 (typehinted params や`instanceof` チェック、他の return typehint など) で更新します。`--allow-backwards-incompatible-changes=false` を使用すると、後方互換性のない変更を作成しないようにすることができます。
-
+- Psalterが行う変更を事前に確認するには、`--dry-run`オプションを付けて実行できます。
+- `--php-version`を使用して特定のPHPバージョンを対象にできるので、例えばPHP 7.0のコードにnullable型ヒントを追加したり、PHP 5.6のコードに型ヒントを全く追加しないようにできます。`--php-version`はデフォルトで現在のバージョンになります。
+- `--safe-types`モードがあり、これはPsalmがdocblock以外のソース（例：型ヒント付きパラメータ、`instanceof`チェック、他の戻り値の型ヒントなど）から収集した情報のみを使用してPHP 7の戻り値の型ヒントを更新します。
+- `--allow-backwards-incompatible-changes=false`を使用すると、後方互換性のない変更が作成されないようにできます。
 
 ## プラグイン
 
-独自の操作プラグインを渡すことができます。
+独自の操作プラグインを渡すことができます。例：
+
 ```bash
 vendor/bin/psalter --plugin=vendor/vimeo/psalm/examples/plugins/ClassUnqualifier.php --dry-run
 ```
 
-上の例のプラグインは、コード中の不必要に修飾されたクラス名を、 より短いエイリアスに変換します。
+上記の例のプラグインは、コード内の不必要に修飾されたクラス名をすべて、より短い別名バージョンに変換します。
 
-## サポートされる修正
+## サポートされている修正
 
-この初期リリースでは、Psalmが発見した問題の名前に対応する以下の変更をサポートしています。これらすべてを一度に修正するには`vendor/bin/psalter --issues=all`
+この初期リリースでは、Psalmが見つける問題の名前に対応する以下の変更をサポートしています。
 
-### を実行する。
+これらすべてを一度に修正するには、`vendor/bin/psalter --issues=all`を実行します。
 
-で`vendor/bin/psalter --issues=MissingReturnType --php-version=7.0` を実行する。
+### MissingReturnType
+
+`vendor/bin/psalter --issues=MissingReturnType --php-version=7.0`を以下のコードで実行すると：
 
 ```php
 <?php
@@ -47,7 +52,7 @@ function foo() {
 }
 ```
 
-与える
+結果：
 
 ```php
 <?php
@@ -56,7 +61,7 @@ function foo() : string {
 }
 ```
 
-で`vendor/bin/psalter --issues=MissingReturnType --php-version=5.6` 。
+`vendor/bin/psalter --issues=MissingReturnType --php-version=5.6`を以下のコードで実行すると：
 
 ```php
 <?php
@@ -65,49 +70,49 @@ function foo() {
 }
 ```
 
-与える
+結果：
 
 ```php
 <?php
-/**
- * @return string
+/** 
+ * @return string 
  */
 function foo() {
   return "hello";
 }
 ```
 
-### となる。
+### MissingClosureReturnType
 
-上記と同様。
+上記と同様ですが、クロージャに対して適用されます。
 
-### 無効な返り値
+### InvalidReturnType
 
-`vendor/bin/psalter --issues=InvalidReturnType` 。
+`vendor/bin/psalter --issues=InvalidReturnType`を以下のコードで実行すると：
 
 ```php
 <?php
-/**
- * @return int
+/** 
+ * @return int 
  */
 function foo() {
   return "hello";
 }
 ```
 
-与える
+結果：
 
 ```php
 <?php
-/**
- * @return string
+/** 
+ * @return string 
  */
 function foo() {
   return "hello";
 }
 ```
 
-return型ヒントのサポートもあるので、`vendor/bin/psalter --issues=InvalidReturnType` 。
+戻り値の型ヒントもサポートされているので、`vendor/bin/psalter --issues=InvalidReturnType`を以下のコードで実行すると：
 
 ```php
 <?php
@@ -116,7 +121,7 @@ function foo() : int {
 }
 ```
 
-を実行すると
+結果：
 
 ```php
 <?php
@@ -125,9 +130,9 @@ function foo() : string {
 }
 ```
 
-### を返します。
+### InvalidNullableReturnType
 
-`vendor/bin/psalter --issues=InvalidNullableReturnType  --php-version=7.1` 。
+`vendor/bin/psalter --issues=InvalidNullableReturnType  --php-version=7.1`を以下のコードで実行すると：
 
 ```php
 <?php
@@ -136,7 +141,7 @@ function foo() : string {
 }
 ```
 
-与える
+結果：
 
 ```php
 <?php
@@ -145,7 +150,7 @@ function foo() : ?string {
 }
 ```
 
-で`vendor/bin/psalter --issues=InvalidNullableReturnType  --php-version=7.0` 。
+`vendor/bin/psalter --issues=InvalidNullableReturnType  --php-version=7.0`を以下のコードで実行すると：
 
 ```php
 <?php
@@ -154,21 +159,21 @@ function foo() : string {
 }
 ```
 
-与える
+結果：
 
 ```php
 <?php
-/**
- * @return string|null
+/** 
+ * @return string|null 
  */
 function foo() {
   return rand(0, 1) ? "hello" : null;
 }
 ```
 
-### を返します。
+### InvalidFalsableReturnType
 
-`vendor/bin/psalter --issues=InvalidFalsableReturnType` 。
+`vendor/bin/psalter --issues=InvalidFalsableReturnType`を以下のコードで実行すると：
 
 ```php
 <?php
@@ -177,12 +182,12 @@ function foo() : string {
 }
 ```
 
-与える
+結果：
 
 ```php
 <?php
-/**
- * @return string|false
+/** 
+ * @return string|false 
  */
 function foo() {
   return rand(0, 1) ? "hello" : false;
@@ -191,7 +196,7 @@ function foo() {
 
 ### MissingParamType
 
-`vendor/bin/psalter --issues=MissingParamType` 。
+`vendor/bin/psalter --issues=MissingParamType`を以下のコードで実行すると：
 
 ```php
 <?php
@@ -203,7 +208,7 @@ class C {
 C::foo("hello");
 ```
 
-与える
+結果：
 
 ```php
 <?php
@@ -220,7 +225,7 @@ C::foo("hello");
 
 ### MissingPropertyType
 
-`vendor/bin/psalter --issues=MissingPropertyType` 。
+`vendor/bin/psalter --issues=MissingPropertyType`を以下のコードで実行すると：
 
 ```php
 <?php
@@ -236,7 +241,6 @@ class A {
         } else {
             $this->foo = "hello";
         }
-
         $this->bar = "baz";
     }
 
@@ -246,7 +250,7 @@ class A {
 }
 ```
 
-与える
+結果：
 
 ```php
 <?php
@@ -255,9 +259,7 @@ class A {
      * @var string|int
      */
     public $foo;
-
     public string $bar;
-
     /**
      * @var array<int, int>|null
      * @psalm-var non-empty-list<int>|null
@@ -271,7 +273,6 @@ class A {
         } else {
             $this->foo = "hello";
         }
-
         $this->bar = "baz";
     }
 
@@ -283,7 +284,7 @@ class A {
 
 ### MismatchingDocblockParamType
 
-与えられた
+以下のコードがある場合：
 
 ```php
 <?php
@@ -293,46 +294,48 @@ class C extends A {}
 class D {}
 ```
 
-で`vendor/bin/psalter --issues=MismatchingDocblockParamType` 。
+`vendor/bin/psalter --issues=MismatchingDocblockParamType`を以下のコードで実行すると：
+
 ```php
 <?php
-/**
+/** 
  * @param B|C $first
- * @param D $second
+ * @param D $second 
  */
 function foo(A $first, A $second) : void {}
 ```
 
-与える
+結果：
 
 ```php
 <?php
-/**
+/** 
  * @param B|C $first
- * @param A $second
+ * @param A $second 
  */
 function foo(A $first, A $second) : void {}
 ```
 
 ### MismatchingDocblockReturnType
 
-`vendor/bin/psalter --issues=MismatchingDocblockReturnType` 。
+`vendor/bin/psalter --issues=MismatchingDocblockReturnType`を以下のコードで実行すると：
+
 ```php
 <?php
-/**
- * @return int
+/** 
+ * @return int 
  */
 function foo() : string {
   return "hello";
 }
 ```
 
-与える
+結果：
 
 ```php
 <?php
-/**
- * @return string
+/** 
+ * @return string 
  */
 function foo() : string {
   return "hello";
@@ -341,7 +344,7 @@ function foo() : string {
 
 ### LessSpecificReturnType
 
-`vendor/bin/psalter --issues=LessSpecificReturnType` 。
+`vendor/bin/psalter --issues=LessSpecificReturnType`を以下のコードで実行すると：
 
 ```php
 <?php
@@ -350,7 +353,7 @@ function foo() : ?string {
 }
 ```
 
-与える
+結果：
 
 ```php
 <?php
@@ -359,14 +362,13 @@ function foo() : string {
 }
 ```
 
-### 未定義変数の可能性
+### PossiblyUndefinedVariable
 
-で`vendor/bin/psalter --issues=PossiblyUndefinedVariable` を実行する。
+`vendor/bin/psalter --issues=PossiblyUndefinedVariable`を以下のコードで実行すると：
 
 ```php
 <?php
-function foo()
-{
+function foo(){
     if (rand(0, 1)) {
       $a = 5;
     }
@@ -374,12 +376,11 @@ function foo()
 }
 ```
 
-与える
+結果：
 
 ```php
 <?php
-function foo()
-{
+function foo(){
     $a = null;
     if (rand(0, 1)) {
       $a = 5;
@@ -388,10 +389,9 @@ function foo()
 }
 ```
 
+### PossiblyUndefinedGlobalVariable
 
-### となる。
-
-で`vendor/bin/psalter --issues=PossiblyUndefinedGlobalVariable` を実行する。
+`vendor/bin/psalter --issues=PossiblyUndefinedGlobalVariable`を以下のコードで実行すると：
 
 ```php
 <?php
@@ -401,7 +401,7 @@ if (rand(0, 1)) {
 echo $a;
 ```
 
-与える
+結果：
 
 ```php
 <?php
@@ -412,37 +412,33 @@ if (rand(0, 1)) {
 echo $a;
 ```
 
-### 未使用メソッド
+### UnusedMethod
 
-未使用のプライベート・メソッドを削除します。
+これは使用されていないプライベートメソッドを削除します。
 
-`vendor/bin/psalter --issues=UnusedMethod` を
+`vendor/bin/psalter --issues=UnusedMethod`を以下のコードで実行すると：
 
 ```php
 <?php
 class A {
     private function foo() : void {}
 }
-
 new A();
 ```
 
-与える
+結果：
 
 ```php
 <?php
-class A {
-
-}
-
+class A {}
 new A();
 ```
 
-### 使用されない可能性のあるメソッド
+### PossiblyUnusedMethod
 
-protected/public の未使用メソッドを削除します。
+これは使用されていないprotected/publicメソッドを削除します。
 
-`vendor/bin/psalter --issues=PossiblyUnusedMethod` を
+`vendor/bin/psalter --issues=PossiblyUnusedMethod`を以下のコードで実行すると：
 
 ```php
 <?php
@@ -450,26 +446,22 @@ class A {
     protected function foo() : void {}
     public function bar() : void {}
 }
-
 new A();
 ```
 
-与える
+結果：
 
 ```php
 <?php
-class A {
-
-}
-
+class A {}
 new A();
 ```
 
-### 未使用プロパティ
+### UnusedProperty
 
-プライベートな未使用プロパティを削除します。
+これは使用されていないプライベートプロパティを削除します。
 
-で`vendor/bin/psalter --issues=UnusedProperty` を実行します。
+`vendor/bin/psalter --issues=UnusedProperty`を以下のコードで実行すると：
 
 ```php
 <?php
@@ -477,56 +469,47 @@ class A {
     /** @var string */
     private $foo;
 }
-
 new A();
 ```
 
-与える
+結果：
 
 ```php
 <?php
-class A {
-
-}
-
+class A {}
 new A();
 ```
 
-### 未使用の可能性があるプロパティ
+### PossiblyUnusedProperty
 
-protected/public の未使用プロパティを削除します。
+これは使用されていないprotected/publicプロパティを削除します。
 
-で`vendor/bin/psalter --issues=PossiblyUnusedProperty` を実行します。
+`vendor/bin/psalter --issues=PossiblyUnusedProperty`を以下のコードで実行すると：
 
 ```php
 <?php
 class A {
     /** @var string */
     public $foo;
-
     /** @var string */
     protected $bar;
 }
-
 new A();
 ```
 
-与える
+結果：
 
 ```php
 <?php
-class A {
-
-}
-
+class A {}
 new A();
 ```
 
-### 未使用変数
+### UnusedVariable
 
-未使用の変数を削除します。
+これは使用されていない変数を削除します。
 
-`vendor/bin/psalter --issues=UnusedVariable` を
+`vendor/bin/psalter --issues=UnusedVariable`を以下のコードで実行すると：
 
 ```php
 <?php
@@ -538,7 +521,7 @@ function foo(string $s) : void {
 }
 ```
 
-与える
+結果：
 
 ```php
 <?php
@@ -549,44 +532,40 @@ function foo(string $s) : void {
 
 ### UnnecessaryVarAnnotation
 
-これは、未使用の`@var` アノテーションを削除します。
+これは使用されていない`@var`アノテーションを削除します。
 
-`vendor/bin/psalter --issues=UnnecessaryVarAnnotation` 。
+`vendor/bin/psalter --issues=UnnecessaryVarAnnotation`を以下のコードで実行すると：
 
 ```php
 <?php
 function foo() : string {
     return "hello";
 }
-
 /** @var string */
 $a = foo();
 ```
 
-与える
+結果：
 
 ```php
 <?php
 function foo() : string {
     return "hello";
 }
-
 $a = foo();
 ```
 
 ### ParamNameMismatch
 
-これは、子クラスのパラメータ名をその親クラスに揃えます。
+これは子クラスのパラメータ名を親クラスと一致させます。
 
-で`vendor/bin/psalter --issues=ParamNameMismatch` を実行します。
+`vendor/bin/psalter --issues=ParamNameMismatch`を以下のコードで実行すると：
 
 ```php
 <?php
-
 class A {
     public function foo(string $str, bool $b = false) : void {}
 }
-
 class AChild extends A {
     public function foo(string $string, bool $b = false) : void {
         echo $string;
@@ -594,15 +573,13 @@ class AChild extends A {
 }
 ```
 
-与える
+結果：
 
 ```php
 <?php
-
 class A {
     public function foo(string $str, bool $b = false) : void {}
 }
-
 class AChild extends A {
     public function foo(string $str, bool $b = false) : void {
         echo $str;

@@ -1,18 +1,18 @@
-#呼び出し可能なタイプ
+# 呼び出し可能型
 
-Psalmは、`callable`の特別な書式をサポートしている。また、`Closure` の注釈にも使用できる。
+Psalmは `callable` のための特別な形式をサポートしています。これは `Closure` にも注釈を付けるのに使用できます。
 
 ```
 callable(Type1, OptionalType2=, SpreadType3...):ReturnType
 ```
 
-型の後に`=` をつけると省略可能であることを意味し、`...` をつけるとスプレッド演算子の使用を意味する。
+型の後に `=` を追加すると、それがオプショナルであることを意味し、`...` を末尾に付けると、スプレッド演算子の使用を意味します。
 
-このアノテーションを使用すると、指定した関数が`Closure` を返すように指定できます。
+この注釈を使用すると、特定の関数が `Closure` を返すことを指定できます。例：
 
 ```php
 <?php
-/**
+/** 
  * @return Closure(bool):int
  */
 function delayedAdd(int $x, int $y) : Closure {
@@ -26,11 +26,11 @@ $adder = delayedAdd(3, 4);
 echo $adder(true);
 ```
 
-## 純粋な callables
+## 純粋な呼び出し可能型
 
-`callable` が純粋または不変である必要がある場合、`pure-callable` と`pure-Closure` というサブタイプも利用できる。
+`callable` が純粋または不変である必要がある状況のために、`pure-callable` と `pure-Closure` のサブタイプも利用可能です。
 
-これは、例えば`@psalm-pure` や`@psalm-mutation-free` でマークされた関数の中で`callable` を使用する場合に便利です：
+これは、`callable` が `@psalm-pure` または `@psalm-mutation-free` でマークされた関数で使用される場合に便利です。例：
 
 ```php
 <?php
@@ -50,9 +50,9 @@ class intList {
 
 $list = new intList([1,2,3]);
 
-// This is ok, as the callable is pure
+// これはOKです。呼び出し可能型が純粋であるため
 echo $list->walk(fn (int $c, int $v): int => $c + $v);
 
-// This will cause an InvalidArgument error, as the closure calls an impure function
+// これは InvalidArgument エラーを引き起こします。クロージャが不純な関数を呼び出すため
 echo $list->walk(fn (int $c, int $v): int => $c + random_int(1, $v));
 ```

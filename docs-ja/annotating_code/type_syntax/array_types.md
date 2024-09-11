@@ -1,15 +1,15 @@
-# 配列タイプ
+# 配列型
 
-PHPでは、`array` 型は3つの異なるデータ構造を表現するためによく使われます：
+PHPでは、`array`型は一般的に3つの異なるデータ構造を表現するために使用されます：
 
-[List](https://en.wikipedia.org/wiki/List_(abstract_data_type)):
+[リスト](https://en.wikipedia.org/wiki/List_(abstract_data_type)):
 
 ```php
 <?php
 $a = [1, 2, 3, 4, 5];
 ```
 
-[Associative array](https://en.wikipedia.org/wiki/Associative_array): 
+[連想配列](https://en.wikipedia.org/wiki/Associative_array):
 
 ```php
 <?php
@@ -17,54 +17,55 @@ $a = [0 => 'hello', 5 => 'goodbye'];
 $b = ['a' => 'AA', 'b' => 'BB', 'c' => 'CC'];
 ```
 
-Makeshift[Structs](https://en.wikipedia.org/wiki/Struct_(C_programming_language))：
+代替[構造体](https://en.wikipedia.org/wiki/Struct_(C_programming_language)):
 
 ```php
 <?php
 $a = ['name' => 'Psalm', 'type' => 'tool'];
 ```
 
-PHP は、基本的にこれらの配列をすべて同じように扱います (ただし、最初のケースについては、いくつかの最適化が行われています)。
+PHPは基本的にこれらの配列をすべて同じように扱います（ただし、最初のケースについては内部的に最適化が行われています）。
 
-Psalmの型システムでは、配列を表現するいくつかの方法があります：
+Psalmは型システムで配列を表現するためにいくつかの方法を持っています：
 
-## 汎用配列
+## ジェネリック配列
 
-Psalmは[borrowed from Java](https://en.wikipedia.org/wiki/Generics_in_Java) という構文を使い、キーと値の両方の型を表すことができます：
+Psalmは[Javaから借用した構文](https://en.wikipedia.org/wiki/Generics_in_Java)を使用して、キーと値の両方の型を表記できます：
 
 ```php
 /** @return array<TKey, TValue> */
 ```
 
-配列が空でないことを指定するには、特殊な型 `non-empty-array<TKey, TValue>`.
+また、`non-empty-array<TKey, TValue>`という特別な型を使用して、配列が空でないことを指定することもできます。
 
-### PHPDoc の構文
+### PHPDoc構文
 
-PHPDoc[allows you to specify](https://docs.phpdoc.org/latest/guide/references/phpdoc/types.html#arrays) は、一般的な配列が持つ値の型をアノテーションで指定します：
+PHPDocでは、[以下の注釈で](https://docs.phpdoc.org/latest/guide/references/phpdoc/types.html#arrays)ジェネリック配列が保持する値の型を指定できます：
 
 ```php
 /** @return ValueType[] */
 ```
 
-Psalm では、このアノテーションは次のようになります。 `@psalm-return array<array-key, ValueType>`.
+Psalmでは、この注釈は`@psalm-return array<array-key, ValueType>`と同等です。
 
-一般的な配列には、_連想配列_と_リスト_の両方が含まれます。
+ジェネリック配列は、_連想配列_と_リスト_の両方を包含します。
 
 ## リスト
 
-(Psalm 3.6+)
+(Psalm 3.6以降)
 
-Psalmは、`["red", "yellow", "blue"]` のような、連続した整数インデックスの配列を表す`list` 型をサポートしています。
+Psalmは、`["red", "yellow", "blue"]`のような連続した整数インデックスの配列を表す`list`型をサポートしています。
 
-リストを作成する方法としてよく使われるのが、`$arr[] =` 記法である。
+リストを作成する一般的な方法は、`$arr[] =`表記を使用することです。
 
-これらの配列は`array_is_list($arr)`(PHP 8.1 以降) に対して true を返し、PHP アプリケーションで使用される配列の大部分を占めます。
+これらの配列は`array_is_list($arr)`(PHP 8.1以降)にtrueを返し、PHPアプリケーションでの配列使用の大部分を占めています。
 
-`list` 型は `list<SomeType>`ここで`SomeType` は、Psalm がサポートする任意の[union type](union_types.md) です。
+`list`型は`list<SomeType>`の形式を取り、`SomeType`はPsalmがサポートする許可された[ユニオン型](union_types.md)です。
 
--`list` は `array<int, mixed>`- `list<Foo>`のサブタイプである。 `array<int, Foo>`.
+- `list`は`array<int, mixed>`のサブタイプです
+- `list<Foo>`は`array<int, Foo>`のサブタイプです。
 
-リスト型はいくつかの方法でその値を示す：
+リスト型はいくつかの方法でその価値を示します：
 
 ```php
 <?php
@@ -73,7 +74,7 @@ Psalmは、`["red", "yellow", "blue"]` のような、連続した整数イン�
  */
 function takesArray(array $arr) : void {
   if ($arr) {
-     // this index may not be set
+     // このインデックスは設定されていない可能性があります
     echo $arr[0];
   }
 }
@@ -83,66 +84,66 @@ function takesArray(array $arr) : void {
  */
 function takesList(array $arr) : void {
   if ($arr) {
-    // list indexes always start from zero,
-    // so a non-empty list will have an element here
+    // リストのインデックスは常に0から始まるので、
+    // 空でないリストはここに要素を持ちます
     echo $arr[0];
   }
 }
 
-takesArray(["hello"]); // this is fine
-takesArray([1 => "hello"]); // would trigger bug, without warning
+takesArray(["hello"]); // これは問題ありません
+takesArray([1 => "hello"]); // 警告なしにバグを引き起こす可能性があります
 
-takesList(["hello"]); // this is fine
-takesList([1 => "hello"]); // triggers warning in Psalm
+takesList(["hello"]); // これは問題ありません
+takesList([1 => "hello"]); // Psalmで警告がトリガーされます
 ```
 
-## 配列の形
+## 配列形状
 
-Psalmは、キーのオフセットが既知の配列のための特別なフォーマットをサポートしています。
+Psalmは、キーオフセットが既知の配列に対して特別な形式をサポートしています：配列形状、別名「オブジェクトライクな配列」です。
 
-配列
+次の配列が与えられた場合：
 
 ```php
 <?php
 ["hello", "world", "foo" => new stdClass, 28 => false];
 ```
 
-Psalmはそれを内部的にこうタイプする：
+Psalmは内部的にこれを次のように型付けします：
 
 ```
 array{0: string, 1: string, foo: stdClass, 28: false}
 ```
 
-このフォーマットで型を指定することもできます。
+この形式で自分で型を指定することもできます。例：
 
 ```php
 /** @return array{foo: string, bar: int} */
 ```
 
-オプションのキーは、末尾に`?` を付けて表すことができます：
+オプションのキーは末尾に`?`をつけて表すことができます。例：
 
 ```php
 /** @return array{optional?: string, bar: int} */
 ```
 
-PHPに似た "1行 "コメントを使うことができます：
+(PHPに似た)「1行」コメントを使用できます。例：
 
 ```php
-/** @return array { // Array with comments.
- *     // Comments can be placed on their own line. 
- *     foo: string, // An array key description.
- *     bar: array {, // Another array key description.
- *         'foo//bar': string, // Array key with "//" in it's name.
+/** @return array { // コメント付きの配列。
+ *     // コメントは独立した行に置くことができます。
+ *     foo: string, // 配列キーの説明。
+ *     bar: array {, // 別の配列キーの説明。
+ *         'foo//bar': string, // 名前に"//"を含む配列キー。
  *     },
  * }
  */
 ```
 
-ヒント:`InvalidArgument` の問題を避けるために、同じ複雑な配列の形を何度もコピーしてしまう場合は、代わりに[type aliases](utility_types.md#type-aliases) を使ってみてください。
+ヒント：`InvalidArgument`の問題を避けるために同じ複雑な配列形状を何度もコピーしている場合は、代わりに[型エイリアス](utility_types.md#type-aliases)の使用を検討してください。
 
 ### 配列形状の検証
 
-[Valinor](https://github.com/CuyZ/Valinor) を strict モードで使用すると、Psalm の array shape 構文を使用して、実行時に配列の形状を簡単にアサートできます (isset を使用してキーを手動でアサートする代わりに)：
+[Valinor](https://github.com/CuyZ/Valinor)を厳格モードで使用すると、Psalm配列形状構文を使用して実行時に配列形状を簡単にアサートできます（issetでキーを手動でアサートする代わりに）：
 
 ```php
 try {
@@ -158,49 +159,49 @@ try {
   echo $array['a'];
   echo $array['b'];
 } catch (\CuyZ\Valinor\Mapper\MappingError $error) {
-  // Do something…
+  // 何かを行う…
 }
 ```
 
-[Valinor documentation](https://valinor.cuyz.io/latest/) Valinor は Psalm 構文を完全にサポートし、その他多くの機能を持つ Psalm の実行時アサーションと静的アサーションを提供します！
+Valinorは、完全なPsalm構文サポートと他の多くの機能を備えた実行時と静的なPsalmアサーションの両方を提供します。詳細については[Valinorのドキュメント](https://valinor.cuyz.io/latest/)をご覧ください！
 
 ## リスト形状
 
-Psalm 5から、Psalmはキーのオフセットが既知のリスト配列のための特別なフォーマットもサポートしています。
+Psalm 5以降、Psalmはキーオフセットが既知のリスト配列に対しても特別な形式をサポートしています。
 
-リスト配列
+次のリスト配列が与えられた場合：
 
 ```php
 <?php
 ["hello", "world", new stdClass, false];
 ```
 
-Psalmは内部的にこうタイプする：
+Psalmは内部的にこれを次のように型付けします：
 
 ```
 list{string, string, stdClass, false}
 ```
 
-このフォーマットで型を指定することもできます。
+この形式で自分で型を指定することもできます。例：
 
 ```php
 /** @return list{string, int} */
 /** @return list{0: string, 1: int} */
 ```
 
-オプションのキーは、すべての要素にキーを指定し、オプションのキーには末尾に`?` を指定することで表すことができます：
+オプションのキーは、すべての要素にキーを指定し、オプションのキーに末尾`?`を指定することで表現できます。例：
 
 ```php
 /** @return list{0: string, 1?: int} */
 ```
 
-リストの形は基本的にnタプルである[from a type theory perspective](https://en.wikipedia.org/wiki/Tuple#Type_theory) 。
+リスト形状は、[型理論の観点から](https://en.wikipedia.org/wiki/Tuple#Type_theory)本質的にn項組です。
 
-## 非シール配列とリスト形状
+## 未密閉配列およびリスト形状
 
-Psalm v5から、配列シェイプとリストシェイプは、最後の要素に`...` を追加することで、オープンとしてマークすることができます。
+Psalm v5以降、配列形状とリスト形状は、最後の要素として`...`を追加することでオープンとしてマークできます。
 
-ここでは、オプションの配列を受け取る関数`handleOptions` 。この型は、`string` の既知のキーが1つあり、その他に未知の型のキーが多数ある可能性を示しています。
+ここでは、オプションの配列を受け取る`handleOptions`関数があります。型は、既知の1つのキーが`string`型であり、潜在的に他の多くの未知の型のキーがあることを示しています。
 
 ```php
 /** @param array{verbose: string, ...} $options */
@@ -215,23 +216,204 @@ $options['verbose'] = isset($options['verbose']);
 handleOptions($options);
 ```
 
-`...` の省略記法です。 `...<array-key, mixed>`を省略したもので、他の配列ジェネリック型を使用することで、オープンシェイプに関するより多くの情報を提供することができます。
+`...`は`...<array-key, mixed>`の省略形です。他の配列ジェネリック型を使用して、オープンな形状についてより多くの情報を提供できます。
 
 ```php
-// This is an open array /** @param array{someKey: string, ...} */  // Which is the same as /** @param array{someKey: string, ...<array-key, mixed>} */  // But it can be further locked down with a shape ...<TKey, TValue> /** @return array{someKey: string, ...<int, bool>} */
+// これはオープンな配列です
+/** @param array{someKey: string, ...} */ 
+// これは次と同じです
+/** @param array{someKey: string, ...<array-key, mixed>} */ 
+// しかし、形状...<TKey, TValue>でさらに制限できます
+/** @return array{someKey: string, ...<int, bool>} */
 ```
 
-## 呼び出し可能な配列
+## 呼び出し可能配列
 
-callable を保持する配列は、PHP ネイティブの`call_user_func()` やその仲間たちがサポートしています：
+PHPのネイティブな`call_user_func()`やその関連関数がサポートするような、呼び出し可能なものを保持する配列：
 
 ```php
 <?php
 
-$callable = ['myClass', 'aMethod']; $callable = [$object, 'aMethod'];
+$callable = ['myClass', 'aMethod'];
+$callable = [$object, 'aMethod'];
 ```
 
-## 空でない配列
+## non-empty-array
 
-空であってはならない配列。
-[Generic syntax](#generic-arrays) もサポートしています： `non-empty-array<string, int>`.
+空であることが許されない配列。
+[ジェネリック構文](#generic-arrays)もサポートされています：`non-empty-array<string, int>`。
+
+# 配列型
+
+[前の内容は省略...]
+
+## callable-array
+
+Psalmは`callable-array`型もサポートしています。これは2つの要素を持つ配列で、最初の要素はクラス名または`object`、2番目の要素は文字列（メソッド名）です。
+
+```php
+/** @psalm-type CallableArray = callable-array */
+/**
+ * @param CallableArray $c
+ * @psalm-return CallableArray
+ */
+function foo(array $c): array {
+    return $c;
+}
+
+class A {
+    public function bb(): void {}
+}
+
+foo([A::class, 'bb']); // OK
+foo(['A', 'bb']); // OK
+foo([new A(), 'bb']); // OK
+foo(['A', 'cc']); // Psalm error
+foo(['B', 'bb']); // Psalm error
+```
+
+## class-string
+
+`class-string`は完全修飾クラス名を含む文字列を表します。
+`new`や`instanceof`でこの文字列を使用できます。
+
+```php
+/** @psalm-param class-string $class */
+function instantiator(string $class) {
+    $object = new $class(); // works
+    return $object;
+}
+
+instantiator(\My\ClassName::class); // OK
+instantiator("MyClassName"); // Error if MyClassName is not in the global namespace
+instantiator("My\\ClassName"); // OK
+```
+
+`class-string`は特定のクラスに制限することもできます：
+
+```php
+/** @psalm-param class-string<Foo> $classFoo */
+function instantiator(string $classFoo) {
+    $object = new $classFoo(); // $object is an instance of Foo
+    return $object;
+}
+```
+
+`T`は`object`を拡張するクラスを表します：
+
+```php
+/**
+ * @template T of object
+ * @psalm-param class-string<T> $class
+ * @psalm-return T
+ */
+function instantiator(string $class) {
+    $object = new $class();
+    return $object;
+}
+```
+
+## interface-string
+
+`interface-string`はインターフェース名を含む文字列を表します。これは`class-string`と同様に機能しますが、インターフェースに限定されます。
+
+```php
+/** @psalm-param interface-string $interface */
+function useInterface(string $interface) {
+    $object = new class implements $interface {}; // works
+    return $object;
+}
+
+useInterface(\My\InterfaceName::class); // OK
+useInterface("MyInterface"); // Error if MyInterface is not in the global namespace
+useInterface("My\\InterfaceName"); // OK
+```
+
+## trait-string
+
+`trait-string`はトレイト名を含む文字列を表します。
+
+```php
+/** @psalm-param trait-string $trait */
+function useTrait(string $trait) {
+    $object = new class {
+        use $trait; // PHP doesn't actually support this syntax
+    };
+    return $object;
+}
+
+useTrait(\My\TraitName::class); // OK
+useTrait("MyTrait"); // Error if MyTrait is not in the global namespace
+useTrait("My\\TraitName"); // OK
+```
+
+## callable-string
+
+`callable-string`は呼び出し可能な関数名を含む文字列を表します。
+
+```php
+/** @psalm-param callable-string $callback */
+function call(string $callback) {
+    $callback(); // works
+}
+
+call('htmlspecialchars'); // OK
+call('html_special_chars'); // Error
+```
+
+## numeric-string
+
+`numeric-string`は数値を表す文字列を表します。
+
+```php
+/** @psalm-param numeric-string $numeric */
+function use_numeric(string $numeric) {
+    return $numeric + 1; // works
+}
+
+use_numeric('42'); // OK
+use_numeric('42.1'); // OK
+use_numeric('foo'); // Error
+```
+
+## class-string-map
+
+`class-string-map`は、キーが任意の型で、値が`class-string`である配列を表します。
+
+```php
+/**
+ * @psalm-param class-string-map<string, stdClass> $classes
+ */
+function foo(array $classes): void {}
+
+foo(['a' => stdClass::class, 'b' => Iterator::class]); // Error
+foo(['a' => stdClass::class, 'b' => ArrayObject::class]); // OK
+```
+
+## リテラル文字列
+
+文字列リテラル型を使用して、特定の文字列値のみを許可することができます。
+
+```php
+/** @psalm-param 'foo'|'bar' $param */
+function foo(string $param): void {}
+
+foo('foo'); // OK
+foo('bar'); // OK
+foo('baz'); // Error
+```
+
+## リテラル整数
+
+整数リテラル型を使用して、特定の整数値のみを許可することができます。
+
+```php
+/** @psalm-param 1|2|3 $param */
+function foo(int $param): void {}
+
+foo(1); // OK
+foo(2); // OK
+foo(4); // Error
+```
+
+これらの型を組み合わせて使用することで、PHPコードの静的型チェックをより厳密に行うことができます。Psalmを使用することで、多くの潜在的なバグを事前に発見し、コードの品質を向上させることができます。

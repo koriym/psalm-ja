@@ -1,14 +1,16 @@
 # アサーションの追加
 
-Psalmには5つのdocblockアノテーションがあり、関数が変数やプロパティに関する事実を検証することを指定できます：
+Psalmには、変数やプロパティに関する事実を関数が検証することを指定できる5つのdocblockアノテーションがあります：
 
--`@psalm-assert` (例外をスローするときに使う) -`@psalm-assert-if-true`/`@psalm-assert-if-false` (`bool` を返すときに使う) -`@psalm-if-this-is`/`@psalm-this-out` (メソッドを呼び出すときに使う)
+- `@psalm-assert`（例外をスローする場合に使用）
+- `@psalm-assert-if-true`/`@psalm-assert-if-false`（`bool`を返す場合に使用）
+- `@psalm-if-this-is`/`@psalm-this-out`（メソッドを呼び出す場合に使用）
 
-[can be found here](assertion_syntax.md) 。
+許容されるアサーションの一覧は[こちらで見つかります](assertion_syntax.md)。
 
 ## 例
 
-入力が文字列の配列であることを検証するクラスがある場合、Psalmにそれを明示することができます：
+入力が文字列の配列であることを検証するクラスがある場合、それをPsalmに明確に伝えることができます：
 
 ```php
 <?php
@@ -22,7 +24,7 @@ function validateStringArray(array $arr) : void {
 }
 ```
 
-これにより、あるデータに対して`validateStringArray` 関数を呼び出し、Psalm に、与えられたデータは文字列の配列でなければならないと理解させることができます：
+これにより、`validateStringArray`関数を一部のデータに対して呼び出し、与えられたデータが文字列の配列でなければならないことをPsalmに理解させることができます：
 
 ```php
 <?php
@@ -30,19 +32,16 @@ function takesString(string $s) : void {}
 function takesInt(int $s) : void {}
 
 function takesArray(array $arr) : void {
-    takesInt($arr[0]); // this is fine
-
+    takesInt($arr[0]); // これは問題ありません
     validateStringArray($arr);
-
-    takesInt($arr[0]); // this is an error
-
+    takesInt($arr[0]); // これはエラーです
     foreach ($arr as $a) {
-        takesString($a); // this is fine
+        takesString($a); // これは問題ありません
     }
 }
 ```
 
-同様に、`@psalm-assert-if-true` と`@psalm-assert-if-false` は、関数/メソッドがそれぞれ`true` と`false` を返す場合、入力をフィルタリングします：
+同様に、`@psalm-assert-if-true`と`@psalm-assert-if-false`は、関数/メソッドがそれぞれ`true`と`false`を返す場合に入力をフィルタリングします：
 
 ```php
 <?php
@@ -51,18 +50,19 @@ class A {
         return (bool) rand(0, 1);
     }
 }
+
 class B extends A {
     public function bar() : void {}
 }
 
-/**
+/** 
  * @psalm-assert-if-true B $a
  */
 function isValidB(A $a) : bool {
     return $a instanceof B && $a->isValid();
 }
 
-/**
+/** 
  * @psalm-assert-if-false B $a
  */
 function isInvalidB(A $a) : bool {
@@ -73,34 +73,34 @@ function takesA(A $a) : void {
     if (isValidB($a)) {
         $a->bar();
     }
-
+    
     if (isInvalidB($a)) {
-        // do something
+        // 何かを行う
     } else {
         $a->bar();
     }
-
-    $a->bar(); //error
+    
+    $a->bar(); // エラー
 }
 ```
 
-Psalmに与えられたデータが特定の型でなければならないことを理解させるだけでなく、変数がnullであってはならないことを示すこともできる：
+与えられたデータが特定の型でなければならないことをPsalmに理解させるだけでなく、変数がnullでないことも示すことができます：
 
 ```php
 <?php
-/**
+/** 
  * @psalm-assert !null $value
  */
 function assertNotNull($value): void {
-  // Some check that will mean the method will only complete if $value is not null.
+  // $valueがnullでない場合にのみメソッドが完了するようなチェック
 }
 ```
 
-また、NULL値をチェックすることもできる：
+そして、null値をチェックすることもできます：
 
 ```php
 <?php
-/**
+/** 
  * @psalm-assert-if-true null $value
  */
 function isNull($value): bool {
@@ -108,9 +108,9 @@ function isNull($value): bool {
 }
 ```
 
-### メソッドの戻り値のアサーション
+### メソッドの戻り値のアサート
 
-`@psalm-assert-if-true` および`@psalm-assert-if-false` アノテーションを使用して、クラス内のメソッドの戻り値をアサートすることもできます。ご覧のように、Psalm では同じ DocBlock で複数のアノテーションを指定することもできます：
+`@psalm-assert-if-true`と`@psalm-assert-if-false`アノテーションを使用して、クラス内のメソッドの戻り値をアサートすることもできます。ご覧のように、Psalmは同じDocBlock内で複数のアノテーションを指定することも許可しています：
 
 ```php
 <?php
@@ -134,30 +134,26 @@ class Result {
 
     public function foo(): void {
         if( $this->hasException() ) {
-            // Psalm now knows that $this->exception is an instance of Exception
+            // Psalmは$this->exceptionがExceptionのインスタンスであることを知っています
             echo $this->exception->getMessage();
         }
     }
 }
 
 $result = new Result;
-
 if( $result->hasException() ) {
-    // Psalm now knows that $result->getException() will return an instance of Exception
+    // Psalmは$result->getException()がExceptionのインスタンスを返すことを知っています
     echo $result->getException()->getMessage();
 }
 ```
 
-上の例は、設定ファイルで[method call memoization](https://psalm.dev/docs/running_psalm/configuration/#memoizemethodcallresults) を有効にするか、クラスを[immutable](https://psalm.dev/docs/annotating_code/supported_annotations/#psalm-immutable) とアノテーションした場合のみ動作することに注意してください。
+注意：上の例は、設定ファイルで[メソッド呼び出しのメモ化](https://psalm.dev/docs/running_psalm/configuration/#memoizemethodcallresults)を有効にするか、クラスを[不変](https://psalm.dev/docs/annotating_code/supported_annotations/#psalm-immutable)としてアノテーションを付ける場合にのみ機能します。
 
-
-`@psalm-this-out` を使用して、メソッド呼び出し後にメソッドのテンプレート引数を変更し、オブジェクトの内部状態の変更を反映させることができます。   また、`@psalm-if-this-is` を使って、オブジェクトのテンプレート引数に対してアサーションを行うこともできます。  
-
+`@psalm-this-out`を使用して、メソッド呼び出し後のメソッドのテンプレート引数を変更し、オブジェクトの内部状態の変更を反映させることができます。また、`@psalm-if-this-is`を使用して、オブジェクトのテンプレート引数に関するアサーションを行うこともできます。
 
 ```php
 <?php
-
-/**
+/** 
  * @template T
  */
 class a {
@@ -165,12 +161,14 @@ class a {
      * @var list<T>
      */
     private array $data;
+
     /**
      * @param T $data
      */
     public function __construct($data) {
         $this->data = [$data];
     }
+
     /**
      * @template NewT
      * 
@@ -184,6 +182,7 @@ class a {
         /** @var self<T|NewT> $this */
         $this->data []= $data;
     }
+
     /**
      * @template NewT
      * 
@@ -197,6 +196,7 @@ class a {
         /** @var self<NewT> $this */
         $this->data = [$data];
     }
+
     /**
      * @psalm-if-this-is a<int>
      */
@@ -205,14 +205,14 @@ class a {
 }
 
 $i = new a(123);
-// OK - $i is a<123>
+// OK - $i は a<123> です
 $i->test();
 
 $i->addData(321);
-// OK - $i is a<123|321>
+// OK - $i は a<123|321> です
 $i->test();
 
 $i->setData("test");
-// IfThisIsMismatch - Class is not a<int> as required by psalm-if-this-is
+// IfThisIsMismatch - クラスは psalm-if-this-is で要求される a<int> ではありません
 $i->test();
 ```

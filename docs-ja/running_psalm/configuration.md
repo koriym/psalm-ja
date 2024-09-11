@@ -44,7 +44,7 @@ PsalmはXMLコンフィグファイル(デフォルトでは`psalm.xml`)を使�
   errorLevel="[int]"
 />
 ```
-これは詩篇の[error-detection level](error_levels.md) に対応している。
+これはpsalmの[error-detection level](error_levels.md) に対応している。
 
 #### reportMixedIssues
 

@@ -1,26 +1,33 @@
-# 詩篇について
+# Psalmについて
 
-Psalmは静的解析ツールで、プログラムを掘り下げて型に関連するバグをできるだけ多く見つけようとする。
+Psalmは、プログラムを深く掘り下げ、できるだけ多くの型関連のバグを見つけようとする静的解析ツールです。
 
-他の類似ツールよりもさらに進んだ機能がいくつかあります：
+他の類似ツールよりも進んでいる機能がいくつかあります：
 
-- **Mixed type warnings**<br /> Psalmが式の型を推論できない場合、`mixed` プレースホルダ型を使用します。`mixed` 型は時にバグを覆い隠すことがあるため、型を追跡することで、よくある落とし穴を回避することができます。
+- **混合型の警告**<br />
+  Psalmが式の型を推論できない場合、`mixed`というプレースホルダー型を使用します。`mixed`型は時にバグを隠してしまうことがあるため、これらを追跡することで多くの一般的な落とし穴を避けるのに役立ちます。
 
-`if ($a && $a) {}` `if ($a && !$a) {}` - **Intelligent logic checks**<br /> Psalmはあなたのコードに対して行われた論理的なアサーションを追跡します。Psalmはまた、以前のコードパスで行われた論理的なアサーションを追跡し、`if ($a) {} elseif ($a) {}` のような問題を防ぎます。
+- **インテリジェントなロジックチェック**<br />
+  Psalmはコードに関する論理的な主張を追跡するため、`if ($a && $a) {}`と`if ($a && !$a) {}`はどちらも問題として扱われます。また、以前のコードパスで行われた論理的な主張も追跡するため、`if ($a) {} elseif ($a) {}`のような問題を防ぎます。
 
-- **Property initialisation checks**<br /> Psalm は、与えられたオブジェクトのすべてのプロパティが、コンストラクタが呼ばれた後に値を持つかどうかをチェックします。
+- **プロパティ初期化チェック**<br />
+  Psalmは、コンストラクタが呼び出された後、与えられたオブジェクトのすべてのプロパティに値が設定されているかをチェックします。
 
-- テイント解析**<br /> Psalmは、あなたのコードに[detect security vulnerabilities](https://psalm.dev/articles/detect-security-vulnerabilities-with-psalm) 。
-  
-- 言語サーバー**<br /> Psalmには言語サーバーがあり、[compatible with a range of different IDEs](https://psalm.dev/docs/running_psalm/language_server/) 。
+- **汚染分析**<br />
+  Psalmは[コード内のセキュリティ脆弱性を検出](https://psalm.dev/articles/detect-security-vulnerabilities-with-psalm)できます。
 
-- 自動修正**<br /> Psalmは[fix many of the issues it finds automatically](https://psalm.dev/docs/manipulating_code/fixing/) 。
-  
-- **Automatic refactoring**<br /> Psalmはコマンドラインから[perform simple refactors](https://psalm.dev/docs/manipulating_code/refactoring/) 。
+- **言語サーバー**<br />
+  Psalmには[さまざまなIDEと互換性のある](https://psalm.dev/docs/running_psalm/language_server/)言語サーバーがあります。
+
+- **自動修正**<br />
+  Psalmは[検出した多くの問題を自動的に修正](https://psalm.dev/docs/manipulating_code/fixing/)できます。
+
+- **自動リファクタリング**<br />
+  Psalmはコマンドラインから[簡単なリファクタリングを実行](https://psalm.dev/docs/manipulating_code/refactoring/)することもできます。
 
 ## 出力例
 
-与えられたファイル`implode_strings.php` ：
+`implode_strings.php`というファイルがある場合：
 
 ```php
 <?php
@@ -33,13 +40,32 @@ echo implode($a, ' ');
 ERROR: InvalidArgument - somefile.php:3:14 - Argument 1 of implode expects `string`, `array` provided (see https://psalm.dev/004)
 ```
 
-#インスピレーション
+## インスピレーション
 
-詩篇のインスピレーションは主に2つある：
+Psalmには主に2つのインスピレーションがあります：
 
-- Etsyの[Phan](https://github.com/etsy/phan) 、nikicの[php-ast](https://github.com/nikic/php-ast) 拡張機能を使用して抽象的な構文ツリーを作成する - Facebookの[Hack](http://hacklang.org/) 、PHPライクな言語で、ネイティブで多くの高度な型付け機能をサポートしているため、docblockは必要ない。
+- Etsyの[Phan](https://github.com/etsy/phan)。これはnikicの[php-ast](https://github.com/nikic/php-ast)拡張を使用して抽象構文木を作成します。
+- Facebookの[Hack](http://hacklang.org/)。これはPHPに似た言語で、多くの高度な型付け機能をネイティブにサポートしているため、docblockが不要です。
 
-## インデックス
+## 目次
 
-- 実行中の詩篇：     -[Installation](running_psalm/installation.md) -[Configuration](running_psalm/configuration.md) - プラグイン -[Using plugins](running_psalm/plugins/using_plugins.md) -[Authoring plugins](running_psalm/plugins/authoring_plugins.md) -[How Psalm represents types](running_psalm/plugins/plugins_type_system.md) -[Command line usage](running_psalm/command_line_usage.md) -[IDE support](running_psalm/language_server.md) - エラー処理：         -[Dealing with code issues](running_psalm/dealing_with_code_issues.md) -[Issue Types](running_psalm/issues.md) -[Checking non-PHP files](running_psalm/checking_non_php_files.md) - コードの注釈：     -[Typing in Psalm](annotating_code/typing_in_psalm.md) -[Supported Annotations](annotating_code/supported_annotations.md) -[Template Annotations](annotating_code/templated_annotations.md) - コードの操作：     -[Fixing code](manipulating_code/fixing.md) -[Refactoring code](manipulating_code/refactoring.md)
-
+- Psalmの実行：
+    - [インストール](running_psalm/installation.md)
+    - [設定](running_psalm/configuration.md)
+    - プラグイン
+        - [プラグインの使用](running_psalm/plugins/using_plugins.md)
+        - [プラグインの作成](running_psalm/plugins/authoring_plugins.md)
+        - [Psalmが型を表現する方法](running_psalm/plugins/plugins_type_system.md)
+    - [コマンドライン使用法](running_psalm/command_line_usage.md)
+    - [IDEサポート](running_psalm/language_server.md)
+    - エラー処理：
+        - [コードの問題への対処](running_psalm/dealing_with_code_issues.md)
+        - [問題の種類](running_psalm/issues.md)
+    - [PHP以外のファイルのチェック](running_psalm/checking_non_php_files.md)
+- コードへの注釈：
+    - [Psalmでの型付け](annotating_code/typing_in_psalm.md)
+    - [サポートされているアノテーション](annotating_code/supported_annotations.md)
+    - [テンプレートアノテーション](annotating_code/templated_annotations.md)
+- コードの操作：
+    - [コードの修正](manipulating_code/fixing.md)
+    - [コードのリファクタリング](manipulating_code/refactoring.md)

@@ -1,24 +1,24 @@
-# 値の種類
+# 値型
 
-Psalmでは、値の型を指定することもできます。
+Psalmでは、型で値を指定することもできます。
 
-## ヌル
+## null
 
-これは`null` の値であり、世界の破壊者である。控えめに使ってください。Psalmは、`?Foo` を`null|Foo` と書くことをサポートしています。
+これは `null` 値で、世界の破壊者です。慎重に使用してください。Psalmでは、`?Foo` と書くことで `null|Foo` を意味することができます。
 
-## 真、偽
+## true, false
 
-`true` や`false` も PHPDoc と互換性があります。
+`true` と `false` の使用もPHPDocと互換性があります。
 
 ## "some_string", 4, 3.14
 
-Psalm では、リテラル値を型に指定することもできます。`@return "good"|"bad"`
+Psalmでは、型にリテラル値を指定することもできます。例：`@return "good"|"bad"`
 
 ## 通常のクラス定数
 
-Psalmでは、`@return Foo::GOOD|Foo::BAD` のように、型にクラス定数を含めることができます。また、明示的なクラス文字列を指定することもできます。`Foo::class|Bar::class`
+Psalmでは、型にクラス定数を含めることができます。例：`@return Foo::GOOD|Foo::BAD`。また、明示的なクラス文字列を指定することもできます。例：`Foo::class|Bar::class`
 
-あるパラメータが、指定したクラスであるか、あるいはそのクラスを拡張したクラス文字列のみを受け取るように指定したい場合は、次のアノテーションを使用します。 `@param class-string<Foo> $foo_class`.そのクラス文字列のみをパラメータに指定したい場合は、`Foo::class` というアノテーションを使用します：
+特定のクラスの、またはそのクラスを拡張したクラス文字列のみをパラメータとして受け入れるように指定したい場合は、`@param class-string<Foo> $foo_class` というアノテーションを使用できます。そのクラス文字列だけを受け入れるようにしたい場合は、`Foo::class` というアノテーションを使用できます：
 
 ```php
 <?php
@@ -27,22 +27,23 @@ class AChild extends A {}
 class B {}
 class BChild extends B {}
 
-/**
- * @param class-string<A>|class-string<B> $s
+/** 
+ * @param class-string<A>|class-string<B> $s 
  */
 function foo(string $s) : void {}
 
-/**
- * @param A::class|B::class $s
+/** 
+ * @param A::class|B::class $s 
  */
 function bar(string $s) : void {}
 
-foo(A::class); // works
-foo(AChild::class); // works
-foo(B::class); // works
-foo(BChild::class); // works
-bar(A::class); // works
-bar(AChild::class); // fails
-bar(B::class); // works
-bar(BChild::class); // fails
+foo(A::class); // 動作します
+foo(AChild::class); // 動作します
+foo(B::class); // 動作します
+foo(BChild::class); // 動作します
+
+bar(A::class); // 動作します
+bar(AChild::class); // 失敗します
+bar(B::class); // 動作します
+bar(BChild::class); // 失敗します
 ```

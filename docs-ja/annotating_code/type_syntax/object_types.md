@@ -1,16 +1,16 @@
-# オブジェクトの種類
+# オブジェクト型
 
-## 無名オブジェクト
+## 名前のないオブジェクト
 
-`object` は無名オブジェクト型の例です。この型もPHPでは有効な型です。
+`object` は名前のないオブジェクト型の例です。この型はPHPでも有効な型です。
 
 ## 名前付きオブジェクト
 
-`stdClass` `Foo` や`Bar\Baz` などが名前付きオブジェクト型の例です。これらの型もPHPで有効な型です。
+`stdClass`、`Foo`、`Bar\Baz` などは名前付きオブジェクト型の例です。これらの型もPHPで有効な型です。
 
-## オブジェクトのプロパティ
+## オブジェクトプロパティ
 
-Psalmは、オブジェクトのプロパティとその型を指定することができます：
+Psalmはオブジェクトのプロパティとその期待される型を指定することをサポートしています。例：
 
 ```php
 /** @param object{foo: string} $obj */
@@ -21,22 +21,25 @@ function takesObject(object $obj) : string {
 takesObject((object) ["foo" => "hello"]);
 ```
 
-オプションのプロパティは、末尾の`?` で示すことができます：
+オプショナルなプロパティは末尾に `?` を付けて示すことができます。例：
 
 ```php
 /** @param object{optional?: string} */
 ```
 
-## 一般的なオブジェクト型
+## ジェネリックオブジェクト型
 
-Psalm は、次のような汎用オブジェクト型の使用をサポートしています。 `ArrayObject<int, string>`.どのようなジェネリックオブジェクトも、適切な[`@template` tags](../templated_annotations.md) でタイプヒンティングされるべきです。
+Psalmは `ArrayObject<int, string>` のようなジェネリックオブジェクト型の使用をサポートしています。ジェネリックオブジェクトは適切な [`@template` タグ](../templated_annotations.md) で型ヒントを付ける必要があります。
 
 ## ジェネレータ
 
-ジェネレータ型は最大4つのパラメータをサポートしています。 `Generator<int, string, mixed, void>`:
+ジェネレータ型は最大4つのパラメータをサポートします。例：`Generator<int, string, mixed, void>`：
 
-1.`TKey` `yield` キーのタイプ - デフォルト：`mixed` 2.`TValue` `yield` の値の型 - デフォルト:`mixed` 3.`TSend` `send()` メソッドのパラメータの型 - default:`mixed` 4.`TReturn` `getReturn()` メソッドの戻り値の型 - default：`mixed`
+1. `TKey`、`yield` キーの型 - デフォルト: `mixed`
+2. `TValue`、`yield` 値の型 - デフォルト: `mixed`
+3. `TSend`、`send()` メソッドのパラメータの型 - デフォルト: `mixed`
+4. `TReturn`、`getReturn()` メソッドの戻り値の型 - デフォルト: `mixed`
 
-`Generator<int>`の省略形です。 `Generator<mixed, int, mixed, mixed>`.
+`Generator<int>` は `Generator<mixed, int, mixed, mixed>` の省略形です。
 
-`Generator<int, string>`は `Generator<int, string, mixed, mixed>`.
+`Generator<int, string>` は `Generator<int, string, mixed, mixed>` の省略形です。

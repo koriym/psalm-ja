@@ -1,12 +1,12 @@
-# カスタムテイントソース
+# カスタム汚染ソース
 
-アノテーションやプラグインを使って独自のテイントソースを定義できます。
+アノテーションまたはプラグインを使用して、独自の汚染ソースを定義できます。
 
-## テイントソースアノテーション
+## 汚染ソースアノテーション
 
-アノテーション `@psalm-taint-source <taint-type>`を使うことができます。
+`@psalm-taint-source <taint-type>`アノテーションを使用して、ユーザー入力を提供する関数またはメソッドを示すことができます。
 
-以下の例では、[Psalm\Type\TaintKindGroup](https://github.com/vimeo/psalm/blob/master/src/Psalm/Type/TaintKindGroup.php) で定義されている入力テイントのスタンディンとして、`input` テイントタイプが指定されています。
+以下の例では、`input`汚染タイプが[Psalm\Type\TaintKindGroup](https://github.com/vimeo/psalm/blob/master/src/Psalm/Type/TaintKindGroup.php)で定義されている入力汚染の代替として指定されています。
 
 ```php
 <?php
@@ -16,13 +16,12 @@
 function getQueryParam(string $name) : string {}
 ```
 
-## カスタムテイントプラグイン
+## カスタム汚染プラグイン
 
-例えば、このプラグインは`$bad_data` という名前の変数をすべてテイントソースとして扱います。
+例えば、このプラグインはすべての`$bad_data`という名前の変数を汚染ソースとして扱います。
 
 ```php
 <?php
-
 namespace Some\Ns;
 
 use PhpParser;
@@ -36,7 +35,7 @@ use Psalm\Type\TaintKindGroup;
 class BadSqlTainter implements AfterExpressionAnalysisInterface
 {
     /**
-     * Called after an expression has been checked
+     * 式がチェックされた後に呼び出されます
      *
      * @param  PhpParser\Node\Expr  $expr
      * @param  Context              $context
@@ -48,13 +47,14 @@ class BadSqlTainter implements AfterExpressionAnalysisInterface
         $expr = $event->getExpr();
         $statements_source = $event->getStatementsSource();
         $codebase = $event->getCodebase();
+
         if ($expr instanceof PhpParser\Node\Expr\Variable
             && $expr->name === 'bad_data'
         ) {
             $expr_type = $statements_source->getNodeTypeProvider()->getType($expr);
 
-            // should be a globally unique id
-            // you can use its line number/start offset
+            // グローバルに一意のIDであるべきです
+            // 行番号/開始オフセットを使用できます
             $expr_identifier = '$bad_data'
                 . '-' . $statements_source->getFileName()
                 . ':' . $expr->getAttribute('startFilePos');
@@ -68,6 +68,7 @@ class BadSqlTainter implements AfterExpressionAnalysisInterface
                 );
             }
         }
+
         return null;
     }
 }

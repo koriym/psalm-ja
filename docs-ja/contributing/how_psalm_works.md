@@ -1,4 +1,4 @@
-# 詩篇の働き
+# psalmの働き
 
 すべての分析の入り口は[`ProjectAnalyzer`](https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Analyzer/ProjectAnalyzer.php)
 

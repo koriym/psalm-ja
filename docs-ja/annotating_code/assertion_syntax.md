@@ -1,22 +1,33 @@
 # アサーション構文
 
-Psalm の[assertion annotation](adding_assertions.md) は、さまざまなアサーションをサポートしている。
+Psalmの[アサーションアノテーション](adding_assertions.md)は、さまざまなアサーションをサポートしています。
 
-Psalm のアサーションは次のような形式です。
-
+Psalmのアサーションは以下の形式を取ります：
 `@psalm-assert(-if-true|-if-false)? (Assertion) (Variable or Property)`
 
-`Assertion` である：
+ここでの`Assertion`には多くの形式があります：
 
 ## 通常のアサーション
 
-## is_xxx アサーション
+### is_xxx アサーション
 
-ほとんどの`is_xxx` PHP 関数には、それに付随するアサーションがあります。 たとえば`int` は`is_int` のアサーションとなります：
+ほとんどの`is_xxx` PHP関数には、例えば`is_int`に対する`int`のような対応するアサーションがあります。以下は完全なリストです：
 
--`int` -`float` -`string` -`bool` -`scalar` -`callable` -`countable` -`array` -`iterable` -`numeric` -`resource` -`object` - です。`null`
+- `int`
+- `float`
+- `string`
+- `bool`
+- `scalar`
+- `callable`
+- `countable`
+- `array`
+- `iterable`
+- `numeric`
+- `resource`
+- `object`
+- `null`
 
-つまり、カスタムバージョン`is_int` は、Psalmでは次のようにアノテーションされます。
+したがって、カスタムバージョンの`is_int`は、Psalmで以下のようにアノテーションを付けることができます：
 
 ```php
 <?php
@@ -26,65 +37,67 @@ function custom_is_int($x) {
 }
 ```
 
-### オブジェクト型のアサーション
+### オブジェクト型アサーション
 
-どのクラスもアサーションとして使うことができます。
-
+任意のクラスをアサーションとして使用できます。例：
 `@psalm-assert SomeObjectType $foo`
 
-### 汎用アサーション
+### ジェネリックアサーション
 
-汎用型パラメータもアサーションできるようになりました。
-
+ジェネリック型パラメータもアサートできるようになりました。例：
 `@psalm-assert array<int, string> $foo`
 
-## 否定されたアサーション
+## 否定アサーション
 
-上記のどのアサーションも否定することができる：
+上記のどのアサーションも否定することができます：
 
-これは、`$foo` は`int` ではないことを表しています：
+これは`$foo`が`int`ではないことをアサートします：
 
 ```php
 <?php
 /** @psalm-assert !int $foo */
 ```
 
-これは、`$bar` が`SomeObjectType` 型のオブジェクトではないことを表明している：
+これは`$bar`が`SomeObjectType`型のオブジェクトではないことをアサートします：
+
 ```php
 <?php
 /** @psalm-assert !SomeObjectType $bar  */
 ```
 
-## ブールのアサーション
+## ブールアサーション
 
-これは`$bar` が`true` であることを表明する：
+これは`$bar`が`true`であることをアサートします：
+
 ```php
 <?php
 /** @psalm-assert true $bar  */
 ```
 
-これは、`$bar` が`false` でないことを表明する：
+これは`$bar`が`false`ではないことをアサートします：
+
 ```php
 <?php
 /** @psalm-assert !false $bar  */
 ```
 
-## 等式アサーション
+## 等価性アサーション
 
-Psalmは、`assert($some_int === $other_int)` に相当する以下の形式もサポートしている。
+Psalmは`assert($some_int === $other_int)`と同等のものを以下の形式でサポートしています：
+
 ```php
 <?php
 /** @psalm-assert =int $some_int */
 ```
 
-上記のアサーションと 
+以下のアサーションとの間には2つの違いがあります：
 
 ```php
 <?php
 /** @psalm-assert int $some_int */
 ```
 
-第一に、`=int` の否定には意味がない：
+まず、`=int`の否定には意味がありません：
 
 ```php
 <?php
@@ -95,21 +108,19 @@ function equalsFive($x) {
 
 function foo($y) : void {
   if (equalsFive($y)) {
-    // $y is definitely an int
+    // $yは確実にintです
   } else {
-    // $y might be an int, but it might not
+    // $yはintかもしれませんが、そうでないかもしれません
   }
 }
 
 function bar($y) : void {
   if (is_int($y)) {
-    // $y is definitely an int
+    // $yは確実にintです
   } else {
-    // $y is definitely not an int
+    // $yは確実にintではありません
   }
 }
 ```
 
-第二に、`equalsFive($some_int)` の呼び出しは詩篇の`RedundantCondition` ではないが、`is_int($some_int)` の呼び出しはそうである。
-
-
+次に、`equalsFive($some_int)`を呼び出すことは、Psalmでは`RedundantCondition`ではありませんが、`is_int($some_int)`を呼び出すことは`RedundantCondition`です。

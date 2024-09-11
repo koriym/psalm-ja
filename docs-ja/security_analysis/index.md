@@ -1,48 +1,63 @@
-# 詩篇における安全保障分析
+# Psalmにおけるセキュリティ分析
 
-Psalmは、ユーザが制御する入力(`$_GET['name']` のような)と、エスケープされていないユーザが制御する入力が行き着くことを望まない場所(のような)との間のつながりを見つけようとすることができます。 `echo "<h1>$name</h1>"`のような)との間のつながりを見つけようと試みることができます。
+Psalmは、ユーザーが制御できる入力（`$_GET['name']`など）と、エスケープされていないユーザー制御の入力が終わってほしくない場所（`echo "<h1>$name</h1>"`など）との間のつながりを、アプリケーションを通じてデータがどのように流れるか（代入、関数/メソッド呼び出し、配列/プロパティアクセスを介して）を見ることで見つけようとします。
 
-このモードは`--taint-analysis` コマンドラインフラグで有効にできます。テイント解析が有効な場合、他の解析は行われません。  [ensure comprehensive results](https://github.com/vimeo/psalm/issues/6156) 、Psalmをテイント解析の前に通常通り実行し、エラーを修正する必要があります。
+このモードは`--taint-analysis`コマンドラインフラグで有効にできます。汚染分析が有効になると、他の分析は実行されません。[包括的な結果を確保するために](https://github.com/vimeo/psalm/issues/6156)、汚染分析の前に通常通りPsalmを実行し、エラーを修正する必要があります。
 
-汚染された入力とは、アプリケーションのユーザーによって全体的または部分的に制御される可能性のあるものです。テイント解析では、汚染された入力を「汚染源」と呼びます。
+汚染された入力とは、アプリケーションのユーザーが全体的または部分的に制御できるものすべてです。汚染分析では、汚染された入力を_汚染源_と呼びます。
 
-汚染源の例
+例えば以下のようなものが汚染源です：
+- `$_GET['id']`
+- `$_POST['email']`
+- `$_COOKIE['token']`
 
- -`$_GET[‘id’]` -`$_POST['email']` `$_COOKIE['token']`
+汚染分析は、データが汚染源から_汚染シンク_にどのように流れるかを追跡します。汚染シンクは、信頼できないデータが決して到達してほしくない場所です。
 
- 汚染分析では、汚染源から汚染シンクにデータがどのように流れるかを追跡します。テイントシンクとは、信頼できないデータが最終的に到達することを本当に望まない場所のことです。
+例えば以下のようなものが汚染シンクです：
+- `<div id="section_<?= $id ?>">`
+- `$pdo->exec("select * from users where name='" . $name . "'")`
 
-シンクの例
+## 汚染タイプ
 
- - `<div id="section_<?= $id ?>">`  -`$pdo->exec("select * from users where name='" . $name . "'")`
+Psalmはデフォルトで、[Psalm\Type\TaintKind](https://github.com/vimeo/psalm/blob/master/src/Psalm/Type/TaintKind.php)クラスで定義されている多くの汚染タイプを認識します：
 
-## テイントタイプ
+- `sql` - SQLを含む可能性のある文字列に使用
+- `ldap` - LDAPのDNまたはフィルタを含む可能性のある文字列に使用
+- `html` - 山括弧または引用符なしの文字列を含む可能性のある文字列に使用
+- `has_quotes` - 引用符なしの文字列を含む可能性のある文字列に使用
+- `shell` - シェルコマンドを含む可能性のある文字列に使用
+- `callable` - ユーザーが制御可能な呼び出し可能な文字列に使用
+- `unserialize` - シリアル化された文字列を含む可能性のある文字列に使用
+- `include` - インクルードされるパスを含む可能性のある文字列に使用
+- `eval` - コードを含む可能性のある文字列に使用
+- `ssrf` - Curlまたはそれらきのテキストを渡す可能性のある文字列に使用
+- `file` - パスを含む可能性のある文字列に使用
+- `cookie` - HTTPクッキーを含む可能性のある文字列に使用
+- `header` - HTTPヘッダーを含む可能性のある文字列に使用
+- `user_secret` - ユーザーが提供した秘密を含む可能性のある文字列に使用
+- `system_secret` - システムの秘密を含む可能性のある文字列に使用
 
-Psalmはデフォルトで[Psalm\Type\TaintKind](https://github.com/vimeo/psalm/blob/master/src/Psalm/Type/TaintKind.php) クラスで定義されたいくつかのテイントタイプを認識します：
+カスタム汚染源を定義する際に、独自の汚染タイプを自由に定義することもできます - これらは単なる文字列です。
 
--`sql` - SQLを含む可能性のある文字列に使用されます -`ldap` - ldapのDNやフィルタを含む可能性のある文字列に使用されます -`html` - 角括弧や引用符で囲まれていない文字列を含む可能性のある文字列に使用されます -`has_quotes` - 引用符で囲まれていない文字列を含む可能性のある文字列に使用されます -`shell` - シェルコマンドを含む可能性のある文字列に使用されます -`callable` - ユーザーが制御できる呼び出し可能な文字列に使用されます -`unserialize` - 直列化された文字列を含む可能性のある文字列に使用されます -`include` - パスが含まれる可能性のある文字列に使用されます - - コードが含まれる可能性のある文字列に使用されます`eval` - コードを含む可能性のある文字列に使用 -`ssrf` - Curl などに渡されるテキストを含む可能性のある文字列に使用 -`file` - パスを含む可能性のある文字列に使用 -`cookie` - http クッキーを含む可能性のある文字列に使用 -`header` - http ヘッダーを含む可能性のある文字列に使用 -`user_secret` - ユーザーが提供する秘密を含む可能性のある文字列に使用 -`system_secret` - システム秘密を含む可能性のある文字列に使用
+## 汚染源
 
-カスタムテイントソースを定義する際に、独自のテイントタイプを定義することもできます。
+Psalmは現在、デフォルトで3つの汚染源を定義しています：`$_GET`、`$_POST`、`$_COOKIE`サーバー変数です。
 
-## テイントソース
+[独自の汚染源を定義する](custom_taint_sources.md)こともできます。
 
-Psalmは現在3つのデフォルトテイントソースを定義しています:`$_GET`,`$_POST`,`$_COOKIE` サーバー変数です。
+## 汚染シンク
 
-また、[define your own taint sources](custom_taint_sources.md).
+Psalmは現在、`echo`、`include`、`header`を含む組み込み関数やメソッドに対して、多くの異なるシンクを定義しています。
 
-## テイントシンク
+[独自の汚染シンクを定義する](custom_taint_sinks.md)こともできます。
 
-Psalmは現在、ビルトイン関数やメソッドに対して、`echo`,`include`,`header` を含む様々なシンクを定義しています。
+## 偽陽性を避ける
 
-また、[define your own taint sinks](custom_taint_sinks.md) 。
-
-## 偽陽性の回避
-
-多くの偽陽性を避けたい人はいない -[here’s a guide to avoiding them](avoiding_false_positives.md).
+誰も大量の偽陽性をかき分けたくはありません - [ここに偽陽性を避けるためのガイドがあります](avoiding_false_positives.md)。
 
 ## 制限事項
 
-テイント解析は、値のエスケープ時にミスをしないことに依存しています。
+汚染分析は、値のエスケープ時にミスを犯さないことに依存しています。例えば：
 
 ```php
 $sql = 'SELECT * FROM users WHERE id = ' . $mysqli->real_escape_string((string) $_GET['id']);
@@ -52,46 +67,46 @@ $html = "
   <a href='" . htmlentities((string) $_GET['a1']) . "'>Link 1</a>
   <a href='" . htmlentities((string) $_GET['a2']) . "'>Line 2</a>";
 
-// Details:
-//    $id  = 'id'                   - Missing quotes
-//    $img = '/ onerror=alert(1)'   - Missing quotes
-//    $a1  = 'javascript:alert(1)'  - Normal inline JavaScript
-//    $a2  = '/' onerror='alert(1)' - Pre PHP 8.1, single quotes are not escaped by default
-// Test:
+// 詳細：
+//    $id  = 'id'                   - 引用符が不足
+//    $img = '/ onerror=alert(1)'   - 引用符が不足
+//    $a1  = 'javascript:alert(1)'  - 通常のインラインJavaScript
+//    $a2  = '/' onerror='alert(1)' - PHP 8.1以前では、シングルクォートはデフォルトでエスケープされない
+// テスト：
 //    /?id=id&img=%2F+onerror%3Dalert%281%29&a1=javascript%3Aalert%281%29&a2=%2F%27+onerror%3D%27alert%281%29
 ```
 
-このような問題を避けるには、SQLやコマンドにパラメータ化クエリ（例：`exec` ）を使用し、HTMLにはコンテキストを意識したテンプレート化エンジンを使用します。そして、[literal-string](https://psalm.dev/docs/annotating_code/type_syntax/scalar_types/#literal-string) 型を使用して、センシティブな文字列がアプリケーションで定義されている（つまり、開発者によって書かれている）ことを確認してください。
+これらの問題を避けるには、SQLとコマンド（例：`exec`）にはパラメータ化クエリを使用し、HTMLにはコンテキストを考慮したテンプレートエンジンを使用してください。そして、[literal-string](https://psalm.dev/docs/annotating_code/type_syntax/scalar_types/#literal-string)型を使用して、機密な文字列がアプリケーションで定義されている（つまり、開発者によって書かれた）ことを確認してください。
 
-## ベースラインとテイント解析の併用
+## 汚染分析でベースラインを使用する
 
-テイント解析は他の静的コード解析とは別に行われるため、ベースラインを別に使うことは理にかなっています。
+汚染分析は他の静的コード分析とは別に実行されるため、別のベースラインを使用することが理にかなっています。
 
-use-baseline=PATHオプションを使用すると、テイント解析用に別のベースラインを設定できます。
+`--use-baseline=PATH`オプションを使用して、汚染分析に異なるベースラインを設定できます。
 
-## 結果をユーザーインターフェースで見る
+## ユーザーインターフェースで結果を表示する
 
-Psalmは静的解析結果を交換するための標準規格[SARIF](http://docs.oasis-open.org/sarif/sarif/v2.0/csprd01/sarif-v2.0-csprd01.html) をサポートしています。これにより、テイントフローを含むSARIF互換のソフトウェアで解析結果を表示できます。
+Psalmは、静的分析結果を交換するための[SARIF](http://docs.oasis-open.org/sarif/sarif/v2.0/csprd01/sarif-v2.0-csprd01.html)標準をサポートしています。これにより、汚染フローを含む結果を任意のSARIF互換ソフトウェアで表示できます。
 
-### GitHub コードスキャン
+### GitHub Code Scanning
 
-[GitHub code scanning](https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning) は、[Psalm GitHub Action](https://github.com/marketplace/actions/psalm-static-analysis-for-php).
+[GitHub code scanning](https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning)は、[Psalm GitHub Action](https://github.com/marketplace/actions/psalm-static-analysis-for-php)を使用してセットアップできます。
 
-また、[the GitHub documentation](https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/uploading-a-sarif-file-to-github) に記載されているように、生成されたSARIFファイルを手動でアップロードすることもできます。
+または、[GitHubのドキュメント](https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/uploading-a-sarif-file-to-github)に記載されているように、生成されたSARIFファイルを手動でアップロードすることもできます。
 
-生成された SARIF ファイルは、リポジトリの "Security "タブで利用できます。
+結果は、リポジトリの「Security」タブで利用可能になります。
 
-### その他の SARIF 互換ソフトウェア
+### その他のSARIF互換ソフトウェア
 
-SARIF レポートを作成するには、`--report` フラグと`.sarif` 拡張子を付けて Psalm を実行してください。例えば
+SARIFレポートを生成するには、`--report`フラグと`.sarif`拡張子を付けてPsalmを実行します。例：
 
 ```bash
 psalm --report=results.sarif
 ```
 
-## テイントグラフのデバッグ
+## 汚染グラフのデバッグ
 
-PsalmはDOT言語を使ってテイントグラフを出力できます。これは期待したテイントが検出されない場合に便利です。DOTグラフを生成するには、`--dump-taint-graph` フラグを付けてPsalmを実行してください。例えば
+Psalmは、DOT言語を使用して汚染グラフを出力できます。これは、期待される汚染が検出されない場合に役立ちます。DOTグラフを生成するには、`--dump-taint-graph`フラグを付けてPsalmを実行します。例：
 
 ```bash
 psalm --taint-analysis --dump-taint-graph=taints.dot

@@ -1,23 +1,20 @@
-# 交差点の種類
+# インターセクション型
 
-`Type1&Type2&Type3` という形式のアノテーションは_Intersection Type_である。どのような値も、`Type1` 、`Type2` 、`Type3` を同時に満たさなければならない。`Type1` `Type2` と`Type3` はすべて[atomic types](atomic_types.md) である。
+`Type1&Type2&Type3` 形式のアノテーションは _インターセクション型_ です。任意の値は `Type1`、`Type2`、`Type3` を同時に満たす必要があります。`Type1`、`Type2`、`Type3` はすべて [原子型](atomic_types.md) です。
 
-たとえば、PHPUnit のテストではこのように記述します：
+例えば、PHPUnitテストで次のステートメントの後：
 
 ```php
 <?php
-
 $hare = $this->createMock(Hare::class);
 ```
 
-`$hare` は`Hare` を継承し、`\PHPUnit\Framework\MockObject\MockObject` を実装したクラスのインスタンスとなります。したがって
-`$hare` は`Hare&\PHPUnit\Framework\MockObject\MockObject` と型付けされる。値が複数のインターフェイスを実装する必要がある場合は、いつでもこの構文を使うことができる。
-この構文を使うことができます。
+`$hare` は `Hare` を拡張し、`\PHPUnit\Framework\MockObject\MockObject` を実装するクラスのインスタンスになります。そのため、`$hare` は `Hare&\PHPUnit\Framework\MockObject\MockObject` と型付けされます。この構文は、値が複数のインターフェースを実装する必要がある場合はいつでも使用できます。
 
-もう1つの使用例は、オブジェクトのような配列をマージできることです：
+もう1つの使用例は、オブジェクトライクな配列をマージできるようにすることです：
 
 ```php
-/**
+/** 
  * @psalm-type A=array{a: int}
  * @psalm-type B=array{b: int}
  *
@@ -31,6 +28,6 @@ function foo($a, $b) {
 }
 ```
 
-返される型は、`A` と`B` の両方のプロパティを含む。言い換えれば、`{a: int, b: int}` となる。
+返される型には `A` と `B` の両方のプロパティが含まれます。言い換えれば、`{a: int, b: int}` になります。
 
-交差は、*オブジェクト型*だけのリストと、*オブジェクトに似た配列*だけのリストに対してのみ有効である。
+インターセクションは、*オブジェクト型* のリストのみ、または *オブジェクトライクな配列* のリストのみに対して有効です。

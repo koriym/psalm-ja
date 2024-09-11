@@ -1,15 +1,16 @@
-# ユニオンの種類
+# ユニオン型
 
-`Type1|Type2|Type3` という形式の注釈は_Union Type_である。`Type1` `Type2` と`Type3` はすべて、そのユニオン・タイプの許容可能な型です。
+`Type1|Type2|Type3` 形式のアノテーションは _ユニオン型_ です。`Type1`、`Type2`、`Type3` はすべて、そのユニオン型の許容可能な可能な型です。
 
-`Type1` `Type2` と`Type3` はそれぞれ[atomic types](atomic_types.md) です。
+`Type1`、`Type2`、`Type3` はそれぞれ [原子型](atomic_types.md) です。
 
-ユニオン・タイプは、例えば3項式など、さまざまな方法で生成することができます：
+ユニオン型は、例えば三項演算子の式など、さまざまな方法で生成できます：
 
 ```php
-<?php $rabbit = rand(0, 10) === 4 ? 'rabbit' : ['rabbit'];
+<?php
+$rabbit = rand(0, 10) === 4 ? 'rabbit' : ['rabbit'];
 ```
 
-`$rabbit` `$rabbit` `string|array` は`string` か`array` のどちらかになります。この考えをユニオン・タイプで表すことができます。ユニオン型は、与えられた変数が持ちうるすべての型を表します。
+`$rabbit` は `string` または `array` のいずれかになります。この考えをユニオン型で表現できます - つまり、`$rabbit` は `string|array` と型付けされます。ユニオン型は、与えられた変数が持つ可能性のある *すべての* 型を表します。
 
-PHPの組み込み関数もユニオン型を返します。`strpos` はある状況では`false` を返し、ある状況では`int` を返します。このユニオン型を`int|false` で表します。
+PHPのビルトイン関数もユニオン型の戻り値を持っています - `strpos` は状況によって `false` を返すこともあれば、`int` を返すこともあります。このユニオン型を `int|false` と表現します。

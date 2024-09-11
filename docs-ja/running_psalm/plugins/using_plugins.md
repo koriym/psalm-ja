@@ -1,14 +1,14 @@
 # プラグインの使用
 
-Psalmは、ドメイン固有の問題を発見し修正するために、プラグインによって拡張することができる。
+Psalmは、プラグインを通じて拡張し、ドメイン固有の問題を見つけて修正することができます。
 
-## Composerベースのプラグインを使う
+## Composerベースのプラグインの使用
 
-Psalmのプラグインはcomposerパッケージとして配布されています。
+Psalmプラグインはcomposerパッケージとして配布されています。
 
 ### プラグインの発見
 
-プラグインの一覧は[Psalm’s own website](https://psalm.dev/plugins) と[also on Packagist](https://packagist.org/?type=psalm-plugin) にあります。また、CLIで次のように入力しても一覧を取得できます。`composer search -t psalm-plugin '.'`
+[Psalm自身のウェブサイト](https://psalm.dev/plugins)や[Packagist](https://packagist.org/?type=psalm-plugin)でプラグインのリストを見つけることができます。あるいは、CLIで`composer search -t psalm-plugin '.'`とタイプしてリストを取得することもできます。
 
 ### プラグインのインストール
 
@@ -16,16 +16,16 @@ Psalmのプラグインはcomposerパッケージとして配布されていま�
 
 ### 既知のプラグインの管理
 
-インストールが完了したら、`psalm-plugin` ツールを使用して、利用可能なプラグインと有効なプラグインを有効化、無効化、表示します。
+インストールしたら、`psalm-plugin`ツールを使用して、利用可能なプラグインと有効なプラグインの有効化、無効化、表示を行います。
 
-プラグインを有効にするには、`vendor/bin/psalm-plugin enable plugin-vendor/plugin-package`.
+プラグインを有効にするには、`vendor/bin/psalm-plugin enable plugin-vendor/plugin-package`を実行します。
 
-プラグインを無効にするには、`vendor/bin/psalm-plugin disable plugin-vendor/plugin-package` を実行する。
+プラグインを無効にするには、`vendor/bin/psalm-plugin disable plugin-vendor/plugin-package`を実行します。
 
-`vendor/bin/psalm-plugin show` を実行すると、すべてのローカル・プラグイン（有効・無効）のリストが表示されます。
+`vendor/bin/psalm-plugin show`は、すべてのローカルプラグイン（有効と無効の両方）のリストを表示します。
 
-## 独自のプラグインを使う
+## 独自のプラグインの使用
 
-お気に入りのフレームワーク/ライブラリのプラグインがまだありませんか？作ってみましょう！リポジトリをフォークしてdocblockをいじり、Packagistにパッケージを公開するだけです。
+お気に入りのフレームワーク/ライブラリ用のプラグインがまだありませんか？作成しましょう！リポジトリをフォークし、いくつかのdocblockを調整し、パッケージをPackagistに公開するだけで簡単です。
 
-[Authoring Plugins](authoring_plugins.md) の章を参考にしてください。
+[プラグインの作成](authoring_plugins.md)の章を参照して、始めてください。

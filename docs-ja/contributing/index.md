@@ -1,4 +1,4 @@
-# 詩篇への貢献
+# psalmへの貢献
 
 Psalmは、[hundreds of developers](https://github.com/vimeo/psalm/graphs/contributors) 。
 

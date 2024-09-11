@@ -1,20 +1,18 @@
 # 偽陽性を避ける
 
-初めてPsalmのテイント分析を実行したとき、偽陽性がたくさん表示されるかもしれません。
+Psalmのtaint分析を初めて実行すると、多くの偽陽性が表示される場合があります。
+誰も偽陽性は好みません！
 
-偽陽性を好む人はいません！
+これらを防ぐ方法がいくつかあります：
 
-誤検出を防ぐ方法はいくつかあります：
+## 汚染された入力をエスケープする
 
-## 汚染された入力から逃れる
+一部の操作はデータから汚染を除去します - 例えば、`$_GET['name']`を`htmlentities`呼び出しでラップすると、その`$_GET`呼び出しのクロスサイトスクリプティング攻撃を防ぎます。
 
-例えば、`$_GET['name']` を`htmlentities` でラップすることで、`$_GET` のクロスサイトスクリプティング攻撃を防ぐことができます。
-
-Psalmでは `@psalm-taint-escape <taint-type>`というアノテーションを使うことができます：
+Psalmでは、`@psalm-taint-escape <taint-type>`アノテーションを使用して汚染を除去できます：
 
 ```php
 <?php
-
 function echoVar(string $str) : void {
     /**
      * @psalm-taint-escape html
@@ -26,125 +24,193 @@ function echoVar(string $str) : void {
 echoVar($_GET["text"]);
 ```
 
-## 汚染された入力を条件付きでエスケープする
+## 条件付きで汚染された入力をエスケープする
 
-先ほどの例を少し修正したものが、戻り値が安全であるとみなされるかどうかを決定するために条件を使用しています。関数の引数`$escape` が真の場合のみ、対応するアノテーション
-`@psalm-taint-escape` `html` が適用されます。
-
-```php
-<?php /**  * @param string $str  * @param bool $escape  * @psalm-taint-escape ($escape is true ? 'html' : null)  */ function processVar(string $str, bool $escape = true) : string {     if ($escape) {       $str = str_replace(['<', '>'], '', $str);     }     return $str; }
-
-echo processVar($_GET['text'], false); // detects tainted HTML echo processVar($_GET['text'], true); // considered secure
-```
-
-## HTMLユーザー入力のサニタイズ
-
-可能な限り、アプリケーションはHTMLのブロックではなく、個別のテキストフィールドと してユーザー入力を受け付け、保存するように設計されるべきです。  これにより、`htmlspecialchars` や`htmlentities` を使って、ユーザー入力を完全にエスケープすることができます。 HTMLのユーザー入力が必要な場合(例えば、[TinyMCE](https://www.tiny.cloud/) のようなリッチテキストエディタ)には、危険なHTMLをフィルタリングするために特別に設計されたライブラリを使うことを強く推奨します。  例えば、[HTML Purifier](http://htmlpurifier.org/docs) は次のように使うことができる：
+前の例を少し修正したバージョンでは、条件を使用して戻り値が安全とみなされるかどうかを判断します。関数の引数`$escape`がtrueの場合にのみ、対応する`@psalm-taint-escape`アノテーションが汚染タイプ`html`に適用されます。
 
 ```php
 <?php
+/**
+ * @param string $str
+ * @param bool $escape
+ * @psalm-taint-escape ($escape is true ? 'html' : null)
+ */
+function processVar(string $str, bool $escape = true) : string {
+    if ($escape) {
+      $str = str_replace(['<', '>'], '', $str);
+    }
+    return $str;
+}
 
-/**  * @psalm-taint-escape html  * @psalm-taint-escape has_quotes  */ function sanitizeHTML($html){     $purifier = new HTMLPurifier();     return $purifier->purify($html); }
+echo processVar($_GET['text'], false); // 汚染されたHTMLを検出
+echo processVar($_GET['text'], true);  // 安全とみなされる
 ```
 
-## 関数内のテイントに特化する
+## ユーザー入力のHTMLをサニタイズする
 
-関数、メソッド、クラスでは、`@psalm-taint-specialize` アノテーションを使うことができます。
+可能な限り、アプリケーションはユーザー入力をHTMLブロックではなく、個別のテキストフィールドとして受け入れて保存するように設計されるべきです。これにより、ユーザー入力を`htmlspecialchars`や`htmlentities`を使用して完全にエスケープできます。HTMLユーザー入力が必要な場合（例：[TinyMCE](https://www.tiny.cloud/)のようなリッチテキストエディタ）、リスクのあるHTMLをフィルタリングするために特別に設計されたライブラリの使用を強く推奨します。例えば、[HTML Purifier](http://htmlpurifier.org/docs)は次のように使用できます：
 
 ```php
 <?php
-
-function takesInput(string $s) : string {     return $s; }
-
-echo htmlentities(takesInput($_GET["name"])); echo takesInput("hello"); // Psalm detects tainted HTML here
+/**
+ * @psalm-taint-escape html
+ * @psalm-taint-escape has_quotes
+ */
+function sanitizeHTML($html){
+    $purifier = new HTMLPurifier();
+    return $purifier->purify($html);
+}
 ```
 
-`@psalm-taint-specialize` アノテーションを追加することで、関数の各呼び出しが別々に扱われるべきであることをPsalmに伝えることで、問題を解決します。
+## 関数内の汚染を特殊化する
+
+関数、メソッド、クラスに対しては、`@psalm-taint-specialize`アノテーションを使用できます。
 
 ```php
 <?php
+function takesInput(string $s) : string {
+    return $s;
+}
 
-/**  * @psalm-taint-specialize  */ function takesInput(string $s) : string {     return $s; }
-
-echo htmlentities(takesInput($_GET["name"])); echo takesInput("hello"); // No error
+echo htmlentities(takesInput($_GET["name"]));
+echo takesInput("hello"); // Psalmはここで汚染されたHTMLを検出します
 ```
 
-特殊化された関数やメソッドは、汚染された入力を追跡します：
+`@psalm-taint-specialize`アノテーションを追加することで問題が解決します。これは、関数の各呼び出しを別々に扱うようPsalmに指示します。
 
 ```php
 <?php
+/**
+ * @psalm-taint-specialize
+ */
+function takesInput(string $s) : string {
+    return $s;
+}
 
-/**  * @psalm-taint-specialize  */ function takesInput(string $s) : string {     return $s; }
-
-echo takesInput($_GET["name"]); // Psalm detects tainted input echo takesInput("hello"); // No error
+echo htmlentities(takesInput($_GET["name"]));
+echo takesInput("hello"); // エラーなし
 ```
 
-ここで私たちは、関数の汚染度は関数への入力に完全に依存していることをプサルムに伝えている。
-
-もしあなたが[immutability in Psalm](https://psalm.dev/articles/immutability-and-beyond) に詳しいなら、この一般的な考え方はよく理解できるはずです。なぜなら純粋関数とは、出力が完全に入力に依存する関数のことだからです。当然のことながら、`@psalm-pure` の関数はすべて、入力に基づいて出力の汚染度を特化します：
+特殊化された関数やメソッドは、依然として汚染された入力を追跡します：
 
 ```php
 <?php
+/**
+ * @psalm-taint-specialize
+ */
+function takesInput(string $s) : string {
+    return $s;
+}
 
-/**  * @psalm-pure  */ function takesInput(string $s) : string {     return $s; }
-
-echo htmlentities(takesInput($_GET["name"])); echo takesInput("hello"); // No error
+echo takesInput($_GET["name"]); // Psalmは汚染された入力を検出します
+echo takesInput("hello"); // エラーなし
 ```
 
-## クラスにおける汚染度の特化
+ここでは、関数の汚染状態が完全に関数への入力に依存していることをPsalmに伝えています。
 
-テイントを関数呼び出しに特化させることができるように、テイント・プロパティも指定したクラスに特化させることができます。
+[Psalmにおける不変性](https://psalm.dev/articles/immutability-and-beyond)に精通している場合、この一般的な考え方は馴染みがあるはずです。純粋関数は出力が完全に入力に依存するものだからです。驚くべきことではありませんが、`@psalm-pure`とマークされたすべての関数も、入力に基づいて出力の汚染状態を特殊化します：
 
 ```php
 <?php
+/**
+ * @psalm-pure
+ */
+function takesInput(string $s) : string {
+    return $s;
+}
 
-class User {     public string $name;
+echo htmlentities(takesInput($_GET["name"]));
+echo takesInput("hello"); // エラーなし
+```
 
-    public function __construct(string $name) {         $this->name = $name;     } }
+## クラス内の汚染を特殊化する
 
-/**  * @psalm-taint-specialize  */ function echoUserName(User $user) {     echo $user->name; // Error, detected tainted input }
+関数呼び出しで汚染を特殊化できるのと同様に、汚染されたプロパティも特定のクラスに特殊化できます。
 
-$user1 = new User("Keith"); $user2 = new User($_GET["name"]);
+```php
+<?php
+class User {
+    public string $name;
 
+    public function __construct(string $name) {
+        $this->name = $name;
+    }
+}
+
+/**
+ * @psalm-taint-specialize
+ */
+function echoUserName(User $user) {
+    echo $user->name; // エラー、汚染された入力を検出
+}
+
+$user1 = new User("Keith");
+$user2 = new User($_GET["name"]);
 echoUserName($user1);
 ```
 
-クラスに`@psalm-taint-specialize` 。
+クラスに`@psalm-taint-specialize`を追加することで問題が解決します。
 
 ```php
 <?php
+/**
+ * @psalm-taint-specialize
+ */
+class User {
+    public string $name;
 
-/**  * @psalm-taint-specialize  */ class User {     public string $name;
+    public function __construct(string $name) {
+        $this->name = $name;
+    }
+}
 
-    public function __construct(string $name) {         $this->name = $name;     } }
+/**
+ * @psalm-taint-specialize
+ */
+function echoUserName(User $user) {
+    echo $user->name; // エラーなし
+}
 
-/**  * @psalm-taint-specialize  */ function echoUserName(User $user) {     echo $user->name; // No error }
-
-$user1 = new User("Keith"); $user2 = new User($_GET["name"]);
-
+$user1 = new User("Keith");
+$user2 = new User($_GET["name"]);
 echoUserName($user1);
 ```
 
-また、純潔を強制する形なので、`@psalm-immutable` ：
+そして、これは一種の純粋性の強制なので、`@psalm-immutable`も使用できます：
 
 ```php
 <?php
+/**
+ * @psalm-immutable
+ */
+class User {
+    public string $name;
 
-/**  * @psalm-immutable  */ class User {     public string $name;
+    public function __construct(string $name) {
+        $this->name = $name;
+    }
+}
 
-    public function __construct(string $name) {         $this->name = $name;     } }
+/**
+ * @psalm-taint-specialize
+ */
+function echoUserName(User $user) {
+    echo $user->name; // エラーなし
+}
 
-/**  * @psalm-taint-specialize  */ function echoUserName(User $user) {     echo $user->name; // No error }
-
-$user1 = new User("Keith"); $user2 = new User($_GET["name"]);
-
+$user1 = new User("Keith");
+$user2 = new User($_GET["name"]);
 echoUserName($user1);
 ```
 
-## テイントパスのファイルを避ける
+## 汚染パスでファイルを避ける
 
-Psalmの設定に特定のファイルやディレクトリを経由するテイントパスを指定することで、Psalmにテイントパスに興味がないことを伝えることもできます：
+特定のファイルやディレクトリを通過する汚染パスに興味がないことをPsalmに伝えることもできます。Psalm設定で以下のように指定します：
 
 ```xml
-    <taintAnalysis>         <ignoreFiles>             <directory name="tests"/>         </ignoreFiles>     </taintAnalysis>
+    <taintAnalysis>
+        <ignoreFiles>
+            <directory name="tests"/>
+        </ignoreFiles>
+    </taintAnalysis>
 ```
