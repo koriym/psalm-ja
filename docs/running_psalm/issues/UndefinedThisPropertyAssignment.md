@@ -1,10 +1,8 @@
 # UndefinedThisPropertyAssignment
-
-Emitted when assigning a property on an object in one of that object’s methods when no such property exists
+オブジェクトのメソッド内で、存在しないプロパティに対してオブジェクトのプロパティを割り当てようとした場合に発生します。
 
 ```php
 <?php
-
 class A {
     function foo() {
         $this->foo = "bar";

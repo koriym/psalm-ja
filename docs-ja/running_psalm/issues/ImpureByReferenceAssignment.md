@@ -1,12 +1,10 @@
-#不純な参照割り当て
-
-無変異としてマークされた関数やメソッドの内部で、参照渡しの変数を代入するときに発行されます。
+# ImpureByReferenceAssignment
+mutation-freeとマークされた関数やメソッド内で、参照渡しされた変数に代入しようとした場合に発生します。
 
 ```php
 <?php
-
-/**
- * @psalm-pure
+/** 
+ * @psalm-pure 
  */
 function foo(string &$a): string {
     $a = "B";
@@ -15,14 +13,12 @@ function foo(string &$a): string {
 ```
 
 ## 修正方法
-
-突然変異の割り当てを削除する：
+変更を加える代入を削除するだけです：
 
 ```php
 <?php
-
-/**
- * @psalm-pure
+/** 
+ * @psalm-pure 
  */
 function foo(string &$a): string {
     return $a;

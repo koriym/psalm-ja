@@ -1,20 +1,13 @@
-# PropertyNotSetInConstructor（プロパティ・ノットセット・イン・コンストラクタ
-
-初期化されていないプロパティを静的に解析するのは困難です。間違いを防ぐために、Psalmはすべてのプロパティを初期化することを強制します。
-
-これは、[MissingConstructor](./MissingConstructor.md) とこの問題を通して行います。
-
-Psalmはコードベース内のすべてのプロパティが初期化されていると仮定します。
-
-そうすることで、初期化の欠落を報告することができます。[RedundantPropertyInitializationCheck](./RedundantPropertyInitializationCheck.md)
-
-この問題は、デフォルト値のない非 null プロパティが宣言されているが、クラスのコンストラクタで設定されていない場合に発生します。
-
-初期化されていないプロパティの存在に依存しているプロジェクトでは、[MissingConstructor](./MissingConstructor.md) や[RedundantPropertyInitializationCheck](./RedundantPropertyInitializationCheck.md) と同様に、この問題を抑制することをお勧めします。
+# PropertyNotSetInConstructor
+初期化されていないプロパティは静的に分析するのが難しいです。ミスを防ぐために、Psalmはすべてのプロパティが初期化されるべきであることを強制します。
+これは[MissingConstructor](./MissingConstructor.md)とこの問題を通じて行われます。
+その後、Psalmはコードベース内のすべてのプロパティが初期化されていると仮定します。
+これにより、初期化の欠如を報告するだけでなく、[RedundantPropertyInitializationCheck](./RedundantPropertyInitializationCheck.md)も報告できるようになります。
+この問題は、デフォルト値を持たない非nullプロパティがクラスのコンストラクタで設定されていない場合に発生します。
+プロジェクトが初期化されていないプロパティに依存している場合は、この問題を抑制し、同様に[MissingConstructor](./MissingConstructor.md)と[RedundantPropertyInitializationCheck](./RedundantPropertyInitializationCheck.md)も抑制することをお勧めします。
 
 ```php
 <?php
-
 class A {
     /** @var string */
     public $foo;

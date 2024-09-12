@@ -1,10 +1,8 @@
 # MissingImmutableAnnotation
-
-不変インターフェイスまたはクラスを継承するクラスが、`@psalm-immutable` 宣言も持っていない場合に発行されます。
+不変（immutable）インターフェースまたはクラスを継承するクラスが`@psalm-immutable`宣言も持っていない場合に発生します。
 
 ```php
 <?php
-
 /** @psalm-immutable */
 interface SomethingImmutable {
     public function someInteger() : int;

@@ -1,16 +1,17 @@
-#継承者違反
-
-`@psalm-inheritors` を使用するクラス/インターフェースが、その要件を満たさないクラスによって拡張/実装されたときに発せられる。
+# InheritorViolation
+`@psalm-inheritors`を使用するクラス/インターフェースが、その要件を満たさないクラスによって
+拡張/実装された場合に発生します。
 
 ```php
 <?php
-
 /**
  * @psalm-inheritors FooClass|BarClass
  */
 class BaseClass {}
+
 class BazClass extends BaseClass {}
-// InheritorViolation is emitted, as BaseClass can only be extended
-// by FooClass|BarClass, which is not the case
+
+// InheritorViolationが発生します。BaseClassはFooClass|BarClassによってのみ
+// 拡張できますが、そうではありません
 $a = new BazClass();
 ```

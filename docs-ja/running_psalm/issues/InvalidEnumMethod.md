@@ -1,6 +1,5 @@
-# 無効なEnumMethod
-
-列挙型は、`__get` や`__toString` などのマジックメソッドのほとんどを定義していない可能性があります。
+# InvalidEnumMethod
+列挙型は`__get`、`__toString`などのほとんどのマジックメソッドを定義できません。
 
 ```php
 <?php

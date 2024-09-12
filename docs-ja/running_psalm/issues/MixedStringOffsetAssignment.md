@@ -1,9 +1,7 @@
-# MixedStringOffsetAssignment（混合文字列オフセット割り当て
-
-Psalmが型を推測できない値を使って文字列に値を代入するときに発行されます。
+# MixedStringOffsetAssignment
+Psalmが型を推論できない値を使用して文字列にオフセットを割り当てようとした場合に発生します。
 
 ```php
 <?php
-
 "hello"[0] = $GLOBALS['foo'];
 ```

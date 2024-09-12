@@ -1,10 +1,8 @@
-# 拡張要件違反
-
-trait の使用クラスが`@psalm-require-extends` を使用して指定されたクラスを拡張していない場合に発行されます。
+# ExtensionRequirementViolation
+トレイトを使用するクラスが、`@psalm-require-extends`を使用して指定されたクラスを拡張していない場合に発生します。
 
 ```php
 <?php
-
 class A { }
 
 /**
@@ -13,8 +11,9 @@ class A { }
 trait T { }
 
 class B {
-  // ExtensionRequirementViolation is emitted, as T requires
-  // the using class B to extend A, which is not the case
-  use T; 
+  // ExtensionRequirementViolationが発生します。Tは
+  // 使用クラスBがAを拡張することを要求していますが、
+  // そうではありません
+  use T;
 }
 ```

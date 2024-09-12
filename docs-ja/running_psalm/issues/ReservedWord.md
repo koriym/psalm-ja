@@ -1,9 +1,7 @@
-# 予約語
-
-予約語をクラス名として使用する場合に発せられる
+# ReservedWord
+クラス名として予約語を使用しようとした場合に発生します。
 
 ```php
 <?php
-
 function foo(resource $res) : void {}
 ```

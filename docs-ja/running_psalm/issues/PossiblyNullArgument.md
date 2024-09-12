@@ -1,54 +1,44 @@
-# 可能な引数
-
-NULLの可能性がある引数で関数を呼び出したときに発生するエラー。
+# PossiblyNullArgument
+関数が期待していないにもかかわらず、nullの可能性のある値で関数を呼び出そうとした場合に発生します。
 
 ```php
 <?php
-
 function foo(string $s): void {}
 foo(rand(0, 1) ? "hello" : null);
 ```
 
 ## よくある問題のケース
-
-### 内部の関数呼び出しの使用`if`
-
+### `if`内での関数呼び出しの使用
 ```php
 <?php
-
 if (is_string($cat->getName()) {
     foo($cat->getName());
 }
 ```
-これは失敗する。なぜなら、`$cat->getName()` へのその後の呼び出しが常に同じ結果を与えるとは保証されていないからである。
+これは失敗します。なぜなら、`$cat->getName()`の後続の呼び出しが常に同じ結果を返すという保証がないからです。
 
-#### 解決策
-
+#### 可能な解決策
 変数を使用する：
 ```php
 <?php
-
 $catName = $cat->getName();
 if (is_string($catName) {
     foo($catName);
 }
 unset($catName);
 ```
+または、関数の宣言に[`@psalm-mutation-free`](../../annotating_code/supported_annotations.md#psalm-mutation-free)を追加する。
 
-または、関数の宣言に[`@psalm-mutation-free`](../../annotating_code/supported_annotations.md#psalm-mutation-free) 。
-
-### の後に別の関数を呼び出す`if`
-
+### `if`の後に別の関数を呼び出す
 ```php
 <?php
-
 if (is_string($cat->getName()) {
     changeCat();
     foo($cat->getName());
 }
 ```
-psalmは`changeCat()` が実際に`$cat` を変更したかどうかを知ることができないので、これは失敗します。
+これは失敗します。なぜなら、psalmは`changeCat()`が実際に`$cat`を変更するかどうかを知ることができないからです。
 
-#### 解決策
-
-* 他の関数（ここでは`changeCat()` ）の宣言にも[`@psalm-mutation-free`](../../annotating_code/supported_annotations.md#psalm-mutation-free) を追加する * 変数を使用する：上記参照
+#### 可能な解決策
+* 他の関数（ここでは`changeCat()`）の宣言にも[`@psalm-mutation-free`](../../annotating_code/supported_annotations.md#psalm-mutation-free)を追加する
+* 変数を使用する：上記を参照

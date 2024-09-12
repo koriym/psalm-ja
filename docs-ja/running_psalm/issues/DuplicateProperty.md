@@ -1,18 +1,14 @@
-# 重複プロパティ
-
-クラスのプロパティが二重に定義されている場合に発行されます。
+# DuplicateProperty
+クラスのプロパティが2回定義された場合に発生します。
 
 ```php
 <?php
-
-class Foo
-{
+class Foo {
     public int $foo;
     public string $foo;
 }
 
-class Bar
-{
+class Bar {
     public int $bar;
     public static string $bar;
 }

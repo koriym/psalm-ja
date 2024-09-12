@@ -1,45 +1,36 @@
 # FalsableReturnStatement
-
-戻り値に偽の値が含まれているが、関数の戻り値の型が偽を許可していない場合に発行されます。
+関数の戻り値の型がfalseを許可していないにもかかわらず、return文にfalse値が含まれている場合に発生します。
 
 ```php
 <?php
-
 function getCommaPosition(string $a) : int {
     return strpos($a, ',');
 }
 ```
 
 ## 修正方法
-
-falseのチェックを追加する：
+falseに対する具体的なチェックを追加することができます：
 
 ```php
 <?php
-
 function getCommaPosition(string $a) : int {
     $pos = strpos($a, ',');
-
     if ($pos === false) {
         return -1;
     }
-
     return $pos;
 }
 ```
 
-あるいは、例外をスローすることもできます：
+あるいは、例外をスローすることを選択することもできます：
 
 ```php
 <?php
-
 function getCommaPosition(string $a) : int {
     $pos = strpos($a, ',');
-
     if ($pos === false) {
         throw new Exception('This is unexpected');
     }
-
     return $pos;
 }
 ```

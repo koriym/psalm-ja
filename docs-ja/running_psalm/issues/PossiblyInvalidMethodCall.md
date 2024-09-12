@@ -1,10 +1,8 @@
-# メソッドコールの可能性
-
-オブジェクトではない可能性のある値に対してメソッドを呼び出そうとしたときに発せられる
+# PossiblyInvalidMethodCall
+オブジェクトでない可能性のある値にメソッドを呼び出そうとした場合に発生します。
 
 ```php
 <?php
-
 class A {
     public function bar() : void {}
 }

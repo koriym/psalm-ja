@@ -1,6 +1,5 @@
-# RedundantCastGivenDocblockType（リダンダントキャストギブンドックブロックタイプ
-
-(文字列、int、floatなどの)キャストがdocblockが提供する型から見て冗長な場合に発行されます。
+# RedundantCastGivenDocblockType
+docblockで提供された型を考慮すると、キャスト（string、int、floatなど）が冗長である場合に発生します。
 
 ```php
 <?php

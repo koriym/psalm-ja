@@ -1,12 +1,10 @@
-# 無効なEnumBackingType
-
-列挙型は、`int` または`string` によってのみバッキングできます。 列挙型が他の何かによってバッキングされている場合に発行されます。
+# InvalidEnumBackingType
+列挙型は`int`または`string`でのみバックアップできます。列挙型が他のもので
+バックアップされている場合に発生します。
 
 ```php
 <?php
-
-enum Status: array 
-{
+enum Status: array {
    case None = [];
 }
 ```

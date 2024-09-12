@@ -1,10 +1,8 @@
-# 不正なプロパティ割り当て値の可能性
-
-型付きプロパティに無効な値を代入しようとしたときに発行されます。
+# PossiblyInvalidPropertyAssignmentValue
+可能性のある無効な値を型付きプロパティに割り当てようとした場合に発生します。
 
 ```php
 <?php
-
 class A {
     /** @var int[] */
     public $bb = [];

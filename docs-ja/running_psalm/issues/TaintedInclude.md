@@ -1,14 +1,10 @@
-# 汚染されたインクルード
-
-ユーザー制御の入力を`include` または`require` 式に渡すことができる場合に発せられる。
-
-信頼できないユーザ入力を`include` 呼び出しに渡すことは、攻撃者がサーバ上で任意のスクリプトを実行できるようにする可能性があり、危険です。
+# TaintedInclude
+ユーザー制御の入力が`include`または`require`式に渡される可能性がある場合に発生します。
+信頼できないユーザー入力を`include`呼び出しに渡すことは危険です。攻撃者がサーバー上で任意のスクリプトを実行できる可能性があります。
 
 ```php
 <?php
-
 $name = $_GET["name"];
-
 includeCode($name);
 
 function includeCode(string $name) : void {

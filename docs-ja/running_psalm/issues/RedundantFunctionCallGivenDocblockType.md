@@ -1,12 +1,9 @@
-冗長ファンクション・コール・ギブン・ドックブロック・タイプ # RedundantFunctionCallGivenDocblockType
-
-1つ以上のdocblockで提供された情報が冗長な関数呼び出しである場合に発行されます。
-
-これは(ユーザ入力をチェックする時などに)必要かもしれませんので、docblock型でない場合にのみ適用されるRedundantFunctionCallとは区別されます。
+# RedundantFunctionCallGivenDocblockType
+1つ以上のdocblockで提供された情報を考慮すると関数呼び出しが冗長な場合に発生します。
+これは望ましい場合があります（例：ユーザー入力のチェック時）ので、非docblockタイプにのみ適用されるRedundantFunctionCallとは異なります。
 
 ```php
 <?php
-
 /**
  * @param array{0: lowercase-string, 1: non-empty-list<lowercase-string>} $s
  *

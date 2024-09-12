@@ -1,10 +1,8 @@
-# ♪ MismatchingDocblockParamType
-
-関数のdocblockの`@param` エントリが、paramのtypehintと一致しない場合に発行されます。
+# MismatchingDocblockParamType
+関数のdocblockの`@param`エントリがパラメータの型ヒントと一致しない場合に発生します。
 
 ```php
 <?php
-
 /**
  * @param int $b
  */

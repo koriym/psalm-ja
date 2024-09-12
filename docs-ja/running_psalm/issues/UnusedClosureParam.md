@@ -1,10 +1,8 @@
 # UnusedClosureParam
-
-`--find-dead-code` が有効になっており、Psalm がクロージャで特定のパラメータを使用できない場合に発行されます。
+`--find-dead-code`がオンになっていて、Psalmがクロージャ内の特定のパラメータの使用を見つけられない場合に発生します。
 
 ```php
 <?php
-
 $a = function (int $a, int $b) : int {
     return $a + 4;
 };

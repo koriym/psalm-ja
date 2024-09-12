@@ -1,3 +1,0 @@
-# UnrecognizedExpression
-
-Psalmが処理方法を知らない式に遭遇したときに発せられる。これは決して起こってはならない。

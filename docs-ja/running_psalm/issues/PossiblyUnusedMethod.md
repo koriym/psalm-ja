@@ -1,12 +1,9 @@
 # PossiblyUnusedMethod
-
-`--find-dead-code` が有効になっており、Psalm が public または protected メソッドへの呼び出しを見つけられなかった場合に発行されます。
-
-このメソッドが使用され、パブリックAPIの一部となっている場合は、そのクラスを`@psalm-api` でアノテートしてください。
+`--find-dead-code`がオンになっていて、Psalmがpublicまたはprotectedメソッドへの呼び出しを見つけられない場合に発生します。
+このメソッドが使用されており、公開APIの一部である場合は、含むクラスに`@psalm-api`でアノテーションを付けてください。
 
 ```php
 <?php
-
 class A {
     public function foo() : void {}
     public function bar() : void {}

@@ -1,41 +1,40 @@
-# ノーバリュー
+# NoValue
+Psalmが特定の式に対して可能なすべての型を無効にした場合に発生します。これはしばしば、Psalmがデッドコードを見つけたか、またはドキュメント化された型が網羅的でなかったことを示しています。
 
-Psalmが指定された式で使用可能なすべての型を無効にした場合に発行されます。これは、Psalmがデッドコードを見つけたか、文書化された型が網羅的でなかったことを示すことがよくあります。
-
-php
-&lt;?php
-
-/**
- * 決して返さない
+```php
+<?php
+/** 
+ * @return never 
  */
-関数 foo() : void {
-    exit()；
+function foo() : void {
+    exit();
 }
 
-$a = foo(); // Psalmは、foo()が何も返さないので、$aに型が含まれないことを知っています。
-を返さないからです。
+$a = foo(); // Psalmは$aが決して型を含まないことを知っています。なぜならfoo()は戻らないからです
+```
 
-&lt;ignore&gt;``php
-&lt;?php
-
-関数 foo() : void {
-    return throw new Exception(''); //Psalmはreturn式が使われないことを検出しました。
+```php
+<?php
+function foo() : void {
+    return throw new Exception(''); //Psalmは戻り値式が決して使用されないことを検出しました
 }
-を返します。
+```
 
-&lt;ignore&gt;``php
-&lt;?php
-function shutdown(): never {die('アプリケーションが予期せず終了しました');}.
-関数 foo(string $_a): void{}
+```php
+<?php
+function shutdown(): never {
+    die('Application closed unexpectedly');
+}
 
-foo(shutdown()); // foo()が呼び出されることはありません。
-を呼び出すことはありません。
+function foo(string $_a): void {}
 
-&lt;ignore&gt;``php
-&lt;?php
+foo(shutdown()); // foo()は決して呼び出されません
+```
+
+```php
+<?php
 $a = [];
 /** @psalm-suppress TypeDoesNotContainType */
-assert(!empty($a))；
-
-count($a); // 上記のアサートは常に失敗します。ここで $a が持ちうる型はありません。
-を返します。
+assert(!empty($a));
+count($a); // 上のアサートは常に失敗します。$aがここで持つ可能性のある型はありません
+```

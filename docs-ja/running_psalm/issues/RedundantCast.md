@@ -1,6 +1,5 @@
-# リダンダントキャスト
-
-キャスト(文字列、int、floatなど)が冗長な場合に発行される
+# RedundantCast
+キャスト（string、int、floatなど）が冗長な場合に発生します。
 
 ```php
 <?php

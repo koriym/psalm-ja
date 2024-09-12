@@ -1,26 +1,20 @@
-# 重複EnumCaseValue
-
-バックされた列挙型のケース値が重複している場合に発行されます。
+# DuplicateEnumCaseValue
+バックド列挙型に重複するケース値がある場合に発生します。
 
 ```php
 <?php
-
-enum Status: string 
-{
+enum Status: string {
     case Open = "open";
     case Closed = "open";
 }
 ```
 
 ## 修正方法
-
-大文字と小文字が重複しないように変更する。
+重複がないようにケース値を変更します。
 
 ```php
 <?php
-
-enum Status: string 
-{
+enum Status: string {
     case Open = "open";
     case Closed = "closed";
 }

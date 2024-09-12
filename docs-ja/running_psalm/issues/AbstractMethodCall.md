@@ -1,10 +1,8 @@
 # AbstractMethodCall
-
-抽象スタティックメソッドを直接呼び出そうとしたときに発行されます。
+抽象的な静的メソッドを直接呼び出そうとした場合に発生します。
 
 ```php
 <?php
-
 abstract class Base {
     abstract static function bar() : void;
 }
@@ -12,6 +10,5 @@ abstract class Base {
 Base::bar();
 ```
 
-## なぜこれが悪いのか
-
+## なぜこれが問題なのか
 PHPでは許可されていません。

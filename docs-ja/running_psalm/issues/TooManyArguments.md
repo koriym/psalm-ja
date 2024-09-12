@@ -1,10 +1,8 @@
-# 議論が多すぎる
-
-関数の引数を超える引数で関数を呼び出したときに発生するエラー
+# TooManyArguments
+関数が持つパラメータの数よりも多くの引数で関数を呼び出そうとした場合に発生します。
 
 ```php
 <?php
-
 function foo(string $a) : void {}
 foo("hello", 4);
 ```

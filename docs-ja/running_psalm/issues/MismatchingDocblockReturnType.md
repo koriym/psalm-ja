@@ -1,29 +1,28 @@
-# ♪ MismatchingDocblockReturnType
-
-関数のdocblockの`@return` エントリが関数のreturn typehintと一致しない場合に発行されます。
+# MismatchingDocblockReturnType
+関数のdocblockの`@return`エントリが関数の戻り値の型ヒントと一致しない場合に発生します。
 
 ```php
 <?php
-
 class A {}
 class B {}
+
 /**
- * @return B // emitted here
+ * @return B // ここで発生
  */
 function foo() : A {
     return new A();
 }
 ```
 
-しかし、これは問題ありません：
+ただし、以下の場合は問題ありません：
 
 ```php
 <?php
-
 class A {}
 class B extends A {}
+
 /**
- * @return B // emitted here
+ * @return B // ここで発生
  */
 function foo() : A {
     return new B();

@@ -1,18 +1,14 @@
 # OverriddenFinalConstant
-
-Final と宣言された定数が、子クラスまたはインターフェイスでオーバーライドされたときに発行されます。
+finalとして宣言された定数が子クラスまたはインターフェースでオーバーライドされた場合に発生します。
 
 ```php
 <?php
-
-class Foo
-{
+class Foo {
     /** @var string */
     final public const BAR='baz';
 }
 
-class Bar extends Foo
-{
+class Bar extends Foo {
     /** @var string */
     public const BAR='foobar';
 }

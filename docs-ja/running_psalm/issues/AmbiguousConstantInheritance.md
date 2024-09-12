@@ -1,18 +1,14 @@
-# AmbiguousConstantInheritance（曖昧な定数継承
-
-定数が複数のソースから継承されている場合に発行されます。
+# AmbiguousConstantInheritance
+定数が複数のソースから継承された場合に発生します。
 
 ```php
 <?php
-
-interface Foo
-{
+interface Foo {
     /** @var non-empty-string */
     public const CONSTANT='foo';
 }
 
-interface Bar
-{
+interface Bar {
     /**
      * @var non-empty-string
      */
@@ -24,15 +20,12 @@ interface Baz extends Foo, Bar {}
 
 ```php
 <?php
-
-interface Foo
-{
+interface Foo {
     /** @var non-empty-string */
     public const CONSTANT='foo';
 }
 
-class Bar
-{
+class Bar {
     /** @var non-empty-string */
     public const CONSTANT='bar';
 }

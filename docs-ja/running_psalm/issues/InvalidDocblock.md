@@ -1,10 +1,8 @@
-# 無効なブロック
-
-docblockタイプにエラーがある場合に発せられる
+# InvalidDocblock
+docblockタイプにエラーがある場合に発生します。
 
 ```php
 <?php
-
 /** @var array() */
 $a = [];
 ```

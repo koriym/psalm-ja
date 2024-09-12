@@ -1,10 +1,8 @@
-# 不純なプロパティの割り当て
-
-純粋であるとマークされた関数またはメソッドからプロパティ値を更新するときに発行されます。
+# ImpurePropertyAssignment
+純粋（pure）とマークされた関数やメソッドからプロパティ値を更新しようとした場合に発生します。
 
 ```php
 <?php
-
 class A {
     public int $a = 5;
 }
@@ -12,7 +10,6 @@ class A {
 /** @psalm-pure */
 function foo(int $i, A $a) : int {
     $a->a = $i;
-
     return $i;
 }
 ```

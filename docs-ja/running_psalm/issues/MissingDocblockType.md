@@ -1,10 +1,8 @@
 # MissingDocblockType
-
-docblockが存在するが、型が存在しないか、書式が悪い場合に発せられる
+docblockが存在するが、型が欠けているか、形式が正しくない場合に発生します。
 
 ```php
 <?php
-
 /** @var $a */
 $a = [];
 ```

@@ -1,10 +1,8 @@
-# ♪ ImplementedParamTypeMismatch
-
-他のクラスを継承したクラスや、インターフェイスを実装したクラスで、 docblockのパラメータ型が親クラスと全く異なる場合に発生します。
+# ImplementedParamTypeMismatch
+別のクラスを継承するクラス、またはインターフェースを実装するクラスが、親のものと全く異なるdocblockパラメータ型を持つ場合に発生します。
 
 ```php
 <?php
-
 class D {
     /** @param string $a */
     public function foo($a): void {}
@@ -17,12 +15,10 @@ class E extends D {
 ```
 
 ## 修正方法
-
-[Liskov substitution principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle) 親メソッドをオーバーライドするメソッドは、親メソッドと同じ引数を受け取らなければなりません。
+[リスコフの置換原則](https://en.wikipedia.org/wiki/Liskov_substitution_principle)を尊重するようにしてください - 親メソッドをオーバーライドするメソッドは、親メソッドと同じすべての引数を受け入れる必要があります。
 
 ```php
 <?php
-
 class D {
     /** @param string $a */
     public function foo($a): void {}

@@ -1,14 +1,11 @@
-#矛盾する参照制約
-
-ifの2つの異なる分岐でby-ref変数が異なる型に設定されたときに発せられる。
+# ConflictingReferenceConstraint
+参照渡し変数が、ifの異なるブランチで異なる型に設定される場合に発生します。
 
 ```php
 <?php
-
- class A {
+class A {
     /** @var int */
     private $foo;
-
     public function __construct(int &$foo) {
         $this->foo = &$foo;
     }
@@ -17,7 +14,6 @@ ifの2つの異なる分岐でby-ref変数が異なる型に設定されたと�
 class B {
     /** @var string */
     private $bar;
-
     public function __construct(string &$bar) {
         $this->bar = &$bar;
     }
@@ -25,15 +21,14 @@ class B {
 
 if (rand(0, 1)) {
     $v = 5;
-    $c = (new A($v)); // $v is constrained to an int
+    $c = (new A($v)); // $vはintに制約されます
 } else {
     $v = "hello";
-    $c = (new B($v)); // $v is constrained to a string
+    $c = (new B($v)); // $vはstringに制約されます
 }
 
 $v = 8;
 ```
 
-## なぜこれが悪いのか
-
-psalmは`$c` のタイプを理解していない。
+## なぜこれが問題なのか
+Psalmは`$c`の型がどうあるべきかを理解できません。

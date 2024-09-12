@@ -1,10 +1,8 @@
 # InaccessibleMethod
-
-protected/privateメソッドに、そのスコープ外からアクセスしようとしたときに発行されます。
+利用可能なスコープ外からprotected/privateメソッドにアクセスしようとした場合に発生します。
 
 ```php
 <?php
-
 class A {
     protected function foo() : void {}
 }

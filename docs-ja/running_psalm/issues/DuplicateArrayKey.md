@@ -1,35 +1,30 @@
-# 複製配列キー
-
-配列のキーが複数回ある場合に発せられる
+# DuplicateArrayKey
+配列に同じキーが複数回ある場合に発生します。
 
 ```php
 <?php
-
 $arr = [
     'a' => 'one',
     'b' => 'two',
-    'c' => 'this text will be overwritten by the next line',
+    'c' => 'このテキストは次の行で上書きされます',
     'c' => 'three',
 ];
 ```
 
-これは、`@no-named-arguments` が指定されていない場合、可変個引数によって引き起こされる可能性があります：
+これは、`@no-named-arguments`が指定されていない場合、可変引数によって引き起こされる可能性があります：
 
 ```php
 <?php
-function foo($bar, ...$baz): array
-{
-    return [$bar, ...$baz]; // $baz is array<array-key, mixed> since it can have named arguments
+function foo($bar, ...$baz): array {
+    return [$bar, ...$baz]; // $bazは名前付き引数を持つ可能性があるため、array<array-key, mixed>です
 }
 ```
 
 ## 修正方法
-
-重複を削除する：
+問題のある重複を削除します：
 
 ```php
 <?php
-
 $arr = [
     'a' => 'one',
     'b' => 'two',
@@ -37,4 +32,4 @@ $arr = [
 ];
 ```
 
-動作の変化を防ぐため、最初にマッチした`'c'` キーを削除した（新しい重複キーは以前のキーの値を上書きする）。
+最初に一致する'c'キーを削除して、動作の変更を防ぎました（新しい重複キーは以前の値を上書きします）。

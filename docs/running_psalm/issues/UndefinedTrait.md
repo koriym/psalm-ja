@@ -1,10 +1,8 @@
 # UndefinedTrait
-
-Emitted when referencing a trait that does not exist
+存在しないトレイトを参照しようとした場合に発生します。
 
 ```php
 <?php
-
 class A {
     use T;
 }

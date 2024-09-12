@@ -1,10 +1,8 @@
-# 親が見つからない
-
-親クラスを持たないクラスで`parent::` を使用した場合に発行されます。
+# ParentNotFound
+親クラスを持たないクラス内で`parent::`を使用しようとした場合に発生します。
 
 ```php
 <?php
-
 class A {
   public function foo() : void {
     parent::foo();

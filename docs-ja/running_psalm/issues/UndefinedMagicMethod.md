@@ -1,10 +1,8 @@
-# 未定義マジックメソッド
-
-存在しないマジックメソッドを呼び出したときに発せられる
+# UndefinedMagicMethod
+存在しないマジックメソッドを呼び出そうとした場合に発生します。
 
 ```php
 <?php
-
 /**
  * @method bar():string
  */
@@ -13,5 +11,6 @@ class A {
         return "cool";
     }
 }
+
 (new A)->foo();
 ```

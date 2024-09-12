@@ -1,29 +1,25 @@
-#リスキー・トゥルシー・ファルシーの比較
-
-少なくとも1つの型が真理か偽りのみであり、他の型が真理と偽りの両方の値を含む可能性がある場合に、複数の型で値を比較するときに発行されます。
+# RiskyTruthyFalsyComparison
+複数の型を持つ値を比較する際に、少なくとも1つの型が真偽値（truthy）または偽値（falsy）しか持たず、他の型が真偽値と偽値の両方を含む可能性がある場合に発生します。
 
 ```php
 <?php
-
-/**
- * @param array|null $arg
- * @return void
+/** 
+ * @param array|null $arg 
+ * @return void 
  */
 function foo($arg) {
     if ($arg) {
-        // this is risky, bc the empty array and null case are handled together
+        // これはリスクがあります。空の配列とnullのケースが一緒に処理されるからです
     }
     
     if (!$arg) {
-        // this is risky, bc the empty array and null case are handled together  
+        // これはリスクがあります。空の配列とnullのケースが一緒に処理されるからです
     }
 }
 ```
 
-## なぜこれが悪いのか
-
-変数のtruthy/falsy型はしばしば忘れられがちで、明示的に扱われないため、エラーの追跡が困難になる。
+## なぜこれが問題なのか
+変数の真偽値/偽値の型は、しばしば忘れられ、明示的に処理されないため、追跡が難しいエラーの原因となります。
 
 ## 修正方法
-
-厳密な比較で明示的に変数を検証する。
+厳密な比較で変数を明示的に検証します。

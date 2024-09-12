@@ -1,20 +1,17 @@
-# ミュータブル依存性
-
-不変クラスが、@psalm-immutableとマークされていないクラスや traitを継承した場合に発行されます。
+# MutableDependency
+不変（immutable）クラスが@psalm-immutableでマークされていないクラスまたはトレイトを継承している場合に発生します。
 
 ```php
 <?php
-
 class MutableParent {
     public int $i = 0;
-
     public function increment() : void {
         $this->i++;
     }
 }
 
-/**
- * @psalm-immutable
+/** 
+ * @psalm-immutable 
  */
 final class NotReallyImmutableClass extends MutableParent {}
 ```
