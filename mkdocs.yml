@@ -1,1 +1,46 @@
-site_name: My Docs
+site_name: Psalm-Ja
+site_url: https://psalm-ja.github.io/
+repo_url: https://github.com/koriym/psalm-ja
+repo_name: GitHub
+site_dir: docs
+docs_dir: /Users/akihito/git/psalm/docs-ja
+theme:
+  name: 'readthedocs'
+  locale: en
+  pygments_style: vs
+markdown_extensions:
+  - codehilite:
+      guess_lang: True
+nav:
+  - Documentation Home: README.md
+  - Running Psalm:
+      - Installation: running_psalm/installation.md
+      - Configuration: running_psalm/configuration.md
+      - Plugins:
+          - Using plugins: running_psalm/plugins/using_plugins.md
+          - Authoring plugins: running_psalm/plugins/authoring_plugins.md
+          - How Psalm represents types: running_psalm/plugins/plugins_type_system.md
+      - Command line usage: running_psalm/command_line_usage.md
+      - IDE support: running_psalm/language_server.md
+      - Handling errors:
+          - Dealing with code issues: running_psalm/dealing_with_code_issues.md
+          - Issue Types: running_psalm/issues.md
+      - Checking non-PHP files: running_psalm/checking_non_php_files.md
+  - Annotating types:
+      - Using Type Annotations: annotating_code/typing_in_psalm.md
+      - Union Types: annotating_code/type_syntax/union_types.md
+      - Atomic Type Reference: annotating_code/type_syntax/atomic_types.md
+      - Intersection Types: annotating_code/type_syntax/intersection_types.md
+  - Other annotations:
+      - Supported Annotations: annotating_code/supported_annotations.md
+      - Template Annotations: annotating_code/templated_annotations.md
+      - Assert Annotations: annotating_code/adding_assertions.md
+  - Manipulating code:
+      - Fixing code with Psalter: manipulating_code/fixing.md
+      - Refactoring code: manipulating_code/refactoring.md
+  - Security analysis:
+      - Introduction: security_analysis/index.md
+      - Custom taint sources: security_analysis/custom_taint_sources.md
+      - Custom taint sinks: security_analysis/custom_taint_sinks.md
+      - Avoiding false-positives: security_analysis/avoiding_false_positives.md
+  - Contributing: contributing/index.md
