@@ -1,18 +1,15 @@
-# Psalmの言語サーバーを使う
+# Psalmの言語サーバーの使用
 
-PsalmはLanguage Server Compatibilityをサポートするようになりました。
-
-現在、診断（エラーや警告の検出）、go-to-definition、hoverをサポートしています。
-
-様々なエディタ（アルファベット順）で動作します：
+Psalmには言語サーバー互換性サポートが組み込まれており、お気に入りのIDEで実行できるようになりました。
+現在、診断（エラーと警告の検出）、定義へのジャンプ、ホバーをサポートしており、オートコンプリートも限定的にサポートしています（PRを歓迎します！）。
+様々なエディタで良好に動作します（アルファベット順）：
 
 ## クライアント設定
 
 ### Emacs
 
-で動作するようになりました。[eglot](https://github.com/joaotavora/eglot)
-
-これは私が使った設定です：
+[eglot](https://github.com/joaotavora/eglot)で動作確認しました。
+以下は使用した設定です：
 
 ```
 (when (file-exists-p "vendor/bin/psalm-language-server")
@@ -33,25 +30,26 @@ PsalmはLanguage Server Compatibilityをサポートするようになりまし�
 
 #### ネイティブサポート
 
-PhpStorm 2020.3では、psalmがデフォルトでサポートされています。[here](https://www.jetbrains.com/help/phpstorm/using-psalm.html)
+PhpStorm 2020.3以降、psalmのサポートがデフォルトで有効になっています。詳細は[こちら](https://www.jetbrains.com/help/phpstorm/using-psalm.html)で確認できます。
 
-#### LSPと
+#### LSPを使用する場合
 
-psalm は`gtache/intellij-lsp` プラグイン ([Jetbrains-approved version](https://plugins.jetbrains.com/plugin/10209-lsp-support),[latest version](https://github.com/gtache/intellij-lsp/releases/tag/v1.6.0)) でも動作します。
+alternatively、psalmは`gtache/intellij-lsp`プラグイン（[Jetbrains承認版](https://plugins.jetbrains.com/plugin/10209-lsp-support)、[最新版](https://github.com/gtache/intellij-lsp/releases/tag/v1.6.0)）で動作します。セットアップはGUIで行います。
 
-セットアップはGUIで行う。
+プラグインをインストールすると、"Languages & Frameworks"タブの下に"Language Server Protocol"セクションが表示されるはずです。
+"Server definitions"タブでPsalmの定義を追加する必要があります：
+- `Executable`を選択
+- 拡張子：`php`
+- パス：`<PHPバイナリへのパス>` 例：`/usr/local/bin/php`または`C:\php\php.exe`
+    - これは絶対パスである必要があり、単に`php`ではいけません
+- 引数：`vendor/bin/psalm-language-server`（Windowsの場合は`vendor/vimeo/psalm/psalm-language-server`、または'グローバル'インストールの場合は'%APPDATA%' + `\Composer\vendor\vimeo\psalm\psalm-language-server`、'%APPDATA%'環境変数は通常`C:\Users\<homedir>\AppData\Roaming\`のようになります）
 
-プラグインをインストールすると、"Languages &amp; Frameworks "タブの下に "Language Server Protocol "セクションが表示されます。
+"Timeouts"タブで初期化タイムアウトを調整できます。これは大規模なプロジェクトがある場合に重要です。"Init"の値を、Psalmがプロジェクト全体とその依存関係をスキャンすることを許可するミリ秒数に設定する必要があります。大規模なPHPフレームワークを使用するいくつかのプロジェクトを開く場合、高性能のビジネスラップトップで、Initに`240000`ミリ秒を試してみてください。
 
-Server definitions "タブでPsalmの定義を追加してください：
+### Sublime Text
 
- -`Executable` - Extension:`php` - Path： `<path-to-php-binary>`例:`/usr/local/bin/php` または`C:\php\php.exe` - これは絶対パスであるべきで、単に`php` - 引数:`vendor/bin/psalm-language-server` (Windowsでは`vendor/vimeo/psalm/psalm-language-server` を使用するか、'グローバル'インストールには '%APPDATA%' +`\Composer\vendor\vimeo\psalm\psalm-language-server` を使用します。'%APPDATA%' 環境変数はおそらく次のようなものです。 `C:\Users\<homedir>\AppData\Roaming\`)
+優れたSublimeの[LSPプラグイン](https://github.com/tomv564/LSP)を以下の設定で使用しています（Package Settings > LSP > Settings）：
 
-Timeouts "タブでは、初期化のタイムアウトを調整できます。これは大規模なプロジェクトでは重要です。Init "の値は、Psalmがプロジェクト全体とプロジェクトの依存関係をスキャンするのに必要なミリ秒数に設定してください。大規模なPHPフレームワークを使用するいくつかのプロジェクトを、ハイエンドのビジネス用ラップトップで開く場合は、Initに`240000` ミリ秒を試してみてください。
-
-### サブライムテキスト
-
-私は優れたSublime[LSP plugin](https://github.com/tomv564/LSP) を以下の設定(Package Settings &gt; LSP &gt; Settings)で使用しています：
 ```json
     "clients": {
         "psalm": {
@@ -62,11 +60,11 @@ Timeouts "タブでは、初期化のタイムアウトを調整できます。�
     }
 ```
 
-### Vim &amp; Neovim
+### Vim & Neovim
 
 **ALE**
 
-[ALE](https://github.com/w0rp/ale) はPsalmをサポートしています(v2.3.0以降)。
+[ALE](https://github.com/w0rp/ale)はPsalmをサポートしています（v2.3.0以降）。
 
 ```vim
 let g:ale_linters = { 'php': ['php', 'psalm'] }
@@ -74,9 +72,8 @@ let g:ale_linters = { 'php': ['php', 'psalm'] }
 
 **vim-lsp**
 
-で動作するようになりました。[vim-lsp](https://github.com/prabirshrestha/vim-lsp)
-
-これは私が使った設定です（Vim用）：
+[vim-lsp](https://github.com/prabirshrestha/vim-lsp)でも動作確認しました。
+以下は使用した設定です（Vim用）：
 
 ```vim
 au User lsp_setup call lsp#register_server({
@@ -88,9 +85,8 @@ au User lsp_setup call lsp#register_server({
 
 **coc.nvim**
 
-また、[coc.nvim](https://github.com/neoclide/coc.nvim) 。
-
-`coc-settings.json` に設定を追加する：
+[coc.nvim](https://github.com/neoclide/coc.nvim)でも動作します。
+`coc-settings.json`に以下の設定を追加してください：
 
 ```jsonc
   "languageserver": {
@@ -103,13 +99,14 @@ au User lsp_setup call lsp#register_server({
   }
 ```
 
-### VSコード
+### VS Code
 
-[Get the Psalm plugin here](https://marketplace.visualstudio.com/items?itemName=getpsalm.psalm-vscode-plugin) (VS Code 1.26+ が必要です)：
+[Psalmプラグインはこちらから入手できます](https://marketplace.visualstudio.com/items?itemName=getpsalm.psalm-vscode-plugin)（VS Code 1.26以降が必要）：
 
-## dockerコンテナでサーバーを動かす
+## Dockerコンテナでサーバーを実行する
 
-必ず`--map-folder` オプションを使ってください。引数なしで使用すると、サーバーのCWDがホストのプロジェクトルートフォルダにマッピングされます。カスタムマッピングを指定することもできます。例えば
+`--map-folder`オプションを必ず使用してください。引数なしで使用すると、サーバーのCWDをホストのプロジェクトルートフォルダにマッピングします。カスタムマッピングを指定することもできます。例：
+
 ```bash
 docker-compose exec php /usr/share/php/psalm/psalm-language-server \
    -r=/var/www/html \

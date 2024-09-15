@@ -1,40 +1,40 @@
-# インスタレーション
+# インストール
 
-Psalm の最新版には PHP &gt;= 7.4 と[Composer](https://getcomposer.org/) が必要です。
+Psalmの最新バージョンには、PHP >= 7.4と[Composer](https://getcomposer.org/)が必要です。
 
 ```bash
 composer require --dev vimeo/psalm
 ```
 
-設定ファイルを生成する
+設定ファイルを生成します：
 
 ```bash
 ./vendor/bin/psalm --init
 ```
 
-Psalmはあなたのプロジェクトをスキャンし、コードベースに適した[error level](error_levels.md) 。
+Psalmはプロジェクトをスキャンし、コードベースに適切な[エラーレベル](error_levels.md)を決定します。
 
-それからPsalmを実行する：
+そして、Psalmを実行します：
 
 ```bash
 ./vendor/bin/psalm
 ```
 
-Psalmはおそらく多くの問題を見つけるだろう。[Dealing with code issues](dealing_with_code_issues.md) で、それらに対処する方法を見つけよう。
+Psalmはおそらくいくつかの問題を見つけるでしょう - それらの対処方法については[コードの問題への対処](dealing_with_code_issues.md)を参照してください。
 
 ## プラグインのインストール
 
-Psalmは、様々なライブラリのソースコードやdocblockから、そのライブラリが使用する型を割り出すことができますが、Psalmプラグインによって提供されるカスタムメイドの型を使用すると、さらにうまく動作します。
+Psalmは様々なライブラリで使用される型をそのソースコードとdocblockに基づいて把握できますが、Psalmプラグインによって提供されるカスタムメイドの型を使用するとさらに効果的に動作します。
 
-[list of existing plugins on Packagist](https://packagist.org/?type=psalm-plugin) をチェックしてください。`composer require --dev <plugin/package> && vendor/bin/psalm-plugin enable <plugin/package>`
+[Packagistにある既存のプラグインのリスト](https://packagist.org/?type=psalm-plugin)をチェックしてください。`composer require --dev <plugin/package> && vendor/bin/psalm-plugin enable <plugin/package>`でインストールできます。
 
-プラグインについて詳しくは[Using Plugins chapter](plugins/using_plugins.md) をご覧ください。
+プラグインについての詳細は[プラグインの使用の章](plugins/using_plugins.md)を参照してください。
 
-## Pharを使う
+## Pharの使用
 
-プロジェクトがPsalmの依存パッケージと衝突することがあります。そのような場合は、Phar (自己完結型の PHP 実行ファイル) を使うと便利です。
+プロジェクトがPsalmの依存関係の1つ以上と競合する場合があります。その場合、Phar（自己完結型のPHP実行可能ファイル）が役立つかもしれません。
 
-Phar は Github からダウンロードできます：
+PharはGithubからダウンロードできます：
 
 ```bash
 wget https://github.com/vimeo/psalm/releases/latest/download/psalm.phar
@@ -42,7 +42,7 @@ chmod +x psalm.phar
 ./psalm.phar --version
 ```
 
-また、Composerを使ってPharをインストールすることもできる：
+あるいは、Composerを使用してPharをインストールすることもできます：
 
 ```bash
 composer require --dev psalm/phar

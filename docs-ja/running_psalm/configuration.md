@@ -1,6 +1,6 @@
-# コンフィギュレーション
+# 設定
 
-PsalmはXMLコンフィグファイル(デフォルトでは`psalm.xml`)を使用します。基本的な例は以下のようになります：
+PsalmはXML設定ファイル（デフォルトでは`psalm.xml`）を使用します。最小限の例は次のようになります：
 
 ```xml
 <?xml version="1.0"?>
@@ -11,18 +11,20 @@ PsalmはXMLコンフィグファイル(デフォルトでは`psalm.xml`)を使�
 </psalm>
 ```
 
-設定ファイルは、[XInclude](https://www.w3.org/TR/xinclude/) タグを使用して複数のファイルに分割することができます (前の例を参照)：#### psalm.xml
+設定ファイルは、[XInclude](https://www.w3.org/TR/xinclude/)タグを使用して複数のファイルに分割できます（前の例を参照）：
+
+#### psalm.xml
 ```xml
 <?xml version="1.0"?>
 <psalm
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="https://getpsalm.org/schema/config"
-    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
-    xmlns:xi="http://www.w3.org/2001/XInclude"
->
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://getpsalm.org/schema/config"
+        xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+        xmlns:xi="http://www.w3.org/2001/XInclude">
     <xi:include href="files.xml"/>
 </psalm>
 ```
+
 #### files.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -32,480 +34,406 @@ PsalmはXMLコンフィグファイル(デフォルトでは`psalm.xml`)を使�
 </projectFiles>
 ```
 
-
 ## オプションの &lt;psalm /&gt; 属性
 
 ### コーディングスタイル
 
-#### エラーレベル
-
+#### errorLevel
 ```xml
 <psalm
-  errorLevel="[int]"
-/>
+  errorLevel="[int]"/>
 ```
-これはpsalmの[error-detection level](error_levels.md) に対応している。
+これはPsalmの[エラー検出レベル](error_levels.md)に対応します。
 
 #### reportMixedIssues
-
 ```xml
 <psalm
-  reportMixedIssues="[bool]"
-/>
+  reportMixedIssues="[bool]"/>
 ```
-これを`"false"` に設定すると、Psalmの出力で`Mixed` タイプのすべての問題が非表示になります。省略すると、`errorLevel` が 3 以上の場合は`"false"` に、エラー・レベルが 1 または 2 の場合は`"true"` になります。
+これを`"false"`に設定すると、Psalmの出力で`Mixed`型の問題がすべて非表示になります。指定されていない場合、`errorLevel`が3以上の場合はデフォルトで`"false"`、エラーレベルが1または2の場合は`"true"`になります。
 
 #### totallyTyped
-
-\(非推奨) この設定は、`errorLevel` が 1 のときに自動的に有効になる`reportMixedIssues` に置き換えられました。
+（非推奨）この設定は`reportMixedIssues`に置き換えられました。`errorLevel`が1の場合に自動的に有効になります。
 
 #### resolveFromConfigFile
-
 ```xml
 <psalm
-  resolveFromConfigFile="[bool]"
-/>
+  resolveFromConfigFile="[bool]"/>
 ```
-これが有効な場合、設定ファイル内で言及されている相対ディレクトリは、設定 ファイルの場所に対して相対的に解決されます。無効になっているか、指定されていない場合は、Psalm プロセスの作業ディレクトリを基準に解決されます。
-
-Psalm の新しいバージョンでは、設定ファイルを生成するときにこのオプションが有効になります。古いバージョンには含まれていません。
+これが有効な場合、設定ファイルで言及された相対ディレクトリは、設定ファイルの位置を基準に解決されます。無効または存在しない場合、Psalmプロセスの作業ディレクトリを基準に解決されます。
+新しいバージョンのPsalmは、設定ファイルを生成する際にこのオプションを有効にします。古いバージョンではこれを含めませんでした。
 
 #### useDocblockTypes
-
 ```xml
 <psalm
-  useDocblockTypes="[bool]"
->
+  useDocblockTypes="[bool]">
 ```
-docblockで定義されている型を使用するかどうか。デフォルトは`true` 。
+docblockで定義された型を使用するかどうか。デフォルトは`true`です。
 
 #### useDocblockPropertyTypes
-
 ```xml
 <psalm
-  useDocblockPropertyTypes="[bool]"
->
+  useDocblockPropertyTypes="[bool]">
 ```
-すべてのdocblock型を使用しない場合でも、docblockプロパティ型を使用することができます。デフォルトは`false` です(ただし、`useDocblockTypes` が`false` の場合のみ関係します)。
+すべてのdocblock型を使用しない場合でも、docblockプロパティ型を使用できます。デフォルトは`false`です（`useDocblockTypes`が`false`の場合のみ関連）。
 
 #### docblockPropertyTypesSealProperties
-
 ```xml
 <psalm
-  docblockPropertyTypesSealProperties="[bool]"
->
+  docblockPropertyTypesSealProperties="[bool]">
 ```
-docblockクラスで@propertyを使用する際に、@psalm-seal-propertiesを指定するかどうか。デフォルトは`true` です。
+クラスのdocblockで@propertyを使用することが@psalm-seal-propertiesを暗示するかどうか。デフォルトは`true`です。
 
 #### usePhpDocMethodsWithoutMagicCall
-
 ```xml
 <psalm
-  usePhpDocMethodsWithoutMagicCall="[bool]"
->
+  usePhpDocMethodsWithoutMagicCall="[bool]">
 ```
-PHPDoc`@method` アノテーションは、通常は`__call` メソッドを持つクラスにのみ適用されます。これを`true` に設定すると、`@method` アノテーションを使用して継承したメソッドの返り値の型を上書きできるようになります。デフォルトは`false` です。
+通常、PHPDocの`@method`アノテーションは`__call`メソッドを持つクラスにのみ適用されます。これを`true`に設定すると、継承されたメソッドの戻り値の型をオーバーライドするために`@method`アノテーションを使用できます。デフォルトは`false`です。
 
 #### usePhpDocPropertiesWithoutMagicCall
-
 ```xml
 <psalm
-  usePhpDocPropertiesWithoutMagicCall="[bool]"
->
+  usePhpDocPropertiesWithoutMagicCall="[bool]">
 ```
-PHPDoc`@property`,`@property-read` および`@property-write` のアノテーションは、 通常は`__get`/`__set` のメソッドを持つクラスにのみ適用されます。これを`true` に設定すると、`@property` 、`@property-read` および`@property-write` アノテーションを使用してプロパティの存在チェックや結果のプロパティ型を上書きすることができます。デフォルトは`false` です。
+通常、PHPDocの`@property`、`@property-read`、`@property-write`アノテーションは`__get`/`__set`メソッドを持つクラスにのみ適用されます。これを`true`に設定すると、プロパティの存在チェックと結果のプロパティ型をオーバーライドするために`@property`、`@property-read`、`@property-write`アノテーションを使用できます。デフォルトは`false`です。
 
 #### disableVarParsing
-
 ```xml
 <psalm
-  disableVarParsing="[bool]"
-/>
+  disableVarParsing="[bool]"/>
 ```
-
-`@var` PHPDocs のプロパティを除くすべてのパースを無効にします。これを`true` に設定すると、Psalm ジェネリックスの統合や適切な型付けの前に使用された古い`@var` アノテーションによる誤検出を取り除くことができます。デフォルトは`false` です。
+プロパティ以外のすべての場所で`@var` PHPDocの解析を無効にします。これを`true`に設定すると、Psalm genericsと適切な型付けの統合以前に使用された古い`@var`アノテーションによる多くの誤検出を除去し、単一の真実の源の原則を強制できます。デフォルトは`false`です。
 
 #### strictBinaryOperands
-
 ```xml
 <psalm
-  strictBinaryOperands="[bool]"
->
+  strictBinaryOperands="[bool]">
 ```
-true の場合、数値演算と文字列演算に厳格な型付けを強制します (https://github.com/vimeo/psalm/issues/24 を参照)。デフォルトは`false` です。
+trueの場合、数値および文字列演算に厳密な型付けを強制します（https://github.com/vimeo/psalm/issues/24 を参照）。デフォルトは`false`です。
 
 #### rememberPropertyAssignmentsAfterCall
-
 ```xml
 <psalm
-  rememberPropertyAssignmentsAfterCall="[bool]"
->
+  rememberPropertyAssignmentsAfterCall="[bool]">
 ```
-これを`false` に設定すると、関数を呼び出すと、Psalmは現在解析している関数のスコープ内のオブジェクト・プロパティについて知っていたことをすべて忘れてしまいます。これはHackが持っている機能と重複します。デフォルトは`true` です。
+これを`false`に設定すると、関数呼び出しによって、Psalmが現在分析している関数のスコープ内のオブジェクトプロパティについて知っていたことを忘れさせます。これはHackの機能を複製しています。デフォルトは`true`です。
 
-#### 許容StringToStandInForClass
-
+#### allowStringToStandInForClass
 ```xml
 <psalm
-  allowStringToStandInForClass="[bool]"
->
+  allowStringToStandInForClass="[bool]">
 ```
-`true` `$some_string::someMethod()` の場合、文字列をクラスとして使用することができます。`false` `InvalidStringClass` の場合、クラス定数文字列 (`Foo\Bar::class` の形式) だけがクラスとして使用できます。デフォルトは`false` です。
+`true`の場合、文字列をクラスとして使用できます。つまり、`$some_string::someMethod()`が許可されます。`false`の場合、クラス定数文字列（`Foo\Bar::class`の形式）のみがクラスの代わりに使用でき、そうでない場合は`InvalidStringClass`問題が発生します。デフォルトは`false`です。
 
 #### disableSuppressAll
-
 ```xml
 <psalm
-  disableSuppressAll="[bool]"
->
+  disableSuppressAll="[bool]">
 ```
-`true` の場合、すべてのissueのワイルドカード抑制を`@psalm-suppress all` で無効にします。デフォルトは`false` です。
+`true`の場合、`@psalm-suppress all`によるすべての問題のワイルドカード抑制を無効にします。デフォルトは`false`です。
 
 #### memoizeMethodCallResults
-
 ```xml
 <psalm
-  memoizeMethodCallResults="[bool]"
->
+  memoizeMethodCallResults="[bool]">
 ```
-`true` の場合、引数が渡されないメソッド呼び出しの結果は、指定されたオブジェクトでそのメソッドが繰り返し呼び出される間に記憶されます。デフォルトは`false` です。
+`true`の場合、引数なしのメソッド呼び出しの結果は、特定のオブジェクトでそのメソッドを繰り返し呼び出す間で記憶されます。デフォルトは`false`です。
 
 #### hoistConstants
-
 ```xml
 <psalm
-  hoistConstants="[bool]"
->
+  hoistConstants="[bool]">
 ```
-`true` の場合、ファイル内の関数で定義された定数は、その関数を呼び出すときだけでなく、 そのファイルを必要とするときにも使用可能であるとみなされます。デフォルトは`false` です（つまり、関数内で定義された定数は、その関数が呼び出されたときに *のみ* 使用可能になります）。
+`true`の場合、ファイル内の関数で定義された定数は、その関数を呼び出すときだけでなく、そのファイルを要求するときに利用可能であると想定されます。デフォルトは`false`です（つまり、関数で定義された定数は、その関数が呼び出されたときにのみ使用可能になります）。
 
 #### addParamDefaultToDocblockType
-
 ```xml
 <psalm
-  addParamDefaultToDocblockType="[bool]"
->
+  addParamDefaultToDocblockType="[bool]">
 ```
-時々、paramのデフォルトがdocblockタイプと一致しないことがあります。デフォルトでは、Psalmは問題を出します。このフラグを`true` に設定すると、paramのデフォルトを含むようにparamの型を展開します。デフォルトは`false` です。
+時々、パラメータのデフォルト値がdocblockの型と一致しないことがあります。デフォルトでは、Psalmは問題を発生させます。このフラグを`true`に設定すると、パラメータの型にデフォルト値を含めるように拡張します。デフォルトは`false`です。
 
 #### checkForThrowsDocblock
 ```xml
 <psalm
-  checkForThrowsDocblock="[bool]"
->
+  checkForThrowsDocblock="[bool]">
 ```
-`true` の場合、Psalm は、指定された関数やメソッドでスローされたすべての例外について、開発者が`@throws` docblock を提供しているかどうかをチェックします。デフォルトは`false` です。
+`true`の場合、Psalmは開発者が特定の関数またはメソッドでスローされるすべての例外に対して`@throws`docblockを提供しているかどうかをチェックします。デフォルトは`false`です。
 
 #### checkForThrowsInGlobalScope
 ```xml
 <psalm
-  checkForThrowsInGlobalScope="[bool]"
->
+  checkForThrowsInGlobalScope="[bool]">
 ```
-`true` の場合、Psalm は開発者がグローバルスコープですべての例外を捕捉したかどうかをチェックします。デフォルトは`false` です。
+`true`の場合、Psalmは開発者がグローバルスコープですべての例外をキャッチしているかどうかをチェックします。デフォルトは`false`です。
 
-#### ignoreInternalFunctionFalseReturn
-
+#### #### ignoreInternalFunctionFalseReturn
 ```xml
 <psalm
-  ignoreInternalFunctionFalseReturn="[bool]"
->
+  ignoreInternalFunctionFalseReturn="[bool]">
 ```
-`true` の場合、Psalm は（`preg_split` のような）内部関数の戻り値に起因する、false を返す可能性のある問題を無視します。デフォルトは`false` です。
+`true`の場合、Psalmは内部関数（`preg_split`など）の戻り値から生じる可能性のあるfalseの問題を無視します。これらの関数は稀にfalseを返す可能性がありますが、通常は無視しても問題ありません。デフォルトは`false`です。
 
 #### ignoreInternalFunctionNullReturn
-
 ```xml
 <psalm
-  ignoreInternalFunctionNullReturn="[bool]"
->
+  ignoreInternalFunctionNullReturn="[bool]">
 ```
-`true` の場合、Psalm は内部配列関数 (`current` のようなもの) の戻り値に起因する NULL の問題を無視します。デフォルトは`false` です。
+`true`の場合、Psalmは内部配列関数（`current`など）の戻り値から生じる可能性のあるnullの問題を無視します。これらの関数は稀にnullを返す可能性がありますが、通常は無視しても問題ありません。デフォルトは`false`です。
 
 #### inferPropertyTypesFromConstructor
-
 ```xml
 <psalm
-  inferPropertyTypesFromConstructor="[bool]"
->
+  inferPropertyTypesFromConstructor="[bool]">
 ```
-`true` の場合、Psalm はストレート・コンストラクタに見られる代入からプロパティ・タイプを推論します。デフォルトは`true` です。
+`true`の場合、Psalmは単純なコンストラクタで見られる代入からプロパティ型を推論します。デフォルトは`true`です。
 
 #### findUnusedVariablesAndParams
 ```xml
 <psalm
-  findUnusedVariablesAndParams="[bool]"
->
+  findUnusedVariablesAndParams="[bool]">
 ```
-`true` の場合、Psalm はすべての未使用変数を見つけようとします。`--find-unused-variables` で実行するのと同等です。デフォルトは`false` です。
+`true`の場合、Psalmはすべての未使用の変数を見つけようとします。これは`--find-unused-variables`オプションを使用して実行するのと同等です。デフォルトは`false`です。
 
 #### findUnusedCode
 ```xml
 <psalm
-  findUnusedCode="[bool]"
->
+  findUnusedCode="[bool]">
 ```
-`true` `--find-unused-code` の場合、Psalm はすべての未使用コード (未使用変数を含む) を見つけようとします。デフォルトは`false` です。
+`true`の場合、Psalmはすべての未使用のコード（未使用の変数を含む）を見つけようとします。これは`--find-unused-code`オプションを使用して実行するのと同等です。デフォルトは`false`です。
 
 #### findUnusedPsalmSuppress
 ```xml
 <psalm
-  findUnusedPsalmSuppress="[bool]"
->
+  findUnusedPsalmSuppress="[bool]">
 ```
-`true` `--find-unused-psalm-suppress` の場合、Psalm は`@psalm-suppress` のアノテーションのうち、使用されていないものをすべて報告します。デフォルトは`false` です。
+`true`の場合、Psalmは使用されていないすべての`@psalm-suppress`アノテーションを報告します。これは`--find-unused-psalm-suppress`オプションを使用して実行するのと同等です。デフォルトは`false`です。
 
 #### ensureArrayStringOffsetsExist
 ```xml
 <psalm
-  ensureArrayStringOffsetsExist="[bool]"
->
+  ensureArrayStringOffsetsExist="[bool]">
 ```
-`true` の場合、`$arr['foo']` のような配列上の明示的な文字列オフセットが存在することをユーザが最初に (`isset` で確認するか、オブジェクトライクな配列で確認することなく) 参照すると、Psalm は文句を言います。デフォルトは`false` です。
+`true`の場合、Psalmは配列の明示的な文字列オフセット（例：`$arr['foo']`）を参照する際に、ユーザーが最初にその存在を確認（`isset`チェックまたはオブジェクトのような配列を介して）していない場合に警告します。デフォルトは`false`です。
 
 #### ensureArrayIntOffsetsExist
 ```xml
 <psalm
-  ensureArrayIntOffsetsExist="[bool]"
->
+  ensureArrayIntOffsetsExist="[bool]">
 ```
-`true` の場合、`$arr[7]` のような配列の明示的な整数オフセットを参照する際に、ユーザがその存在を (`isset` のチェックまたはオブジェクトのような配列を介して) 最初に表明しない場合、Psalm は文句を言います。デフォルトは`false` です。
+`true`の場合、Psalmは配列の明示的な整数オフセット（例：`$arr[7]`）を参照する際に、ユーザーが最初にその存在を確認（`isset`チェックまたはオブジェクトのような配列を介して）していない場合に警告します。デフォルトは`false`です。
 
 #### ensureOverrideAttribute
 ```xml
 <psalm
-  ensureOverrideAttribute="[bool]"
->
+  ensureOverrideAttribute="[bool]">
 ```
-`true` の場合、Psalm は、親のメソッドをオーバーライドするが、`Override` 属性を持たないクラスとインターフェースのメソッドを報告します。デフォルトは`false` です。
+`true`の場合、Psalmは親のメソッドをオーバーライドするクラスおよびインターフェースのメソッドで、`Override`属性がない場合に報告します。デフォルトは`false`です。
 
 #### phpVersion
 ```xml
 <psalm
-  phpVersion="[string]"
->
+  phpVersion="[string]">
 ```
-プロジェクトをチェックしたり修正したりするときに Psalm が想定する php のバージョンを設定します。この属性が設定されていない場合、Psalm は`composer.json` の宣言を使用します。宣言された`php` の依存関係を満たす PHP の最も古いバージョンと照合します。
+プロジェクトのチェックやフィックス時にPsalmが想定すべきPHPバージョンを設定します。この属性が設定されていない場合、Psalmは`composer.json`での宣言があればそれを使用します。宣言された`php`依存関係を満たす最も古いバージョンのPHPに対してチェックします。
 
-これは、コマンドラインで`--php-version=` フラグを指定することで上書きすることができます。 このフラグは、`phpVersion` の設定や、`composer.json` のバージョンよりも優先されます。
+これはコマンドラインで`--php-version=`フラグを使用してオーバーライドできます。コマンドラインフラグは`phpVersion`設定と`composer.json`から派生したバージョンの両方に対して最も高い優先順位を持ちます。
 
 #### skipChecksOnUnresolvableIncludes
 ```xml
 <psalm
-  skipChecksOnUnresolvableIncludes="[bool]"
->
+  skipChecksOnUnresolvableIncludes="[bool]">
 ```
+`true`の場合、Psalmは解決できない`include`または`require`に遭遇した後、クラス、変数、関数のチェックをスキップします。これにより、Psalmが知らない関数やクラスを参照するコードが許可されます。
 
-`true` の場合、Psalm は解決できない`include` または`require` に出くわした後、クラス、変数、関数のチェックをスキップします。これにより、Psalm が知らない関数やクラスを参照できるようになります。
-
-デフォルトは`false` です。
+デフォルトは`false`です。
 
 #### sealAllMethods
-
 ```xml
 <psalm
-  sealAllMethods="[bool]"
->
+  sealAllMethods="[bool]">
 ```
-
-`true` を指定すると、Psalm はすべてのクラスを sealed メソッドを持っているものとして扱います。つまり、マジックメソッド`__call` を実装する場合は、マジックメソッドごとに`@method` も追加する必要があります。デフォルトはfalseです。
+`true`の場合、Psalmはすべてのクラスがシールドされたメソッドを持っているかのように扱います。つまり、マジックメソッド`__call`を実装する場合、各マジックメソッドに対して`@method`も追加する必要があります。デフォルトはfalseです。
 
 #### sealAllProperties
-
 ```xml
 <psalm
-  sealAllProperties="[bool]"
->
+  sealAllProperties="[bool]">
 ```
-
-`true` の場合、Psalm はすべてのクラスを、あたかもシーリングされたプロパティを持つかのように扱います。つまり、`@property` （または`@property-read`/`@property-write` ）アノテーションのリストに含まれておらず、`property` として明示的に定義されていないプロパティは、取得も設定も許可されません。 デフォルトは false です。
+`true`の場合、Psalmはすべてのクラスがシールドされたプロパティを持っているかのように扱います。つまり、Psalmは`@property`（または`@property-read`/`@property-write`）アノテーションのリストに含まれておらず、明示的に`property`として定義されていないプロパティの取得と設定を許可しません。デフォルトはfalseです。
 
 #### runTaintAnalysis
-
 ```xml
 <psalm
-  runTaintAnalysis="[bool]"
->
+  runTaintAnalysis="[bool]">
 ```
-
-`true` の場合、Psalm はあなたのコードベース上で[Taint Analysis](../security_analysis/index.md) を実行します。この設定は、`--taint-analysis` で Psalm を実行する場合と同じです。
+`true`の場合、Psalmはコードベースで[汚染分析](../security_analysis/index.md)を実行します。この設定は、Psalmを`--taint-analysis`オプション付きで実行するのと同じです。
 
 #### reportInfo
-
 ```xml
 <psalm
-  reportInfo="[bool]"
->
+  reportInfo="[bool]">
 ```
-
-`false` の場合、Psalmは`errorLevel` よりも低いレベルの問題を`info` と見なしません(代わりに抑制されます)。これは大規模なプロジェクトでは分析時間の大きな改善になります。しかし、この設定はPsalmが抑制された問題をカウントしたり、修正を提案したりすることを防ぎます。
+`false`の場合、Psalmは`errorLevel`よりも低いレベルの問題を`info`として扱いません（代わりに抑制されます）。これは大規模プロジェクトの分析時間を大幅に改善できます。ただし、この設定により、Psalmは抑制された問題の数を数えたり、修正を提案したりすることができなくなります。
 
 #### allowNamedArgumentCalls
-
 ```xml
 <psalm
-  allowNamedArgumentCalls="[bool]"
->
+  allowNamedArgumentCalls="[bool]">
 ```
-
-`false` の場合、Psalmはあなたのコードで`ParamNameMismatch` の問題を報告しなくなります。これは、ライブラリのメソッドへの外部からのアクセスを防ぐための個々の`@no-named-arguments` の使用や、variadics を使用する際に型を`list` に減らすことに取って代わるものではありません。
+`false`の場合、Psalmはコード内の`ParamNameMismatch`問題を報告しなくなります。これは、ライブラリのメソッドへの外部アクセスを防いだり、可変引数を使用する際に型を`list`に減らしたりするための個々の`@no-named-arguments`の使用に取って代わるものではありません。
 
 #### triggerErrorExits
-
 ```xml
 <psalm
-   triggerErrorExits="[string]"
->
+  triggerErrorExits="[string]">
 ```
+trigger_errorの動作を記述します。`always`は常に終了することを意味し、`never`は決して終了しないことを意味し、`default`は`E_USER_ERROR`の場合にのみ終了することを意味します。デフォルトは`default`です。
 
-trigger_errorの動作を記述する。`always` は常に終了する、`never` は終了しない、`default` は`E_USER_ERROR` の場合のみ終了する。デフォルトは`default`
+### Psalmの実行
 
-### 実行中のPsalm
-
-#### オートローダー
+#### autoloader
 ```xml
 <psalm
-  autoloader="[string]"
->
+  autoloader="[string]">
 ```
-アプリケーションが1つ以上のカスタムオートローダーを登録したり、ユニバーサル定数/関数を宣言したりした場合、このオートローダースクリプトはスキャン開始前にPsalmによって実行されます。Psalmはデフォルトで常にcomposerのオートローダーを登録します。
+アプリケーションが1つ以上のカスタムオートローダーを登録し、かつ/または普遍的な定数/関数を宣言する場合、このオートローダースクリプトはスキャンが開始される前にPsalmによって実行されます。Psalmは常にデフォルトでcomposerのオートローダーを登録します。
 
 #### throwExceptionOnError
 ```xml
 <psalm
-  throwExceptionOnError="[bool]"
->
+  throwExceptionOnError="[bool]">
 ```
-Psalm がエラーに遭遇したときに、通常の古い例外を投げるようにします。デフォルトは`false` 。
+テストで便利です。これにより、Psalmはエラーに遭遇したときに通常の例外をスローします。デフォルトは`false`です。
 
 #### hideExternalErrors
 ```xml
 <psalm
-  hideExternalErrors="[bool]"
->
+  hideExternalErrors="[bool]">
 ```
-プロジェクト・ファイルで使用されているが `<projectFiles>`.デフォルトは`false` です。
+プロジェクトファイルで使用されているが、`<projectFiles>`に含まれていないファイルの問題を表示するかどうか。デフォルトは`false`です。
 
-#### 非表示にするかどうかを設定します。
+#### hideAllErrorsExceptPassedFiles
 ```xml
 <psalm
-  hideAllErrorsExceptPassedFiles="[bool]"
->
+  hideAllErrorsExceptPassedFiles="[bool]">
 ```
-CLIで明示的に引数として渡されたファイルに対してのみ問題を報告するかどうか。これは、CLI で設定されていない場合、require/include で読み込まれたファイルは報告されないことを意味します。単一または選択したファイルのエラーだけをチェックしたい場合に便利です。デフォルトは`false` 。
+CLIで明示的に引数として渡されたファイルに対してのみ問題を報告するかどうか。これは、CLIで設定されていない場合、require/includeで読み込まれたファイルも報告しないことを意味します。単一または選択したファイルのエラーのみをチェックしたい場合に便利です。デフォルトは`false`です。
 
 #### cacheDirectory
 ```xml
 <psalm
-  cacheDirectory="[string]"
->
+  cacheDirectory="[string]">
 ```
-Psalm のキャッシュデータを格納するディレクトリ。指定する場合 (そしてそれがまだ存在しない場合)、その親ディレクトリが既に存在しなければならない。
+Psalmのキャッシュデータを保存するディレクトリ - 指定する場合（まだ存在しない場合）、その親ディレクトリが既に存在している必要があります。そうでない場合、Psalmはエラーをスローします。
 
-デフォルトは`$XDG_CACHE_HOME/psalm` です。`$XDG_CACHE_HOME` が設定されていないか空の場合、`$HOME/.cache/psalm` と同じデフォルトが使用され、定義されていない場合は`sys_get_temp_dir() . '/psalm'` が使用されます。
+デフォルトは`$XDG_CACHE_HOME/psalm`です。`$XDG_CACHE_HOME`が設定されていないか空の場合、`$HOME/.cache/psalm`が使用されます。これが定義されていない場合は`sys_get_temp_dir() . '/psalm'`が使用されます。
 
 #### allowFileIncludes
 ```xml
 <psalm
-  allowFileIncludes="[bool]"
->
+  allowFileIncludes="[bool]">
 ```
-PHP 内で`require`/`include` の呼び出しを許可するかどうか。デフォルトは`true` です。
+PHPで`require`/`include`呼び出しを許可するかどうか。デフォルトは`true`です。
 
-#### シリアライザ
+#### serializer
 ```xml
 <psalm
-  serializer="['igbinary'|'default']"
->
+  serializer="['igbinary'|'default']">
 ```
-Psalm がデータをキャッシュする際に使用するシリアライザをハードコードします。デフォルトでは、バージョンが 2.0.5 以上の場合は`ext-igbinary` を使用し、それ以外の場合は PHP 組み込みのシリアライザを使用します。
+Psalmがデータのキャッシュに使用するシリアライザーをハードコードできます。デフォルトでは、Psalmはバージョンが2.0.5以上の場合は`ext-igbinary`を使用し、そうでない場合はPHPの組み込みシリアライザーを使用します。
 
-#### コンプレッサー
+#### compressor
 ```xml
 <psalm
-  compressor="['lz4'|'deflate'|'off']"
->
+  compressor="['lz4'|'deflate'|'off']">
 ```
-Psalm のキャッシュの圧縮方式をハードコードできるようにします。デフォルトでは、Psalm は`ext-zlib` deflate を使用します。
+Psalmのキャッシュに使用する圧縮方法をハードコードできます。デフォルトでは、Psalmは有効な場合は`ext-zlib`のdeflateを使用します。
 
-#### スレッド
+#### threads
 ```xml
 <psalm
-        threads="[int]"
->
+        threads="[int]">
 ```
-Psalm が使用するスレッド数をハードコードできるようにします (コマンドラインの`--threads` に似ています)。この値は、ホストマシンからスレッドを検出する代わりに使用されますが、コマンドラインで`--threads` または`--debug` (スレッドを 1 に設定) を使用すると上書きされます。
+Psalmが使用するスレッド数をハードコードできます（コマンドラインの`--threads`と同様）。この値はホストマシンからのスレッド検出の代わりに使用されますが、コマンドラインで`--threads`または`--debug`（スレッドを1に設定）を使用すると上書きされます。
 
 #### maxStringLength
 ```xml
 <psalm
-  maxStringLength="1000"
->
+  maxStringLength="1000">
 ```
-この設定は、Psalm解析中にリテラル文字列型に変換されるリテラル文字列の最大長を制御します。   この値 (既定では 1000 バイト) より長い文字列は、一般的な`non-empty-string` 型に変換されます。  
-
-この設定を変更すると、望ましくない副作用が発生する可能性があり、その副作用はバグとはみなされないことに注意してください。  
+この設定は、Psalm分析中にリテラル文字列型に変換される文字列リテラルの最大長を制御します。この値（デフォルトでは1000バイト）より長い文字列は、代わりに一般的な`non-empty-string`型に変換されます。この設定を変更すると望ましくない副作用が発生する可能性があり、それらの副作用はバグとは見なされないことに注意してください。
 
 #### maxShapedArraySize
 ```xml
 <psalm
-  maxShapedArraySize="100"
->
+  maxShapedArraySize="100">
 ```
-この設定は、Psalm 分析中に定形`array{key1: "value", key2: T}` 型に変換される定形配列の最大サイズを制御する。   この値（デフォルトでは 100）より大きい配列は、代わりに一般的な`non-empty-array` 型に変換されます。  
-
-この設定を変更すると、望ましくない副作用が発生する可能性があり、その副作用はバグとはみなされないことに注意してください。  
+この設定は、Psalm分析中に形状付き`array{key1: "value", key2: T}`型に変換される形状付き配列の最大サイズを制御します。この値（デフォルトでは100）より大きい配列は、代わりに一般的な`non-empty-array`型に変換されます。この設定を変更すると望ましくない副作用が発生する可能性があり、それらの副作用はバグとは見なされないことに注意してください。
 
 #### restrictReturnTypes
-
 ```xml
 <psalm
-  restrictReturnTypes="true"
->
+  restrictReturnTypes="true">
 ```
+宣言された戻り値の型が推論された戻り値の型ほど厳密でない場合に`LessSpecificReturnType`を発行します。
 
-宣言された戻り値の型が推論された戻り値の型ほど厳密でない場合に`LessSpecificReturnType` を発行します。
-
-このコードは
+このコード：
 ```php
-function getOne(): int // declared type: int
-{ 
-    return 1; // inferred type: 1 (int literal)
+function getOne(): int // 宣言された型: int
+{
+     return 1; // 推論された型: 1 (int リテラル)
 }
 ```
-このエラーを出す：`LessSpecificReturnType - The inferred return type '1' for a is more specific than the declared return type 'int'`
 
-エラーを修正するには、doc-blockでより具体的な型を指定する必要があります：
+このエラーが発生します：`LessSpecificReturnType - 関数aの推論された戻り値の型 '1' は、宣言された戻り値の型 'int' よりも具体的です`
+
+エラーを修正するには、docブロックでより具体的な型を指定する必要があります：
 ```php
-/**
- * @return 1
+/** 
+ * @return 1 
  */
-function getOne(): int 
-{ 
-    return 1;
+function getOne(): int {
+     return 1;
 }
 ```
 
-**警告**：警告**: 強制的な型指定は必ずしも最善の方法とは限らず、予期せぬ結果を引き起こす可能性があります。次のコードは
-`restrictReturnTypes="true"`:
+**警告**: より厳密な型を強制することは必ずしも最良の対処法ではなく、予期しない結果を招く可能性があります。`restrictReturnTypes="true"`では、次のコードは無効です：
+
 ```php
-class StandardCar {     /**      * @return list{'motor', 'brakes', 'wheels'}      */     public function getSystems(): array {         return ['motor', 'brakes', 'wheels'];     } }
+class StandardCar {
+    /**
+     * @return list{'motor', 'brakes', 'wheels'}
+     */
+    public function getSystems(): array {
+        return ['motor', 'brakes', 'wheels'];
+    }
+}
 
-class PremiumCar extends StandardCar {     /**      * @return list{'motor', 'brakes', 'wheels', 'rear parking sensor'}      */     public function getSystems(): array {         return ['motor', 'brakes', 'wheels', 'rear parking sensor'];     } }
+class PremiumCar extends StandardCar {
+    /**
+     * @return list{'motor', 'brakes', 'wheels', 'rear parking sensor'}
+     */
+    public function getSystems(): array {
+        return ['motor', 'brakes', 'wheels', 'rear parking sensor'];
+    }
+}
 ```
-`ImplementedReturnTypeMismatch - The inherited return type 'list{'motor', 'brakes', 'wheels'}' for StandardCar::getSystems is different to the implemented return type for PremiumCar::getsystems 'list{'motor', 'brakes', 'wheels', 'rear parking sensor'}'`
 
-#### で無効です。
+``ImplementedReturnTypeMismatch - StandardCar::getSystemsの継承された戻り値の型 'list{'motor', 'brakes', 'wheels'}' は、PremiumCar::getSystemsの実装された戻り値の型 'list{'motor', 'brakes', 'wheels', 'rear parking sensor'}' と異なります`
 
-ベースライン・エントリがissueの抑制に使用されていない場合に[UnusedBaselineEntry](issues/UnusedBaselineEntry.md) 。
+#### findUnusedBaselineEntry
+使用されていないベースラインエントリに対して[UnusedBaselineEntry](issues/UnusedBaselineEntry.md)を発行します。
 
-を返します #### findUnusedIssueHandlerSuppression
+#### findUnusedIssueHandlerSuppression
+問題を抑制するために使用されていない抑制された問題ハンドラに対して[UnusedIssueHandlerSuppression](issues/UnusedIssueHandlerSuppression.md)を発行します。
 
-抑制されたissueハンドラがissueの抑制に使用されていない場合に[UnusedIssueHandlerSuppression](issues/UnusedIssueHandlerSuppression.md) 。
+## プロジェクト設定
 
-## プロジェクトの設定
+#### &lt;projectFiles&gt;
+Psalmが検査すべきすべてのディレクトリのリストを含みます。`<ignoreFiles>`ディレクティブを使用して、無視するファイルやフォルダのセットを指定することもできます。デフォルトでは、無視されるファイル/フォルダは存在する必要があります。存在しないかもしれない無視されるファイル/フォルダには`allowMissingFiles`属性を追加できます。
 
-#### &lt;projectFiles&gt; Psalmが検査すべきすべてのディレクトリのリストを含みます。ディレクティブで無視するファイルやフォルダを指定することもできます。 `<ignoreFiles>`ディレクティブで指定することもできます。  デフォルトでは、無視するファイルやフォルダは存在する必要があります。  無視されるファイルやフォルダーは、存在してもしなくても構いませんが、`allowMissingFiles` 属性を追加することができます。
 ```xml
 <projectFiles>
   <directory name="src" />
@@ -518,11 +446,15 @@ class PremiumCar extends StandardCar {     /**      * @return list{'motor', 'bra
 </projectFiles>
 ```
 
-#### &lt;extraFiles&gt; オプション。以下と同じ。 `<projectFiles>`.Psalmが読み込むが検査しないディレクトリ。
+#### &lt;extraFiles&gt;
+オプション。`<projectFiles>`と同じ形式です。Psalmが読み込むべきが検査しないディレクトリ。
 
-#### &lt;fileExtensions&gt; オプション。検索する拡張子のリスト。これを拡張する方法については[Checking non-PHP files](checking_non_php_files.md) を参照のこと。
+#### &lt;fileExtensions&gt;
+オプション。検索する拡張子のリスト。これを拡張する方法を理解するには、[非PHPファイルのチェック](checking_non_php_files.md)を参照してください。
 
-#### &lt;enableExtensions&gt; オプション。有効にする拡張子のリスト。デフォルトでは、composer.jsonで必要な拡張機能のみが有効になります。
+#### &lt;enableExtensions&gt;
+オプション。有効にする拡張機能のリスト。デフォルトでは、composer.jsonで必要とされる拡張機能のみが有効になります。
+
 ```xml
 <enableExtensions>
   <extension name="decimal"/>
@@ -530,24 +462,33 @@ class PremiumCar extends StandardCar {     /**      * @return list{'motor', 'bra
 </enableExtensions>
 ```
 
-#### &lt;disableExtensions&gt; オプション。無効にする拡張機能のリスト。デフォルトでは、composer.jsonで必要な拡張機能のみが有効になります。
+#### &lt;disableExtensions&gt;
+オプション。無効にする拡張機能のリスト。デフォルトでは、composer.jsonで必要とされる拡張機能のみが有効になります。
+
 ```xml
 <disableExtensions>
   <extension name="gmp"/>
 </disableExtensions>
 ```
 
-#### &lt;plugins&gt; オプション。プラグインの `<plugin filename="path_to_plugin.php" />`エントリーのリスト。詳しくは[Plugins](plugins/using_plugins.md) セクションを参照のこと。
+#### &lt;plugins&gt;
+オプション。`<plugin filename="path_to_plugin.php" />`エントリのリスト。詳細は[プラグイン](plugins/using_plugins.md)セクションを参照してください。
 
-#### &lt;issueHandlers&gt; オプション。Psalmが見つけたissueにいちいち文句をつけたくない場合は、issueHandlerタグで設定できます。[Dealing with code issues](dealing_with_code_issues.md) 。
+#### &lt;issueHandlers&gt;
+オプション。Psalmが見つけたすべての問題について苦情を言うことを望まない場合、issueHandlerタグを使用してそれを設定できます。詳細は[コードの問題への対処](dealing_with_code_issues.md)を参照してください。
 
-#### &lt;mockClasses&gt; オプション。テストでモッククラスを使いますか？もし Psalm がファイルをチェックするときにモッククラスを無視したい場合は、モッククラスへの完全修飾パスを `<class name="Your\Namespace\ClassName" />`
+#### &lt;mockClasses&gt;
+オプション。テストでモッククラスを使用していますか？ファイルをチェックする際にPsalmがそれらを無視するようにしたい場合は、`<class name="Your\Namespace\ClassName" />`でクラスの完全修飾パスを含めてください。
 
-#### &lt;universalObjectCrates&gt; オプション。静的に決定できないプロパティを持つオブジェクトがありますか？Psalmに、指定されたクラスライクなオブジェクトのすべてのプロパティを混合プロパティとして扱わせたい場合は、クラスへの完全修飾パスを `<class name="Your\Namespace\ClassName" />`.デフォルトでは、`stdClass` と`SimpleXMLElement` はユニバーサル・オブジェクト・クレートに設定されています。
+#### &lt;universalObjectCrates&gt;
+オプション。静的に決定できないプロパティを持つオブジェクトがありますか？Psalmが特定のクラスライクのすべてのプロパティを混合として扱うようにしたい場合は、`<class name="Your\Namespace\ClassName" />`でクラスの完全修飾パスを含めてください。デフォルトでは、`stdClass`と`SimpleXMLElement`が汎用オブジェクトクレートとして設定されています。
 
-#### &lt;stubs&gt; オプション。コードベースがリフレクションによって Psalm から見えないクラスや関数を使用している場合 (コードベースが依存している内部パッケージが Psalm を実行しているマシンでは利用できない場合など)、スタブファイルを使用することができます。PhpStorm（一般的なIDE）などで使用されているスタブは、実装を含まないクラスや関数の説明を提供します。
+#### &lt;stubs&gt;
+オプション。コードベースがPsalmにリフレクションを介して見えないクラスや関数を使用している場合（例えば、Psalmを実行しているマシンで利用できない内部パッケージにコードベースが依存している場合）、スタブファイルを使用できます。PhpStorm（人気のあるIDE）などで使用されているスタブは、実装なしでクラスと関数の説明を提供します。
 
-一般的なクラスのスタブのリストは[here](https://github.com/JetBrains/phpstorm-stubs) にあります。各ファイルを `<file name="path/to/file.php" />`.テスト対象のクラスがスタブファイルで定義された親クラスやインターフェイスを使用している場合、このスタブは属性`preloadClasses="true"` で設定する必要があります。
+一般的なクラスのスタブのリストは[こちら](https://github.com/JetBrains/phpstorm-stubs)で見つけることができます。
+
+各ファイルを`<file name="path/to/file.php" />`でリストアップしてください。テストするクラスがスタブファイルで定義された親クラスまたはインターフェースを使用している場合、このスタブは`preloadClasses="true"`属性で設定する必要があります。
 
 ```xml
 <stubs>
@@ -556,7 +497,9 @@ class PremiumCar extends StandardCar {     /**      * @return list{'motor', 'bra
 </stubs>
 ```
 
-&lt;ignoreExceptions&gt; オプション。`checkForThrowsDocblock` または`checkForThrowsInGlobalScope` に対して報告しない例外のリスト。`class` タグは Psalm に指定されたクラスのインスタンスだけを無視させ、`classAndDescendants` は Psalm にサブクラスも無視させます。ある例外で`onlyGlobalScope` が`true` に設定されている場合、その例外では`checkForThrowsInGlobalScope` だけが無視されます。
+#### &lt;ignoreExceptions&gt;
+オプション。`checkForThrowsDocblock`または`checkForThrowsInGlobalScope`で報告しない例外のリスト。`class`タグはspecifiedクラスのインスタンスのみをPsalmに無視させ、`classAndDescendants`はサブクラスも無視させます。例外に`onlyGlobalScope="true"`が設定されている場合、その例外に対しては`checkForThrowsInGlobalScope`のみが無視されます。例：
+
 ```xml
 <ignoreExceptions>
   <class name="fully\qualified\path\Exc" onlyGlobalScope="true" />
@@ -564,14 +507,17 @@ class PremiumCar extends StandardCar {     /**      * @return list{'motor', 'bra
 </ignoreExceptions>
 ```
 
-#### &lt;globals&gt; オプション。あなたのコードベースが`global` キーワードでアクセスされるグローバル変数を使用している場合、その型を宣言することができます。
+#### &lt;globals&gt;
+オプション。コードベースが`global`キーワードでアクセスするグローバル変数を使用している場合、その型を宣言できます。例：
+
 ```xml
 <globals>
   <var name="globalVariableName" type="type" />
 </globals>
 ```
 
-フレームワークやライブラリの中には、`$GLOBALS[DB]->query($query)` などを通して機能を公開しているものがあります。以下のコンフィギュレーションでは、スーパーグローバル（`$GLOBALS`,`$_GET`, ...）のカスタム・タイプを宣言します。
+一部のフレームワークやライブラリは、例えば`$GLOBALS[DB]->query($query)`を通じて機能を公開しています。
+以下の設定は、スーパーグローバル（`$GLOBALS`、`$_GET`など）にカスタム型を宣言します。
 
 ```xml
 <globals>
@@ -580,11 +526,15 @@ class PremiumCar extends StandardCar {     /**      * @return list{'motor', 'bra
 </globals>
 ```
 
-上記の例では、グローバル変数を以下のように宣言しています。
+上の例は、以下のようにグローバル変数を宣言します：
+- `$GLOBALS`
+    - `DB`の型は`MyVendor\DatabaseConnection`
+    - `VIEW`の型は`MyVendor\TemplateView`
+- `$_GET`
+    - `data`は例えば`["id" => "123", "title" => "Nice"]`のような型
 
--`$GLOBALS` -`DB` 型の`MyVendor\DatabaseConnection` -`VIEW` 型の`MyVendor\TemplateView` -`$_GET` -`data` 例えば次のように。`["id" => "123", "title" => "Nice"]`
-
-#### &lt;forbiddenFunctions&gt; オプション。[`ForbiddenCode`](issues/ForbiddenCode.md) issueタイプを出力する関数のリストを指定します。
+#### &lt;forbiddenFunctions&gt;
+オプション。[`ForbiddenCode`](issues/ForbiddenCode.md)問題タイプを発行すべき関数のリストを指定できます。
 
 ```xml
 <forbiddenFunctions>
@@ -593,9 +543,8 @@ class PremiumCar extends StandardCar {     /**      * @return list{'motor', 'bra
 </forbiddenFunctions>
 ```
 
-## プラグインでPsalm設定にアクセスする
-
-プラグインは、[singleton Psalm\Config](https://github.com/vimeo/psalm/blob/master/src/Psalm/Config.php) を使って、プラグインのグローバル設定にアクセスしたり、変更したりすることができます。
+## プラグインでのPsalm設定へのアクセス
+プラグインは、[シングルトンPsalm\Config](https://github.com/vimeo/psalm/blob/master/src/Psalm/Config.php)を使用してプラグインでグローバル設定にアクセスまたは変更できます。
 
 ```php
 $config = \Psalm\Config::getInstance();
@@ -603,3 +552,4 @@ if (!isset($config->globals['$GLOBALS'])) {
     $config->globals['$GLOBALS'] = 'array{data: array<string, string>}';
 }
 ```
+

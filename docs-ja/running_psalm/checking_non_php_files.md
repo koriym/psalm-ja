@@ -1,12 +1,13 @@
-# PHP以外のファイルのチェック
+# 非PHPファイルのチェック
 
-Psalm は`FileChecker` クラスを拡張することで、様々な PHP 系ファイルをチェックする機能をサポートしています。例えば、変数が他の場所に設定されているテンプレートがある場合、Psalmはそれらの変数をスクレイピングし、それらの変数があらかじめ設定されているテンプレートをチェックすることができます。
+Psalmは、`FileChecker`クラスを拡張することで、さまざまなPHPライクなファイルをチェックする機能をサポートしています。例えば、変数が他の場所で設定されているテンプレートがある場合、Psalmはそれらの変数をスクレイピングし、事前に設定された変数でテンプレートをチェックすることができます。
 
-TemplateChecker のサンプルが[here](https://github.com/vimeo/psalm/blob/master/examples/TemplateChecker.php) にあります。
+テンプレートチェッカーの例は[こちら](https://github.com/vimeo/psalm/blob/master/examples/TemplateChecker.php)で提供されています。
 
-## 利用方法`psalm.xml`
+## `psalm.xml`の使用
 
-カスタム`FileChecker` を確実に使用するには、psalm.xml の Psalm`fileExtensions` config を更新する必要があります：
+カスタム`FileChecker`を使用するには、psalm.xmlのPsalm `fileExtensions`設定を更新する必要があります：
+
 ```xml
 <fileExtensions>
     <extension name=".php" />
@@ -14,9 +15,9 @@ TemplateChecker のサンプルが[here](https://github.com/vimeo/psalm/blob/mas
 </fileExtensions>
 ```
 
-## カスタムプラグインを使う
+## カスタムプラグインの使用
 
-プラグインは、特定のファイル拡張子に対する独自のカスタムスキャナーとアナライザーの実装を登録できます。
+プラグインは、特定のファイル拡張子に対して独自のカスタムスキャナーとアナライザーの実装を登録できます。
 
 ```php
 <?php
@@ -31,13 +32,13 @@ class CustomPlugin implements PluginEntryPointInterface, PluginFileExtensionsInt
 {
     public function __invoke(RegistrationInterface $registration, ?\SimpleXMLElement $config = null): void
     {
-        // ... regular plugin processes, stub registration, hook registration
+        // ... 通常のプラグインプロセス、スタブ登録、フック登録
     }
 
     public function processFileExtensions(FileExtensionsInterface $fileExtensions, ?SimpleXMLElement $config = null): void
     {
         $fileExtensions->addFileTypeScanner('phpt', TemplateScanner::class);
         $fileExtensions->addFileTypeAnalyzer('phpt', TemplateAnalyzer::class);
-    }    
+    }
 }
 ```

@@ -1,4 +1,4 @@
-# Issueの種類
+# 問題の種類
 
 - [AbstractInstantiation](issues/AbstractInstantiation.md)
 - [AbstractMethodCall](issues/AbstractMethodCall.md)
