@@ -12,35 +12,35 @@ markdown_extensions:
   - codehilite:
       guess_lang: True
 nav:
-  - Documentation Home: README.md
-  - Running Psalm:
-      - Installation: running_psalm/installation.md
-      - Configuration: running_psalm/configuration.md
-      - Plugins:
-          - Using plugins: running_psalm/plugins/using_plugins.md
-          - Authoring plugins: running_psalm/plugins/authoring_plugins.md
-          - How Psalm represents types: running_psalm/plugins/plugins_type_system.md
-      - Command line usage: running_psalm/command_line_usage.md
-      - IDE support: running_psalm/language_server.md
-      - Handling errors:
-          - Dealing with code issues: running_psalm/dealing_with_code_issues.md
-          - Issue Types: running_psalm/issues.md
-      - Checking non-PHP files: running_psalm/checking_non_php_files.md
-  - Annotating types:
-      - Using Type Annotations: annotating_code/typing_in_psalm.md
-      - Union Types: annotating_code/type_syntax/union_types.md
-      - Atomic Type Reference: annotating_code/type_syntax/atomic_types.md
-      - Intersection Types: annotating_code/type_syntax/intersection_types.md
-  - Other annotations:
-      - Supported Annotations: annotating_code/supported_annotations.md
-      - Template Annotations: annotating_code/templated_annotations.md
-      - Assert Annotations: annotating_code/adding_assertions.md
-  - Manipulating code:
-      - Fixing code with Psalter: manipulating_code/fixing.md
-      - Refactoring code: manipulating_code/refactoring.md
-  - Security analysis:
-      - Introduction: security_analysis/index.md
-      - Custom taint sources: security_analysis/custom_taint_sources.md
-      - Custom taint sinks: security_analysis/custom_taint_sinks.md
-      - Avoiding false-positives: security_analysis/avoiding_false_positives.md
-  - Contributing: contributing/index.md
+  - ドキュメンテーションホーム: README.md
+  - Psalmの実行:
+      - インストール: running_psalm/installation.md
+      - 設定: running_psalm/configuration.md
+      - プラグイン:
+          - プラグインの使用: running_psalm/plugins/using_plugins.md
+          - プラグインの作成: running_psalm/plugins/authoring_plugins.md
+          - Psalmの型表現: running_psalm/plugins/plugins_type_system.md
+      - コマンドライン使用法: running_psalm/command_line_usage.md
+      - IDE サポート: running_psalm/language_server.md
+      - エラーの扱い:
+          - コードの問題への対処: running_psalm/dealing_with_code_issues.md
+          - 問題の種類: running_psalm/issues.md
+      - PHP以外のファイルのチェック: running_psalm/checking_non_php_files.md
+  - 型のアノテーション:
+      - 型アノテーションの使用: annotating_code/typing_in_psalm.md
+      - ユニオン型: annotating_code/type_syntax/union_types.md
+      - アトミック型リファレンス: annotating_code/type_syntax/atomic_types.md
+      - インターセクション型: annotating_code/type_syntax/intersection_types.md
+  - その他のアノテーション:
+      - サポートされているアノテーション: annotating_code/supported_annotations.md
+      - テンプレートアノテーション: annotating_code/templated_annotations.md
+      - アサートアノテーション: annotating_code/adding_assertions.md
+  - コードの操作:
+      - Psalterを使用したコードの修正: manipulating_code/fixing.md
+      - コードのリファクタリング: manipulating_code/refactoring.md
+  - セキュリティ分析:
+      - はじめに: security_analysis/index.md
+      - カスタム汚染源: security_analysis/custom_taint_sources.md
+      - カスタム汚染シンク: security_analysis/custom_taint_sinks.md
+      - 偽陽性を避ける: security_analysis/avoiding_false_positives.md
+  - 貢献: contributing/index.md
