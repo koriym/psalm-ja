@@ -1,6 +1,6 @@
 # インターセクション型
 
-`Type1&Type2&Type3` 形式のアノテーションは _インターセクション型_ です。任意の値は `Type1`、`Type2`、`Type3` を同時に満たす必要があります。`Type1`、`Type2`、`Type3` はすべて [原子型](atomic_types.md) です。
+`Type1&Type2&Type3` 形式のアノテーションは _インターセクション型_ です。任意の値は `Type1`、`Type2`、`Type3` を同時に満たす必要があります。`Type1`、`Type2`、`Type3` はすべて [アトミック型](atomic_types.md) です。
 
 例えば、PHPUnitテストで次のステートメントの後：
 
