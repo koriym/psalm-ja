@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/annotating_code/type_syntax/object_types/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>オブジェクト型 - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u30aa\u30d6\u30b8\u30a7\u30af\u30c8\u578b";
+        var mkdocs_page_input_path = "annotating_code/type_syntax/object_types.md";
+        var mkdocs_page_url = "/annotating_code/type_syntax/object_types/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">オブジェクト型</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/annotating_code/type_syntax/object_types.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">オブジェクト型</h1>
+<h2 id="_2">名前のないオブジェクト</h2>
+<p><code>object</code> は名前のないオブジェクト型の例です。この型はPHPでも有効な型です。</p>
+<h2 id="_3">名前付きオブジェクト</h2>
+<p><code>stdClass</code>、<code>Foo</code>、<code>Bar\Baz</code> などは名前付きオブジェクト型の例です。これらの型もPHPで有効な型です。</p>
+<h2 id="_4">オブジェクトプロパティ</h2>
+<p>Psalmはオブジェクトのプロパティとその期待される型を指定することをサポートしています。例：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @param object{foo: string} $obj */</span>
+<span class="x">function takesObject(object $obj) : string {</span>
+<span class="x">    return $obj-&gt;foo;</span>
+<span class="x">}</span>
+
+<span class="x">takesObject((object) [&quot;foo&quot; =&gt; &quot;hello&quot;]);</span>
+</code></pre></div>
+
+<p>オプショナルなプロパティは末尾に <code>?</code> を付けて示すことができます。例：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @param object{optional?: string} */</span>
+</code></pre></div>
+
+<h2 id="_5">ジェネリックオブジェクト型</h2>
+<p>Psalmは <code>ArrayObject&lt;int, string&gt;</code> のようなジェネリックオブジェクト型の使用をサポートしています。ジェネリックオブジェクトは適切な <a href="../../templated_annotations/"><code>@template</code> タグ</a> で型ヒントを付ける必要があります。</p>
+<h2 id="_6">ジェネレータ</h2>
+<p>ジェネレータ型は最大4つのパラメータをサポートします。例：<code>Generator&lt;int, string, mixed, void&gt;</code>：</p>
+<ol>
+<li><code>TKey</code>、<code>yield</code> キーの型 - デフォルト: <code>mixed</code></li>
+<li><code>TValue</code>、<code>yield</code> 値の型 - デフォルト: <code>mixed</code></li>
+<li><code>TSend</code>、<code>send()</code> メソッドのパラメータの型 - デフォルト: <code>mixed</code></li>
+<li><code>TReturn</code>、<code>getReturn()</code> メソッドの戻り値の型 - デフォルト: <code>mixed</code></li>
+</ol>
+<p><code>Generator&lt;int&gt;</code> は <code>Generator&lt;mixed, int, mixed, mixed&gt;</code> の省略形です。</p>
+<p><code>Generator&lt;int, string&gt;</code> は <code>Generator&lt;int, string, mixed, mixed&gt;</code> の省略形です。</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

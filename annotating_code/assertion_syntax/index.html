@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/annotating_code/assertion_syntax/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>アサーション構文 - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u30a2\u30b5\u30fc\u30b7\u30e7\u30f3\u69cb\u6587";
+        var mkdocs_page_input_path = "annotating_code/assertion_syntax.md";
+        var mkdocs_page_url = "/annotating_code/assertion_syntax/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../type_syntax/union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../type_syntax/atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../type_syntax/intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">アサーション構文</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/annotating_code/assertion_syntax.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">アサーション構文</h1>
+<p>Psalmの<a href="../adding_assertions/">アサーションアノテーション</a>は、さまざまなアサーションをサポートしています。</p>
+<p>Psalmのアサーションは以下の形式を取ります：
+<code>@psalm-assert(-if-true|-if-false)? (Assertion) (Variable or Property)</code></p>
+<p>ここでの<code>Assertion</code>には多くの形式があります：</p>
+<h2 id="_2">通常のアサーション</h2>
+<h3 id="is_xxx">is_xxx アサーション</h3>
+<p>ほとんどの<code>is_xxx</code> PHP関数には、例えば<code>is_int</code>に対する<code>int</code>のような対応するアサーションがあります。以下は完全なリストです：</p>
+<ul>
+<li><code>int</code></li>
+<li><code>float</code></li>
+<li><code>string</code></li>
+<li><code>bool</code></li>
+<li><code>scalar</code></li>
+<li><code>callable</code></li>
+<li><code>countable</code></li>
+<li><code>array</code></li>
+<li><code>iterable</code></li>
+<li><code>numeric</code></li>
+<li><code>resource</code></li>
+<li><code>object</code></li>
+<li><code>null</code></li>
+</ul>
+<p>したがって、カスタムバージョンの<code>is_int</code>は、Psalmで以下のようにアノテーションを付けることができます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @psalm-assert-if-true int $x */</span>
+<span class="k">function</span> <span class="nf">custom_is_int</span><span class="p">(</span><span class="nv">$x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nb">is_int</span><span class="p">(</span><span class="nv">$x</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="_3">オブジェクト型アサーション</h3>
+<p>任意のクラスをアサーションとして使用できます。例：
+<code>@psalm-assert SomeObjectType $foo</code></p>
+<h3 id="_4">ジェネリックアサーション</h3>
+<p>ジェネリック型パラメータもアサートできるようになりました。例：
+<code>@psalm-assert array&lt;int, string&gt; $foo</code></p>
+<h2 id="_5">否定アサーション</h2>
+<p>上記のどのアサーションも否定することができます：</p>
+<p>これは<code>$foo</code>が<code>int</code>ではないことをアサートします：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @psalm-assert !int $foo */</span>
+</code></pre></div>
+
+<p>これは<code>$bar</code>が<code>SomeObjectType</code>型のオブジェクトではないことをアサートします：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @psalm-assert !SomeObjectType $bar  */</span>
+</code></pre></div>
+
+<h2 id="_6">ブールアサーション</h2>
+<p>これは<code>$bar</code>が<code>true</code>であることをアサートします：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @psalm-assert true $bar  */</span>
+</code></pre></div>
+
+<p>これは<code>$bar</code>が<code>false</code>ではないことをアサートします：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @psalm-assert !false $bar  */</span>
+</code></pre></div>
+
+<h2 id="_7">等価性アサーション</h2>
+<p>Psalmは<code>assert($some_int === $other_int)</code>と同等のものを以下の形式でサポートしています：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @psalm-assert =int $some_int */</span>
+</code></pre></div>
+
+<p>以下のアサーションとの間には2つの違いがあります：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @psalm-assert int $some_int */</span>
+</code></pre></div>
+
+<p>まず、<code>=int</code>の否定には意味がありません：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @psalm-assert-if-true =int $x */</span>
+<span class="k">function</span> <span class="nf">equalsFive</span><span class="p">(</span><span class="nv">$x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nb">is_int</span><span class="p">(</span><span class="nv">$x</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nv">$x</span> <span class="o">===</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$y</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">equalsFive</span><span class="p">(</span><span class="nv">$y</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// $yは確実にintです</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// $yはintかもしれませんが、そうでないかもしれません</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nf">bar</span><span class="p">(</span><span class="nv">$y</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">is_int</span><span class="p">(</span><span class="nv">$y</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// $yは確実にintです</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// $yは確実にintではありません</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>次に、<code>equalsFive($some_int)</code>を呼び出すことは、Psalmでは<code>RedundantCondition</code>ではありませんが、<code>is_int($some_int)</code>を呼び出すことは<code>RedundantCondition</code>です。</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

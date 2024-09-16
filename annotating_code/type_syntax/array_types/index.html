@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/annotating_code/type_syntax/array_types/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>配列型 - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u914d\u5217\u578b";
+        var mkdocs_page_input_path = "annotating_code/type_syntax/array_types.md";
+        var mkdocs_page_url = "/annotating_code/type_syntax/array_types/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">配列型</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/annotating_code/type_syntax/array_types.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">配列型</h1>
+<p>PHPでは、<code>array</code>型は一般的に3つの異なるデータ構造を表現するために使用されます：</p>
+<p><a href="https://en.wikipedia.org/wiki/List_(abstract_data_type)">リスト</a>:</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+</code></pre></div>
+
+<p><a href="https://en.wikipedia.org/wiki/Associative_array">連想配列</a>:</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="o">=&gt;</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="mi">5</span> <span class="o">=&gt;</span> <span class="s1">&#39;goodbye&#39;</span><span class="p">];</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;AA&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BB&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CC&#39;</span><span class="p">];</span>
+</code></pre></div>
+
+<p>代替<a href="https://en.wikipedia.org/wiki/Struct_(C_programming_language)">構造体</a>:</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Psalm&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tool&#39;</span><span class="p">];</span>
+</code></pre></div>
+
+<p>PHPは基本的にこれらの配列をすべて同じように扱います（ただし、最初のケースについては内部的に最適化が行われています）。</p>
+<p>Psalmは型システムで配列を表現するためにいくつかの方法を持っています：</p>
+<h2 id="_2">ジェネリック配列</h2>
+<p>Psalmは<a href="https://en.wikipedia.org/wiki/Generics_in_Java">Javaから借用した構文</a>を使用して、キーと値の両方の型を表記できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @return array&lt;TKey, TValue&gt; */</span>
+</code></pre></div>
+
+<p>また、<code>non-empty-array&lt;TKey, TValue&gt;</code>という特別な型を使用して、配列が空でないことを指定することもできます。</p>
+<h3 id="phpdoc">PHPDoc構文</h3>
+<p>PHPDocでは、<a href="https://docs.phpdoc.org/latest/guide/references/phpdoc/types.html#arrays">以下の注釈で</a>ジェネリック配列が保持する値の型を指定できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @return ValueType[] */</span>
+</code></pre></div>
+
+<p>Psalmでは、この注釈は<code>@psalm-return array&lt;array-key, ValueType&gt;</code>と同等です。</p>
+<p>ジェネリック配列は、_連想配列_と_リスト_の両方を包含します。</p>
+<h2 id="_3">リスト</h2>
+<p>(Psalm 3.6以降)</p>
+<p>Psalmは、<code>["red", "yellow", "blue"]</code>のような連続した整数インデックスの配列を表す<code>list</code>型をサポートしています。</p>
+<p>リストを作成する一般的な方法は、<code>$arr[] =</code>表記を使用することです。</p>
+<p>これらの配列は<code>array_is_list($arr)</code>(PHP 8.1以降)にtrueを返し、PHPアプリケーションでの配列使用の大部分を占めています。</p>
+<p><code>list</code>型は<code>list&lt;SomeType&gt;</code>の形式を取り、<code>SomeType</code>はPsalmがサポートする許可された<a href="../union_types/">ユニオン型</a>です。</p>
+<ul>
+<li><code>list</code>は<code>array&lt;int, mixed&gt;</code>のサブタイプです</li>
+<li><code>list&lt;Foo&gt;</code>は<code>array&lt;int, Foo&gt;</code>のサブタイプです。</li>
+</ul>
+<p>リスト型はいくつかの方法でその価値を示します：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * @param array&lt;int, string&gt; $arr</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">takesArray</span><span class="p">(</span><span class="k">array</span> <span class="nv">$arr</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$arr</span><span class="p">)</span> <span class="p">{</span>
+     <span class="c1">// このインデックスは設定されていない可能性があります</span>
+    <span class="k">echo</span> <span class="nv">$arr</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * @psalm-param list&lt;string&gt; $arr</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">takesList</span><span class="p">(</span><span class="k">array</span> <span class="nv">$arr</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$arr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// リストのインデックスは常に0から始まるので、</span>
+    <span class="c1">// 空でないリストはここに要素を持ちます</span>
+    <span class="k">echo</span> <span class="nv">$arr</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">takesArray</span><span class="p">([</span><span class="s2">&quot;hello&quot;</span><span class="p">]);</span> <span class="c1">// これは問題ありません</span>
+<span class="nx">takesArray</span><span class="p">([</span><span class="mi">1</span> <span class="o">=&gt;</span> <span class="s2">&quot;hello&quot;</span><span class="p">]);</span> <span class="c1">// 警告なしにバグを引き起こす可能性があります</span>
+
+<span class="nx">takesList</span><span class="p">([</span><span class="s2">&quot;hello&quot;</span><span class="p">]);</span> <span class="c1">// これは問題ありません</span>
+<span class="nx">takesList</span><span class="p">([</span><span class="mi">1</span> <span class="o">=&gt;</span> <span class="s2">&quot;hello&quot;</span><span class="p">]);</span> <span class="c1">// Psalmで警告がトリガーされます</span>
+</code></pre></div>
+
+<h2 id="_4">配列形状</h2>
+<p>Psalmは、キーオフセットが既知の配列に対して特別な形式をサポートしています：配列形状、別名「オブジェクトライクな配列」です。</p>
+<p>次の配列が与えられた場合：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="p">[</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="k">stdClass</span><span class="p">,</span> <span class="mi">28</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">];</span>
+</code></pre></div>
+
+<p>Psalmは内部的にこれを次のように型付けします：</p>
+<div class="codehilite"><pre><span></span><code>array{0: string, 1: string, foo: stdClass, 28: false}
+</code></pre></div>
+
+<p>この形式で自分で型を指定することもできます。例：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @return array{foo: string, bar: int} */</span>
+</code></pre></div>
+
+<p>オプションのキーは末尾に<code>?</code>をつけて表すことができます。例：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @return array{optional?: string, bar: int} */</span>
+</code></pre></div>
+
+<p>(PHPに似た)「1行」コメントを使用できます。例：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @return array { // コメント付きの配列。</span>
+<span class="x"> *     // コメントは独立した行に置くことができます。</span>
+<span class="x"> *     foo: string, // 配列キーの説明。</span>
+<span class="x"> *     bar: array {, // 別の配列キーの説明。</span>
+<span class="x"> *         &#39;foo//bar&#39;: string, // 名前に&quot;//&quot;を含む配列キー。</span>
+<span class="x"> *     },</span>
+<span class="x"> * }</span>
+<span class="x"> */</span>
+</code></pre></div>
+
+<p>ヒント：<code>InvalidArgument</code>の問題を避けるために同じ複雑な配列形状を何度もコピーしている場合は、代わりに<a href="../utility_types/#type-aliases">型エイリアス</a>の使用を検討してください。</p>
+<h3 id="_5">配列形状の検証</h3>
+<p><a href="https://github.com/CuyZ/Valinor">Valinor</a>を厳格モードで使用すると、Psalm配列形状構文を使用して実行時に配列形状を簡単にアサートできます（issetでキーを手動でアサートする代わりに）：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">try {</span>
+<span class="x">  $array = (new \CuyZ\Valinor\MapperBuilder())</span>
+<span class="x">      -&gt;mapper()</span>
+<span class="x">      -&gt;map(</span>
+<span class="x">          &#39;array{a: string, b: int}&#39;,</span>
+<span class="x">          json_decode(file_get_contents(&#39;https://.../&#39;), true)</span>
+<span class="x">      );</span>
+
+<span class="x">  /** @psalm-trace $array */; // array{a: string, b: int}</span>
+
+<span class="x">  echo $array[&#39;a&#39;];</span>
+<span class="x">  echo $array[&#39;b&#39;];</span>
+<span class="x">} catch (\CuyZ\Valinor\Mapper\MappingError $error) {</span>
+<span class="x">  // 何かを行う…</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<p>Valinorは、完全なPsalm構文サポートと他の多くの機能を備えた実行時と静的なPsalmアサーションの両方を提供します。詳細については<a href="https://valinor.cuyz.io/latest/">Valinorのドキュメント</a>をご覧ください！</p>
+<h2 id="_6">リスト形状</h2>
+<p>Psalm 5以降、Psalmはキーオフセットが既知のリスト配列に対しても特別な形式をサポートしています。</p>
+<p>次のリスト配列が与えられた場合：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="p">[</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span><span class="p">,</span> <span class="k">new</span> <span class="k">stdClass</span><span class="p">,</span> <span class="k">false</span><span class="p">];</span>
+</code></pre></div>
+
+<p>Psalmは内部的にこれを次のように型付けします：</p>
+<div class="codehilite"><pre><span></span><code>list{string, string, stdClass, false}
+</code></pre></div>
+
+<p>この形式で自分で型を指定することもできます。例：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @return list{string, int} */</span>
+<span class="x">/** @return list{0: string, 1: int} */</span>
+</code></pre></div>
+
+<p>オプションのキーは、すべての要素にキーを指定し、オプションのキーに末尾<code>?</code>を指定することで表現できます。例：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @return list{0: string, 1?: int} */</span>
+</code></pre></div>
+
+<p>リスト形状は、<a href="https://en.wikipedia.org/wiki/Tuple#Type_theory">型理論の観点から</a>本質的にn項組です。</p>
+<h2 id="_7">未密閉配列およびリスト形状</h2>
+<p>Psalm v5以降、配列形状とリスト形状は、最後の要素として<code>...</code>を追加することでオープンとしてマークできます。</p>
+<p>ここでは、オプションの配列を受け取る<code>handleOptions</code>関数があります。型は、既知の1つのキーが<code>string</code>型であり、潜在的に他の多くの未知の型のキーがあることを示しています。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @param array{verbose: string, ...} $options */</span>
+<span class="x">function handleOptions(array $options): float {</span>
+<span class="x">    if ($options[&#39;verbose&#39;]) {</span>
+<span class="x">        var_dump($options);</span>
+<span class="x">    }</span>
+<span class="x">}</span>
+
+<span class="x">$options = get_opt(/* some code */);</span>
+<span class="x">$options[&#39;verbose&#39;] = isset($options[&#39;verbose&#39;]);</span>
+<span class="x">handleOptions($options);</span>
+</code></pre></div>
+
+<p><code>...</code>は<code>...&lt;array-key, mixed&gt;</code>の省略形です。他の配列ジェネリック型を使用して、オープンな形状についてより多くの情報を提供できます。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">// これはオープンな配列です</span>
+<span class="x">/** @param array{someKey: string, ...} */ </span>
+<span class="x">// これは次と同じです</span>
+<span class="x">/** @param array{someKey: string, ...&lt;array-key, mixed&gt;} */ </span>
+<span class="x">// しかし、形状...&lt;TKey, TValue&gt;でさらに制限できます</span>
+<span class="x">/** @return array{someKey: string, ...&lt;int, bool&gt;} */</span>
+</code></pre></div>
+
+<h2 id="_8">呼び出し可能配列</h2>
+<p>PHPのネイティブな<code>call_user_func()</code>やその関連関数がサポートするような、呼び出し可能なものを保持する配列：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$callable</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;myClass&#39;</span><span class="p">,</span> <span class="s1">&#39;aMethod&#39;</span><span class="p">];</span>
+<span class="nv">$callable</span> <span class="o">=</span> <span class="p">[</span><span class="nv">$object</span><span class="p">,</span> <span class="s1">&#39;aMethod&#39;</span><span class="p">];</span>
+</code></pre></div>
+
+<h2 id="non-empty-array">non-empty-array</h2>
+<p>空であることが許されない配列。
+<a href="#generic-arrays">ジェネリック構文</a>もサポートされています：<code>non-empty-array&lt;string, int&gt;</code>。</p>
+<h1 id="_9">配列型</h1>
+<p>[前の内容は省略...]</p>
+<h2 id="callable-array">callable-array</h2>
+<p>Psalmは<code>callable-array</code>型もサポートしています。これは2つの要素を持つ配列で、最初の要素はクラス名または<code>object</code>、2番目の要素は文字列（メソッド名）です。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @psalm-type CallableArray = callable-array */</span>
+<span class="x">/**</span>
+<span class="x"> * @param CallableArray $c</span>
+<span class="x"> * @psalm-return CallableArray</span>
+<span class="x"> */</span>
+<span class="x">function foo(array $c): array {</span>
+<span class="x">    return $c;</span>
+<span class="x">}</span>
+
+<span class="x">class A {</span>
+<span class="x">    public function bb(): void {}</span>
+<span class="x">}</span>
+
+<span class="x">foo([A::class, &#39;bb&#39;]); // OK</span>
+<span class="x">foo([&#39;A&#39;, &#39;bb&#39;]); // OK</span>
+<span class="x">foo([new A(), &#39;bb&#39;]); // OK</span>
+<span class="x">foo([&#39;A&#39;, &#39;cc&#39;]); // Psalm error</span>
+<span class="x">foo([&#39;B&#39;, &#39;bb&#39;]); // Psalm error</span>
+</code></pre></div>
+
+<h2 id="class-string">class-string</h2>
+<p><code>class-string</code>は完全修飾クラス名を含む文字列を表します。
+<code>new</code>や<code>instanceof</code>でこの文字列を使用できます。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @psalm-param class-string $class */</span>
+<span class="x">function instantiator(string $class) {</span>
+<span class="x">    $object = new $class(); // works</span>
+<span class="x">    return $object;</span>
+<span class="x">}</span>
+
+<span class="x">instantiator(\My\ClassName::class); // OK</span>
+<span class="x">instantiator(&quot;MyClassName&quot;); // Error if MyClassName is not in the global namespace</span>
+<span class="x">instantiator(&quot;My\\ClassName&quot;); // OK</span>
+</code></pre></div>
+
+<p><code>class-string</code>は特定のクラスに制限することもできます：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @psalm-param class-string&lt;Foo&gt; $classFoo */</span>
+<span class="x">function instantiator(string $classFoo) {</span>
+<span class="x">    $object = new $classFoo(); // $object is an instance of Foo</span>
+<span class="x">    return $object;</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<p><code>T</code>は<code>object</code>を拡張するクラスを表します：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/**</span>
+<span class="x"> * @template T of object</span>
+<span class="x"> * @psalm-param class-string&lt;T&gt; $class</span>
+<span class="x"> * @psalm-return T</span>
+<span class="x"> */</span>
+<span class="x">function instantiator(string $class) {</span>
+<span class="x">    $object = new $class();</span>
+<span class="x">    return $object;</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<h2 id="interface-string">interface-string</h2>
+<p><code>interface-string</code>はインターフェース名を含む文字列を表します。これは<code>class-string</code>と同様に機能しますが、インターフェースに限定されます。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @psalm-param interface-string $interface */</span>
+<span class="x">function useInterface(string $interface) {</span>
+<span class="x">    $object = new class implements $interface {}; // works</span>
+<span class="x">    return $object;</span>
+<span class="x">}</span>
+
+<span class="x">useInterface(\My\InterfaceName::class); // OK</span>
+<span class="x">useInterface(&quot;MyInterface&quot;); // Error if MyInterface is not in the global namespace</span>
+<span class="x">useInterface(&quot;My\\InterfaceName&quot;); // OK</span>
+</code></pre></div>
+
+<h2 id="trait-string">trait-string</h2>
+<p><code>trait-string</code>はトレイト名を含む文字列を表します。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @psalm-param trait-string $trait */</span>
+<span class="x">function useTrait(string $trait) {</span>
+<span class="x">    $object = new class {</span>
+<span class="x">        use $trait; // PHP doesn&#39;t actually support this syntax</span>
+<span class="x">    };</span>
+<span class="x">    return $object;</span>
+<span class="x">}</span>
+
+<span class="x">useTrait(\My\TraitName::class); // OK</span>
+<span class="x">useTrait(&quot;MyTrait&quot;); // Error if MyTrait is not in the global namespace</span>
+<span class="x">useTrait(&quot;My\\TraitName&quot;); // OK</span>
+</code></pre></div>
+
+<h2 id="callable-string">callable-string</h2>
+<p><code>callable-string</code>は呼び出し可能な関数名を含む文字列を表します。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @psalm-param callable-string $callback */</span>
+<span class="x">function call(string $callback) {</span>
+<span class="x">    $callback(); // works</span>
+<span class="x">}</span>
+
+<span class="x">call(&#39;htmlspecialchars&#39;); // OK</span>
+<span class="x">call(&#39;html_special_chars&#39;); // Error</span>
+</code></pre></div>
+
+<h2 id="numeric-string">numeric-string</h2>
+<p><code>numeric-string</code>は数値を表す文字列を表します。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @psalm-param numeric-string $numeric */</span>
+<span class="x">function use_numeric(string $numeric) {</span>
+<span class="x">    return $numeric + 1; // works</span>
+<span class="x">}</span>
+
+<span class="x">use_numeric(&#39;42&#39;); // OK</span>
+<span class="x">use_numeric(&#39;42.1&#39;); // OK</span>
+<span class="x">use_numeric(&#39;foo&#39;); // Error</span>
+</code></pre></div>
+
+<h2 id="class-string-map">class-string-map</h2>
+<p><code>class-string-map</code>は、キーが任意の型で、値が<code>class-string</code>である配列を表します。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/**</span>
+<span class="x"> * @psalm-param class-string-map&lt;string, stdClass&gt; $classes</span>
+<span class="x"> */</span>
+<span class="x">function foo(array $classes): void {}</span>
+
+<span class="x">foo([&#39;a&#39; =&gt; stdClass::class, &#39;b&#39; =&gt; Iterator::class]); // Error</span>
+<span class="x">foo([&#39;a&#39; =&gt; stdClass::class, &#39;b&#39; =&gt; ArrayObject::class]); // OK</span>
+</code></pre></div>
+
+<h2 id="_10">リテラル文字列</h2>
+<p>文字列リテラル型を使用して、特定の文字列値のみを許可することができます。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @psalm-param &#39;foo&#39;|&#39;bar&#39; $param */</span>
+<span class="x">function foo(string $param): void {}</span>
+
+<span class="x">foo(&#39;foo&#39;); // OK</span>
+<span class="x">foo(&#39;bar&#39;); // OK</span>
+<span class="x">foo(&#39;baz&#39;); // Error</span>
+</code></pre></div>
+
+<h2 id="_11">リテラル整数</h2>
+<p>整数リテラル型を使用して、特定の整数値のみを許可することができます。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @psalm-param 1|2|3 $param */</span>
+<span class="x">function foo(int $param): void {}</span>
+
+<span class="x">foo(1); // OK</span>
+<span class="x">foo(2); // OK</span>
+<span class="x">foo(4); // Error</span>
+</code></pre></div>
+
+<p>これらの型を組み合わせて使用することで、PHPコードの静的型チェックをより厳密に行うことができます。Psalmを使用することで、多くの潜在的なバグを事前に発見し、コードの品質を向上させることができます。</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

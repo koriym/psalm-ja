@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/annotating_code/supported_annotations/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>サポートされているアノテーション - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u30b5\u30dd\u30fc\u30c8\u3055\u308c\u3066\u3044\u308b\u30a2\u30ce\u30c6\u30fc\u30b7\u30e7\u30f3";
+        var mkdocs_page_input_path = "annotating_code/supported_annotations.md";
+        var mkdocs_page_url = "/annotating_code/supported_annotations/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../type_syntax/union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../type_syntax/atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../type_syntax/intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">サポートされているアノテーション</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#phpdoc">PHPDocタグ</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#var">@varタグの非標準的な使用</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mixins">@mixins</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#psalm">Psalm固有のタグ</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-consistent-constructor">@psalm-consistent-constructor</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-consistent-templates">@psalm-consistent-templates</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#param-out-psalm-param-out">@param-out, @psalm-param-out</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-var-psalm-param-psalm-return-psalm-property-psalm-property-read-psalm-property-write-psalm-method">@psalm-var, @psalm-param, @psalm-return, @psalm-property, @psalm-property-read, @psalm-property-write, @psalm-method</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-ignore-var">@psalm-ignore-var</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-suppress-someissuename">@psalm-suppress SomeIssueName</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-assert-psalm-assert-if-true-psalm-assert-if-false-psalm-if-this-is-psalm-this-out">@psalm-assert, @psalm-assert-if-true, @psalm-assert-if-false, @psalm-if-this-is および @psalm-this-out</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-ignore-nullable-return">@psalm-ignore-nullable-return</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-ignore-falsable-return">@psalm-ignore-falsable-return</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-seal-properties-psalm-no-seal-properties-seal-properties-no-seal-properties">@psalm-seal-properties, @psalm-no-seal-properties, @seal-properties, @no-seal-properties</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-seal-methods-psalm-no-seal-methods-seal-methods-no-seal-methods">@psalm-seal-methods, @psalm-no-seal-methods, @seal-methods, @no-seal-methods</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-internal">@psalm-internal</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-readonly-readonly">@psalm-readonly および @readonly</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-mutation-free">@psalm-mutation-free</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-external-mutation-free">@psalm-external-mutation-free</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-immutable">@psalm-immutable</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-pure">@psalm-pure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-allow-private-mutation">@psalm-allow-private-mutation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-readonly-allow-private-mutation">@psalm-readonly-allow-private-mutation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-trace">@psalm-trace</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-check-type">@psalm-check-type</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-check-type-exact">@psalm-check-type-exact</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-taint-">@psalm-taint-*</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-type">@psalm-type</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-import-type">@psalm-import-type</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-require-extends">@psalm-require-extends</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-require-implements">@psalm-require-implements</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#no-named-arguments">@no-named-arguments</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-ignore-variable-property-psalm-ignore-variable-method">@psalm-ignore-variable-property および @psalm-ignore-variable-method</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-yield">@psalm-yield</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#api-psalm-api">@api, @psalm-api</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm-inheritors">@psalm-inheritors</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">その他のアノテーション</li>
+      <li class="breadcrumb-item active">サポートされているアノテーション</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/annotating_code/supported_annotations.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="docblock">サポートされているdocblockアノテーション</h1>
+<p>Psalmは幅広いdocblockアノテーションをサポートしています。</p>
+<h2 id="phpdoc">PHPDocタグ</h2>
+<p>Psalmはコードを理解するために以下のPHPDocタグを使用します：</p>
+<ul>
+<li><a href="https://docs.phpdoc.org/latest/guide/references/phpdoc/tags/var.html"><code>@var</code></a>
+  プロパティと変数の型を指定するために使用されます</li>
+<li><a href="https://docs.phpdoc.org/latest/guide/references/phpdoc/tags/return.html"><code>@return</code></a>
+  関数、メソッド、クロージャの戻り値の型を指定するために使用されます</li>
+<li><a href="https://docs.phpdoc.org/latest/guide/references/phpdoc/tags/param.html"><code>@param</code></a>
+  関数、メソッド、クロージャに渡されるパラメータの型を指定するために使用されます</li>
+<li><a href="https://docs.phpdoc.org/latest/guide/references/phpdoc/tags/property.html"><code>@property</code></a>
+  <code>__get</code>と<code>__set</code>を使用するオブジェクトでアクセス可能なプロパティを指定するために使用されます</li>
+<li><a href="https://docs.phpdoc.org/latest/guide/references/phpdoc/tags/property.html"><code>@property-read</code></a>
+  <code>__get</code>を使用するオブジェクトで読み取り可能なプロパティを指定するために使用されます</li>
+<li><a href="https://docs.phpdoc.org/latest/guide/references/phpdoc/tags/property.html"><code>@property-write</code></a>
+  <code>__set</code>を使用するオブジェクトで書き込み可能なプロパティを指定するために使用されます</li>
+<li><a href="https://docs.phpdoc.org/latest/guide/references/phpdoc/tags/method.html"><code>@method</code></a>
+  <code>__call</code>を使用するオブジェクトで利用可能なマジックメソッドを指定するために使用されます</li>
+<li><a href="https://docs.phpdoc.org/latest/guide/references/phpdoc/tags/deprecated.html"><code>@deprecated</code></a>
+  関数、メソッド、クラス、インターフェースが非推奨であることをマークするために使用されます</li>
+<li><a href="https://docs.phpdoc.org/latest/guide/references/phpdoc/tags/internal.html"><code>@internal</code></a>
+  アプリケーションやライブラリ内部のクラス、関数、プロパティをマークするために使用されます</li>
+<li><a href="#mixins"><code>@mixin</code></a>
+  現在のクラスが参照されたクラスのメソッドとプロパティをプロキシすることをPsalmに伝えるために使用されます</li>
+</ul>
+<h3 id="var"><code>@var</code>タグの非標準的な使用</h3>
+<p><code>@var</code>タグは本来プロパティにのみ使用されるべきです。Psalmは、PHPStormやその他の静的解析ツールに倣って、<code>@var Type [VariableReference]</code>の形式でインラインでの使用を許可しています。</p>
+<p><code>VariableReference</code>が提供される場合、それは<code>$variable</code>または<code>$variable-&gt;property</code>の形式である必要があります。代入の上で使用される場合、Psalmは<code>VariableReference</code>が代入される変数と一致するかどうかをチェックします。それらが異なる場合、Psalmは<code>Type</code>を<code>VariableReference</code>に割り当て、下の式で使用します。</p>
+<p><code>VariableReference</code>が与えられない場合、このアノテーションは式の右側（代入であれ戻り値であれ）が<code>Type</code>型であることをPsalmに伝えます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @var string */</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">];</span>
+
+<span class="sd">/** @var string $b */</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">];</span>
+
+<span class="k">function</span> <span class="nf">bat</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+    <span class="sd">/** @var string */</span>
+    <span class="k">return</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;bat&#39;</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="mixins">@mixins</h3>
+<p>クラスのdocblockに<code>@mixin</code>を追加すると、そのクラスが参照されたクラスのメソッドとプロパティをプロキシすることをPsalmに伝えます。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">class A {</span>
+<span class="x">    public string $a = &#39;A&#39;;</span>
+
+<span class="x">    public function doA(): void</span>
+<span class="x">    {</span>
+<span class="x">    }</span>
+<span class="x">}</span>
+
+<span class="x">/** </span>
+<span class="x"> * @mixin A </span>
+<span class="x"> */</span>
+<span class="x">class B {</span>
+<span class="x">    public string $b = &#39;B&#39;;</span>
+
+<span class="x">    public function doB(): void</span>
+<span class="x">    {</span>
+<span class="x">    }</span>
+
+<span class="x">    public function __call($name, $arguments)</span>
+<span class="x">    {</span>
+<span class="x">        (new A())-&gt;$name(...$arguments);</span>
+<span class="x">    }</span>
+
+<span class="x">    public function __get($name)</span>
+<span class="x">    {</span>
+<span class="x">        return (new A())-&gt;$name;</span>
+<span class="x">    }</span>
+<span class="x">}</span>
+
+<span class="x">$b = new B();</span>
+<span class="x">$b-&gt;doB();</span>
+<span class="x">$b-&gt;doA(); // 動作します</span>
+<span class="x">echo $b-&gt;b;</span>
+<span class="x">echo $b-&gt;a; // 動作します</span>
+</code></pre></div>
+
+<h2 id="psalm">Psalm固有のタグ</h2>
+<p>コードをPsalmがどのように扱うかを決定する多くのカスタムタグがあります。</p>
+<h3 id="psalm-consistent-constructor"><code>@psalm-consistent-constructor</code></h3>
+<p><a href="../running_psalm/issues/UnsafeInstantiation.md">UnsafeInstantiation</a>を参照してください。</p>
+<h3 id="psalm-consistent-templates"><code>@psalm-consistent-templates</code></h3>
+<p><a href="../running_psalm/issues/UnsafeGenericInstantiation.md">UnsafeGenericInstantiation</a>を参照してください。</p>
+<h3 id="param-out-psalm-param-out"><code>@param-out</code>, <code>@psalm-param-out</code></h3>
+<p>これは、参照渡しの型が入力時と異なることを指定するために使用されます。以下の関数では、最初のパラメータはnullである可能性がありますが、関数が実行された後、参照渡しの値はnullではありません。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @param-out string $s </span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">addFoo</span><span class="p">(</span><span class="o">?</span><span class="nx">string</span> <span class="o">&amp;</span><span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$s</span> <span class="o">===</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$s</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nv">$s</span> <span class="o">.=</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="psalm-var-psalm-param-psalm-return-psalm-property-psalm-property-read-psalm-property-write-psalm-method"><code>@psalm-var</code>, <code>@psalm-param</code>, <code>@psalm-return</code>, <code>@psalm-property</code>, <code>@psalm-property-read</code>, <code>@psalm-property-write</code>, <code>@psalm-method</code></h3>
+<p>phpDocumentorでサポートされていない形式（<a href="#type-syntax">ただしPsalmでサポートされている</a>）で型を指定する場合、IDEを混乱させないように<code>@psalm-</code>をPHPDocタグの前に付けることができます。<code>@psalm-</code>プレフィックス付きのタグが与えられた場合、Psalmはそれをプレフィックスなしの対応するタグの代わりに使用します。</p>
+<h3 id="psalm-ignore-var"><code>@psalm-ignore-var</code></h3>
+<p>このアノテーションは、同じdocblockに書かれた<code>@var</code>アノテーションを無視するために使用されます。一部のIDEは、ジェネリクスのような複雑な型を完全には理解しません。そのようなIDEの自動補完を活用するために、Psalmが型を適切に推論できる場合でも、明示的な<code>@var</code>アノテーションを使用したい場合があります。多くの場合、明示的な<code>@var</code>アノテーションがPsalmの推論した型をオーバーライドするため、これは型チェックの効果を弱めます。Psalmは<code>@psalm-ignore-var</code>と共存する<code>@var</code>アノテーションを無視するため、IDEは自動補完のために<code>@var</code>で指定された型を使用でき、Psalmは型チェックのために独自の推論した型を使用できます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @return iterable&lt;array-key,\DateTime&gt; */</span>
+<span class="k">function</span> <span class="nf">getTimes</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span><span class="o">:</span> <span class="nx">iterable</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nv">$n</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">yield</span> <span class="k">new</span> <span class="nx">\DateTime</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @var \Datetime[] $times</span>
+<span class="sd"> * @psalm-ignore-var </span>
+<span class="sd"> */</span>
+<span class="nv">$times</span> <span class="o">=</span> <span class="nx">getTimes</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="c1">// このトレースは &quot;array&lt;array-key, Datetime&gt;&quot; ではなく &quot;iterable&lt;array-key, DateTime&gt;&quot; を表示します</span>
+<span class="sd">/** @psalm-trace $times */</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$times</span> <span class="k">as</span> <span class="nv">$time</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">&#39;Y-m-d H:i:s.u&#39;</span><span class="p">)</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="psalm-suppress-someissuename"><code>@psalm-suppress SomeIssueName</code></h3>
+<p>このアノテーションは問題を抑制するために使用されます。関数のdocblock、クラスのdocblock、そしてインラインでも使用でき、次の文に適用されます。</p>
+<p>関数のdocblockの例：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @psalm-suppress PossiblyNullOperand </span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">addString</span><span class="p">(</span><span class="o">?</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;hello &quot;</span> <span class="o">.</span> <span class="nv">$s</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>インラインの例：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">addString</span><span class="p">(</span><span class="o">?</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="sd">/** @psalm-suppress PossiblyNullOperand */</span>
+    <span class="k">echo</span> <span class="s2">&quot;hello &quot;</span> <span class="o">.</span> <span class="nv">$s</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><code>@psalm-suppress all</code>を使用して、個別にリストアップする代わりにすべての問題を抑制することができます。</p>
+<h3 id="psalm-assert-psalm-assert-if-true-psalm-assert-if-false-psalm-if-this-is-psalm-this-out"><code>@psalm-assert</code>, <code>@psalm-assert-if-true</code>, <code>@psalm-assert-if-false</code>, <code>@psalm-if-this-is</code> および <code>@psalm-this-out</code></h3>
+<p><a href="../adding_assertions/">アサーションの追加</a>を参照してください。</p>
+<h3 id="psalm-ignore-nullable-return"><code>@psalm-ignore-nullable-return</code></h3>
+<p>これは、関数/メソッドがnullを返すことについてPsalmに心配させないように使用できます。少し問題がありますが、非nullの値に対して非常に高い確信度がある場合や、他の関数がその特定のコードパスで非nullの値を保証している場合に時々便利です。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{}</span>
+
+<span class="k">function</span> <span class="nf">takesFoo</span><span class="p">(</span><span class="nx">Foo</span> <span class="nv">$f</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span>
+
+<span class="sd">/** @psalm-ignore-nullable-return */</span>
+<span class="k">function</span> <span class="nf">getFoo</span><span class="p">()</span><span class="o">:</span> <span class="o">?</span><span class="nx">Foo</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">?</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">()</span> <span class="o">:</span> <span class="k">null</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">takesFoo</span><span class="p">(</span><span class="nx">getFoo</span><span class="p">());</span>
+</code></pre></div>
+
+<h3 id="psalm-ignore-falsable-return"><code>@psalm-ignore-falsable-return</code></h3>
+<p>これは<code>false</code>に対して同じことを提供しますが、Psalmは内部的にこれを<code>preg_replace</code>のような関数に使用しています。これらの関数は、与えられた入力にエンコーディングエラーがある場合にfalseを返す可能性がありますが、99.9%の場合、関数は期待通りに動作します。</p>
+<h3 id="psalm-seal-properties-psalm-no-seal-properties-seal-properties-no-seal-properties"><code>@psalm-seal-properties</code>, <code>@psalm-no-seal-properties</code>, <code>@seal-properties</code>, <code>@no-seal-properties</code></h3>
+<p>マジックプロパティゲッター/セッターがある場合、<code>@psalm-seal-properties</code>を使用して、<code>@property</code>（または<code>@property-read</code>/<code>@property-write</code>）アノテーションのリストに含まれていないプロパティの取得と設定を禁止するようPsalmに指示できます。</p>
+<p>これは設定オプション<code>sealAllProperties</code>で自動的に有効になり、<code>@psalm-no-seal-properties</code>を使ってクラスに対して無効にできます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @property string $foo</span>
+<span class="sd"> * @seal-properties </span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__get</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$name</span><span class="p">)</span><span class="o">:</span> <span class="o">?</span><span class="nx">string</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$name</span> <span class="o">===</span> <span class="s2">&quot;foo&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__set</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$name</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">();</span>
+<span class="nv">$a</span><span class="o">-&gt;</span><span class="na">bar</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// この呼び出しは失敗します</span>
+</code></pre></div>
+
+<h3 id="psalm-seal-methods-psalm-no-seal-methods-seal-methods-no-seal-methods"><code>@psalm-seal-methods</code>, <code>@psalm-no-seal-methods</code>, <code>@seal-methods</code>, <code>@no-seal-methods</code></h3>
+<p>マジックメソッド呼び出し機能がある場合、<code>@psalm-seal-methods</code>を使用して、<code>@method</code>アノテーションのリストに含まれていないメソッドの呼び出しを禁止するようPsalmに指示できます。</p>
+<p>これは設定オプション<code>sealAllMethods</code>で自動的に有効になり、<code>@psalm-no-seal-methods</code>を使ってクラスに対して無効にできます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @method foo(): string</span>
+<span class="sd"> * @seal-methods </span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__call</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$name</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$name</span> <span class="o">===</span> <span class="s2">&quot;foo&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">();</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="nv">$a</span><span class="o">-&gt;</span><span class="na">bar</span><span class="p">();</span> <span class="c1">// この呼び出しは失敗します</span>
+</code></pre></div>
+
+<h3 id="psalm-internal"><code>@psalm-internal</code></h3>
+<p>クラス、プロパティ、または関数を特定の名前空間に内部的なものとしてマークするために使用されます。PsalmはこれをPHPDocの<code>@internal</code>タグとは少し異なる方法で扱います。<code>@internal</code>の場合、呼び出しコードが呼び出しコードの名前空間と完全に無関係な名前空間にある場合（つまり、名前空間の最初の要素を共有していない場合）に問題が発生します。</p>
+<p>対照的に、<code>@psalm-internal</code>の場合、docblockの行で名前空間を指定する必要があります。呼び出しコードが指定された名前空間内にない場合に問題が発生します。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">A\B</span> <span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @internal</span>
+<span class="sd">     * @psalm-internal A\B</span>
+<span class="sd">     */</span>
+    <span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">namespace</span> <span class="nx">A\B\C</span> <span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Bat</span> <span class="p">{</span>
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">batBat</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+            <span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\A\B\Foo</span><span class="p">();</span>  <span class="c1">// これは問題ありません</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">namespace</span> <span class="nx">A\C</span> <span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Bat</span> <span class="p">{</span>
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">batBat</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+            <span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\A\B\Foo</span><span class="p">();</span>  <span class="c1">// エラー</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="psalm-readonly-readonly"><code>@psalm-readonly</code> および <code>@readonly</code></h3>
+<p>定義クラスのコンストラクタでのみ書き込み可能なプロパティにアノテーションを付けるために使用されます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">B</span> <span class="p">{</span>
+  <span class="sd">/** @readonly */</span>
+  <span class="k">public</span> <span class="nx">string</span> <span class="nv">$s</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">s</span> <span class="o">=</span> <span class="nv">$s</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$b</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">B</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$b</span><span class="o">-&gt;</span><span class="na">s</span><span class="p">;</span>
+<span class="nv">$b</span><span class="o">-&gt;</span><span class="na">s</span> <span class="o">=</span> <span class="s2">&quot;boo&quot;</span><span class="p">;</span> <span class="c1">// 許可されません</span>
+</code></pre></div>
+
+<h3 id="psalm-mutation-free"><code>@psalm-mutation-free</code></h3>
+<p>クラスのスコープ内外で状態を変更しないクラスメソッドにアノテーションを付けるために使用されます。
+これは、戻り値がインスタンスのプロパティにのみ依存することを要求します。例えば、<code>random_int</code>は乱数生成器の内部状態を変更するため、ここでは変更とみなされます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">D</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="nx">string</span> <span class="nv">$s</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">s</span> <span class="o">=</span> <span class="nv">$s</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="sd">/**</span>
+<span class="sd">   * @psalm-mutation-free</span>
+<span class="sd">   */</span>
+  <span class="k">public</span> <span class="k">function</span> <span class="nf">getShort</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">substr</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="sd">/**</span>
+<span class="sd">   * @psalm-mutation-free</span>
+<span class="sd">   */</span>
+  <span class="k">public</span> <span class="k">function</span> <span class="nf">getShortMutating</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">s</span> <span class="o">.=</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span> <span class="c1">// これはバグです</span>
+    <span class="k">return</span> <span class="nb">substr</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="psalm-external-mutation-free"><code>@psalm-external-mutation-free</code></h3>
+<p>クラスのスコープ外で状態を変更しないクラスメソッドにアノテーションを付けるために使用されます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">E</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="nx">string</span> <span class="nv">$s</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">s</span> <span class="o">=</span> <span class="nv">$s</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="sd">/**</span>
+<span class="sd">   * @psalm-external-mutation-free</span>
+<span class="sd">   */</span>
+  <span class="k">public</span> <span class="k">function</span> <span class="nf">getShortMutating</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">s</span> <span class="o">.=</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span> <span class="c1">// これは問題ありません</span>
+    <span class="k">return</span> <span class="nb">substr</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="sd">/**</span>
+<span class="sd">   * @psalm-external-mutation-free</span>
+<span class="sd">   */</span>
+  <span class="k">public</span> <span class="k">function</span> <span class="nf">save</span><span class="p">()</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="nb">file_put_contents</span><span class="p">(</span><span class="s2">&quot;foo.txt&quot;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">s</span><span class="p">);</span> <span class="c1">// これはバグです</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="psalm-immutable"><code>@psalm-immutable</code></h3>
+<p>すべてのプロパティが消費者によって<code>@psalm-readonly</code>として扱われ、すべてのインスタンスメソッドが<code>@psalm-mutation-free</code>として扱われるクラスにアノテーションを付けるために使用されます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @psalm-immutable </span>
+<span class="sd"> */</span>
+<span class="k">abstract</span> <span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$baz</span><span class="p">;</span>
+    <span class="k">abstract</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">bar</span><span class="p">()</span><span class="o">:</span> <span class="nx">int</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @psalm-immutable </span>
+<span class="sd"> */</span>
+<span class="k">final</span> <span class="k">class</span> <span class="nc">ChildClass</span> <span class="k">extends</span> <span class="nx">Foo</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$baz</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">baz</span> <span class="o">=</span> <span class="nv">$baz</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">bar</span><span class="p">()</span><span class="o">:</span> <span class="nx">int</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$anonymous</span> <span class="o">=</span> <span class="k">new</span> <span class="sd">/** @psalm-immutable */</span> <span class="k">class</span> <span class="nc">extends</span> <span class="nx">Foo</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$baz</span> <span class="o">=</span> <span class="s2">&quot;B&quot;</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">bar</span><span class="p">()</span><span class="o">:</span> <span class="nx">int</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+
+<h3 id="psalm-pure"><code>@psalm-pure</code></h3>
+<p><a href="https://en.wikipedia.org/wiki/Pure_function">純粋関数</a> - その出力が入力のみの関数であるもの - にアノテーションを付けるために使用されます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Arithmetic</span> <span class="p">{</span>
+  <span class="sd">/** @psalm-pure */</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$left</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$right</span><span class="p">)</span> <span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$left</span> <span class="o">+</span> <span class="nv">$right</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="sd">/** @psalm-pure - これは間違っています */</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">addCumulative</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$left</span><span class="p">)</span> <span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
+    <span class="sd">/** @var int */</span>
+    <span class="k">static</span> <span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// これは副作用であり、したがってバグです</span>
+    <span class="nv">$i</span> <span class="o">+=</span> <span class="nv">$left</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nv">$i</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nx">Arithmetic</span><span class="o">::</span><span class="na">add</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nx">Arithmetic</span><span class="o">::</span><span class="na">add</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 同じ値が出力されます</span>
+<span class="k">echo</span> <span class="nx">Arithmetic</span><span class="o">::</span><span class="na">addCumulative</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// 3を出力します</span>
+<span class="k">echo</span> <span class="nx">Arithmetic</span><span class="o">::</span><span class="na">addCumulative</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// 6を出力します</span>
+</code></pre></div>
+
+<p>一方、<code>pure-callable</code>は純粋である必要があるコールバックを示すために使用できます。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** </span>
+<span class="x"> * @param pure-callable(mixed): int $callback </span>
+<span class="x"> */</span>
+<span class="x">function foo(callable $callback) {...}</span>
+
+<span class="x">// これは失敗します。random_intは純粋ではないため</span>
+<span class="x">foo(</span>
+<span class="x">    /** @param mixed $p */</span>
+<span class="x">    fn($p) =&gt; random_int(1, 2)</span>
+<span class="x">);</span>
+</code></pre></div>
+
+<h3 id="psalm-allow-private-mutation"><code>@psalm-allow-private-mutation</code></h3>
+<p>privateコンテキストで変更可能な読み取り専用プロパティにアノテーションを付けるために使用されます。これにより、publicプロパティは別のクラスから読み取ることができますが、自身のクラスのメソッド内でのみ変更できます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Counter</span> <span class="p">{</span>
+  <span class="sd">/**</span>
+<span class="sd">   * @readonly</span>
+<span class="sd">   * @psalm-allow-private-mutation</span>
+<span class="sd">   */</span>
+  <span class="k">public</span> <span class="nx">int</span> <span class="nv">$count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="k">function</span> <span class="nf">increment</span><span class="p">()</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">count</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$counter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Counter</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$counter</span><span class="o">-&gt;</span><span class="na">count</span><span class="p">;</span> <span class="c1">// 0を出力します</span>
+<span class="nv">$counter</span><span class="o">-&gt;</span><span class="na">increment</span><span class="p">();</span> <span class="c1">// メソッドはプロパティを変更できます</span>
+<span class="k">echo</span> <span class="nv">$counter</span><span class="o">-&gt;</span><span class="na">count</span><span class="p">;</span> <span class="c1">// 1を出力します</span>
+<span class="nv">$counter</span><span class="o">-&gt;</span><span class="na">count</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// これは失敗します。プロパティを直接変更しているため</span>
+</code></pre></div>
+
+<h3 id="psalm-readonly-allow-private-mutation"><code>@psalm-readonly-allow-private-mutation</code></h3>
+<p>これは、プロパティアノテーション<code>@readonly</code>と<code>@psalm-allow-private-mutation</code>の省略形です。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Counter</span> <span class="p">{</span>
+  <span class="sd">/**</span>
+<span class="sd">   * @psalm-readonly-allow-private-mutation</span>
+<span class="sd">   */</span>
+  <span class="k">public</span> <span class="nx">int</span> <span class="nv">$count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="k">function</span> <span class="nf">increment</span><span class="p">()</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">count</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$counter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Counter</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$counter</span><span class="o">-&gt;</span><span class="na">count</span><span class="p">;</span> <span class="c1">// 0を出力します</span>
+<span class="nv">$counter</span><span class="o">-&gt;</span><span class="na">increment</span><span class="p">();</span> <span class="c1">// メソッドはプロパティを変更できます</span>
+<span class="k">echo</span> <span class="nv">$counter</span><span class="o">-&gt;</span><span class="na">count</span><span class="p">;</span> <span class="c1">// 1を出力します</span>
+<span class="nv">$counter</span><span class="o">-&gt;</span><span class="na">count</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// これは失敗します。プロパティを直接変更しているため</span>
+</code></pre></div>
+
+<h3 id="psalm-trace"><code>@psalm-trace</code></h3>
+<p>このアノテーションを使用して、推論された型をトレースできます（<em>次の</em>文に適用されます）。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @psalm-trace $username */</span>
+<span class="nv">$username</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">];</span> <span class="c1">// &quot;test.php:4 $username: mixed&quot; のようなものを出力します</span>
+</code></pre></div>
+
+<p><em>注意</em>: これは<a href="../running_psalm/issues/Trace.md">特別な低レベルの問題</a>をスローします。
+これを見るには、グローバルの<code>errorLevel</code>を1に設定するか、Psalmを<code>--show-info=true</code>で呼び出すことができますが、どちらの解決策も多くの出力を生成する可能性があります。もう一つの解決策は、問題のエラーレベルを選択的に上げて、1つだけ余分なエラーを得ることです：</p>
+<div class="codehilite"><pre><span></span><code><span class="cm">&lt;!-- psalm.xml --&gt;</span>
+<span class="nt">&lt;issueHandlers&gt;</span>
+<span class="w">  </span><span class="nt">&lt;Trace</span><span class="w"> </span><span class="na">errorLevel=</span><span class="s">&quot;error&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/issueHandlers&gt;</span>
+</code></pre></div>
+
+<h3 id="psalm-check-type"><code>@psalm-check-type</code></h3>
+<p>このアノテーションを使用して、推論された型が期待するものと一致することを確認できます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @psalm-check-type $foo = int */</span>
+<span class="nv">$foo</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 問題なし</span>
+
+<span class="sd">/** @psalm-check-type $bar = int */</span>
+<span class="nv">$bar</span> <span class="o">=</span> <span class="s2">&quot;not-an-int&quot;</span><span class="p">;</span> <span class="c1">// チェックされた変数 $bar = int は $bar = &#39;not-an-int&#39; と一致しません</span>
+</code></pre></div>
+
+<h3 id="psalm-check-type-exact"><code>@psalm-check-type-exact</code></h3>
+<p><code>@psalm-check-type</code>と同様ですが、サブタイプを許可せずに変数の正確な型をチェックします。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @psalm-check-type-exact $foo = int */</span>
+<span class="nv">$foo</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// チェックされた変数 $foo = int は $foo = 1 と一致しません</span>
+</code></pre></div>
+
+<h3 id="psalm-taint-"><code>@psalm-taint-*</code></h3>
+<p><a href="../../security_analysis/annotations/">セキュリティ分析アノテーション</a>を参照してください。</p>
+<h3 id="psalm-type"><code>@psalm-type</code></h3>
+<p>これを使用して、別の型のエイリアスを定義できます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @psalm-type PhoneType = array{phone: string} </span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">Phone</span> <span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @psalm-return PhoneType</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">toArray</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;phone&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Nokia&quot;</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="psalm-import-type"><code>@psalm-import-type</code></h3>
+<p>このアノテーションを使用して、<a href="#psalm-type"><code>@psalm-type</code></a>で定義された型を、それが他の場所で定義されている場合にインポートできます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @psalm-import-type PhoneType from Phone </span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">User</span> <span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @psalm-return PhoneType</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">toArray</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">array_merge</span><span class="p">([],</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Phone</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>インポート時に型にエイリアスを付けることもできます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @psalm-import-type PhoneType from Phone as MyPhoneTypeAlias </span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">User</span> <span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @psalm-return MyPhoneTypeAlias</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">toArray</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">array_merge</span><span class="p">([],</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Phone</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="psalm-require-extends"><code>@psalm-require-extends</code></h3>
+<p><code>@psalm-require-extends</code>アノテーションを使用すると、トレイトが使用クラスに課す要件を定義できます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">abstract</span> <span class="k">class</span> <span class="nc">DatabaseModel</span> <span class="p">{</span>
+  <span class="c1">// メソッド、プロパティなど</span>
+<span class="p">}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @psalm-require-extends DatabaseModel </span>
+<span class="sd"> */</span>
+<span class="k">trait</span> <span class="nx">SoftDeletingTrait</span> <span class="p">{</span>
+  <span class="c1">// 有用だが、スコープが限定された機能。DatabaseModelのメソッド/プロパティに依存しています</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">MyModel</span> <span class="k">extends</span> <span class="nx">DatabaseModel</span> <span class="p">{</span>
+  <span class="c1">// 有効</span>
+  <span class="k">use</span> <span class="nx">SoftDeletingTrait</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">NormalClass</span> <span class="p">{</span>
+  <span class="c1">// エラーをトリガーします</span>
+  <span class="k">use</span> <span class="nx">SoftDeletingTrait</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="psalm-require-implements"><code>@psalm-require-implements</code></h3>
+<p><code>@psalm-require-extends</code>と同じように動作しますが、インターフェースに対してです。</p>
+<h3 id="no-named-arguments"><code>@no-named-arguments</code></h3>
+<p>これは、名前付きパラメータを使用して関数やメソッドにアクセスすることを防ぎます（<code>NamedArgumentNotAllowed</code>問題を発生させます）。
+偶然にも、以下のコードの推論される型が変更されます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+    <span class="k">function</span> <span class="nf">a</span><span class="p">(</span><span class="nx">int</span> <span class="o">...</span><span class="nv">$a</span><span class="p">){</span>
+        <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
+    <span class="p">}</span>
+</code></pre></div>
+
+<p><code>$a</code>の型は<code>@no-named-arguments</code>がない場合は<code>array&lt;array-key, int&gt;</code>ですが、それがある場合は<code>list&lt;int&gt;</code>になります。これは、パラメータ名を持つ文字列オフセットのケースを除外するためです。</p>
+<h3 id="psalm-ignore-variable-property-psalm-ignore-variable-method"><code>@psalm-ignore-variable-property</code> および <code>@psalm-ignore-variable-method</code></h3>
+<p>デッドコードを探す際に変数プロパティフェッチ / 変数メソッド呼び出しを無視するようPsalmに指示します。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">class Foo {</span>
+<span class="x">    // このプロパティはPsalterによって削除される可能性があります</span>
+<span class="x">    // get()内の潜在的な参照は無視されるため</span>
+<span class="x">    public string $bar = &#39;bar&#39;;</span>
+
+<span class="x">    public function get(string $name): mixed</span>
+<span class="x">    {</span>
+<span class="x">        /** @psalm-ignore-variable-property */</span>
+<span class="x">        return $this-&gt;{$name};</span>
+<span class="x">    }</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<p>Psalmが変数プロパティに遭遇した場合、与えられたクラス内のすべてのプロパティが潜在的に参照されているものとして扱います。
+<code>@psalm-ignore-variable-property</code>アノテーションを使用すると、この参照は無視されます。
+両方のケースで<code>PossiblyUnusedProperty</code>が発生しますが、<code>@psalm-ignore-variable-property</code>を使用すると、<a href="../../manipulating_code/fixing/">Psalter</a>が<code>Foo::$bar</code>を削除できるようになります。</p>
+<p><code>@psalm-ignore-variable-method</code>は同じように動作しますが、変数メソッド呼び出しに対してです。</p>
+<h3 id="psalm-yield"><code>@psalm-yield</code></h3>
+<p>アノテーションが付けられたオブジェクトインスタンスがyieldされたときに、ジェネレータに送り返される値の型を指定するために使用されます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @template-covariant TValue</span>
+<span class="sd"> * @psalm-yield TValue</span>
+<span class="sd"> */</span>
+<span class="k">interface</span> <span class="nx">Promise</span> <span class="p">{}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @template-covariant TValue</span>
+<span class="sd"> * @template-implements Promise&lt;TValue&gt;</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">Success</span> <span class="k">implements</span> <span class="nx">Promise</span> <span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @psalm-param TValue $value</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @return Promise&lt;string&gt;</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">fetch</span><span class="p">()</span><span class="o">:</span> <span class="nx">Promise</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">Success</span><span class="p">(</span><span class="s1">&#39;{&quot;data&quot;:[]}&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="p">()</span><span class="o">:</span> <span class="nx">Generator</span> <span class="p">{</span>
+    <span class="nv">$data</span> <span class="o">=</span> <span class="k">yield</span> <span class="nx">fetch</span><span class="p">();</span>
+
+    <span class="c1">// これは問題ありません。Psalmは$dataが文字列であることを知っています</span>
+    <span class="k">return</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div>
+
+<p>このアノテーションはジェネリック型のみをサポートしています。つまり、例えば<code>@psalm-yield string</code>は無視されます。</p>
+<h3 id="api-psalm-api"><code>@api</code>, <code>@psalm-api</code></h3>
+<p>クラスやメソッドが使用されていることをPsalmに伝えるために使用されます。これは、コード内に明示的な参照が見つからない場合でも使用されます。未使用の問題は抑制されます。</p>
+<p>例えば、フレームワークでは、コントローラはしばしば「魔法のように」呼び出され、コード内に明示的な参照がありません。これらのクラスには<code>@psalm-api</code>をマークする必要があります。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** </span>
+<span class="x"> * @psalm-api </span>
+<span class="x"> */</span>
+<span class="x">class UnreferencedClass {}</span>
+</code></pre></div>
+
+<h3 id="psalm-inheritors"><code>@psalm-inheritors</code></h3>
+<p>クラスが特定のサブセットのクラスによってのみ拡張できることをPsalmに伝えるために使用されます。</p>
+<p>例えば、</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @psalm-inheritors FooClass|BarClass </span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">BaseClass</span> <span class="p">{}</span>
+
+<span class="k">class</span> <span class="nc">FooClass</span> <span class="k">extends</span> <span class="nx">BaseClass</span> <span class="p">{}</span>
+<span class="k">class</span> <span class="nc">BarClass</span> <span class="k">extends</span> <span class="nx">BaseClass</span> <span class="p">{}</span>
+<span class="k">class</span> <span class="nc">BazClass</span> <span class="k">extends</span> <span class="nx">BaseClass</span> <span class="p">{}</span> <span class="c1">// これはエラーです</span>
+</code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../type_syntax/intersection_types/" class="btn btn-neutral float-left" title="インターセクション型"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../templated_annotations/" class="btn btn-neutral float-right" title="テンプレートアノテーション">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../type_syntax/intersection_types/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../templated_annotations/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

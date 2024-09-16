@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/running_psalm/plugins/authoring_plugins/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>プラグインの作成 - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u30d7\u30e9\u30b0\u30a4\u30f3\u306e\u4f5c\u6210";
+        var mkdocs_page_input_path = "running_psalm/plugins/authoring_plugins.md";
+        var mkdocs_page_url = "/running_psalm/plugins/authoring_plugins/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >プラグイン</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">プラグインの作成</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#_1">クイックスタート</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_2">テンプレートリポジトリの使用</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_3">スケルトンプロジェクトの使用</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">スタブファイル</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_5">スタブの生成</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_6">スタブファイルの登録</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">カスタムスキャナーとアナライザーの登録</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#packagist">Packagistでのプラグインの公開</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">高度なトピック</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_9">ゼロから始める</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#psalm-api">Psalm API</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_10">プラグインの設定</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#xdebug">Xdebugの使用</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_11">型システム</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_12">カスタムプラグインの問題の処理</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#composer">ファイルベースのプラグインからComposerベースのバージョンへのアップグレード</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../annotating_code/typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../annotating_code/type_syntax/union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../annotating_code/type_syntax/atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../annotating_code/type_syntax/intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../annotating_code/supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../annotating_code/templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../annotating_code/adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Psalmの実行</li>
+          <li class="breadcrumb-item">プラグイン</li>
+      <li class="breadcrumb-item active">プラグインの作成</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/running_psalm/plugins/authoring_plugins.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="psalm">Psalmプラグインの作成</h1>
+<h2 id="_1">クイックスタート</h2>
+<h3 id="_2">テンプレートリポジトリの使用</h3>
+<ol>
+<li>Githubの<a href="https://github.com/weirdan/psalm-plugin-skeleton">プラグインテンプレートリポジトリ</a>にアクセスします。</li>
+<li>ログインして<code>Use this template</code>ボタンをクリックします。</li>
+</ol>
+<h3 id="_3">スケルトンプロジェクトの使用</h3>
+<ol>
+<li>以下のコマンドを実行して、新しいプラグインプロジェクトを素早くブートストラップします：
+   <code>composer create-project weirdan/psalm-plugin-skeleton:dev-master your-plugin-name</code></li>
+<li><code>your-plugin-name</code>フォルダに新しいプロジェクトが作成されます。</li>
+<li><code>composer.json</code>、<code>Plugin.php</code>、<code>tests</code>フォルダの名前空間を適切に調整してください。</li>
+</ol>
+<h2 id="_4">スタブファイル</h2>
+<p>スタブファイルは、上流のソースファイルに直接Psalmの拡張docblockを追加できない場合に、サードパーティの型情報を上書きする方法を提供します。</p>
+<ul>
+<li>慣例により、スタブファイルは<code>.phpstub</code>拡張子を持ちます。</li>
+<li>これにより、IDEが実際のPHPコードとして扱うのを避けられます。</li>
+</ul>
+<h3 id="_5">スタブの生成</h3>
+<ol>
+<li>型を調整したいライブラリをdev-requireします：
+   <code>composer require --dev cakephp/chronos</code></li>
+<li>スタブを生成します：
+   <code>vendor/bin/psalm --generate-stubs=stubs/chronos.phpstub</code></li>
+<li>生成されたファイルを開き、不要な部分を削除します。</li>
+<li>docblockを調整して、より正確な型を提供します。</li>
+</ol>
+<h3 id="_6">スタブファイルの登録</h3>
+<ul>
+<li>スケルトン/テンプレートプロジェクトには、<code>stubs</code>ディレクトリからすべての<code>.phpstub</code>ファイルを登録するコードが含まれています。</li>
+<li>スタブファイルを手動で登録するには、<code>Psalm\Plugin\RegistrationInterface::addStubFile()</code>を使用します。</li>
+</ul>
+<h2 id="_7">カスタムスキャナーとアナライザーの登録</h2>
+<p>XMLの設定ノード<code>&lt;fileExtensions&gt;</code>に加えて、プラグインは特定のファイル拡張子に対して独自のカスタムスキャナーとアナライザーの実装を登録できます。例：</p>
+<ul>
+<li><code>Psalm\Plugin\FileExtensionsInterface::addFileTypeScanner('html', CustomFileScanner::class)</code></li>
+<li><code>Psalm\Plugin\FileExtensionsInterface::addFileTypeAnalyzer('html', CustomFileAnalyzer::class)</code></li>
+</ul>
+<h2 id="packagist">Packagistでのプラグインの公開</h2>
+<p>packagist.orgの「Publishing Packages」セクションの指示に従ってください。</p>
+<h2 id="_8">高度なトピック</h2>
+<h3 id="_9">ゼロから始める</h3>
+<p>Composerベースのプラグインは、以下の要件に適合するComposerパッケージです：</p>
+<ol>
+<li><code>type</code>フィールドが<code>psalm-plugin</code>に設定されている</li>
+<li><code>composer.json</code>に<code>extra.psalm.pluginClass</code>サブキーがあり、Psalmランタイムにプラグインを登録するためのエントリポイントクラスを参照している</li>
+<li>エントリポイントクラスが<code>Psalm\Plugin\PluginEntryPointInterface</code>を実装している</li>
+</ol>
+<h3 id="psalm-api">Psalm API</h3>
+<p>プラグインは<code>Psalm\Plugin\EventHandler\*</code>インターフェースの1つ（または複数）を実装することができます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">SomePlugin</span> <span class="k">implements</span> <span class="nx">\Psalm\Plugin\EventHandler\AfterStatementAnalysisInterface</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><code>Psalm\Plugin\EventHandler\*</code>は、実装できる以下のインターフェースを提供しています：</p>
+<ul>
+<li><code>AfterAnalysisInterface</code> - Psalmが分析を完了した後に呼び出されます。</li>
+<li><code>AfterClassLikeAnalysisInterface</code> - Psalmが特定のクラスの分析を完了した後に呼び出されます。</li>
+<li><code>AfterClassLikeExistenceCheckInterface</code> - Psalmがクラス、インターフェース、またはトレイトへの参照を分析した後に呼び出されます。</li>
+<li><code>AfterClassLikeVisitInterface</code> - Psalmがクラスライクの解析された抽象構文木をクロールした後に呼び出されます。</li>
+<li><code>AfterCodebasePopulatedInterface</code> - Psalmが必要なファイルをスキャンし、コードベースデータを投入した後に呼び出されます。</li>
+<li><code>AfterEveryFunctionCallAnalysisInterface</code> - Psalmが任意の関数呼び出しを評価した後に呼び出されます。</li>
+<li><code>AfterExpressionAnalysisInterface</code> - Psalmが式を評価した後に呼び出されます。</li>
+<li><code>AfterFileAnalysisInterface</code> - Psalmがファイルを分析した後に呼び出されます。</li>
+<li><code>AfterFunctionCallAnalysisInterface</code> - Psalmがプロジェクト自体で定義された関数への呼び出しを評価した後に呼び出されます。</li>
+<li><code>AfterFunctionLikeAnalysisInterface</code> - Psalmが特定の関数ライクの分析を完了した後に呼び出されます。</li>
+<li><code>AfterMethodCallAnalysisInterface</code> - Psalmがメソッド呼び出しを分析した後に呼び出されます。</li>
+<li><code>BeforeStatementAnalysisInterface</code> - Psalmが文を評価する前に呼び出されます。</li>
+<li><code>AfterStatementAnalysisInterface</code> - Psalmが文を評価した後に呼び出されます。</li>
+<li><code>BeforeAddIssueInterface</code> - Psalmが内部の<code>IssueBuffer</code>にアイテムを追加する前に呼び出されます。</li>
+<li><code>BeforeFileAnalysisInterface</code> - Psalmがファイルを分析する前に呼び出されます。</li>
+</ul>
+<p>その他、多数のインターフェースが提供されています。詳細は原文を参照してください。</p>
+<h3 id="_10">プラグインの設定</h3>
+<p>プラグインをPsalmの実行時に確実に実行するには、<a href="../../configuration/">設定</a>に追加してください（Composerベースのプラグインには不要）：</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;plugins&gt;</span>
+<span class="w">    </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;src/plugins/SomePlugin.php&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/plugins&gt;</span>
+</code></pre></div>
+
+<p>絶対パスを指定することもできます：</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;plugins&gt;</span>
+<span class="w">    </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;/path/to/SomePlugin.php&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/plugins&gt;</span>
+</code></pre></div>
+
+<h3 id="xdebug">Xdebugの使用</h3>
+<p>Psalmは実行時に_Xdebug_を無効にしますが、プラグインを作成する際にコードをステップバイステップでデバッグする必要がある場合は、以下のようにPsalmを実行することで拡張機能を許可できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="gp">$ </span><span class="nv">PSALM_ALLOW_XDEBUG</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>path/to/psalm
+</code></pre></div>
+
+<h2 id="_11">型システム</h2>
+<p>Psalmが型をどのように扱うかを理解するには、<a href="../plugins_type_system/">このガイド</a>を読んでください。</p>
+<h2 id="_12">カスタムプラグインの問題の処理</h2>
+<p>プラグインは独自の問題を発行する必要がある場合があります。この場合、<code>Psalm\Issue\PluginIssue</code>を拡張する問題を発行できます。</p>
+<p>カスタムプラグインの問題を抑制するには：</p>
+<ul>
+<li>docblockでの抑制: 問題名を使用（例：<code>/** @psalm-suppress NoFloatAssignment */</code>）</li>
+<li>Psalmの設定での抑制:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;PluginIssue</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;NoFloatAssignment&quot;</span><span class="w"> </span><span class="na">errorLevel=</span><span class="s">&quot;suppress&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</code></pre></div>
+
+<p>より複雑なルールも使用可能です：</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;PluginIssue</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;NoFloatAssignment&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;errorLevel</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;suppress&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;directory</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tests&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/errorLevel&gt;</span>
+<span class="nt">&lt;/PluginIssue&gt;</span>
+</code></pre></div>
+
+<h2 id="composer">ファイルベースのプラグインからComposerベースのバージョンへのアップグレード</h2>
+<ol>
+<li>スケルトンを使用して新しいプラグインプロジェクトを作成します。</li>
+<li>ファイルベースのプラグインのクラス名を、プラグインエントリポイントの<code>__invoke()</code>メソッドに渡された<code>Psalm\Plugin\RegistrationInterface</code>インスタンスの<code>registerHooksFromClass()</code>メソッドに渡します。</li>
+</ol>
+<p><a href="https://github.com/vimeo/psalm/tree/master/examples/plugins/composer-based/echo-checker/">変換例</a>を参照してください。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../using_plugins/" class="btn btn-neutral float-left" title="プラグインの使用"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../plugins_type_system/" class="btn btn-neutral float-right" title="Psalmの型表現">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../using_plugins/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../plugins_type_system/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

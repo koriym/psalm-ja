@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/annotating_code/adding_assertions/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>アサートアノテーション - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u30a2\u30b5\u30fc\u30c8\u30a2\u30ce\u30c6\u30fc\u30b7\u30e7\u30f3";
+        var mkdocs_page_input_path = "annotating_code/adding_assertions.md";
+        var mkdocs_page_url = "/annotating_code/adding_assertions/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../type_syntax/union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../type_syntax/atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../type_syntax/intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">アサートアノテーション</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">例</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">メソッドの戻り値のアサート</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">その他のアノテーション</li>
+      <li class="breadcrumb-item active">アサートアノテーション</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/annotating_code/adding_assertions.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">アサーションの追加</h1>
+<p>Psalmには、変数やプロパティに関する事実を関数が検証することを指定できる5つのdocblockアノテーションがあります：</p>
+<ul>
+<li><code>@psalm-assert</code>（例外をスローする場合に使用）</li>
+<li><code>@psalm-assert-if-true</code>/<code>@psalm-assert-if-false</code>（<code>bool</code>を返す場合に使用）</li>
+<li><code>@psalm-if-this-is</code>/<code>@psalm-this-out</code>（メソッドを呼び出す場合に使用）</li>
+</ul>
+<p>許容されるアサーションの一覧は<a href="../assertion_syntax/">こちらで見つかります</a>。</p>
+<h2 id="_2">例</h2>
+<p>入力が文字列の配列であることを検証するクラスがある場合、それをPsalmに明確に伝えることができます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @psalm-assert string[] $arr */</span>
+<span class="k">function</span> <span class="nf">validateStringArray</span><span class="p">(</span><span class="k">array</span> <span class="nv">$arr</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$arr</span> <span class="k">as</span> <span class="nv">$s</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">is_string</span><span class="p">(</span><span class="nv">$s</span><span class="p">))</span> <span class="p">{</span>
+          <span class="k">throw</span> <span class="k">new</span> <span class="nx">UnexpectedValueException</span><span class="p">(</span><span class="s1">&#39;Invalid value &#39;</span> <span class="o">.</span> <span class="nb">gettype</span><span class="p">(</span><span class="nv">$s</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>これにより、<code>validateStringArray</code>関数を一部のデータに対して呼び出し、与えられたデータが文字列の配列でなければならないことをPsalmに理解させることができます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">takesString</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span>
+<span class="k">function</span> <span class="nf">takesInt</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span>
+
+<span class="k">function</span> <span class="nf">takesArray</span><span class="p">(</span><span class="k">array</span> <span class="nv">$arr</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="nx">takesInt</span><span class="p">(</span><span class="nv">$arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// これは問題ありません</span>
+    <span class="nx">validateStringArray</span><span class="p">(</span><span class="nv">$arr</span><span class="p">);</span>
+    <span class="nx">takesInt</span><span class="p">(</span><span class="nv">$arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// これはエラーです</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$arr</span> <span class="k">as</span> <span class="nv">$a</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">takesString</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span> <span class="c1">// これは問題ありません</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>同様に、<code>@psalm-assert-if-true</code>と<code>@psalm-assert-if-false</code>は、関数/メソッドがそれぞれ<code>true</code>と<code>false</code>を返す場合に入力をフィルタリングします：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">isValid</span><span class="p">()</span> <span class="o">:</span> <span class="nx">bool</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">bool</span><span class="p">)</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">B</span> <span class="k">extends</span> <span class="nx">A</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">bar</span><span class="p">()</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @psalm-assert-if-true B $a</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">isValidB</span><span class="p">(</span><span class="nx">A</span> <span class="nv">$a</span><span class="p">)</span> <span class="o">:</span> <span class="nx">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$a</span> <span class="nx">instanceof</span> <span class="nx">B</span> <span class="o">&amp;&amp;</span> <span class="nv">$a</span><span class="o">-&gt;</span><span class="na">isValid</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @psalm-assert-if-false B $a</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">isInvalidB</span><span class="p">(</span><span class="nx">A</span> <span class="nv">$a</span><span class="p">)</span> <span class="o">:</span> <span class="nx">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">!</span><span class="nv">$a</span> <span class="nx">instanceof</span> <span class="nx">B</span> <span class="o">||</span> <span class="o">!</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">isValid</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nf">takesA</span><span class="p">(</span><span class="nx">A</span> <span class="nv">$a</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">isValidB</span><span class="p">(</span><span class="nv">$a</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$a</span><span class="o">-&gt;</span><span class="na">bar</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">isInvalidB</span><span class="p">(</span><span class="nv">$a</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">// 何かを行う</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nv">$a</span><span class="o">-&gt;</span><span class="na">bar</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nv">$a</span><span class="o">-&gt;</span><span class="na">bar</span><span class="p">();</span> <span class="c1">// エラー</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>与えられたデータが特定の型でなければならないことをPsalmに理解させるだけでなく、変数がnullでないことも示すことができます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @psalm-assert !null $value</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">assertNotNull</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+  <span class="c1">// $valueがnullでない場合にのみメソッドが完了するようなチェック</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>そして、null値をチェックすることもできます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @psalm-assert-if-true null $value</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">isNull</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span><span class="nv">$value</span> <span class="o">===</span> <span class="k">null</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="_3">メソッドの戻り値のアサート</h3>
+<p><code>@psalm-assert-if-true</code>と<code>@psalm-assert-if-false</code>アノテーションを使用して、クラス内のメソッドの戻り値をアサートすることもできます。ご覧のように、Psalmは同じDocBlock内で複数のアノテーションを指定することも許可しています：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Result</span> <span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var ?Exception</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$exception</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @psalm-assert-if-true Exception $this-&gt;exception</span>
+<span class="sd">     * @psalm-assert-if-true Exception $this-&gt;getException()</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">hasException</span><span class="p">()</span><span class="o">:</span> <span class="nx">bool</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">exception</span> <span class="o">!==</span> <span class="k">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getException</span><span class="p">()</span><span class="o">:</span> <span class="o">?</span><span class="nx">Exception</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">exception</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">hasException</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Psalmは$this-&gt;exceptionがExceptionのインスタンスであることを知っています</span>
+            <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">exception</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$result</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Result</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">hasException</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Psalmは$result-&gt;getException()がExceptionのインスタンスを返すことを知っています</span>
+    <span class="k">echo</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">getException</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>注意：上の例は、設定ファイルで<a href="https://psalm.dev/docs/running_psalm/configuration/#memoizemethodcallresults">メソッド呼び出しのメモ化</a>を有効にするか、クラスを<a href="https://psalm.dev/docs/annotating_code/supported_annotations/#psalm-immutable">不変</a>としてアノテーションを付ける場合にのみ機能します。</p>
+<p><code>@psalm-this-out</code>を使用して、メソッド呼び出し後のメソッドのテンプレート引数を変更し、オブジェクトの内部状態の変更を反映させることができます。また、<code>@psalm-if-this-is</code>を使用して、オブジェクトのテンプレート引数に関するアサーションを行うこともできます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @template T</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">a</span> <span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var list&lt;T&gt;</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="k">array</span> <span class="nv">$data</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param T $data</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span> <span class="o">=</span> <span class="p">[</span><span class="nv">$data</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @template NewT</span>
+<span class="sd">     * </span>
+<span class="sd">     * @param NewT $data</span>
+<span class="sd">     * </span>
+<span class="sd">     * @psalm-this-out self&lt;T|NewT&gt;</span>
+<span class="sd">     * </span>
+<span class="sd">     * @return void</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">addData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="sd">/** @var self&lt;T|NewT&gt; $this */</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span> <span class="p">[]</span><span class="o">=</span> <span class="nv">$data</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @template NewT</span>
+<span class="sd">     * </span>
+<span class="sd">     * @param NewT $data</span>
+<span class="sd">     * </span>
+<span class="sd">     * @psalm-this-out self&lt;NewT&gt;</span>
+<span class="sd">     * </span>
+<span class="sd">     * @return void</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="sd">/** @var self&lt;NewT&gt; $this */</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span> <span class="o">=</span> <span class="p">[</span><span class="nv">$data</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @psalm-if-this-is a&lt;int&gt;</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">test</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$i</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">a</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+<span class="c1">// OK - $i は a&lt;123&gt; です</span>
+<span class="nv">$i</span><span class="o">-&gt;</span><span class="na">test</span><span class="p">();</span>
+
+<span class="nv">$i</span><span class="o">-&gt;</span><span class="na">addData</span><span class="p">(</span><span class="mi">321</span><span class="p">);</span>
+<span class="c1">// OK - $i は a&lt;123|321&gt; です</span>
+<span class="nv">$i</span><span class="o">-&gt;</span><span class="na">test</span><span class="p">();</span>
+
+<span class="nv">$i</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">);</span>
+<span class="c1">// IfThisIsMismatch - クラスは psalm-if-this-is で要求される a&lt;int&gt; ではありません</span>
+<span class="nv">$i</span><span class="o">-&gt;</span><span class="na">test</span><span class="p">();</span>
+</code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../templated_annotations/" class="btn btn-neutral float-left" title="テンプレートアノテーション"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../manipulating_code/fixing/" class="btn btn-neutral float-right" title="Psalterを使用したコードの修正">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../templated_annotations/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../manipulating_code/fixing/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

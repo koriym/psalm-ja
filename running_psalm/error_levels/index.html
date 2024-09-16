@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/running_psalm/error_levels/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>エラーレベル - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u30a8\u30e9\u30fc\u30ec\u30d9\u30eb";
+        var mkdocs_page_input_path = "running_psalm/error_levels.md";
+        var mkdocs_page_url = "/running_psalm/error_levels/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">エラーレベル</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/running_psalm/error_levels.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">エラーレベル</h1>
+<p>Psalmは1から8までの異なる厳格さのレベルで実行できます。
+レベル1が最も厳格で、レベル8が最も寛容です。
+レベルが明示的に定義されていない場合、Psalmはデフォルトでレベル2になります。</p>
+<p>一部の問題は常にエラーとして扱われます。これらは誤検出の可能性が非常に低い問題です。</p>
+<p>レベル1では、Psalmが見つけることができるすべての問題（オプトイン機能のために出力されるものを除く）がエラーとして扱われます。これらの問題には、Psalmが特定の式の型を推論できないあらゆる状況が含まれます。</p>
+<p>レベル2では、Psalmは<code>Mixed*</code>の問題を無視しますが、他のほとんどの問題をエラーとして扱います。</p>
+<p>レベル3では、Psalmはより寛容になり始めます。例えば、Psalmはパラメータの型、戻り値の型、プロパティの型の欠落を許可します。</p>
+<p>レベル4では、Psalmは_可能性のある_問題に対する問題を無視します。これらは誤検出である可能性が高くなります - アプリケーションコードがPsalmが推論できない動作を保証している可能性があります。</p>
+<p>レベル5以上では、より多くの検証不可能なコードを許可し、より高いレベルではさらに寛容になります。</p>
+<h2 id="_2">常にエラーとして扱われる問題</h2>
+<ul>
+<li><a href="../issues/AbstractMethodCall/">AbstractMethodCall</a></li>
+<li><a href="../issues/ComplexFunction/">ComplexFunction</a></li>
+<li><a href="issues/ComplexMethod.md">ComplexMethod</a></li>
+<li><a href="../issues/ConfigIssue/">ConfigIssue</a></li>
+<li><a href="../issues/DuplicateArrayKey/">DuplicateArrayKey</a></li>
+<li><a href="../issues/DuplicateClass/">DuplicateClass</a></li>
+<li><a href="issues/DuplicateFunction.md">DuplicateFunction</a></li>
+<li><a href="../issues/DuplicateMethod/">DuplicateMethod</a></li>
+<li><a href="issues/DuplicateParam.md">DuplicateParam</a></li>
+<li><a href="../issues/DuplicateProperty/">DuplicateProperty</a></li>
+<li><a href="issues/EmptyArrayAccess.md">EmptyArrayAccess</a></li>
+<li><a href="../issues/ExtensionRequirementViolation/">ExtensionRequirementViolation</a></li>
+<li><a href="issues/ImplementationRequirementViolation.md">ImplementationRequirementViolation</a></li>
+<li><a href="../issues/ImpureByReferenceAssignment/">ImpureByReferenceAssignment</a></li>
+<li><a href="issues/ImpureFunctionCall.md">ImpureFunctionCall</a></li>
+<li><a href="issues/ImpureMethodCall.md">ImpureMethodCall</a></li>
+<li><a href="../issues/ImpurePropertyAssignment/">ImpurePropertyAssignment</a></li>
+<li><a href="../issues/ImpurePropertyFetch/">ImpurePropertyFetch</a></li>
+<li><a href="../issues/ImpureStaticProperty/">ImpureStaticProperty</a></li>
+<li><a href="issues/ImpureStaticVariable.md">ImpureStaticVariable</a></li>
+<li><a href="../issues/ImpureVariable/">ImpureVariable</a></li>
+<li><a href="issues/InaccessibleClassConstant.md">InaccessibleClassConstant</a></li>
+<li><a href="../issues/InaccessibleMethod/">InaccessibleMethod</a></li>
+<li><a href="../issues/InaccessibleProperty/">InaccessibleProperty</a></li>
+<li><a href="../issues/InterfaceInstantiation/">InterfaceInstantiation</a></li>
+<li><a href="issues/InvalidAttribute.md">InvalidAttribute</a></li>
+<li><a href="../issues/InvalidEnumMethod/">InvalidEnumMethod</a></li>
+<li><a href="../issues/InvalidExtendClass/">InvalidExtendClass</a></li>
+<li><a href="../issues/InvalidGlobal/">InvalidGlobal</a></li>
+<li><a href="issues/InvalidInterfaceImplementation.md">InvalidInterfaceImplementation</a></li>
+<li><a href="issues/InvalidParamDefault.md">InvalidParamDefault</a></li>
+<li><a href="../issues/InvalidParent/">InvalidParent</a></li>
+<li><a href="issues/InvalidPassByReference.md">InvalidPassByReference</a></li>
+<li><a href="issues/InvalidScope.md">InvalidScope</a></li>
+<li><a href="issues/InvalidStaticInvocation.md">InvalidStaticInvocation</a></li>
+<li><a href="issues/InvalidThrow.md">InvalidThrow</a></li>
+<li><a href="issues/LoopInvalidation.md">LoopInvalidation</a></li>
+<li><a href="../issues/MethodSignatureMustOmitReturnType/">MethodSignatureMustOmitReturnType</a></li>
+<li><a href="../issues/MethodSignatureMustProvideReturnType/">MethodSignatureMustProvideReturnType</a></li>
+<li><a href="../issues/MissingDependency/">MissingDependency</a></li>
+<li><a href="issues/MissingFile.md">MissingFile</a></li>
+<li><a href="../issues/MissingImmutableAnnotation/">MissingImmutableAnnotation</a></li>
+<li><a href="../issues/MissingTemplateParam/">MissingTemplateParam</a></li>
+<li><a href="issues/MissingThrowsDocblock.md">MissingThrowsDocblock</a></li>
+<li><a href="../issues/NonStaticSelfCall/">NonStaticSelfCall</a></li>
+<li><a href="../issues/NoValue/">NoValue</a></li>
+<li><a href="../issues/NullArrayAccess/">NullArrayAccess</a></li>
+<li><a href="../issues/NullFunctionCall/">NullFunctionCall</a></li>
+<li><a href="issues/NullIterator.md">NullIterator</a></li>
+<li><a href="issues/NullPropertyAssignment.md">NullPropertyAssignment</a></li>
+<li><a href="issues/NullPropertyFetch.md">NullPropertyFetch</a></li>
+<li><a href="issues/NullReference.md">NullReference</a></li>
+<li><a href="../issues/OverriddenPropertyAccess/">OverriddenPropertyAccess</a></li>
+<li><a href="../issues/ParadoxicalCondition/">ParadoxicalCondition</a></li>
+<li><a href="../issues/ParentNotFound/">ParentNotFound</a></li>
+<li><a href="../issues/TooFewArguments/">TooFewArguments</a></li>
+<li><a href="../issues/UndefinedAttributeClass/">UndefinedAttributeClass</a></li>
+<li><a href="../issues/UndefinedClass/">UndefinedClass</a></li>
+<li><a href="../issues/UndefinedConstant/">UndefinedConstant</a></li>
+<li><a href="../issues/UndefinedDocblockClass/">UndefinedDocblockClass</a></li>
+<li><a href="../issues/UndefinedFunction/">UndefinedFunction</a></li>
+<li><a href="../issues/UndefinedGlobalVariable/">UndefinedGlobalVariable</a></li>
+<li><a href="../issues/UndefinedInterface/">UndefinedInterface</a></li>
+<li><a href="../issues/UndefinedTrait/">UndefinedTrait</a></li>
+<li><a href="../issues/UndefinedVariable/">UndefinedVariable</a></li>
+<li><a href="../issues/UnimplementedAbstractMethod/">UnimplementedAbstractMethod</a></li>
+<li><a href="issues/UnimplementedInterfaceMethod.md">UnimplementedInterfaceMethod</a></li>
+<li><a href="issues/UnrecognizedExpression.md">UnrecognizedExpression</a></li>
+<li><a href="../issues/UnrecognizedStatement/">UnrecognizedStatement</a></li>
+<li><a href="issues/UnusedFunctionCall.md">UnusedFunctionCall</a></li>
+<li><a href="../issues/UnusedMethodCall/">UnusedMethodCall</a></li>
+</ul>
+<h2 id="7">レベル7以下で表示されるエラー</h2>
+<ul>
+<li><a href="issues/AbstractInstantiation.md">AbstractInstantiation</a></li>
+<li><a href="../issues/AssignmentToVoid/">AssignmentToVoid</a></li>
+<li><a href="../issues/CircularReference/">CircularReference</a></li>
+<li><a href="../issues/ConflictingReferenceConstraint/">ConflictingReferenceConstraint</a></li>
+<li><a href="../issues/ContinueOutsideLoop/">ContinueOutsideLoop</a></li>
+<li><a href="issues/InvalidOverride.md">InvalidOverride</a></li>
+<li><a href="issues/InvalidTypeImport.md">InvalidTypeImport</a></li>
+<li><a href="issues/MethodSignatureMismatch.md">MethodSignatureMismatch</a></li>
+<li><a href="issues/NonVariableReferenceReturn.md">NonVariableReferenceReturn</a></li>
+<li><a href="../issues/OverriddenMethodAccess/">OverriddenMethodAccess</a></li>
+<li><a href="../issues/ParamNameMismatch/">ParamNameMismatch</a></li>
+<li><a href="../issues/ReservedWord/">ReservedWord</a></li>
+<li><a href="issues/UnhandledMatchCondition.md">UnhandledMatchCondition</a></li>
+<li><a href="../issues/UninitializedProperty/">UninitializedProperty</a></li>
+</ul>
+<h2 id="6">レベル6以下で表示されるエラー</h2>
+<ul>
+<li><a href="../issues/InvalidArgument/">InvalidArgument</a></li>
+<li><a href="issues/InvalidArrayAccess.md">InvalidArrayAccess</a></li>
+<li><a href="issues/InvalidArrayAssignment.md">InvalidArrayAssignment</a></li>
+<li><a href="../issues/InvalidArrayOffset/">InvalidArrayOffset</a></li>
+<li><a href="issues/InvalidCast.md">InvalidCast</a></li>
+<li><a href="issues/InvalidCatch.md">InvalidCatch</a></li>
+<li><a href="issues/InvalidClass.md">InvalidClass</a></li>
+<li><a href="../issues/InvalidClone/">InvalidClone</a></li>
+<li><a href="issues/InvalidFunctionCall.md">InvalidFunctionCall</a></li>
+<li><a href="../issues/InvalidIterator/">InvalidIterator</a></li>
+<li><a href="issues/InvalidMethodCall.md">InvalidMethodCall</a></li>
+<li><a href="../issues/InvalidNamedArgument/">InvalidNamedArgument</a></li>
+<li><a href="../issues/InvalidPropertyAssignment/">InvalidPropertyAssignment</a></li>
+<li><a href="../issues/InvalidPropertyAssignmentValue/">InvalidPropertyAssignmentValue</a></li>
+<li><a href="../issues/InvalidPropertyFetch/">InvalidPropertyFetch</a></li>
+<li><a href="issues/InvalidReturnStatement.md">InvalidReturnStatement</a></li>
+<li><a href="issues/InvalidReturnType.md">InvalidReturnType</a></li>
+<li><a href="issues/InvalidTemplateParam.md">InvalidTemplateParam</a></li>
+<li><a href="../issues/NullArgument/">NullArgument</a></li>
+<li><a href="issues/NullArrayOffset.md">NullArrayOffset</a></li>
+<li><a href="../issues/TooManyTemplateParams/">TooManyTemplateParams</a></li>
+<li><a href="../issues/TraitMethodSignatureMismatch/">TraitMethodSignatureMismatch</a></li>
+<li><a href="issues/UndefinedMethod.md">UndefinedMethod</a></li>
+<li><a href="../issues/UndefinedPropertyAssignment/">UndefinedPropertyAssignment</a></li>
+<li><a href="../issues/UndefinedPropertyFetch/">UndefinedPropertyFetch</a></li>
+<li><a href="issues/UndefinedThisPropertyFetch.md">UndefinedThisPropertyFetch</a></li>
+</ul>
+<h2 id="5">レベル5以下で表示されるエラー</h2>
+<ul>
+<li><a href="../issues/ConstructorSignatureMismatch/">ConstructorSignatureMismatch</a></li>
+<li><a href="../issues/FalsableReturnStatement/">FalsableReturnStatement</a></li>
+<li><a href="issues/InvalidNullableReturnType.md">InvalidNullableReturnType</a></li>
+<li><a href="../issues/LessSpecificImplementedReturnType/">LessSpecificImplementedReturnType</a></li>
+<li><a href="issues/MoreSpecificImplementedParamType.md">MoreSpecificImplementedParamType</a></li>
+<li><a href="issues/NullableReturnStatement.md">NullableReturnStatement</a></li>
+<li><a href="issues/UndefinedInterfaceMethod.md">UndefinedInterfaceMethod</a></li>
+<li><a href="../issues/UndefinedThisPropertyAssignment/">UndefinedThisPropertyAssignment</a></li>
+</ul>
+<h2 id="4">レベル4以下で表示されるエラー</h2>
+<ul>
+<li><a href="../issues/FalseOperand/">FalseOperand</a></li>
+<li><a href="../issues/ForbiddenCode/">ForbiddenCode</a></li>
+<li><a href="../issues/ImplementedParamTypeMismatch/">ImplementedParamTypeMismatch</a></li>
+<li><a href="../issues/ImplementedReturnTypeMismatch/">ImplementedReturnTypeMismatch</a></li>
+<li><a href="issues/ImplicitToStringCast.md">ImplicitToStringCast</a></li>
+<li><a href="../issues/InternalClass/">InternalClass</a></li>
+<li><a href="../issues/InternalMethod/">InternalMethod</a></li>
+<li><a href="issues/InternalProperty.md">InternalProperty</a></li>
+<li><a href="../issues/InvalidDocblock/">InvalidDocblock</a></li>
+<li><a href="issues/InvalidLiteralArgument.md">InvalidLiteralArgument</a></li>
+<li><a href="../issues/InvalidOperand/">InvalidOperand</a></li>
+<li><a href="../issues/InvalidScalarArgument/">InvalidScalarArgument</a></li>
+<li><a href="../issues/InvalidToString/">InvalidToString</a></li>
+<li><a href="../issues/MismatchingDocblockParamType/">MismatchingDocblockParamType</a></li>
+<li><a href="../issues/MismatchingDocblockReturnType/">MismatchingDocblockReturnType</a></li>
+<li><a href="../issues/MissingDocblockType/">MissingDocblockType</a></li>
+<li><a href="../issues/NoInterfaceProperties/">NoInterfaceProperties</a></li>
+<li><a href="../issues/PossibleRawObjectIteration/">PossibleRawObjectIteration</a></li>
+<li><a href="../issues/RedundantCondition/">RedundantCondition</a></li>
+<li><a href="../issues/RedundantFunctionCall/">RedundantFunctionCall</a></li>
+<li><a href="../issues/RedundantPropertyInitializationCheck/">RedundantPropertyInitializationCheck</a></li>
+<li><a href="issues/StringIncrement.md">StringIncrement</a></li>
+<li><a href="../issues/TooManyArguments/">TooManyArguments</a></li>
+<li><a href="../issues/TypeDoesNotContainNull/">TypeDoesNotContainNull</a></li>
+<li><a href="../issues/TypeDoesNotContainType/">TypeDoesNotContainType</a></li>
+<li><a href="../issues/UndefinedMagicMethod/">UndefinedMagicMethod</a></li>
+<li><a href="../issues/UndefinedMagicPropertyAssignment/">UndefinedMagicPropertyAssignment</a></li>
+<li><a href="../issues/UndefinedMagicPropertyFetch/">UndefinedMagicPropertyFetch</a></li>
+</ul>
+<h2 id="3">レベル3以下で表示されるエラー</h2>
+<ul>
+<li><a href="../issues/ArgumentTypeCoercion/">ArgumentTypeCoercion</a></li>
+<li><a href="../issues/LessSpecificReturnStatement/">LessSpecificReturnStatement</a></li>
+<li><a href="issues/MoreSpecificReturnType.md">MoreSpecificReturnType</a></li>
+<li><a href="issues/PossiblyFalseArgument.md">PossiblyFalseArgument</a></li>
+<li><a href="../issues/PossiblyFalseIterator/">PossiblyFalseIterator</a></li>
+<li><a href="../issues/PossiblyFalseOperand/">PossiblyFalseOperand</a></li>
+<li><a href="../issues/PossiblyFalsePropertyAssignmentValue/">PossiblyFalsePropertyAssignmentValue</a></li>
+<li><a href="issues/PossiblyFalseReference.md">PossiblyFalseReference</a></li>
+<li><a href="issues/PossiblyInvalidArgument.md">PossiblyInvalidArgument</a></li>
+<li><a href="../issues/PossiblyInvalidArrayAccess/">PossiblyInvalidArrayAccess</a></li>
+<li><a href="issues/PossiblyInvalidArrayAssignment.md">PossiblyInvalidArrayAssignment</a></li>
+<li><a href="../issues/PossiblyInvalidArrayOffset/">PossiblyInvalidArrayOffset</a></li>
+<li><a href="issues/PossiblyInvalidCast.md">PossiblyInvalidCast</a></li>
+<li><a href="../issues/PossiblyInvalidClone/">PossiblyInvalidClone</a></li>
+<li><a href="issues/PossiblyInvalidFunctionCall.md">PossiblyInvalidFunctionCall</a></li>
+<li><a href="../issues/PossiblyInvalidIterator/">PossiblyInvalidIterator</a></li>
+<li><a href="../issues/PossiblyInvalidMethodCall/">PossiblyInvalidMethodCall</a></li>
+<li><a href="../issues/PossiblyInvalidOperand/">PossiblyInvalidOperand</a></li>
+<li><a href="issues/PossiblyInvalidPropertyAssignment.md">PossiblyInvalidPropertyAssignment</a></li>
+<li><a href="../issues/PossiblyInvalidPropertyAssignmentValue/">PossiblyInvalidPropertyAssignmentValue</a></li>
+<li><a href="issues/PossiblyInvalidPropertyFetch.md">PossiblyInvalidPropertyFetch</a></li>
+<li><a href="../issues/PossiblyNullArgument/">PossiblyNullArgument</a></li>
+<li><a href="../issues/PossiblyNullArrayAccess/">PossiblyNullArrayAccess</a></li>
+<li><a href="../issues/PossiblyNullArrayAssignment/">PossiblyNullArrayAssignment</a></li>
+<li><a href="../issues/PossiblyNullArrayOffset/">PossiblyNullArrayOffset</a></li>
+<li><a href="../issues/PossiblyNullFunctionCall/">PossiblyNullFunctionCall</a></li>
+<li><a href="issues/PossiblyNullIterator.md">PossiblyNullIterator</a></li>
+<li><a href="issues/PossiblyNullPropertyAssignment.md">PossiblyNullPropertyAssignment</a></li>
+<li><a href="issues/PossiblyNullPropertyAssignmentValue.md">PossiblyNullPropertyAssignmentValue</a></li>
+<li><a href="../issues/PossiblyNullPropertyFetch/">PossiblyNullPropertyFetch</a></li>
+<li><a href="../issues/PossiblyNullReference/">PossiblyNullReference</a></li>
+<li><a href="issues/PossiblyUndefinedArrayOffset.md">PossiblyUndefinedArrayOffset</a></li>
+<li><a href="issues/PossiblyUndefinedGlobalVariable.md">PossiblyUndefinedGlobalVariable</a></li>
+<li><a href="../issues/PossiblyUndefinedMethod/">PossiblyUndefinedMethod</a></li>
+<li><a href="issues/PossiblyUndefinedVariable.md">PossiblyUndefinedVariable</a></li>
+<li><a href="../issues/PropertyTypeCoercion/">PropertyTypeCoercion</a></li>
+<li><a href="../issues/RiskyCast/">RiskyCast</a></li>
+</ul>
+<h2 id="2">レベル2以下で表示されるエラー</h2>
+<ul>
+<li><a href="../issues/DeprecatedClass/">DeprecatedClass</a></li>
+<li><a href="issues/DeprecatedConstant.md">DeprecatedConstant</a></li>
+<li><a href="issues/DeprecatedFunction.md">DeprecatedFunction</a></li>
+<li><a href="../issues/DeprecatedInterface/">DeprecatedInterface</a></li>
+<li><a href="issues/DeprecatedMethod.md">DeprecatedMethod</a></li>
+<li><a href="../issues/DeprecatedProperty/">DeprecatedProperty</a></li>
+<li><a href="issues/DeprecatedTrait.md">DeprecatedTrait</a></li>
+<li><a href="issues/DirectConstructorCall.md">DirectConstructorCall</a></li>
+<li><a href="issues/DocblockTypeContradiction.md">DocblockTypeContradiction</a></li>
+<li><a href="issues/InvalidDocblockParamName.md">InvalidDocblockParamName</a></li>
+<li><a href="issues/InvalidFalsableReturnType.md">InvalidFalsableReturnType</a></li>
+<li><a href="../issues/InvalidStringClass/">InvalidStringClass</a></li>
+<li><a href="issues/MissingClosureParamType.md">MissingClosureParamType</a></li>
+<li><a href="../issues/MissingClosureReturnType/">MissingClosureReturnType</a></li>
+<li><a href="issues/MissingConstructor.md">MissingConstructor</a></li>
+<li><a href="issues/MissingParamType.md">MissingParamType</a></li>
+<li><a href="../issues/MissingPropertyType/">MissingPropertyType</a></li>
+<li><a href="issues/MissingReturnType.md">MissingReturnType</a></li>
+<li><a href="issues/NullOperand.md">NullOperand</a></li>
+<li><a href="issues/PrivateFinalMethod.md">PrivateFinalMethod</a></li>
+<li><a href="../issues/PropertyNotSetInConstructor/">PropertyNotSetInConstructor</a></li>
+<li><a href="../issues/RawObjectIteration/">RawObjectIteration</a></li>
+<li><a href="issues/RedundantConditionGivenDocblockType.md">RedundantConditionGivenDocblockType</a></li>
+<li><a href="../issues/RedundantFunctionCallGivenDocblockType/">RedundantFunctionCallGivenDocblockType</a></li>
+<li><a href="../issues/ReferenceConstraintViolation/">ReferenceConstraintViolation</a></li>
+<li><a href="../issues/RiskyTruthyFalsyComparison/">RiskyTruthyFalsyComparison</a></li>
+<li><a href="../issues/UndefinedTrace/">UndefinedTrace</a></li>
+<li><a href="issues/UnresolvableInclude.md">UnresolvableInclude</a></li>
+<li><a href="issues/UnsafeInstantiation.md">UnsafeInstantiation</a></li>
+</ul>
+<h2 id="1">レベル1でのみ表示されるエラー</h2>
+<ul>
+<li><a href="../issues/LessSpecificReturnType/">LessSpecificReturnType</a></li>
+<li><a href="../issues/MixedArgument/">MixedArgument</a></li>
+<li><a href="issues/MixedArgumentTypeCoercion.md">MixedArgumentTypeCoercion</a></li>
+<li><a href="../issues/MixedArrayAccess/">MixedArrayAccess</a></li>
+<li><a href="../issues/MixedArrayAssignment/">MixedArrayAssignment</a></li>
+<li><a href="../issues/MixedArrayOffset/">MixedArrayOffset</a></li>
+<li><a href="issues/MixedArrayTypeCoercion.md">MixedArrayTypeCoercion</a></li>
+<li><a href="issues/MixedAssignment.md">MixedAssignment</a></li>
+<li><a href="issues/MixedClone.md">MixedClone</a></li>
+<li><a href="../issues/MixedFunctionCall/">MixedFunctionCall</a></li>
+<li><a href="issues/MixedMethodCall.md">MixedMethodCall</a></li>
+<li><a href="issues/MixedOperand.md">MixedOperand</a></li>
+<li><a href="../issues/MixedPropertyAssignment/">MixedPropertyAssignment</a></li>
+<li><a href="issues/MixedPropertyFetch.md">MixedPropertyFetch</a></li>
+<li><a href="issues/MixedPropertyTypeCoercion.md">MixedPropertyTypeCoercion</a></li>
+<li><a href="../issues/MixedReturnStatement/">MixedReturnStatement</a></li>
+<li><a href="../issues/MixedReturnTypeCoercion/">MixedReturnTypeCoercion</a></li>
+<li><a href="../issues/MixedStringOffsetAssignment/">MixedStringOffsetAssignment</a></li>
+<li><a href="../issues/MutableDependency/">MutableDependency</a></li>
+<li><a href="issues/PossiblyNullOperand.md">PossiblyNullOperand</a></li>
+<li><a href="issues/RedundantIdentityWithTrue.md">RedundantIdentityWithTrue</a></li>
+<li><a href="issues/Trace.md">Trace</a></li>
+</ul>
+<h2 id="_3">機能固有のエラー</h2>
+<ul>
+<li><a href="issues/MissingOverrideAttribute.md">MissingOverrideAttribute</a></li>
+<li><a href="issues/PossiblyUndefinedIntArrayOffset.md">PossiblyUndefinedIntArrayOffset</a></li>
+<li><a href="../issues/PossiblyUndefinedStringArrayOffset/">PossiblyUndefinedStringArrayOffset</a></li>
+<li><a href="../issues/PossiblyUnusedMethod/">PossiblyUnusedMethod</a></li>
+<li><a href="issues/PossiblyUnusedParam.md">PossiblyUnusedParam</a></li>
+<li><a href="issues/PossiblyUnusedProperty.md">PossiblyUnusedProperty</a></li>
+<li><a href="issues/TaintedCallable.md">TaintedCallable</a></li>
+<li><a href="../issues/TaintedCookie/">TaintedCookie</a></li>
+<li><a href="issues/TaintedCustom.md">TaintedCustom</a></li>
+<li><a href="../issues/TaintedEval/">TaintedEval</a></li>
+<li><a href="../issues/TaintedExtract/">TaintedExtract</a></li>
+<li><a href="../issues/TaintedFile/">TaintedFile</a></li>
+<li><a href="issues/TaintedHeader.md">TaintedHeader</a></li>
+<li><a href="issues/TaintedHtml.md">TaintedHtml</a></li>
+<li><a href="../issues/TaintedInclude/">TaintedInclude</a></li>
+<li><a href="issues/TaintedInput.md">TaintedInput</a></li>
+<li><a href="../issues/TaintedLdap/">TaintedLdap</a></li>
+<li><a href="issues/TaintedShell.md">TaintedShell</a></li>
+<li><a href="issues/TaintedSleep.md">TaintedSleep</a></li>
+<li><a href="issues/TaintedSql.md">TaintedSql</a></li>
+<li><a href="issues/TaintedSSRF.md">TaintedSSRF</a></li>
+<li><a href="issues/TaintedSystemSecret.md">TaintedSystemSecret</a></li>
+<li><a href="issues/TaintedUnserialize.md">TaintedUnserialize</a></li>
+<li><a href="../issues/TaintedUserSecret/">TaintedUserSecret</a></li>
+<li><a href="issues/TaintedXpath.md">TaintedXpath</a></li>
+<li><a href="../issues/UncaughtThrowInGlobalScope/">UncaughtThrowInGlobalScope</a></li>
+<li><a href="issues/UnevaluatedCode.md">UnevaluatedCode</a></li>
+<li><a href="../issues/UnnecessaryVarAnnotation/">UnnecessaryVarAnnotation</a></li>
+<li><a href="../issues/UnusedClass/">UnusedClass</a></li>
+<li><a href="../issues/UnusedClosureParam/">UnusedClosureParam</a></li>
+<li><a href="../issues/UnusedConstructor/">UnusedConstructor</a></li>
+<li><a href="issues/UnusedDocblockParam.md">UnusedDocblockParam</a></li>
+<li><a href="../issues/UnusedForeachValue/">UnusedForeachValue</a></li>
+<li><a href="issues/UnusedMethod.md">UnusedMethod</a></li>
+<li><a href="issues/UnusedParam.md">UnusedParam</a></li>
+<li><a href="../issues/UnusedProperty/">UnusedProperty</a></li>
+<li><a href="issues/UnusedPsalmSuppress.md">UnusedPsalmSuppress</a></li>
+<li><a href="issues/UnusedVariable.md">UnusedVariable</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

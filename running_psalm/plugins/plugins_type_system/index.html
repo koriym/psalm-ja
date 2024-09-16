@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/running_psalm/plugins/plugins_type_system/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Psalmの型表現 - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Psalm\u306e\u578b\u8868\u73fe";
+        var mkdocs_page_input_path = "running_psalm/plugins/plugins_type_system.md";
+        var mkdocs_page_url = "/running_psalm/plugins/plugins_type_system/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >プラグイン</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Psalmの型表現</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#union-types">共用体型（Union types）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#atomic-types">原子型（Atomic types）</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_2">その他</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_3">スカラースーパータイプ</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_4">数値スーパータイプ</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_5">スカラー型</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_12">配列</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_13">呼び出し可能およびクロージャ</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_14">オブジェクトスーパータイプ</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_15">オブジェクト型</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_16">テンプレート</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_17">型オブジェクトインスタンスの作成</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_18">型オブジェクトインスタンスを直接作成する</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#doc">docストリング型から型オブジェクトインスタンスを作成する</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_19">型の操作</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_20">型の結合</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_21">型の交差</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_22">型の比較</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_23">型の絞り込み</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_24">プラグインでの型の使用</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../annotating_code/typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../annotating_code/type_syntax/union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../annotating_code/type_syntax/atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../annotating_code/type_syntax/intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../annotating_code/supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../annotating_code/templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../annotating_code/adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Psalmの実行</li>
+          <li class="breadcrumb-item">プラグイン</li>
+      <li class="breadcrumb-item active">Psalmの型表現</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/running_psalm/plugins/plugins_type_system.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">プラグイン: 型システムの内部構造</h1>
+<p>Psalmの型システムは、プログラム内の変数の型を異なるクラスを使用して表現します。プラグインはこの型情報を受け取り、更新することができます。</p>
+<h2 id="union-types">共用体型（Union types）</h2>
+<p>使用する可能性が高い全ての型情報は、<a href="../../../annotating_code/type_syntax/union_types/">共用体型</a>でラップされています。</p>
+<p><code>Union</code>クラスのコンストラクタは<code>Atomic</code>型の配列を受け取り、これらの型の1つ以上を同時に表現できます。これらはdocコメントの縦棒に対応します。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">new Union([new TNamedObject(&#39;Foo\\Bar\\SomeClass&#39;)]); // docblockのFoo\Bar\SomeClassに相当</span>
+<span class="x">new Union([new TString(), new TInt()]); // docblockのstring|intに相当</span>
+</code></pre></div>
+
+<h2 id="atomic-types">原子型（Atomic types）</h2>
+<p>浮動小数点数、整数、文字列などのプリミティブ型に加えて、配列やクラスがあります。これらは全て<a href="https://github.com/vimeo/psalm/tree/master/src/Psalm/Type/Atomic"><code>src/Psalm/Types/Atomic</code></a>にあります。</p>
+<p>このフォルダ内の全ての非抽象クラスが有効な型であることに注意してください。これらは全て'T'で始まります。</p>
+<p>クラスは以下の通りです：</p>
+<h3 id="_2">その他</h3>
+<p><code>TVoid</code> - <code>void</code>型を表し、通常は何も返さない関数/メソッドを注釈するために使用されます。</p>
+<p><code>TNull</code> - <code>null</code>型を表します。</p>
+<p><code>TNever</code> - 例外をスローするか終了する（ビルトインの<code>exit()</code>のような）、決して戻らない関数の<code>no-return</code>/<code>never-return</code>型を表します。また、可能な型がない共用体型（例えば不可能な交差型）にも使用されます。空の配列<code>[]</code>は<code>array&lt;never, never&gt;</code>型を持ちます。</p>
+<p><code>TMixed</code> - <code>mixed</code>型を表し、式の型が不明な場合に使用されます。</p>
+<p><code>TNonEmptyMixed</code> - 上記と同様ですが、空ではありません。外部で<code>$x</code>が<code>mixed</code>の場合、<code>if ($x) {...}</code>文の中の<code>$x</code>に対して生成されます。</p>
+<p><code>TEmptyMixed</code> - 上記と同様ですが、空です。外部で<code>$x</code>が<code>mixed</code>の場合、<code>if (!$x) {...}</code>文の中の<code>$x</code>に対して生成されます。</p>
+<p><code>TIterable</code> - <a href="https://www.php.net/manual/en/language.types.iterable.php"><code>iterable</code>型</a>を表します（<code>is_iterable</code>チェックの結果にもなり得ます）。</p>
+<p><code>TResource</code> - <code>resource</code>型を表します（例：ファイルハンドル）。</p>
+<p><code>TClosedResource</code> - クローズされた<code>resource</code>型を表します（例：<code>fclose()</code>を通じたファイルハンドル）。</p>
+<p><code>TAssertionFalsy</code> - ブールコンテキストで計算されたときにfalseに還元される任意の値を表します。これはアサーションに使用されます。</p>
+<p><code>TConditional</code> - phpdocの条件付き戻り値型の内部表現です。例えば ($param1 is int ? int : string)</p>
+<p><code>TIntMask</code> - そのパラメータのビットマスク組み合わせの結果である型を表します。<code>int-mask&lt;1, 2, 4&gt;</code>は<code>1|2|3|4|5|6|7</code>に対応します。</p>
+<p><code>TIntMaskOf</code> - 上記と同様ですが、コード内の定数への参照と共に使用されます。<code>int-mask-of&lt;MyClass::CLASS_CONSTANT_*&gt;</code>は、1、2、4の3つの定数がある場合、<code>1|2|3|4|5|6|7</code>に対応します。</p>
+<p><code>TKeyOf</code> - 配列のオフセットを表します（例：<code>key-of&lt;MyClass::CLASS_CONSTANT&gt;</code>）。</p>
+<p><code>TValueOf</code> - 配列または列挙型の値を表します（例：<code>value-of&lt;MyClass::CLASS_CONSTANT&gt;</code>）。</p>
+<p><code>TTemplateIndexedAccess</code> - ドキュメント化予定</p>
+<p><code>TTemplateKeyOf</code> - 配列の型がテンプレートの場合にTKeyOfを使用するときに使用される型を表します。</p>
+<p><code>TTemplateValueOf</code> - 配列または列挙型の型がテンプレートの場合にTValueOfを使用するときに使用される型を表します。</p>
+<p><code>TPropertiesOf</code> - クラスのプロパティとその型をキー付き配列として表します（例：<code>properties-of&lt;MyClass&gt;</code>）</p>
+<p><code>TTemplatePropertiesOf</code> - クラスの型がテンプレートの場合にTPropertiesOfを使用するときに使用される型を表します。</p>
+<p><code>TTypeAlias</code> - ドキュメント化予定</p>
+<h3 id="_3">スカラースーパータイプ</h3>
+<p><code>TScalar</code> - <code>scalar</code>スーパータイプを表します（<code>is_scalar</code>チェックの結果にもなり得ます）。この型は<code>float</code>、<code>int</code>、<code>bool</code>、<code>string</code>を包含します。</p>
+<p><code>TEmptyScalar</code> - 空でもある<code>scalar</code>型を表します。</p>
+<p><code>TNonEmptyScalar</code> - 空でない<code>scalar</code>型を表します。</p>
+<h3 id="_4">数値スーパータイプ</h3>
+<p><code>TNumeric</code> - <code>numeric</code>型を表します（<code>is_numeric</code>チェックの結果にもなり得ます）。</p>
+<p><code>TEmptyNumeric</code> - 空でもある<code>numeric</code>型を表します（<code>is_numeric</code>と<code>empty</code>チェックの結果にもなり得ます）。</p>
+<h3 id="_5">スカラー型</h3>
+<p>全てのスカラー型にはリテラルバージョンがあります。例：<code>int</code>対<code>int(5)</code>。</p>
+<h4 id="_6">整数</h4>
+<p><code>TInt</code> - 正確な値が不明な<code>int</code>型を表します。</p>
+<p><code>TLiteralInt</code> - 正確な数値が既知の整数値を表すために使用されます。</p>
+<p><code>TIntRange</code> - 境界のある値を持つintを記述できます（例：<code>int&lt;1, 5&gt;</code>）。</p>
+<h4 id="_7">浮動小数点数</h4>
+<p><code>TFloat</code> - 正確な値が不明な<code>float</code>型を表します。</p>
+<p><code>TLiteralFloat</code> - 正確な数値が既知の浮動小数点値を表すために使用されます。</p>
+<h4 id="_8">ブール値</h4>
+<p><code>TBool</code>、<code>TFalse</code>、<code>TTrue</code></p>
+<p><code>TBool</code> - 正確な値が不明な<code>bool</code>型を表します。</p>
+<p><code>TFalse</code> - <code>false</code>値型を表します。</p>
+<p><code>TTrue</code> - <code>true</code>値型を表します。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** @return string|false    文字列が空の場合はfalse、それ以外はパラメータの最初の文字 */</span>
+<span class="x">function firstChar(string $s) { return empty($s) ? false : $s[0]; }</span>
+</code></pre></div>
+
+<p>ここで、関数はtrueを返すことはありませんが、falseをboolに置き換えなければならない場合、Psalmはtrueを可能な戻り値として考慮しなければなりません。より狭い型を使用することで、次のような無意味なコードを報告できます（https://psalm.dev/r/037291351d）：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">$first = firstChar(&quot;sdf&quot;);</span>
+<span class="x">if (true === $first) {</span>
+<span class="x">  echo &quot;これは実際にはデッドコードです&quot;;</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<h4 id="_9">文字列</h4>
+<p><code>TString</code> - 正確な値が不明な<code>string</code>型を表します。</p>
+<p><code>TNonEmptyString</code> - 空でない文字列を表します。</p>
+<p><code>TNumericString</code> - 数値でもある文字列を表します（例：<code>"5"</code>）。<code>is_string($s) &amp;&amp; is_numeric($s)</code>の結果になり得ます。</p>
+<p><code>TLiteralString</code> - 値が既知の文字列を表すために使用されます。</p>
+<p><code>TClassString</code> - <code>class-string</code>型を表し、有効なPHPクラスを表す文字列を記述するために使用されます。クラスが派生する親タイプは、コンストラクタで指定される場合とされない場合があります。</p>
+<p><code>TLiteralClassString</code> - 特定のクラス文字列を表し、<code>A::class</code>のような式によって生成されます。</p>
+<p><code>TTraitString</code> - <code>trait-string</code>型を表し、有効なPHPトレイトを表す文字列を記述するために使用されます。</p>
+<p><code>TDependentGetClass</code> - get_class($var)によって見つかる完全修飾クラスである文字列の値を表します。</p>
+<p><code>TDependentGetDebugType</code> - get_debug_type($var)によって見つかる型の値である文字列を表します。</p>
+<p><code>TDependentGetType</code> - gettype($var)によって見つかる型の値である文字列を表します。</p>
+<p><code>TCallableString</code> - <code>callable-string</code>型を表し、<code>callable</code>でもある未知の文字列を表すために使用されます。</p>
+<p><code>TSqlSelectString</code> - これは特殊な型で、特にプラグインによる消費のためのものです。</p>
+<p><code>TLowercaseString</code> - 全ての文字が小文字である文字列を表します（<code>strtolower</code>呼び出しの結果にもなり得ます）。</p>
+<p><code>TNonEmptyLowercaseString</code> - 全ての文字が小文字である空でない文字列を表します（<code>strtolower</code>呼び出しの結果にもなり得ます）。</p>
+<p><code>TSingleLetter</code> - 長さが1の文字列を表します。</p>
+<h4 id="_10">スカラークラス定数</h4>
+<p><code>TScalarClassConstant</code> - 値がまだ知られていない可能性のあるクラス定数を表します。</p>
+<h4 id="_11">配列キースーパータイプ</h4>
+<p><code>TArrayKey</code> - <code>array-key</code>型を表し、<code>array</code>のオフセットになり得るものに使用されます。</p>
+<h3 id="_12">配列</h3>
+<p><code>TArray</code> - <code>array&lt;TKey, TValue&gt;</code>形式の単純な配列を表します。両方が共用体型である2つの要素を持つ配列を期待します。</p>
+<p><code>TNonEmptyArray</code> - 上記と同様ですが、空でないことが分かっている配列を表します。</p>
+<p><code>TKeyedArray</code> - 'オブジェクトライク配列'を表します - 既知のキーを持つ配列です。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">$x = [&quot;a&quot; =&gt; 1, &quot;b&quot; =&gt; 2]; // TKeyedArrayです、array{a: int, b: int}</span>
+<span class="x">$y = rand(0, 1) ? [&quot;a&quot; =&gt; null] : [&quot;a&quot; =&gt; 1, &quot;b&quot; =&gt; &quot;b&quot;]; // オプションのキー/値を持つTKeyedArrayです、array{a: ?int, b?: string}</span>
+</code></pre></div>
+
+<p>この型は、リストを表すためにも使用されます（現在非推奨の<code>TList</code>型の代わりに）。</p>
+<p>全ての連想配列がオブジェクトライクとみなされるわけではないことに注意してください。キーが不明な場合、配列は2つの型間のマッピングとして扱われます。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">$a = [];</span>
+<span class="x">foreach (range(1,1) as $_) $a[(string)rand(0,1)] = rand(0,1); // array&lt;string,int&gt;</span>
+</code></pre></div>
+
+<p><code>TCallableKeyedArray</code> - <code>callable</code>でもあるオブジェクトライク配列を表します。</p>
+<p><code>TClassStringMap</code> - 各値の型がその文字列キー値の関数である配列を表します。</p>
+<h3 id="_13">呼び出し可能およびクロージャ</h3>
+<p><code>TCallable</code> - <code>callable</code>型を表します。<code>is_callable</code>チェックの結果になり得ます。
+<code>TClosure</code> - <code>Closure</code>型を表します。</p>
+<p><code>TCallable</code>と<code>TClosure</code>はオプションでパラメータと戻り値の型も定義できます。</p>
+<h3 id="_14">オブジェクトスーパータイプ</h3>
+<p><code>TObject</code> - <code>object</code>型を表します。</p>
+<p><code>TObjectWithProperties</code> - 指定されたメンバー変数を持つオブジェクト（例：<code>object{foo:int, bar:string}</code>）。</p>
+<h3 id="_15">オブジェクト型</h3>
+<p><code>TNamedObject</code> - オブジェクトの型が既知のオブジェクト型を表します（例：<code>Exception</code>、<code>Throwable</code>、<code>Foo\Bar</code>）。</p>
+<p><code>TGenericObject</code> - ジェネリックパラメータを持つオブジェクト型を表します（例：<code>ArrayObject&lt;string, Foo\Bar&gt;</code>）。</p>
+<p><code>TCallableObject</code> - <code>callable</code>でもあるオブジェクトを表します（つまり、<code>__invoke</code>が定義されています）。</p>
+<p><code>TAnonymousClassInstance</code> - 潜在的なメソッドを持つ匿名クラス（つまり<code>new class{}</code>）を表します。</p>
+<h3 id="_16">テンプレート</h3>
+<p><code>TTemplateParam</code> - 以前に<code>@template</code>タグで指定されたテンプレートパラメータを表します。</p>
+<p><code>TTemplateParamClass</code> - 以前に<code>@template</code>タグで指定されたテンプレートパラメータに対応する<code>class-string</code>を表します。</p>
+<h2 id="_17">型オブジェクトインスタンスの作成</h2>
+<p>与えられた型を記述するオブジェクトインスタンスを作成する方法は2つあります。直接newを使用して作成するか、docストリングから宣言的に作成することができます。通常、2番目のオプションを使用したいでしょう。しかし、このデータの構造を理解することは、プラグインに渡される型を理解するのに役立ちます。</p>
+<p>これらのクラスは時々変更されることがあるので、<code>Type::parseString</code>は常により堅牢なオプションになります。</p>
+<h3 id="_18">型オブジェクトインスタンスを直接作成する</h3>
+<p>次の例は、文字列、浮動小数点数、'Foo\Bar\SomeClass'というクラスを表す型を構築します。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">new TLiteralString(&#39;テキスト文字列&#39;)</span>
+<span class="x">new TLiteralFloat(3.142)</span>
+<span class="x">new TNamedObject(&#39;Foo\Bar\SomeClass&#39;)</span>
+</code></pre></div>
+
+<p>Psalm内の型は、利便性のため常に共用体でラップされています。型が期待される場所（プロパティ型、戻り値型、引数型など）のほとんどで、共用体も使用できます。したがって、単一の原子型（TIntなど）を共用体コンテナでラップすることで、他の場所でその型を均一に扱うことができ、以下のような繰り返しのチェックを避けることができます：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">if ($type instanceof Union)</span>
+<span class="x">   foreach ($types-&gt;getTypes() as $atomic)</span>
+<span class="x">      handleAtomic($atomic);</span>
+<span class="x">else handleAtomic($type);</span>
+
+<span class="x">// 共用体コンテナを使用すると、以下のようになります</span>
+<span class="x">foreach ($types-&gt;getTypes() as $atomic)</span>
+<span class="x">   handleAtomic($atomic);</span>
+</code></pre></div>
+
+<p>また、共用体ツリーは常に浅くなります。なぜなら、Psalmは共用体の共用体を単一レベルの共用体に平坦化するからです（<code>((A|B)|(C|D) =&gt; A|B|C|D)</code>）。</p>
+<p>より複雑な型は以下のように構築できます。以下は3つのキーを持つ連想配列を表しています。Psalmはこれを'オブジェクトライク配列'と呼び、'TKeyedArray'クラスで表現します。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">new Union([</span>
+<span class="x">    new TKeyedArray([</span>
+<span class="x">        &#39;key_1&#39; =&gt; new Union([new TString()]),</span>
+<span class="x">        &#39;key_2&#39; =&gt; new Union([new TInt()]),</span>
+<span class="x">        &#39;key_3&#39; =&gt; new Union([new TBool()])])]);</span>
+</code></pre></div>
+
+<p>Typeオブジェクトには、型を自動的に共用体でラップするいくつかの静的ヘルパーメソッドが含まれています。したがって、これはより簡潔に書くことができます：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">new Union([</span>
+<span class="x">    new Type\Atomic\TKeyedArray([</span>
+<span class="x">        &#39;first&#39; =&gt; Type::getInt(),</span>
+<span class="x">        &#39;second&#39; =&gt; Type::getString()])]);</span>
+</code></pre></div>
+
+<p>また、<code>Type::getInt(5)</code>を使用して、リテラル整数値5に対応する共用体型を生成することもできます。</p>
+<h3 id="doc">docストリング型から型オブジェクトインスタンスを作成する</h3>
+<p>これらのインスタンスを作成するもう一つの方法は、静的メソッド<code>parseString</code>を含む<code>Psalm\Type</code>クラスを使用することです。任意のdocストリング型記述をこれに渡すと、対応するオブジェクト表現を返します。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">\Psalm\Type::parseString(&#39;int|null&#39;);</span>
+</code></pre></div>
+
+<p>Psalmが与えられた型をオブジェクトとしてどのように表現するかを知るには、この関数への入力として型を指定し、結果に対して<code>var_dump</code>を呼び出すことで確認できます。</p>
+<h2 id="_19">型の操作</h2>
+<p>型を操作するためのいくつかの一般的な操作があります：</p>
+<h3 id="_20">型の結合</h3>
+<p>2つ以上の型を結合して新しい共用体型を作成するには：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">Type::combineUnionTypes($type1, $type2);</span>
+</code></pre></div>
+
+<h3 id="_21">型の交差</h3>
+<p>2つ以上の型を交差させて新しい交差型を作成するには：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">Type::intersectUnionTypes($type1, $type2);</span>
+</code></pre></div>
+
+<h3 id="_22">型の比較</h3>
+<p>2つの型が互換性があるかどうかを確認するには：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">TypeComparator::isContainedBy($codebase, $type1, $type2);</span>
+</code></pre></div>
+
+<h3 id="_23">型の絞り込み</h3>
+<p>条件に基づいて型を絞り込むには：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">$newType = TypeNarrower::narrowToNotNull($type);</span>
+</code></pre></div>
+
+<h2 id="_24">プラグインでの型の使用</h2>
+<p>プラグインを開発する際、これらの型オブジェクトを使用して、コードの型情報を分析したり操作したりすることができます。例えば：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">public function afterExpressionAnalysis(</span>
+<span class="x">    Expr $expr,</span>
+<span class="x">    Context $context,</span>
+<span class="x">    StatementsSource $statements_source,</span>
+<span class="x">    Codebase $codebase,</span>
+<span class="x">    array &amp;$file_replacements = []</span>
+<span class="x">): ?bool {</span>
+<span class="x">    if ($expr instanceof PhpParser\Node\Expr\Variable</span>
+<span class="x">        &amp;&amp; is_string($expr-&gt;name)</span>
+<span class="x">    ) {</span>
+<span class="x">        $type = $statements_source-&gt;getNodeTypeProvider()-&gt;getType($expr);</span>
+<span class="x">        if ($type instanceof Union &amp;&amp; $type-&gt;hasString()) {</span>
+<span class="x">            // 文字列型を含む変数に対して何かを行う</span>
+<span class="x">        }</span>
+<span class="x">    }</span>
+<span class="x">    return null;</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<p>この例では、変数式を検査し、その型に文字列が含まれているかどうかをチェックしています。</p>
+<p>型システムを深く理解することで、Psalmプラグインの機能を最大限に活用し、より高度な静的解析を実装することができます。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../authoring_plugins/" class="btn btn-neutral float-left" title="プラグインの作成"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../command_line_usage/" class="btn btn-neutral float-right" title="コマンドライン使用法">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../authoring_plugins/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../command_line_usage/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

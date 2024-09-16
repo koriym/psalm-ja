@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/security_analysis/avoiding_false_positives/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>偽陽性を避ける - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u507d\u967d\u6027\u3092\u907f\u3051\u308b";
+        var mkdocs_page_input_path = "security_analysis/avoiding_false_positives.md";
+        var mkdocs_page_url = "/security_analysis/avoiding_false_positives/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">偽陽性を避ける</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">汚染された入力をエスケープする</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">条件付きで汚染された入力をエスケープする</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#html">ユーザー入力のHTMLをサニタイズする</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">関数内の汚染を特殊化する</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">クラス内の汚染を特殊化する</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">汚染パスでファイルを避ける</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">セキュリティ分析</li>
+      <li class="breadcrumb-item active">偽陽性を避ける</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/security_analysis/avoiding_false_positives.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">偽陽性を避ける</h1>
+<p>Psalmのtaint分析を初めて実行すると、多くの偽陽性が表示される場合があります。
+誰も偽陽性は好みません！</p>
+<p>これらを防ぐ方法がいくつかあります：</p>
+<h2 id="_2">汚染された入力をエスケープする</h2>
+<p>一部の操作はデータから汚染を除去します - 例えば、<code>$_GET['name']</code>を<code>htmlentities</code>呼び出しでラップすると、その<code>$_GET</code>呼び出しのクロスサイトスクリプティング攻撃を防ぎます。</p>
+<p>Psalmでは、<code>@psalm-taint-escape &lt;taint-type&gt;</code>アノテーションを使用して汚染を除去できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">echoVar</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$str</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @psalm-taint-escape html</span>
+<span class="sd">     */</span>
+    <span class="nv">$str</span> <span class="o">=</span> <span class="nb">str_replace</span><span class="p">([</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nv">$str</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nv">$str</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">echoVar</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]);</span>
+</code></pre></div>
+
+<h2 id="_3">条件付きで汚染された入力をエスケープする</h2>
+<p>前の例を少し修正したバージョンでは、条件を使用して戻り値が安全とみなされるかどうかを判断します。関数の引数<code>$escape</code>がtrueの場合にのみ、対応する<code>@psalm-taint-escape</code>アノテーションが汚染タイプ<code>html</code>に適用されます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * @param string $str</span>
+<span class="sd"> * @param bool $escape</span>
+<span class="sd"> * @psalm-taint-escape ($escape is true ? &#39;html&#39; : null)</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">processVar</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$str</span><span class="p">,</span> <span class="nx">bool</span> <span class="nv">$escape</span> <span class="o">=</span> <span class="k">true</span><span class="p">)</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$escape</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nv">$str</span> <span class="o">=</span> <span class="nb">str_replace</span><span class="p">([</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nv">$str</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nv">$str</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nx">processVar</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span> <span class="k">false</span><span class="p">);</span> <span class="c1">// 汚染されたHTMLを検出</span>
+<span class="k">echo</span> <span class="nx">processVar</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span> <span class="k">true</span><span class="p">);</span>  <span class="c1">// 安全とみなされる</span>
+</code></pre></div>
+
+<h2 id="html">ユーザー入力のHTMLをサニタイズする</h2>
+<p>可能な限り、アプリケーションはユーザー入力をHTMLブロックではなく、個別のテキストフィールドとして受け入れて保存するように設計されるべきです。これにより、ユーザー入力を<code>htmlspecialchars</code>や<code>htmlentities</code>を使用して完全にエスケープできます。HTMLユーザー入力が必要な場合（例：<a href="https://www.tiny.cloud/">TinyMCE</a>のようなリッチテキストエディタ）、リスクのあるHTMLをフィルタリングするために特別に設計されたライブラリの使用を強く推奨します。例えば、<a href="http://htmlpurifier.org/docs">HTML Purifier</a>は次のように使用できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * @psalm-taint-escape html</span>
+<span class="sd"> * @psalm-taint-escape has_quotes</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">sanitizeHTML</span><span class="p">(</span><span class="nv">$html</span><span class="p">){</span>
+    <span class="nv">$purifier</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">HTMLPurifier</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nv">$purifier</span><span class="o">-&gt;</span><span class="na">purify</span><span class="p">(</span><span class="nv">$html</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="_4">関数内の汚染を特殊化する</h2>
+<p>関数、メソッド、クラスに対しては、<code>@psalm-taint-specialize</code>アノテーションを使用できます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">takesInput</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nb">htmlentities</span><span class="p">(</span><span class="nx">takesInput</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]));</span>
+<span class="k">echo</span> <span class="nx">takesInput</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">);</span> <span class="c1">// Psalmはここで汚染されたHTMLを検出します</span>
+</code></pre></div>
+
+<p><code>@psalm-taint-specialize</code>アノテーションを追加することで問題が解決します。これは、関数の各呼び出しを別々に扱うようPsalmに指示します。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * @psalm-taint-specialize</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">takesInput</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nb">htmlentities</span><span class="p">(</span><span class="nx">takesInput</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]));</span>
+<span class="k">echo</span> <span class="nx">takesInput</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">);</span> <span class="c1">// エラーなし</span>
+</code></pre></div>
+
+<p>特殊化された関数やメソッドは、依然として汚染された入力を追跡します：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * @psalm-taint-specialize</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">takesInput</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nx">takesInput</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]);</span> <span class="c1">// Psalmは汚染された入力を検出します</span>
+<span class="k">echo</span> <span class="nx">takesInput</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">);</span> <span class="c1">// エラーなし</span>
+</code></pre></div>
+
+<p>ここでは、関数の汚染状態が完全に関数への入力に依存していることをPsalmに伝えています。</p>
+<p><a href="https://psalm.dev/articles/immutability-and-beyond">Psalmにおける不変性</a>に精通している場合、この一般的な考え方は馴染みがあるはずです。純粋関数は出力が完全に入力に依存するものだからです。驚くべきことではありませんが、<code>@psalm-pure</code>とマークされたすべての関数も、入力に基づいて出力の汚染状態を特殊化します：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * @psalm-pure</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">takesInput</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nb">htmlentities</span><span class="p">(</span><span class="nx">takesInput</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]));</span>
+<span class="k">echo</span> <span class="nx">takesInput</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">);</span> <span class="c1">// エラーなし</span>
+</code></pre></div>
+
+<h2 id="_5">クラス内の汚染を特殊化する</h2>
+<p>関数呼び出しで汚染を特殊化できるのと同様に、汚染されたプロパティも特定のクラスに特殊化できます。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">User</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * @psalm-taint-specialize</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">echoUserName</span><span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span> <span class="c1">// エラー、汚染された入力を検出</span>
+<span class="p">}</span>
+
+<span class="nv">$user1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="s2">&quot;Keith&quot;</span><span class="p">);</span>
+<span class="nv">$user2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]);</span>
+<span class="nx">echoUserName</span><span class="p">(</span><span class="nv">$user1</span><span class="p">);</span>
+</code></pre></div>
+
+<p>クラスに<code>@psalm-taint-specialize</code>を追加することで問題が解決します。</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * @psalm-taint-specialize</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">User</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * @psalm-taint-specialize</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">echoUserName</span><span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span> <span class="c1">// エラーなし</span>
+<span class="p">}</span>
+
+<span class="nv">$user1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="s2">&quot;Keith&quot;</span><span class="p">);</span>
+<span class="nv">$user2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]);</span>
+<span class="nx">echoUserName</span><span class="p">(</span><span class="nv">$user1</span><span class="p">);</span>
+</code></pre></div>
+
+<p>そして、これは一種の純粋性の強制なので、<code>@psalm-immutable</code>も使用できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * @psalm-immutable</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">User</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * @psalm-taint-specialize</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">echoUserName</span><span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span> <span class="c1">// エラーなし</span>
+<span class="p">}</span>
+
+<span class="nv">$user1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="s2">&quot;Keith&quot;</span><span class="p">);</span>
+<span class="nv">$user2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]);</span>
+<span class="nx">echoUserName</span><span class="p">(</span><span class="nv">$user1</span><span class="p">);</span>
+</code></pre></div>
+
+<h2 id="_6">汚染パスでファイルを避ける</h2>
+<p>特定のファイルやディレクトリを通過する汚染パスに興味がないことをPsalmに伝えることもできます。Psalm設定で以下のように指定します：</p>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nt">&lt;taintAnalysis&gt;</span>
+<span class="w">        </span><span class="nt">&lt;ignoreFiles&gt;</span>
+<span class="w">            </span><span class="nt">&lt;directory</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tests&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/ignoreFiles&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/taintAnalysis&gt;</span>
+</code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../custom_taint_sinks/" class="btn btn-neutral float-left" title="カスタム汚染シンク"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../contributing/" class="btn btn-neutral float-right" title="貢献">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../custom_taint_sinks/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../contributing/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

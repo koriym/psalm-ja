@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/running_psalm/issues/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>問題の種類 - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u554f\u984c\u306e\u7a2e\u985e";
+        var mkdocs_page_input_path = "running_psalm/issues.md";
+        var mkdocs_page_url = "/running_psalm/issues/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >エラーの扱い</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">問題の種類</a>
+    <ul class="current">
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Psalmの実行</li>
+          <li class="breadcrumb-item">エラーの扱い</li>
+      <li class="breadcrumb-item active">問題の種類</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/running_psalm/issues.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">問題の種類</h1>
+<ul>
+<li><a href="issues/AbstractInstantiation.md">AbstractInstantiation</a></li>
+<li><a href="AbstractMethodCall/">AbstractMethodCall</a></li>
+<li><a href="AmbiguousConstantInheritance/">AmbiguousConstantInheritance</a></li>
+<li><a href="ArgumentTypeCoercion/">ArgumentTypeCoercion</a></li>
+<li><a href="AssignmentToVoid/">AssignmentToVoid</a></li>
+<li><a href="issues/CheckType.md">CheckType</a></li>
+<li><a href="CircularReference/">CircularReference</a></li>
+<li><a href="ComplexFunction/">ComplexFunction</a></li>
+<li><a href="issues/ComplexMethod.md">ComplexMethod</a></li>
+<li><a href="ConfigIssue/">ConfigIssue</a></li>
+<li><a href="ConflictingReferenceConstraint/">ConflictingReferenceConstraint</a></li>
+<li><a href="issues/ConstantDeclarationInTrait.md">ConstantDeclarationInTrait</a></li>
+<li><a href="ConstructorSignatureMismatch/">ConstructorSignatureMismatch</a></li>
+<li><a href="ContinueOutsideLoop/">ContinueOutsideLoop</a></li>
+<li><a href="DeprecatedClass/">DeprecatedClass</a></li>
+<li><a href="issues/DeprecatedConstant.md">DeprecatedConstant</a></li>
+<li><a href="issues/DeprecatedFunction.md">DeprecatedFunction</a></li>
+<li><a href="DeprecatedInterface/">DeprecatedInterface</a></li>
+<li><a href="issues/DeprecatedMethod.md">DeprecatedMethod</a></li>
+<li><a href="DeprecatedProperty/">DeprecatedProperty</a></li>
+<li><a href="issues/DeprecatedTrait.md">DeprecatedTrait</a></li>
+<li><a href="issues/DirectConstructorCall.md">DirectConstructorCall</a></li>
+<li><a href="issues/DocblockTypeContradiction.md">DocblockTypeContradiction</a></li>
+<li><a href="DuplicateArrayKey/">DuplicateArrayKey</a></li>
+<li><a href="DuplicateClass/">DuplicateClass</a></li>
+<li><a href="issues/DuplicateConstant.md">DuplicateConstant</a></li>
+<li><a href="issues/DuplicateEnumCase.md">DuplicateEnumCase</a></li>
+<li><a href="DuplicateEnumCaseValue/">DuplicateEnumCaseValue</a></li>
+<li><a href="issues/DuplicateFunction.md">DuplicateFunction</a></li>
+<li><a href="DuplicateMethod/">DuplicateMethod</a></li>
+<li><a href="issues/DuplicateParam.md">DuplicateParam</a></li>
+<li><a href="DuplicateProperty/">DuplicateProperty</a></li>
+<li><a href="issues/EmptyArrayAccess.md">EmptyArrayAccess</a></li>
+<li><a href="ExtensionRequirementViolation/">ExtensionRequirementViolation</a></li>
+<li><a href="FalsableReturnStatement/">FalsableReturnStatement</a></li>
+<li><a href="FalseOperand/">FalseOperand</a></li>
+<li><a href="ForbiddenCode/">ForbiddenCode</a></li>
+<li><a href="issues/IfThisIsMismatch.md">IfThisIsMismatch</a></li>
+<li><a href="issues/ImplementationRequirementViolation.md">ImplementationRequirementViolation</a></li>
+<li><a href="ImplementedParamTypeMismatch/">ImplementedParamTypeMismatch</a></li>
+<li><a href="ImplementedReturnTypeMismatch/">ImplementedReturnTypeMismatch</a></li>
+<li><a href="issues/ImplicitToStringCast.md">ImplicitToStringCast</a></li>
+<li><a href="ImpureByReferenceAssignment/">ImpureByReferenceAssignment</a></li>
+<li><a href="issues/ImpureFunctionCall.md">ImpureFunctionCall</a></li>
+<li><a href="issues/ImpureMethodCall.md">ImpureMethodCall</a></li>
+<li><a href="ImpurePropertyAssignment/">ImpurePropertyAssignment</a></li>
+<li><a href="ImpurePropertyFetch/">ImpurePropertyFetch</a></li>
+<li><a href="ImpureStaticProperty/">ImpureStaticProperty</a></li>
+<li><a href="issues/ImpureStaticVariable.md">ImpureStaticVariable</a></li>
+<li><a href="ImpureVariable/">ImpureVariable</a></li>
+<li><a href="issues/InaccessibleClassConstant.md">InaccessibleClassConstant</a></li>
+<li><a href="InaccessibleMethod/">InaccessibleMethod</a></li>
+<li><a href="InaccessibleProperty/">InaccessibleProperty</a></li>
+<li><a href="InheritorViolation/">InheritorViolation</a></li>
+<li><a href="InterfaceInstantiation/">InterfaceInstantiation</a></li>
+<li><a href="InternalClass/">InternalClass</a></li>
+<li><a href="InternalMethod/">InternalMethod</a></li>
+<li><a href="issues/InternalProperty.md">InternalProperty</a></li>
+<li><a href="InvalidArgument/">InvalidArgument</a></li>
+<li><a href="issues/InvalidArrayAccess.md">InvalidArrayAccess</a></li>
+<li><a href="issues/InvalidArrayAssignment.md">InvalidArrayAssignment</a></li>
+<li><a href="InvalidArrayOffset/">InvalidArrayOffset</a></li>
+<li><a href="issues/InvalidAttribute.md">InvalidAttribute</a></li>
+<li><a href="issues/InvalidCast.md">InvalidCast</a></li>
+<li><a href="issues/InvalidCatch.md">InvalidCatch</a></li>
+<li><a href="issues/InvalidClass.md">InvalidClass</a></li>
+<li><a href="InvalidClassConstantType/">InvalidClassConstantType</a></li>
+<li><a href="InvalidClone/">InvalidClone</a></li>
+<li><a href="issues/InvalidConstantAssignmentValue.md">InvalidConstantAssignmentValue</a></li>
+<li><a href="InvalidDocblock/">InvalidDocblock</a></li>
+<li><a href="issues/InvalidDocblockParamName.md">InvalidDocblockParamName</a></li>
+<li><a href="InvalidEnumBackingType/">InvalidEnumBackingType</a></li>
+<li><a href="issues/InvalidEnumCaseValue.md">InvalidEnumCaseValue</a></li>
+<li><a href="InvalidEnumMethod/">InvalidEnumMethod</a></li>
+<li><a href="InvalidExtendClass/">InvalidExtendClass</a></li>
+<li><a href="issues/InvalidFalsableReturnType.md">InvalidFalsableReturnType</a></li>
+<li><a href="issues/InvalidFunctionCall.md">InvalidFunctionCall</a></li>
+<li><a href="InvalidGlobal/">InvalidGlobal</a></li>
+<li><a href="issues/InvalidInterfaceImplementation.md">InvalidInterfaceImplementation</a></li>
+<li><a href="InvalidIterator/">InvalidIterator</a></li>
+<li><a href="issues/InvalidLiteralArgument.md">InvalidLiteralArgument</a></li>
+<li><a href="issues/InvalidMethodCall.md">InvalidMethodCall</a></li>
+<li><a href="InvalidNamedArgument/">InvalidNamedArgument</a></li>
+<li><a href="issues/InvalidNullableReturnType.md">InvalidNullableReturnType</a></li>
+<li><a href="InvalidOperand/">InvalidOperand</a></li>
+<li><a href="issues/InvalidOverride.md">InvalidOverride</a></li>
+<li><a href="issues/InvalidParamDefault.md">InvalidParamDefault</a></li>
+<li><a href="InvalidParent/">InvalidParent</a></li>
+<li><a href="issues/InvalidPassByReference.md">InvalidPassByReference</a></li>
+<li><a href="InvalidPropertyAssignment/">InvalidPropertyAssignment</a></li>
+<li><a href="InvalidPropertyAssignmentValue/">InvalidPropertyAssignmentValue</a></li>
+<li><a href="InvalidPropertyFetch/">InvalidPropertyFetch</a></li>
+<li><a href="issues/InvalidReturnStatement.md">InvalidReturnStatement</a></li>
+<li><a href="issues/InvalidReturnType.md">InvalidReturnType</a></li>
+<li><a href="InvalidScalarArgument/">InvalidScalarArgument</a></li>
+<li><a href="issues/InvalidScope.md">InvalidScope</a></li>
+<li><a href="issues/InvalidStaticInvocation.md">InvalidStaticInvocation</a></li>
+<li><a href="InvalidStringClass/">InvalidStringClass</a></li>
+<li><a href="issues/InvalidTemplateParam.md">InvalidTemplateParam</a></li>
+<li><a href="issues/InvalidThrow.md">InvalidThrow</a></li>
+<li><a href="InvalidToString/">InvalidToString</a></li>
+<li><a href="InvalidTraversableImplementation/">InvalidTraversableImplementation</a></li>
+<li><a href="issues/InvalidTypeImport.md">InvalidTypeImport</a></li>
+<li><a href="issues/LessSpecificClassConstantType.md">LessSpecificClassConstantType</a></li>
+<li><a href="LessSpecificImplementedReturnType/">LessSpecificImplementedReturnType</a></li>
+<li><a href="LessSpecificReturnStatement/">LessSpecificReturnStatement</a></li>
+<li><a href="LessSpecificReturnType/">LessSpecificReturnType</a></li>
+<li><a href="issues/LoopInvalidation.md">LoopInvalidation</a></li>
+<li><a href="issues/MethodSignatureMismatch.md">MethodSignatureMismatch</a></li>
+<li><a href="MethodSignatureMustOmitReturnType/">MethodSignatureMustOmitReturnType</a></li>
+<li><a href="MethodSignatureMustProvideReturnType/">MethodSignatureMustProvideReturnType</a></li>
+<li><a href="MismatchingDocblockParamType/">MismatchingDocblockParamType</a></li>
+<li><a href="issues/MismatchingDocblockPropertyType.md">MismatchingDocblockPropertyType</a></li>
+<li><a href="MismatchingDocblockReturnType/">MismatchingDocblockReturnType</a></li>
+<li><a href="issues/MissingClosureParamType.md">MissingClosureParamType</a></li>
+<li><a href="MissingClosureReturnType/">MissingClosureReturnType</a></li>
+<li><a href="issues/MissingConstructor.md">MissingConstructor</a></li>
+<li><a href="MissingDependency/">MissingDependency</a></li>
+<li><a href="MissingDocblockType/">MissingDocblockType</a></li>
+<li><a href="issues/MissingFile.md">MissingFile</a></li>
+<li><a href="MissingImmutableAnnotation/">MissingImmutableAnnotation</a></li>
+<li><a href="issues/MissingOverrideAttribute.md">MissingOverrideAttribute</a></li>
+<li><a href="issues/MissingParamType.md">MissingParamType</a></li>
+<li><a href="MissingPropertyType/">MissingPropertyType</a></li>
+<li><a href="issues/MissingReturnType.md">MissingReturnType</a></li>
+<li><a href="MissingTemplateParam/">MissingTemplateParam</a></li>
+<li><a href="issues/MissingThrowsDocblock.md">MissingThrowsDocblock</a></li>
+<li><a href="MixedArgument/">MixedArgument</a></li>
+<li><a href="issues/MixedArgumentTypeCoercion.md">MixedArgumentTypeCoercion</a></li>
+<li><a href="MixedArrayAccess/">MixedArrayAccess</a></li>
+<li><a href="MixedArrayAssignment/">MixedArrayAssignment</a></li>
+<li><a href="MixedArrayOffset/">MixedArrayOffset</a></li>
+<li><a href="issues/MixedArrayTypeCoercion.md">MixedArrayTypeCoercion</a></li>
+<li><a href="issues/MixedAssignment.md">MixedAssignment</a></li>
+<li><a href="issues/MixedClone.md">MixedClone</a></li>
+<li><a href="MixedFunctionCall/">MixedFunctionCall</a></li>
+<li><a href="issues/MixedMethodCall.md">MixedMethodCall</a></li>
+<li><a href="issues/MixedOperand.md">MixedOperand</a></li>
+<li><a href="MixedPropertyAssignment/">MixedPropertyAssignment</a></li>
+<li><a href="issues/MixedPropertyFetch.md">MixedPropertyFetch</a></li>
+<li><a href="issues/MixedPropertyTypeCoercion.md">MixedPropertyTypeCoercion</a></li>
+<li><a href="MixedReturnStatement/">MixedReturnStatement</a></li>
+<li><a href="MixedReturnTypeCoercion/">MixedReturnTypeCoercion</a></li>
+<li><a href="MixedStringOffsetAssignment/">MixedStringOffsetAssignment</a></li>
+<li><a href="issues/MoreSpecificImplementedParamType.md">MoreSpecificImplementedParamType</a></li>
+<li><a href="issues/MoreSpecificReturnType.md">MoreSpecificReturnType</a></li>
+<li><a href="MutableDependency/">MutableDependency</a></li>
+<li><a href="NamedArgumentNotAllowed/">NamedArgumentNotAllowed</a></li>
+<li><a href="issues/NoEnumProperties.md">NoEnumProperties</a></li>
+<li><a href="NoInterfaceProperties/">NoInterfaceProperties</a></li>
+<li><a href="issues/NonInvariantDocblockPropertyType.md">NonInvariantDocblockPropertyType</a></li>
+<li><a href="NonInvariantPropertyType/">NonInvariantPropertyType</a></li>
+<li><a href="NonStaticSelfCall/">NonStaticSelfCall</a></li>
+<li><a href="issues/NonVariableReferenceReturn.md">NonVariableReferenceReturn</a></li>
+<li><a href="NoValue/">NoValue</a></li>
+<li><a href="issues/NullableReturnStatement.md">NullableReturnStatement</a></li>
+<li><a href="NullArgument/">NullArgument</a></li>
+<li><a href="NullArrayAccess/">NullArrayAccess</a></li>
+<li><a href="issues/NullArrayOffset.md">NullArrayOffset</a></li>
+<li><a href="NullFunctionCall/">NullFunctionCall</a></li>
+<li><a href="issues/NullIterator.md">NullIterator</a></li>
+<li><a href="issues/NullOperand.md">NullOperand</a></li>
+<li><a href="issues/NullPropertyAssignment.md">NullPropertyAssignment</a></li>
+<li><a href="issues/NullPropertyFetch.md">NullPropertyFetch</a></li>
+<li><a href="issues/NullReference.md">NullReference</a></li>
+<li><a href="OverriddenFinalConstant/">OverriddenFinalConstant</a></li>
+<li><a href="issues/OverriddenInterfaceConstant.md">OverriddenInterfaceConstant</a></li>
+<li><a href="OverriddenMethodAccess/">OverriddenMethodAccess</a></li>
+<li><a href="OverriddenPropertyAccess/">OverriddenPropertyAccess</a></li>
+<li><a href="ParadoxicalCondition/">ParadoxicalCondition</a></li>
+<li><a href="ParamNameMismatch/">ParamNameMismatch</a></li>
+<li><a href="ParentNotFound/">ParentNotFound</a></li>
+<li><a href="ParseError/">ParseError</a></li>
+<li><a href="PluginIssue/">PluginIssue</a></li>
+<li><a href="PossibleRawObjectIteration/">PossibleRawObjectIteration</a></li>
+<li><a href="issues/PossiblyFalseArgument.md">PossiblyFalseArgument</a></li>
+<li><a href="PossiblyFalseIterator/">PossiblyFalseIterator</a></li>
+<li><a href="PossiblyFalseOperand/">PossiblyFalseOperand</a></li>
+<li><a href="PossiblyFalsePropertyAssignmentValue/">PossiblyFalsePropertyAssignmentValue</a></li>
+<li><a href="issues/PossiblyFalseReference.md">PossiblyFalseReference</a></li>
+<li><a href="issues/PossiblyInvalidArgument.md">PossiblyInvalidArgument</a></li>
+<li><a href="PossiblyInvalidArrayAccess/">PossiblyInvalidArrayAccess</a></li>
+<li><a href="issues/PossiblyInvalidArrayAssignment.md">PossiblyInvalidArrayAssignment</a></li>
+<li><a href="PossiblyInvalidArrayOffset/">PossiblyInvalidArrayOffset</a></li>
+<li><a href="issues/PossiblyInvalidCast.md">PossiblyInvalidCast</a></li>
+<li><a href="PossiblyInvalidClone/">PossiblyInvalidClone</a></li>
+<li><a href="issues/PossiblyInvalidDocblockTag.md">PossiblyInvalidDocblockTag</a></li>
+<li><a href="issues/PossiblyInvalidFunctionCall.md">PossiblyInvalidFunctionCall</a></li>
+<li><a href="PossiblyInvalidIterator/">PossiblyInvalidIterator</a></li>
+<li><a href="PossiblyInvalidMethodCall/">PossiblyInvalidMethodCall</a></li>
+<li><a href="PossiblyInvalidOperand/">PossiblyInvalidOperand</a></li>
+<li><a href="issues/PossiblyInvalidPropertyAssignment.md">PossiblyInvalidPropertyAssignment</a></li>
+<li><a href="PossiblyInvalidPropertyAssignmentValue/">PossiblyInvalidPropertyAssignmentValue</a></li>
+<li><a href="issues/PossiblyInvalidPropertyFetch.md">PossiblyInvalidPropertyFetch</a></li>
+<li><a href="PossiblyNullArgument/">PossiblyNullArgument</a></li>
+<li><a href="PossiblyNullArrayAccess/">PossiblyNullArrayAccess</a></li>
+<li><a href="PossiblyNullArrayAssignment/">PossiblyNullArrayAssignment</a></li>
+<li><a href="PossiblyNullArrayOffset/">PossiblyNullArrayOffset</a></li>
+<li><a href="PossiblyNullFunctionCall/">PossiblyNullFunctionCall</a></li>
+<li><a href="issues/PossiblyNullIterator.md">PossiblyNullIterator</a></li>
+<li><a href="issues/PossiblyNullOperand.md">PossiblyNullOperand</a></li>
+<li><a href="issues/PossiblyNullPropertyAssignment.md">PossiblyNullPropertyAssignment</a></li>
+<li><a href="issues/PossiblyNullPropertyAssignmentValue.md">PossiblyNullPropertyAssignmentValue</a></li>
+<li><a href="PossiblyNullPropertyFetch/">PossiblyNullPropertyFetch</a></li>
+<li><a href="PossiblyNullReference/">PossiblyNullReference</a></li>
+<li><a href="issues/PossiblyUndefinedArrayOffset.md">PossiblyUndefinedArrayOffset</a></li>
+<li><a href="issues/PossiblyUndefinedGlobalVariable.md">PossiblyUndefinedGlobalVariable</a></li>
+<li><a href="issues/PossiblyUndefinedIntArrayOffset.md">PossiblyUndefinedIntArrayOffset</a></li>
+<li><a href="PossiblyUndefinedMethod/">PossiblyUndefinedMethod</a></li>
+<li><a href="PossiblyUndefinedStringArrayOffset/">PossiblyUndefinedStringArrayOffset</a></li>
+<li><a href="issues/PossiblyUndefinedVariable.md">PossiblyUndefinedVariable</a></li>
+<li><a href="PossiblyUnusedMethod/">PossiblyUnusedMethod</a></li>
+<li><a href="issues/PossiblyUnusedParam.md">PossiblyUnusedParam</a></li>
+<li><a href="issues/PossiblyUnusedProperty.md">PossiblyUnusedProperty</a></li>
+<li><a href="PossiblyUnusedReturnValue/">PossiblyUnusedReturnValue</a></li>
+<li><a href="issues/PrivateFinalMethod.md">PrivateFinalMethod</a></li>
+<li><a href="PropertyNotSetInConstructor/">PropertyNotSetInConstructor</a></li>
+<li><a href="PropertyTypeCoercion/">PropertyTypeCoercion</a></li>
+<li><a href="RawObjectIteration/">RawObjectIteration</a></li>
+<li><a href="RedundantCast/">RedundantCast</a></li>
+<li><a href="RedundantCastGivenDocblockType/">RedundantCastGivenDocblockType</a></li>
+<li><a href="RedundantCondition/">RedundantCondition</a></li>
+<li><a href="issues/RedundantConditionGivenDocblockType.md">RedundantConditionGivenDocblockType</a></li>
+<li><a href="RedundantFlag/">RedundantFlag</a></li>
+<li><a href="RedundantFunctionCall/">RedundantFunctionCall</a></li>
+<li><a href="RedundantFunctionCallGivenDocblockType/">RedundantFunctionCallGivenDocblockType</a></li>
+<li><a href="issues/RedundantIdentityWithTrue.md">RedundantIdentityWithTrue</a></li>
+<li><a href="RedundantPropertyInitializationCheck/">RedundantPropertyInitializationCheck</a></li>
+<li><a href="ReferenceConstraintViolation/">ReferenceConstraintViolation</a></li>
+<li><a href="ReferenceReusedFromConfusingScope/">ReferenceReusedFromConfusingScope</a></li>
+<li><a href="ReservedWord/">ReservedWord</a></li>
+<li><a href="RiskyCast/">RiskyCast</a></li>
+<li><a href="RiskyTruthyFalsyComparison/">RiskyTruthyFalsyComparison</a></li>
+<li><a href="issues/StringIncrement.md">StringIncrement</a></li>
+<li><a href="issues/TaintedCallable.md">TaintedCallable</a></li>
+<li><a href="TaintedCookie/">TaintedCookie</a></li>
+<li><a href="issues/TaintedCustom.md">TaintedCustom</a></li>
+<li><a href="TaintedEval/">TaintedEval</a></li>
+<li><a href="TaintedExtract/">TaintedExtract</a></li>
+<li><a href="TaintedFile/">TaintedFile</a></li>
+<li><a href="issues/TaintedHeader.md">TaintedHeader</a></li>
+<li><a href="issues/TaintedHtml.md">TaintedHtml</a></li>
+<li><a href="TaintedInclude/">TaintedInclude</a></li>
+<li><a href="issues/TaintedInput.md">TaintedInput</a></li>
+<li><a href="TaintedLdap/">TaintedLdap</a></li>
+<li><a href="issues/TaintedShell.md">TaintedShell</a></li>
+<li><a href="issues/TaintedSleep.md">TaintedSleep</a></li>
+<li><a href="issues/TaintedSql.md">TaintedSql</a></li>
+<li><a href="issues/TaintedSSRF.md">TaintedSSRF</a></li>
+<li><a href="issues/TaintedSystemSecret.md">TaintedSystemSecret</a></li>
+<li><a href="issues/TaintedTextWithQuotes.md">TaintedTextWithQuotes</a></li>
+<li><a href="issues/TaintedUnserialize.md">TaintedUnserialize</a></li>
+<li><a href="TaintedUserSecret/">TaintedUserSecret</a></li>
+<li><a href="issues/TaintedXpath.md">TaintedXpath</a></li>
+<li><a href="TooFewArguments/">TooFewArguments</a></li>
+<li><a href="TooManyArguments/">TooManyArguments</a></li>
+<li><a href="TooManyTemplateParams/">TooManyTemplateParams</a></li>
+<li><a href="issues/Trace.md">Trace</a></li>
+<li><a href="TraitMethodSignatureMismatch/">TraitMethodSignatureMismatch</a></li>
+<li><a href="TypeDoesNotContainNull/">TypeDoesNotContainNull</a></li>
+<li><a href="TypeDoesNotContainType/">TypeDoesNotContainType</a></li>
+<li><a href="UncaughtThrowInGlobalScope/">UncaughtThrowInGlobalScope</a></li>
+<li><a href="UndefinedAttributeClass/">UndefinedAttributeClass</a></li>
+<li><a href="UndefinedClass/">UndefinedClass</a></li>
+<li><a href="UndefinedConstant/">UndefinedConstant</a></li>
+<li><a href="UndefinedDocblockClass/">UndefinedDocblockClass</a></li>
+<li><a href="UndefinedFunction/">UndefinedFunction</a></li>
+<li><a href="UndefinedGlobalVariable/">UndefinedGlobalVariable</a></li>
+<li><a href="UndefinedInterface/">UndefinedInterface</a></li>
+<li><a href="issues/UndefinedInterfaceMethod.md">UndefinedInterfaceMethod</a></li>
+<li><a href="UndefinedMagicMethod/">UndefinedMagicMethod</a></li>
+<li><a href="UndefinedMagicPropertyAssignment/">UndefinedMagicPropertyAssignment</a></li>
+<li><a href="UndefinedMagicPropertyFetch/">UndefinedMagicPropertyFetch</a></li>
+<li><a href="issues/UndefinedMethod.md">UndefinedMethod</a></li>
+<li><a href="UndefinedPropertyAssignment/">UndefinedPropertyAssignment</a></li>
+<li><a href="UndefinedPropertyFetch/">UndefinedPropertyFetch</a></li>
+<li><a href="UndefinedThisPropertyAssignment/">UndefinedThisPropertyAssignment</a></li>
+<li><a href="issues/UndefinedThisPropertyFetch.md">UndefinedThisPropertyFetch</a></li>
+<li><a href="UndefinedTrace/">UndefinedTrace</a></li>
+<li><a href="UndefinedTrait/">UndefinedTrait</a></li>
+<li><a href="UndefinedVariable/">UndefinedVariable</a></li>
+<li><a href="issues/UnevaluatedCode.md">UnevaluatedCode</a></li>
+<li><a href="issues/UnhandledMatchCondition.md">UnhandledMatchCondition</a></li>
+<li><a href="UnimplementedAbstractMethod/">UnimplementedAbstractMethod</a></li>
+<li><a href="issues/UnimplementedInterfaceMethod.md">UnimplementedInterfaceMethod</a></li>
+<li><a href="UninitializedProperty/">UninitializedProperty</a></li>
+<li><a href="UnnecessaryVarAnnotation/">UnnecessaryVarAnnotation</a></li>
+<li><a href="issues/UnrecognizedExpression.md">UnrecognizedExpression</a></li>
+<li><a href="UnrecognizedStatement/">UnrecognizedStatement</a></li>
+<li><a href="issues/UnresolvableConstant.md">UnresolvableConstant</a></li>
+<li><a href="issues/UnresolvableInclude.md">UnresolvableInclude</a></li>
+<li><a href="issues/UnsafeGenericInstantiation.md">UnsafeGenericInstantiation</a></li>
+<li><a href="issues/UnsafeInstantiation.md">UnsafeInstantiation</a></li>
+<li><a href="issues/UnsupportedPropertyReferenceUsage.md">UnsupportedPropertyReferenceUsage</a></li>
+<li><a href="issues/UnsupportedReferenceUsage.md">UnsupportedReferenceUsage</a></li>
+<li><a href="issues/UnusedBaselineEntry.md">UnusedBaselineEntry</a></li>
+<li><a href="UnusedClass/">UnusedClass</a></li>
+<li><a href="UnusedClosureParam/">UnusedClosureParam</a></li>
+<li><a href="UnusedConstructor/">UnusedConstructor</a></li>
+<li><a href="issues/UnusedDocblockParam.md">UnusedDocblockParam</a></li>
+<li><a href="UnusedForeachValue/">UnusedForeachValue</a></li>
+<li><a href="issues/UnusedFunctionCall.md">UnusedFunctionCall</a></li>
+<li><a href="UnusedIssueHandlerSuppression/">UnusedIssueHandlerSuppression</a></li>
+<li><a href="issues/UnusedMethod.md">UnusedMethod</a></li>
+<li><a href="UnusedMethodCall/">UnusedMethodCall</a></li>
+<li><a href="issues/UnusedParam.md">UnusedParam</a></li>
+<li><a href="UnusedProperty/">UnusedProperty</a></li>
+<li><a href="issues/UnusedPsalmSuppress.md">UnusedPsalmSuppress</a></li>
+<li><a href="issues/UnusedReturnValue.md">UnusedReturnValue</a></li>
+<li><a href="issues/UnusedVariable.md">UnusedVariable</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../dealing_with_code_issues/" class="btn btn-neutral float-left" title="コードの問題への対処"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../checking_non_php_files/" class="btn btn-neutral float-right" title="PHP以外のファイルのチェック">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../dealing_with_code_issues/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../checking_non_php_files/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

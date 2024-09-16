@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/annotating_code/templated_annotations/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>テンプレートアノテーション - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u30c6\u30f3\u30d7\u30ec\u30fc\u30c8\u30a2\u30ce\u30c6\u30fc\u30b7\u30e7\u30f3";
+        var mkdocs_page_input_path = "annotating_code/templated_annotations.md";
+        var mkdocs_page_url = "/annotating_code/templated_annotations/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../type_syntax/union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../type_syntax/atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../type_syntax/intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">テンプレートアノテーション</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#template-psalm-template">@template, @psalm-template</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">注意</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#param-class-stringt">@param class-string&lt;T&gt;</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">テンプレートの継承</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">テンプレートの制約</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">テンプレートの共変性</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">不変性についてはどうでしょうか？</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">ビルトインのテンプレート化されたクラスとインターフェース</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">その他のアノテーション</li>
+      <li class="breadcrumb-item active">テンプレートアノテーション</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/annotating_code/templated_annotations.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">テンプレート化されたアノテーション</h1>
+<p>Docblockを使用すると、コードの動作に関する簡単な情報をPsalmに伝えることができます。例えば、関数の戻り値の型で <code>@return int</code> を使用すると、その関数が <code>int</code> を返すべきであることをPsalmに伝えます。同様に、<code>@return MyContainer</code> は、関数がユーザー定義クラス <code>MyContainer</code> のインスタンスを返すべきであることを示します。いずれの場合も、Psalmは関数が実際にそれらの型を返しているかどうかをチェックし、さらにその関数を呼び出すコードが返される値を適切に使用しているかどうかもチェックします。</p>
+<p>テンプレート化された型を使用すると、コードの動作についてさらに多くの情報をPsalmに伝えることができます。</p>
+<p>簡単なクラス <code>MyContainer</code> を見てみましょう：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">MyContainer</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="nv">$value</span><span class="p">;</span>
+  <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">public</span> <span class="k">function</span> <span class="nf">getValue</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Psalmが <code>$my_container-&gt;getValue()</code> の戻り値の型を処理する際、値が任意のものになる可能性があるため、何が取得されるかわかりません。</p>
+<p>テンプレート化されたアノテーションは、この問題の解決策を提供します。<code>MyContainer</code> 内の値のプレースホルダーとして、ジェネリック/テンプレート化されたパラメータ <code>T</code> を定義できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @template T </span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">MyContainer</span> <span class="p">{</span>
+  <span class="sd">/** @var T */</span>
+  <span class="k">private</span> <span class="nv">$value</span><span class="p">;</span>
+
+  <span class="sd">/** @param T $value */</span>
+  <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="sd">/** @return T */</span>
+  <span class="k">public</span> <span class="k">function</span> <span class="nf">getValue</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>これで、docblockで <code>MyContainer</code> を参照する際に、そのテンプレート化されたパラメータに値を代入できます。例えば、<code>@return MyContainer&lt;int&gt;</code> と記述することで、Psalmはその戻り値の型を評価する際に <code>T</code> を <code>int</code> に置き換えます。これは実質的に次のようなクラスとして扱われます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">One_off_instance_of_MyContainer</span> <span class="p">{</span>
+  <span class="sd">/** @var int */</span>
+  <span class="k">private</span> <span class="nv">$value</span><span class="p">;</span>
+
+  <span class="sd">/** @param int $value */</span>
+  <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="sd">/** @return int */</span>
+  <span class="k">public</span> <span class="k">function</span> <span class="nf">getValue</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>このパターンは、モッキング、コレクション、イテレータ、任意のオブジェクトのロードなど、さまざまな状況で使用できます。Psalmには、コードベースでテンプレート化された型を簡単に使用できるようにするための多くのアノテーションがあります。</p>
+<h2 id="template-psalm-template"><code>@template</code>, <code>@psalm-template</code></h2>
+<p><code>@template</code>/<code>@psalm-template</code> タグを使用すると、クラスや関数がジェネリック型パラメータを宣言できます。</p>
+<p>非常に簡単な例として、この関数は渡されたものをそのまま返します：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @template T</span>
+<span class="sd"> * @psalm-param T $t</span>
+<span class="sd"> * @return T</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">mirror</span><span class="p">(</span><span class="nv">$t</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$t</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nv">$a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="nx">mirror</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span> <span class="c1">// Psalmは結果がintであることを知っています</span>
+
+<span class="nv">$c</span> <span class="o">=</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+<span class="nv">$d</span> <span class="o">=</span> <span class="nx">mirror</span><span class="p">(</span><span class="nv">$c</span><span class="p">);</span> <span class="c1">// Psalmは結果がstringであることを知っています</span>
+</code></pre></div>
+
+<p>Psalmは、PHP配列関数のスタブ版でも <code>@template</code> アノテーションを使用しています。例えば：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * キーを持つ1つの配列と値を持つもう1つの配列を取り、それらを組み合わせます</span>
+<span class="sd"> * </span>
+<span class="sd"> * @template TKey</span>
+<span class="sd"> * @template TValue</span>
+<span class="sd"> * </span>
+<span class="sd"> * @param array&lt;mixed, TKey&gt; $arr</span>
+<span class="sd"> * @param array&lt;mixed, TValue&gt; $arr2</span>
+<span class="sd"> * @return array&lt;TKey, TValue&gt;</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">array_combine</span><span class="p">(</span><span class="k">array</span> <span class="nv">$arr</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$arr2</span><span class="p">)</span> <span class="p">{}</span>
+</code></pre></div>
+
+<h3 id="_2">注意</h3>
+<ul>
+<li>クラスのdocblockでは、<code>@template</code> タグの順序が重要です。これらはdocblockでそれらのジェネリックパラメータが参照される順序を決定します。</li>
+<li>テンプレート化された型の名前（例：<code>TKey</code>、<code>TValue</code>）は、それらが宣言されているクラスまたは関数のスコープ外では重要ではありません。</li>
+</ul>
+<h2 id="param-class-stringt">@param class-string&lt;T&gt;</h2>
+<p>Psalmではクラス型もパラメータ化できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @template T of Foo</span>
+<span class="sd"> * @psalm-param class-string&lt;T&gt; $class</span>
+<span class="sd"> * @return T</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">instantiator</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$class</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nv">$class</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">final</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">FooChild</span> <span class="k">extends</span> <span class="nx">Foo</span> <span class="p">{}</span>
+
+<span class="nv">$r</span> <span class="o">=</span> <span class="nx">instantiator</span><span class="p">(</span><span class="nx">FooChild</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="c1">// Psalmは$rがFooChildタイプのオブジェクトであることを知っています</span>
+</code></pre></div>
+
+<h2 id="_3">テンプレートの継承</h2>
+<p>Psalmでは、<code>@extends</code>/<code>@template-extends</code> を使用してテンプレート化されたクラスを拡張できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @template T </span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">ParentClass</span> <span class="p">{}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @extends ParentClass&lt;int&gt; </span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">ChildClass</span> <span class="k">extends</span> <span class="nx">ParentClass</span> <span class="p">{}</span>
+</code></pre></div>
+
+<p>同様に、<code>@implements</code>/<code>@template-implements</code> を使用してインターフェースを実装できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @template T </span>
+<span class="sd"> */</span>
+<span class="k">interface</span> <span class="nx">IFoo</span> <span class="p">{}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @implements IFoo&lt;int&gt; </span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">Foo</span> <span class="k">implements</span> <span class="nx">IFoo</span> <span class="p">{}</span>
+</code></pre></div>
+
+<p>そして、<code>@use</code>/<code>@template-use</code> を使用してトレイトをインポートできます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @template T </span>
+<span class="sd"> */</span>
+<span class="k">trait</span> <span class="nx">MyTrait</span> <span class="p">{}</span>
+
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @use MyTrait&lt;int&gt;</span>
+<span class="sd">     */</span>
+    <span class="k">use</span> <span class="nx">MyTrait</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>また、あるテンプレート化されたクラスを別のテンプレート化されたクラスで拡張することもできます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @template T1 </span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">ParentClass</span> <span class="p">{}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @template T2</span>
+<span class="sd"> * @extends ParentClass&lt;T2&gt;</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">ChildClass</span> <span class="k">extends</span> <span class="nx">ParentClass</span> <span class="p">{}</span>
+</code></pre></div>
+
+<h2 id="_4">テンプレートの制約</h2>
+<p>入力を制限するために <code>@template of &lt;type&gt;</code> を使用できます。例えば、特定のクラスに制限するには次のように使用できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{}</span>
+<span class="k">class</span> <span class="nc">FooChild</span> <span class="k">extends</span> <span class="nx">Foo</span> <span class="p">{}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @template T of Foo</span>
+<span class="sd"> * @psalm-param T $t</span>
+<span class="sd"> * @return array&lt;int, T&gt;</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">makeArray</span><span class="p">(</span><span class="nv">$t</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span><span class="nv">$t</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="nv">$a</span> <span class="o">=</span> <span class="nx">makeArray</span><span class="p">(</span><span class="k">new</span> <span class="nx">Foo</span><span class="p">());</span> <span class="c1">// array&lt;int, Foo&gt; と型付けされます</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="nx">makeArray</span><span class="p">(</span><span class="k">new</span> <span class="nx">FooChild</span><span class="p">());</span> <span class="c1">// array&lt;int, FooChild&gt; と型付けされます</span>
+<span class="nv">$c</span> <span class="o">=</span> <span class="nx">makeArray</span><span class="p">(</span><span class="k">new</span> <span class="k">stdClass</span><span class="p">());</span> <span class="c1">// 型エラー</span>
+</code></pre></div>
+
+<p>テンプレート化された型はキーと値のペアに限定されません。テンプレート対応の型の複数の引数にわたってテンプレートを再利用することもできます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @template T0 of array-key</span>
+<span class="sd"> * </span>
+<span class="sd"> * @template-implements IteratorAggregate&lt;T0, int&gt;</span>
+<span class="sd"> */</span>
+<span class="k">abstract</span> <span class="k">class</span> <span class="nc">Foo</span> <span class="k">implements</span> <span class="nx">IteratorAggregate</span> <span class="p">{</span>
+  <span class="sd">/**</span>
+<span class="sd">   * @var int</span>
+<span class="sd">   */</span>
+  <span class="k">protected</span> <span class="nv">$rand_min</span><span class="p">;</span>
+
+  <span class="sd">/**</span>
+<span class="sd">   * @var int</span>
+<span class="sd">   */</span>
+  <span class="k">protected</span> <span class="nv">$rand_max</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$rand_min</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$rand_max</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">rand_min</span> <span class="o">=</span> <span class="nv">$rand_min</span><span class="p">;</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">rand_max</span> <span class="o">=</span> <span class="nv">$rand_max</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="sd">/**</span>
+<span class="sd">   * @return Generator&lt;T0, int, mixed, T0&gt;</span>
+<span class="sd">   */</span>
+  <span class="k">public</span> <span class="k">function</span> <span class="nf">getIterator</span><span class="p">()</span> <span class="o">:</span> <span class="nx">Generator</span> <span class="p">{</span>
+    <span class="nv">$j</span> <span class="o">=</span> <span class="nb">random_int</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">rand_min</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">rand_max</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">rand_min</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="nv">$j</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">yield</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getFuzzyType</span><span class="p">(</span><span class="nv">$i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$i</span> <span class="o">**</span> <span class="nv">$i</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getFuzzyType</span><span class="p">(</span><span class="nv">$j</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="sd">/**</span>
+<span class="sd">   * @return T0</span>
+<span class="sd">   */</span>
+  <span class="k">abstract</span> <span class="k">protected</span> <span class="k">function</span> <span class="nf">getFuzzyType</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$i</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @template-extends Foo&lt;int&gt;</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">Bar</span> <span class="k">extends</span> <span class="nx">Foo</span> <span class="p">{</span>
+  <span class="k">protected</span> <span class="k">function</span> <span class="nf">getFuzzyType</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$i</span><span class="p">)</span> <span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$i</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @template-extends Foo&lt;string&gt;</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">Baz</span> <span class="k">extends</span> <span class="nx">Foo</span> <span class="p">{</span>
+  <span class="k">protected</span> <span class="k">function</span> <span class="nf">getFuzzyType</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$i</span><span class="p">)</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">static</span><span class="o">::</span><span class="na">class</span> <span class="o">.</span> <span class="s1">&#39;[&#39;</span> <span class="o">.</span> <span class="nv">$i</span> <span class="o">.</span> <span class="s1">&#39;]&#39;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="_5">テンプレートの共変性</h2>
+<p>次のようなコードを想像してみてください：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Animal</span> <span class="p">{}</span>
+<span class="k">class</span> <span class="nc">Dog</span> <span class="k">extends</span> <span class="nx">Animal</span> <span class="p">{}</span>
+<span class="k">class</span> <span class="nc">Cat</span> <span class="k">extends</span> <span class="nx">Animal</span> <span class="p">{}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @template T</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">Collection</span> <span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var array&lt;int, T&gt;</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">array</span> <span class="nv">$list</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param array&lt;int, T&gt; $list</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="k">array</span> <span class="nv">$list</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">list</span> <span class="o">=</span> <span class="nv">$list</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param T $t</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="nv">$t</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">list</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$t</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @param Collection&lt;Animal&gt; $collection </span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">addAnimal</span><span class="p">(</span><span class="nx">Collection</span> <span class="nv">$collection</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="nx">Cat</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @param Collection&lt;Dog&gt; $dog_collection</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">takesDogList</span><span class="p">(</span><span class="nx">Collection</span> <span class="nv">$dog_collection</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="nx">addAnimal</span><span class="p">(</span><span class="nv">$dog_collection</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>最後の呼び出し <code>addAnimal($dog_collection)</code> はコレクションの型を壊します - 突然、犬のコレクションが犬または猫のコレクションになってしまいます。これは良くありません。</p>
+<p>これを防ぐために、Psalmは <code>addAnimal($dog_collection)</code> を呼び出すときに "addAnimal expects a <code>Collection&lt;Animal&gt;</code>, but <code>Collection&lt;Dog&gt;</code> was passed" というエラーを発します。もしこのルールに初めて遭遇したなら、おそらく混乱するでしょう - <code>Animal</code> を受け入れる関数は、その派生型も喜んで受け入れるはずです。しかし、上の例で見たように、そうすることで問題が発生する可能性があります。</p>
+<p>しかし、テンプレートパラメータのサブタイプを渡しても完全に安全な場合もあります：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">abstract</span> <span class="k">class</span> <span class="nc">Animal</span> <span class="p">{</span>
+    <span class="k">abstract</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">getNoise</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Dog</span> <span class="k">extends</span> <span class="nx">Animal</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getNoise</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&quot;woof&quot;</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Cat</span> <span class="k">extends</span> <span class="nx">Animal</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getNoise</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&quot;miaow&quot;</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @template T</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">Collection</span> <span class="p">{</span>
+    <span class="sd">/** @var array&lt;int, T&gt; */</span>
+    <span class="k">public</span> <span class="k">array</span> <span class="nv">$list</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="p">}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @param Collection&lt;Animal&gt; $collection</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">getNoises</span><span class="p">(</span><span class="nx">Collection</span> <span class="nv">$collection</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">list</span> <span class="k">as</span> <span class="nv">$animal</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$animal</span><span class="o">-&gt;</span><span class="na">getNoise</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @param Collection&lt;Dog&gt; $dog_collection</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">takesDogList</span><span class="p">(</span><span class="nx">Collection</span> <span class="nv">$dog_collection</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="nx">getNoises</span><span class="p">(</span><span class="nv">$dog_collection</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>ここでは何も悪いことはしていません - 単にオブジェクトの配列を反復処理しているだけです。しかし、Psalmは依然として同じ基本的なエラーを出します - "getNoises expects a <code>Collection&lt;Animal&gt;</code>, but <code>Collection&lt;Dog&gt;</code> was passed"。</p>
+<p>テンプレート化されたパラメータ <code>T</code> のサブタイプを渡しても安全であることをPsalmに伝えるには、<code>@template-covariant T</code>（または <code>@psalm-template-covariant T</code>）アノテーションを使用できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @template-covariant T</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">Collection</span> <span class="p">{</span>
+    <span class="sd">/** @var array&lt;int, T&gt; */</span>
+    <span class="k">public</span> <span class="k">array</span> <span class="nv">$list</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>上の例でこれを行うとエラーは発生しません：<a href="https://psalm.dev/r/5254af7a8b">https://psalm.dev/r/5254af7a8b</a></p>
+<p>しかし、<code>@template-covariant</code> はすべてのエラーを取り除くわけではありません - 最初の例にこれを追加すると、新しいエラーが発生します - <a href="https://psalm.dev/r/0fcd699231">https://psalm.dev/r/0fcd699231</a> - 関数の入力に共変テンプレートパラメータを使用しようとしていることを警告します。これはよくありません。なぜなら、おそらくコレクションを何らかの方法で変更しようとしているからです（これは、再び、違反です）。</p>
+<h3 id="_6">不変性についてはどうでしょうか？</h3>
+<p>Psalmには<a href="https://psalm.dev/articles/immutability-and-beyond">関数的不変性を宣言するための包括的なサポート</a>があります。</p>
+<p>クラスが不変であることを確認すれば、共変パラメータを入力として受け取る <code>add</code> メソッドを持つクラスを宣言できますが、コレクションをまったく変更せず、代わりに新しいコレクションを返すようにできます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/*** @template-covariant T</span>
+<span class="sd"> * @psalm-immutable</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">Collection</span> <span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var array&lt;int, T&gt;</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">array</span> <span class="nv">$list</span> <span class="o">=</span> <span class="p">[];</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param array&lt;int, T&gt; $list</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="k">array</span> <span class="nv">$list</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">list</span> <span class="o">=</span> <span class="nv">$list</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param T $t</span>
+<span class="sd">     * @return Collection&lt;T&gt;</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="nv">$t</span><span class="p">)</span> <span class="o">:</span> <span class="nx">Collection</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Collection</span><span class="p">(</span><span class="nb">array_merge</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">list</span><span class="p">,</span> <span class="p">[</span><span class="nv">$t</span><span class="p">]));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>これは完全に有効で、Psalmは警告を出しません。</p>
+<h2 id="_7">ビルトインのテンプレート化されたクラスとインターフェース</h2>
+<p>Psalmには、独自のコードで拡張/実装できる多くのビルトインクラスとインターフェースのサポートがあります。</p>
+<ul>
+<li><code>interface Traversable&lt;TKey, TValue&gt;</code></li>
+<li><code>interface ArrayAccess&lt;TKey, TValue&gt;</code></li>
+<li><code>interface IteratorAggregate&lt;TKey, TValue&gt; extends Traversable&lt;TKey, TValue&gt;</code></li>
+<li><code>interface Iterator&lt;TKey, TValue&gt; extends Traversable&lt;TKey, TValue&gt;</code></li>
+<li><code>interface SeekableIterator&lt;TKey, TValue&gt; extends Iterator&lt;TKey, TValue&gt;</code></li>
+<li><code>class Generator&lt;TKey, TValue, TSend, TReturn&gt; extends Traversable&lt;TKey, TValue&gt;</code></li>
+<li><code>class ArrayObject&lt;TKey, TValue&gt; implements IteratorAggregate&lt;TKey, TValue&gt;, ArrayAccess&lt;TKey, TValue&gt;</code></li>
+<li><code>class ArrayIterator&lt;TKey of array-key, TValue&gt; implements SeekableIterator&lt;TKey, TValue&gt;, ArrayAccess&lt;TKey, TValue&gt;</code></li>
+<li><code>class DOMNodeList&lt;TNode of DOMNode&gt; implements Traversable&lt;int, TNode&gt;</code></li>
+<li><code>class SplDoublyLinkedList&lt;TValue&gt; implements Iterator&lt;TKey, TValue&gt;, ArrayAccess&lt;TKey, TValue&gt;</code></li>
+<li><code>class SplQueue&lt;TValue&gt; extends SplDoublyLinkedList&lt;TValue&gt;</code></li>
+<li><code>abstract class FilterIterator&lt;TKey, TValue, TIterator&gt;</code></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../supported_annotations/" class="btn btn-neutral float-left" title="サポートされているアノテーション"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../adding_assertions/" class="btn btn-neutral float-right" title="アサートアノテーション">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../supported_annotations/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../adding_assertions/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

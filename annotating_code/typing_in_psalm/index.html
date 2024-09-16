@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/annotating_code/typing_in_psalm/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>型アノテーションの使用 - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u578b\u30a2\u30ce\u30c6\u30fc\u30b7\u30e7\u30f3\u306e\u4f7f\u7528";
+        var mkdocs_page_input_path = "annotating_code/typing_in_psalm.md";
+        var mkdocs_page_url = "/annotating_code/typing_in_psalm/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">型アノテーションの使用</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#docblock">Docblock型構文</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vs">プロパティ宣言型 vs 代入型ヒント</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_1">プロパティ宣言型</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">代入型ヒント</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enums">文字列/整数オプションの指定（別名 enums）</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../type_syntax/union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../type_syntax/atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../type_syntax/intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">型のアノテーション</li>
+      <li class="breadcrumb-item active">型アノテーションの使用</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/annotating_code/typing_in_psalm.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="psalm">Psalmでの型付け</h1>
+<p>PsalmはすべてのPHPDoc型アノテーションを解釈し、それらを使用してコードベースをさらに理解することができます。</p>
+<p>型は、プロパティ、変数、関数パラメータ、および<code>return $x</code>に対して許容される値を記述するために使用されます。</p>
+<h2 id="docblock">Docblock型構文</h2>
+<p>Psalmでは、docblockで複雑な型情報を表現することができます。</p>
+<p>すべてのdocblock型は、<a href="../type_syntax/atomic_types/">アトミック型</a>、<a href="../type_syntax/union_types/">union型</a>、または<a href="../type_syntax/intersection_types/">intersection型</a>のいずれかです。</p>
+<p>さらに、PsalmはPHPDocの<a href="https://docs.phpdoc.org/latest/guide/guides/types.html">型構文</a>、および<a href="https://github.com/php-fig/fig-standards/blob/master/proposed/phpdoc.md#appendix-a-types">提案されているPHPDoc PSR型構文</a>をサポートしています。</p>
+<p>詳細な説明は<a href="./">Psalmでの型付け</a>にあります。</p>
+<h2 id="vs">プロパティ宣言型 vs 代入型ヒント</h2>
+<p><code>/** @var Type */</code>docblockを使用して、<a href="http://php.net/manual/en/language.oop5.properties.php">プロパティ宣言</a>と変数の代入の両方にアノテーションを付けることができます。</p>
+<h3 id="_1">プロパティ宣言型</h3>
+<p>Psalmでクラスプロパティ宣言に特定の型を指定するには、<code>@var</code>宣言を使用できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @var string|null */</span>
+<span class="k">public</span> <span class="nv">$foo</span><span class="p">;</span>
+</code></pre></div>
+
+<p><code>$this-&gt;foo = $some_variable;</code>をチェックする際、Psalmは<code>$some_variable</code>が<code>string</code>または<code>null</code>のいずれかであるかどうかを確認し、そうでない場合は問題を発生させます。</p>
+<p>プロパティ型のdocblockを省略すると、Psalmは<code>MissingPropertyType</code>の問題を発生させます。</p>
+<h3 id="_2">代入型ヒント</h3>
+<p>以下のコードを考えてみましょう：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">YourCode</span> <span class="p">{</span>
+  <span class="k">function</span> <span class="nf">bar</span><span class="p">()</span> <span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
+    <span class="nv">$a</span> <span class="o">=</span> <span class="nx">\ThirdPartyFoo</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nv">$a</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">namespace</span> <span class="nx">ThirdParty</span> <span class="p">{</span>
+  <span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">mt_rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Psalmは、サードパーティの関数<code>ThirdPartyFoo</code>が何を返すかわかりません。なぜなら、作者が戻り値の型を追加していないからです。関数が特定の値を返すことがわかっている場合は、次のように代入型ヒントを使用できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">YourCode</span> <span class="p">{</span>
+  <span class="k">function</span> <span class="nf">bar</span><span class="p">()</span> <span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
+    <span class="sd">/** @var int */</span>
+    <span class="nv">$a</span> <span class="o">=</span> <span class="nx">\ThirdPartyFoo</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nv">$a</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">namespace</span> <span class="nx">ThirdParty</span> <span class="p">{</span>
+  <span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">mt_rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>これにより、Psalmは<code>$a</code>の可能な型が<code>int</code>であることを理解し、<code>return $a;</code>が整数を生成することを推論できるようになります。</p>
+<p>ただし、プロパティ型とは異なり、代入型ヒントは拘束力がありません。Psalmが問題を発生させることなく、新しい代入によって上書きすることができます。例：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @var string|null */</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="nx">foo</span><span class="p">();</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span> <span class="c1">// $aは今intとして型付けされています</span>
+</code></pre></div>
+
+<p>特定の変数に対しても型ヒントを使用できます。例：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** @var string $a */</span>
+<span class="k">echo</span> <span class="nb">strpos</span><span class="p">(</span><span class="nv">$a</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>これはPsalmに<code>$a</code>が文字列であると仮定するように指示します（ただし、<code>$a</code>が未定義の場合はエラーをスローします）。</p>
+<h2 id="enums">文字列/整数オプションの指定（別名 enums）</h2>
+<p>Psalmでは、特定の関数やメソッドに対して許可される文字列/整数値の特定のセットを指定できます。</p>
+<p>以下のコードは<a href="https://getpsalm.org/r/9f6f1ceab6">すべてのパスが値を返さないとPsalmが警告する</a>でしょう：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nv">$s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="s1">&#39;a&#39;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s1">&#39;b&#39;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="s1">&#39;goodbye&#39;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><code>$s</code>のパラム型を<code>'a'|'b'</code>と指定すると、Psalmはすべてのパスが値を返すことを知ります：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @param &#39;a&#39;|&#39;b&#39; $s</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nv">$s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="s1">&#39;a&#39;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s1">&#39;b&#39;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="s1">&#39;goodbye&#39;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>値がクラス定数にある場合でも、それらを使用できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="no">FOO</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span><span class="p">;</span>
+  <span class="k">const</span> <span class="no">BAR</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @param A::FOO | A::BAR $s</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nv">$s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">A</span><span class="o">::</span><span class="na">FOO</span><span class="o">:</span>
+      <span class="k">return</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nx">A</span><span class="o">::</span><span class="na">BAR</span><span class="o">:</span>
+      <span class="k">return</span> <span class="s1">&#39;goodbye&#39;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>クラス定数が共通のプレフィックスを共有している場合、ワイルドカードを使用してそれらをすべて指定できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="no">STATUS_FOO</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span><span class="p">;</span>
+  <span class="k">const</span> <span class="no">STATUS_BAR</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @param A::STATUS_* $s</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nv">$s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">A</span><span class="o">::</span><span class="na">STATUS_FOO</span><span class="o">:</span>
+      <span class="k">return</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+      <span class="c1">// その他のステータス</span>
+      <span class="k">return</span> <span class="s1">&#39;goodbye&#39;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../running_psalm/checking_non_php_files/" class="btn btn-neutral float-left" title="PHP以外のファイルのチェック"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../type_syntax/union_types/" class="btn btn-neutral float-right" title="ユニオン型">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../../running_psalm/checking_non_php_files/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../type_syntax/union_types/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

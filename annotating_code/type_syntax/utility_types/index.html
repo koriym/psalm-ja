@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/annotating_code/type_syntax/utility_types/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>ユーティリティ型 - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u30e6\u30fc\u30c6\u30a3\u30ea\u30c6\u30a3\u578b";
+        var mkdocs_page_input_path = "annotating_code/type_syntax/utility_types.md";
+        var mkdocs_page_url = "/annotating_code/type_syntax/utility_types/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">ユーティリティ型</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/annotating_code/type_syntax/utility_types.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">ユーティリティ型</h1>
+<p>Psalmは、PHPの型システムに超能力をもたらすいくつかの <em>魔法の</em> ユーティリティ型をサポートしています。</p>
+<h2 id="key-oft">key-of&lt;T&gt;</h2>
+<p>(Psalm 5.0+)</p>
+<p><code>key-of</code> ユーティリティは、任意の <a href="../array_types/">配列型</a> のオフセット型を返します。</p>
+<p>いくつかの例：
+- <code>key-of&lt;Foo\Bar::ARRAY_CONST&gt;</code> は <code>ARRAY_CONST</code> のオフセット型を評価します（Psalm 3.3+）
+- <code>key-of&lt;list&lt;mixed&gt;&gt;</code> は <code>int</code> を評価します
+- <code>key-of&lt;array{a: mixed, b: mixed}|array{c: mixed}&gt;</code> は <code>'a'|'b'|'c'</code> を評価します
+- <code>key-of&lt;string[]&gt;</code> は <code>array-key</code> を評価します
+- <code>key-of&lt;T&gt;</code> はテンプレートパラメータのオフセット型を評価します（<code>@template T of array</code> を確認してください）</p>
+<h3 id="_2">テンプレート使用に関する注意</h3>
+<p>テンプレートパラメータで <code>key-of</code> を使用する場合、次の許可されたメソッドでのみ型チェックを満たすことができます：
+- <code>array_keys($t)</code>
+- <code>array_key_first($t)</code>
+- <code>array_key_last($t)</code></p>
+<p>現在、<code>array_key_exists($key, $t)</code> は <code>$key</code> が <code>key-of&lt;T&gt;</code> であると推論 <strong>しません</strong>。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** </span>
+<span class="x"> * @template T of array</span>
+<span class="x"> * @param T $array</span>
+<span class="x"> * @return list&lt;key-of&lt;T&gt;&gt;</span>
+<span class="x"> */</span>
+<span class="x">function getKeys($array) {</span>
+<span class="x">    return array_keys($array);</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<h2 id="value-oft">value-of&lt;T&gt;</h2>
+<p>(Psalm 5.0+)</p>
+<p><code>value-of</code> ユーティリティは、任意の <a href="../array_types/">配列型</a> の値型を返します。</p>
+<p>いくつかの例：
+- <code>value-of&lt;Foo\Bar::ARRAY_CONST&gt;</code> は <code>ARRAY_CONST</code> の値型を評価します（Psalm 3.3+）
+- <code>value-of&lt;list&lt;float&gt;&gt;</code> は <code>float</code> を評価します
+- <code>value-of&lt;array{a: bool, b: int}|array{c: string}&gt;</code> は <code>bool|int|string</code> を評価します
+- <code>value-of&lt;string[]&gt;</code> は <code>string</code> を評価します
+- <code>value-of&lt;T&gt;</code> はテンプレートパラメータの値型を評価します（<code>@template T of array</code> を確認してください）</p>
+<h3 id="_3">列挙型での使用</h3>
+<p>配列型に加えて、<code>value-of</code> は <code>BackedEnum</code> の可能な値の1つを含む <code>int</code> または <code>string</code> を指定するためにも使用できます：
+- <code>value-of&lt;Suit&gt;</code> は <code>'H'|'D'|'C'|'S'</code> を評価します（<a href="https://www.php.net/manual/en/language.enumerations.backed.php">バックド列挙型</a> を参照）
+- <code>value-of&lt;BinaryDigits&gt;</code> は <code>0|1</code> を評価します</p>
+<h3 id="_4">テンプレート使用に関する注意</h3>
+<p>テンプレートパラメータで <code>value-of</code> を使用する場合、次の許可されたメソッドでのみ型チェックを満たすことができます：
+- <code>array_values</code></p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** </span>
+<span class="x"> * @template T of array</span>
+<span class="x"> * @param T $array</span>
+<span class="x"> * @return value-of&lt;T&gt;[]</span>
+<span class="x"> */</span>
+<span class="x">function getValues($array) {</span>
+<span class="x">    return array_values($array);</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<p>現在、<code>in_array($value, $t)</code> は <code>$value</code> が <code>value-of&lt;T&gt;</code> であると推論 <strong>しません</strong>。</p>
+<h2 id="properties-oft">properties-of&lt;T&gt;</h2>
+<p>(Psalm 5.0+)</p>
+<p>この <em>ユーティリティ型</em> のコレクションは、クラスの非静的プロパティの名前をキーとし、それぞれの型を値とするキー付き配列型を構築します。これは、オブジェクトを配列に変換する必要がある場合に便利です。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">class A {</span>
+<span class="x">  public string $foo = &#39;foo!&#39;;</span>
+<span class="x">  public int $bar = 42;</span>
+
+<span class="x">  /**</span>
+<span class="x">   * @return properties-of&lt;self&gt;</span>
+<span class="x">   */</span>
+<span class="x">  public function asArray(): array {</span>
+<span class="x">    return [</span>
+<span class="x">      &#39;foo&#39; =&gt; $this-&gt;foo,</span>
+<span class="x">      &#39;bar&#39; =&gt; $this-&gt;bar,</span>
+<span class="x">    ];</span>
+<span class="x">  }</span>
+
+<span class="x">  /**</span>
+<span class="x">   * @return list&lt;key-of&lt;properties-of&lt;self&gt;&gt;&gt;</span>
+<span class="x">   */</span>
+<span class="x">  public function attributeNames(): array {</span>
+<span class="x">    return [&#39;foo&#39;, &#39;bar&#39;]</span>
+<span class="x">  }</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<h3 id="_5">バリエーション</h3>
+<p><code>properties-of&lt;T&gt;</code> は <strong>すべての非静的</strong> プロパティを返すことに注意してください。特定の可視性を持つプロパティのみを選択するために、以下のサブタイプがあります：
+- <code>public-properties-of&lt;T&gt;</code>
+- <code>protected-properties-of&lt;T&gt;</code>
+- <code>private-properties-of&lt;T&gt;</code></p>
+<h3 id="_6">シールド配列のサポート</h3>
+<p>properties-of と get_object_vars がシールド配列を返すようにしたい場合は、finalクラスを使用してください：</p>
+<p>```php
+/*<em> 
+ * @template T
+ * @param T $object
+ * @return properties-of<T>
+ </em>/
+function asArray($object): array {
+  return get_object_vars($object);
+}</p>
+<p>class A {
+  public string $foo = 'foo!';
+  public int $bar = 42;
+}</p>
+<p>final class B extends A {
+  public float $baz = 2.1;
+}</p>
+<p>$a = asArray(new A);
+/*<em> @psalm-trace $a </em>/; // array{foo: string, bar: int, ...}</p>
+<p>$b = asArray(new B);
+/*</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

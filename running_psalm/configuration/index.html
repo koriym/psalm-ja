@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/running_psalm/configuration/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>設定 - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u8a2d\u5b9a";
+        var mkdocs_page_input_path = "running_psalm/configuration.md";
+        var mkdocs_page_url = "/running_psalm/configuration/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">設定</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#psalmxml">psalm.xml</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#filesxml">files.xml</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#psalm">オプションの &lt;psalm /&gt; 属性</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">コーディングスタイル</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#errorlevel">errorLevel</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#reportmixedissues">reportMixedIssues</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#totallytyped">totallyTyped</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resolvefromconfigfile">resolveFromConfigFile</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#usedocblocktypes">useDocblockTypes</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#usedocblockpropertytypes">useDocblockPropertyTypes</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#docblockpropertytypessealproperties">docblockPropertyTypesSealProperties</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#usephpdocmethodswithoutmagiccall">usePhpDocMethodsWithoutMagicCall</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#usephpdocpropertieswithoutmagiccall">usePhpDocPropertiesWithoutMagicCall</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#disablevarparsing">disableVarParsing</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#strictbinaryoperands">strictBinaryOperands</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#rememberpropertyassignmentsaftercall">rememberPropertyAssignmentsAfterCall</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#allowstringtostandinforclass">allowStringToStandInForClass</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#disablesuppressall">disableSuppressAll</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#memoizemethodcallresults">memoizeMethodCallResults</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#hoistconstants">hoistConstants</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#addparamdefaulttodocblocktype">addParamDefaultToDocblockType</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#checkforthrowsdocblock">checkForThrowsDocblock</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#checkforthrowsinglobalscope">checkForThrowsInGlobalScope</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ignoreinternalfunctionfalsereturn">#### ignoreInternalFunctionFalseReturn</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ignoreinternalfunctionnullreturn">ignoreInternalFunctionNullReturn</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#inferpropertytypesfromconstructor">inferPropertyTypesFromConstructor</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#findunusedvariablesandparams">findUnusedVariablesAndParams</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#findunusedcode">findUnusedCode</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#findunusedpsalmsuppress">findUnusedPsalmSuppress</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ensurearraystringoffsetsexist">ensureArrayStringOffsetsExist</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ensurearrayintoffsetsexist">ensureArrayIntOffsetsExist</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ensureoverrideattribute">ensureOverrideAttribute</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#phpversion">phpVersion</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#skipchecksonunresolvableincludes">skipChecksOnUnresolvableIncludes</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sealallmethods">sealAllMethods</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sealallproperties">sealAllProperties</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#runtaintanalysis">runTaintAnalysis</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#reportinfo">reportInfo</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#allownamedargumentcalls">allowNamedArgumentCalls</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#triggererrorexits">triggerErrorExits</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psalm_1">Psalmの実行</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#autoloader">autoloader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#throwexceptiononerror">throwExceptionOnError</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#hideexternalerrors">hideExternalErrors</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#hideallerrorsexceptpassedfiles">hideAllErrorsExceptPassedFiles</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#cachedirectory">cacheDirectory</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#allowfileincludes">allowFileIncludes</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#serializer">serializer</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#compressor">compressor</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#threads">threads</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#maxstringlength">maxStringLength</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#maxshapedarraysize">maxShapedArraySize</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#restrictreturntypes">restrictReturnTypes</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#findunusedbaselineentry">findUnusedBaselineEntry</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#findunusedissuehandlersuppression">findUnusedIssueHandlerSuppression</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">プロジェクト設定</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#projectfiles">&lt;projectFiles&gt;</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#extrafiles">&lt;extraFiles&gt;</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fileextensions">&lt;fileExtensions&gt;</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#enableextensions">&lt;enableExtensions&gt;</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#disableextensions">&lt;disableExtensions&gt;</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#plugins">&lt;plugins&gt;</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#issuehandlers">&lt;issueHandlers&gt;</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mockclasses">&lt;mockClasses&gt;</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#universalobjectcrates">&lt;universalObjectCrates&gt;</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stubs">&lt;stubs&gt;</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ignoreexceptions">&lt;ignoreExceptions&gt;</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#globals">&lt;globals&gt;</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#forbiddenfunctions">&lt;forbiddenFunctions&gt;</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#psalm_2">プラグインでのPsalm設定へのアクセス</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Psalmの実行</li>
+      <li class="breadcrumb-item active">設定</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/running_psalm/configuration.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">設定</h1>
+<p>PsalmはXML設定ファイル（デフォルトでは<code>psalm.xml</code>）を使用します。最小限の例は次のようになります：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;psalm&gt;</span>
+<span class="w">    </span><span class="nt">&lt;projectFiles&gt;</span>
+<span class="w">        </span><span class="nt">&lt;directory</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;src&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/projectFiles&gt;</span>
+<span class="nt">&lt;/psalm&gt;</span>
+</code></pre></div>
+
+<p>設定ファイルは、<a href="https://www.w3.org/TR/xinclude/">XInclude</a>タグを使用して複数のファイルに分割できます（前の例を参照）：</p>
+<h4 id="psalmxml">psalm.xml</h4>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;psalm</span>
+<span class="w">        </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="w">        </span><span class="na">xmlns=</span><span class="s">&quot;https://getpsalm.org/schema/config&quot;</span>
+<span class="w">        </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd&quot;</span>
+<span class="w">        </span><span class="na">xmlns:xi=</span><span class="s">&quot;http://www.w3.org/2001/XInclude&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;xi:include</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;files.xml&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/psalm&gt;</span>
+</code></pre></div>
+
+<h4 id="filesxml">files.xml</h4>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;projectFiles</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;https://getpsalm.org/schema/config&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;file</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Bar.php&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;file</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Bat.php&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/projectFiles&gt;</span>
+</code></pre></div>
+
+<h2 id="psalm">オプションの &lt;psalm /&gt; 属性</h2>
+<h3 id="_2">コーディングスタイル</h3>
+<h4 id="errorlevel">errorLevel</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">errorLevel=</span><span class="s">&quot;[int]&quot;</span><span class="nt">/&gt;</span>
+</code></pre></div>
+
+<p>これはPsalmの<a href="../error_levels/">エラー検出レベル</a>に対応します。</p>
+<h4 id="reportmixedissues">reportMixedIssues</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">reportMixedIssues=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">/&gt;</span>
+</code></pre></div>
+
+<p>これを<code>"false"</code>に設定すると、Psalmの出力で<code>Mixed</code>型の問題がすべて非表示になります。指定されていない場合、<code>errorLevel</code>が3以上の場合はデフォルトで<code>"false"</code>、エラーレベルが1または2の場合は<code>"true"</code>になります。</p>
+<h4 id="totallytyped">totallyTyped</h4>
+<p>（非推奨）この設定は<code>reportMixedIssues</code>に置き換えられました。<code>errorLevel</code>が1の場合に自動的に有効になります。</p>
+<h4 id="resolvefromconfigfile">resolveFromConfigFile</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">resolveFromConfigFile=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">/&gt;</span>
+</code></pre></div>
+
+<p>これが有効な場合、設定ファイルで言及された相対ディレクトリは、設定ファイルの位置を基準に解決されます。無効または存在しない場合、Psalmプロセスの作業ディレクトリを基準に解決されます。
+新しいバージョンのPsalmは、設定ファイルを生成する際にこのオプションを有効にします。古いバージョンではこれを含めませんでした。</p>
+<h4 id="usedocblocktypes">useDocblockTypes</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">useDocblockTypes=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>docblockで定義された型を使用するかどうか。デフォルトは<code>true</code>です。</p>
+<h4 id="usedocblockpropertytypes">useDocblockPropertyTypes</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">useDocblockPropertyTypes=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>すべてのdocblock型を使用しない場合でも、docblockプロパティ型を使用できます。デフォルトは<code>false</code>です（<code>useDocblockTypes</code>が<code>false</code>の場合のみ関連）。</p>
+<h4 id="docblockpropertytypessealproperties">docblockPropertyTypesSealProperties</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">docblockPropertyTypesSealProperties=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>クラスのdocblockで@propertyを使用することが@psalm-seal-propertiesを暗示するかどうか。デフォルトは<code>true</code>です。</p>
+<h4 id="usephpdocmethodswithoutmagiccall">usePhpDocMethodsWithoutMagicCall</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">usePhpDocMethodsWithoutMagicCall=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>通常、PHPDocの<code>@method</code>アノテーションは<code>__call</code>メソッドを持つクラスにのみ適用されます。これを<code>true</code>に設定すると、継承されたメソッドの戻り値の型をオーバーライドするために<code>@method</code>アノテーションを使用できます。デフォルトは<code>false</code>です。</p>
+<h4 id="usephpdocpropertieswithoutmagiccall">usePhpDocPropertiesWithoutMagicCall</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">usePhpDocPropertiesWithoutMagicCall=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>通常、PHPDocの<code>@property</code>、<code>@property-read</code>、<code>@property-write</code>アノテーションは<code>__get</code>/<code>__set</code>メソッドを持つクラスにのみ適用されます。これを<code>true</code>に設定すると、プロパティの存在チェックと結果のプロパティ型をオーバーライドするために<code>@property</code>、<code>@property-read</code>、<code>@property-write</code>アノテーションを使用できます。デフォルトは<code>false</code>です。</p>
+<h4 id="disablevarparsing">disableVarParsing</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">disableVarParsing=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">/&gt;</span>
+</code></pre></div>
+
+<p>プロパティ以外のすべての場所で<code>@var</code> PHPDocの解析を無効にします。これを<code>true</code>に設定すると、Psalm genericsと適切な型付けの統合以前に使用された古い<code>@var</code>アノテーションによる多くの誤検出を除去し、単一の真実の源の原則を強制できます。デフォルトは<code>false</code>です。</p>
+<h4 id="strictbinaryoperands">strictBinaryOperands</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">strictBinaryOperands=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>trueの場合、数値および文字列演算に厳密な型付けを強制します（https://github.com/vimeo/psalm/issues/24 を参照）。デフォルトは<code>false</code>です。</p>
+<h4 id="rememberpropertyassignmentsaftercall">rememberPropertyAssignmentsAfterCall</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">rememberPropertyAssignmentsAfterCall=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>これを<code>false</code>に設定すると、関数呼び出しによって、Psalmが現在分析している関数のスコープ内のオブジェクトプロパティについて知っていたことを忘れさせます。これはHackの機能を複製しています。デフォルトは<code>true</code>です。</p>
+<h4 id="allowstringtostandinforclass">allowStringToStandInForClass</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">allowStringToStandInForClass=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、文字列をクラスとして使用できます。つまり、<code>$some_string::someMethod()</code>が許可されます。<code>false</code>の場合、クラス定数文字列（<code>Foo\Bar::class</code>の形式）のみがクラスの代わりに使用でき、そうでない場合は<code>InvalidStringClass</code>問題が発生します。デフォルトは<code>false</code>です。</p>
+<h4 id="disablesuppressall">disableSuppressAll</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">disableSuppressAll=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、<code>@psalm-suppress all</code>によるすべての問題のワイルドカード抑制を無効にします。デフォルトは<code>false</code>です。</p>
+<h4 id="memoizemethodcallresults">memoizeMethodCallResults</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">memoizeMethodCallResults=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、引数なしのメソッド呼び出しの結果は、特定のオブジェクトでそのメソッドを繰り返し呼び出す間で記憶されます。デフォルトは<code>false</code>です。</p>
+<h4 id="hoistconstants">hoistConstants</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">hoistConstants=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、ファイル内の関数で定義された定数は、その関数を呼び出すときだけでなく、そのファイルを要求するときに利用可能であると想定されます。デフォルトは<code>false</code>です（つまり、関数で定義された定数は、その関数が呼び出されたときにのみ使用可能になります）。</p>
+<h4 id="addparamdefaulttodocblocktype">addParamDefaultToDocblockType</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">addParamDefaultToDocblockType=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>時々、パラメータのデフォルト値がdocblockの型と一致しないことがあります。デフォルトでは、Psalmは問題を発生させます。このフラグを<code>true</code>に設定すると、パラメータの型にデフォルト値を含めるように拡張します。デフォルトは<code>false</code>です。</p>
+<h4 id="checkforthrowsdocblock">checkForThrowsDocblock</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">checkForThrowsDocblock=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、Psalmは開発者が特定の関数またはメソッドでスローされるすべての例外に対して<code>@throws</code>docblockを提供しているかどうかをチェックします。デフォルトは<code>false</code>です。</p>
+<h4 id="checkforthrowsinglobalscope">checkForThrowsInGlobalScope</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">checkForThrowsInGlobalScope=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、Psalmは開発者がグローバルスコープですべての例外をキャッチしているかどうかをチェックします。デフォルトは<code>false</code>です。</p>
+<h4 id="ignoreinternalfunctionfalsereturn">#### ignoreInternalFunctionFalseReturn</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">ignoreInternalFunctionFalseReturn=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、Psalmは内部関数（<code>preg_split</code>など）の戻り値から生じる可能性のあるfalseの問題を無視します。これらの関数は稀にfalseを返す可能性がありますが、通常は無視しても問題ありません。デフォルトは<code>false</code>です。</p>
+<h4 id="ignoreinternalfunctionnullreturn">ignoreInternalFunctionNullReturn</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">ignoreInternalFunctionNullReturn=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、Psalmは内部配列関数（<code>current</code>など）の戻り値から生じる可能性のあるnullの問題を無視します。これらの関数は稀にnullを返す可能性がありますが、通常は無視しても問題ありません。デフォルトは<code>false</code>です。</p>
+<h4 id="inferpropertytypesfromconstructor">inferPropertyTypesFromConstructor</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">inferPropertyTypesFromConstructor=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、Psalmは単純なコンストラクタで見られる代入からプロパティ型を推論します。デフォルトは<code>true</code>です。</p>
+<h4 id="findunusedvariablesandparams">findUnusedVariablesAndParams</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">findUnusedVariablesAndParams=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、Psalmはすべての未使用の変数を見つけようとします。これは<code>--find-unused-variables</code>オプションを使用して実行するのと同等です。デフォルトは<code>false</code>です。</p>
+<h4 id="findunusedcode">findUnusedCode</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">findUnusedCode=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、Psalmはすべての未使用のコード（未使用の変数を含む）を見つけようとします。これは<code>--find-unused-code</code>オプションを使用して実行するのと同等です。デフォルトは<code>false</code>です。</p>
+<h4 id="findunusedpsalmsuppress">findUnusedPsalmSuppress</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">findUnusedPsalmSuppress=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、Psalmは使用されていないすべての<code>@psalm-suppress</code>アノテーションを報告します。これは<code>--find-unused-psalm-suppress</code>オプションを使用して実行するのと同等です。デフォルトは<code>false</code>です。</p>
+<h4 id="ensurearraystringoffsetsexist">ensureArrayStringOffsetsExist</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">ensureArrayStringOffsetsExist=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、Psalmは配列の明示的な文字列オフセット（例：<code>$arr['foo']</code>）を参照する際に、ユーザーが最初にその存在を確認（<code>isset</code>チェックまたはオブジェクトのような配列を介して）していない場合に警告します。デフォルトは<code>false</code>です。</p>
+<h4 id="ensurearrayintoffsetsexist">ensureArrayIntOffsetsExist</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">ensureArrayIntOffsetsExist=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、Psalmは配列の明示的な整数オフセット（例：<code>$arr[7]</code>）を参照する際に、ユーザーが最初にその存在を確認（<code>isset</code>チェックまたはオブジェクトのような配列を介して）していない場合に警告します。デフォルトは<code>false</code>です。</p>
+<h4 id="ensureoverrideattribute">ensureOverrideAttribute</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">ensureOverrideAttribute=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、Psalmは親のメソッドをオーバーライドするクラスおよびインターフェースのメソッドで、<code>Override</code>属性がない場合に報告します。デフォルトは<code>false</code>です。</p>
+<h4 id="phpversion">phpVersion</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">phpVersion=</span><span class="s">&quot;[string]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>プロジェクトのチェックやフィックス時にPsalmが想定すべきPHPバージョンを設定します。この属性が設定されていない場合、Psalmは<code>composer.json</code>での宣言があればそれを使用します。宣言された<code>php</code>依存関係を満たす最も古いバージョンのPHPに対してチェックします。</p>
+<p>これはコマンドラインで<code>--php-version=</code>フラグを使用してオーバーライドできます。コマンドラインフラグは<code>phpVersion</code>設定と<code>composer.json</code>から派生したバージョンの両方に対して最も高い優先順位を持ちます。</p>
+<h4 id="skipchecksonunresolvableincludes">skipChecksOnUnresolvableIncludes</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">skipChecksOnUnresolvableIncludes=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、Psalmは解決できない<code>include</code>または<code>require</code>に遭遇した後、クラス、変数、関数のチェックをスキップします。これにより、Psalmが知らない関数やクラスを参照するコードが許可されます。</p>
+<p>デフォルトは<code>false</code>です。</p>
+<h4 id="sealallmethods">sealAllMethods</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">sealAllMethods=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、Psalmはすべてのクラスがシールドされたメソッドを持っているかのように扱います。つまり、マジックメソッド<code>__call</code>を実装する場合、各マジックメソッドに対して<code>@method</code>も追加する必要があります。デフォルトはfalseです。</p>
+<h4 id="sealallproperties">sealAllProperties</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">sealAllProperties=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、Psalmはすべてのクラスがシールドされたプロパティを持っているかのように扱います。つまり、Psalmは<code>@property</code>（または<code>@property-read</code>/<code>@property-write</code>）アノテーションのリストに含まれておらず、明示的に<code>property</code>として定義されていないプロパティの取得と設定を許可しません。デフォルトはfalseです。</p>
+<h4 id="runtaintanalysis">runTaintAnalysis</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">runTaintAnalysis=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>true</code>の場合、Psalmはコードベースで<a href="../../security_analysis/">汚染分析</a>を実行します。この設定は、Psalmを<code>--taint-analysis</code>オプション付きで実行するのと同じです。</p>
+<h4 id="reportinfo">reportInfo</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">reportInfo=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>false</code>の場合、Psalmは<code>errorLevel</code>よりも低いレベルの問題を<code>info</code>として扱いません（代わりに抑制されます）。これは大規模プロジェクトの分析時間を大幅に改善できます。ただし、この設定により、Psalmは抑制された問題の数を数えたり、修正を提案したりすることができなくなります。</p>
+<h4 id="allownamedargumentcalls">allowNamedArgumentCalls</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">allowNamedArgumentCalls=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p><code>false</code>の場合、Psalmはコード内の<code>ParamNameMismatch</code>問題を報告しなくなります。これは、ライブラリのメソッドへの外部アクセスを防いだり、可変引数を使用する際に型を<code>list</code>に減らしたりするための個々の<code>@no-named-arguments</code>の使用に取って代わるものではありません。</p>
+<h4 id="triggererrorexits">triggerErrorExits</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">triggerErrorExits=</span><span class="s">&quot;[string]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>trigger_errorの動作を記述します。<code>always</code>は常に終了することを意味し、<code>never</code>は決して終了しないことを意味し、<code>default</code>は<code>E_USER_ERROR</code>の場合にのみ終了することを意味します。デフォルトは<code>default</code>です。</p>
+<h3 id="psalm_1">Psalmの実行</h3>
+<h4 id="autoloader">autoloader</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">autoloader=</span><span class="s">&quot;[string]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>アプリケーションが1つ以上のカスタムオートローダーを登録し、かつ/または普遍的な定数/関数を宣言する場合、このオートローダースクリプトはスキャンが開始される前にPsalmによって実行されます。Psalmは常にデフォルトでcomposerのオートローダーを登録します。</p>
+<h4 id="throwexceptiononerror">throwExceptionOnError</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">throwExceptionOnError=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>テストで便利です。これにより、Psalmはエラーに遭遇したときに通常の例外をスローします。デフォルトは<code>false</code>です。</p>
+<h4 id="hideexternalerrors">hideExternalErrors</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">hideExternalErrors=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>プロジェクトファイルで使用されているが、<code>&lt;projectFiles&gt;</code>に含まれていないファイルの問題を表示するかどうか。デフォルトは<code>false</code>です。</p>
+<h4 id="hideallerrorsexceptpassedfiles">hideAllErrorsExceptPassedFiles</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">hideAllErrorsExceptPassedFiles=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>CLIで明示的に引数として渡されたファイルに対してのみ問題を報告するかどうか。これは、CLIで設定されていない場合、require/includeで読み込まれたファイルも報告しないことを意味します。単一または選択したファイルのエラーのみをチェックしたい場合に便利です。デフォルトは<code>false</code>です。</p>
+<h4 id="cachedirectory">cacheDirectory</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">cacheDirectory=</span><span class="s">&quot;[string]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>Psalmのキャッシュデータを保存するディレクトリ - 指定する場合（まだ存在しない場合）、その親ディレクトリが既に存在している必要があります。そうでない場合、Psalmはエラーをスローします。</p>
+<p>デフォルトは<code>$XDG_CACHE_HOME/psalm</code>です。<code>$XDG_CACHE_HOME</code>が設定されていないか空の場合、<code>$HOME/.cache/psalm</code>が使用されます。これが定義されていない場合は<code>sys_get_temp_dir() . '/psalm'</code>が使用されます。</p>
+<h4 id="allowfileincludes">allowFileIncludes</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">allowFileIncludes=</span><span class="s">&quot;[bool]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>PHPで<code>require</code>/<code>include</code>呼び出しを許可するかどうか。デフォルトは<code>true</code>です。</p>
+<h4 id="serializer">serializer</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">serializer=</span><span class="s">&quot;[&#39;igbinary&#39;|&#39;default&#39;]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>Psalmがデータのキャッシュに使用するシリアライザーをハードコードできます。デフォルトでは、Psalmはバージョンが2.0.5以上の場合は<code>ext-igbinary</code>を使用し、そうでない場合はPHPの組み込みシリアライザーを使用します。</p>
+<h4 id="compressor">compressor</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">compressor=</span><span class="s">&quot;[&#39;lz4&#39;|&#39;deflate&#39;|&#39;off&#39;]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>Psalmのキャッシュに使用する圧縮方法をハードコードできます。デフォルトでは、Psalmは有効な場合は<code>ext-zlib</code>のdeflateを使用します。</p>
+<h4 id="threads">threads</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">        </span><span class="na">threads=</span><span class="s">&quot;[int]&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>Psalmが使用するスレッド数をハードコードできます（コマンドラインの<code>--threads</code>と同様）。この値はホストマシンからのスレッド検出の代わりに使用されますが、コマンドラインで<code>--threads</code>または<code>--debug</code>（スレッドを1に設定）を使用すると上書きされます。</p>
+<h4 id="maxstringlength">maxStringLength</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">maxStringLength=</span><span class="s">&quot;1000&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>この設定は、Psalm分析中にリテラル文字列型に変換される文字列リテラルの最大長を制御します。この値（デフォルトでは1000バイト）より長い文字列は、代わりに一般的な<code>non-empty-string</code>型に変換されます。この設定を変更すると望ましくない副作用が発生する可能性があり、それらの副作用はバグとは見なされないことに注意してください。</p>
+<h4 id="maxshapedarraysize">maxShapedArraySize</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">maxShapedArraySize=</span><span class="s">&quot;100&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>この設定は、Psalm分析中に形状付き<code>array{key1: "value", key2: T}</code>型に変換される形状付き配列の最大サイズを制御します。この値（デフォルトでは100）より大きい配列は、代わりに一般的な<code>non-empty-array</code>型に変換されます。この設定を変更すると望ましくない副作用が発生する可能性があり、それらの副作用はバグとは見なされないことに注意してください。</p>
+<h4 id="restrictreturntypes">restrictReturnTypes</h4>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;psalm</span>
+<span class="w">  </span><span class="na">restrictReturnTypes=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+
+<p>宣言された戻り値の型が推論された戻り値の型ほど厳密でない場合に<code>LessSpecificReturnType</code>を発行します。</p>
+<p>このコード：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">function getOne(): int // 宣言された型: int</span>
+<span class="x">{</span>
+<span class="x">     return 1; // 推論された型: 1 (int リテラル)</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<p>このエラーが発生します：<code>LessSpecificReturnType - 関数aの推論された戻り値の型 '1' は、宣言された戻り値の型 'int' よりも具体的です</code></p>
+<p>エラーを修正するには、docブロックでより具体的な型を指定する必要があります：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">/** </span>
+<span class="x"> * @return 1 </span>
+<span class="x"> */</span>
+<span class="x">function getOne(): int {</span>
+<span class="x">     return 1;</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<p><strong>警告</strong>: より厳密な型を強制することは必ずしも最良の対処法ではなく、予期しない結果を招く可能性があります。<code>restrictReturnTypes="true"</code>では、次のコードは無効です：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">class StandardCar {</span>
+<span class="x">    /**</span>
+<span class="x">     * @return list{&#39;motor&#39;, &#39;brakes&#39;, &#39;wheels&#39;}</span>
+<span class="x">     */</span>
+<span class="x">    public function getSystems(): array {</span>
+<span class="x">        return [&#39;motor&#39;, &#39;brakes&#39;, &#39;wheels&#39;];</span>
+<span class="x">    }</span>
+<span class="x">}</span>
+
+<span class="x">class PremiumCar extends StandardCar {</span>
+<span class="x">    /**</span>
+<span class="x">     * @return list{&#39;motor&#39;, &#39;brakes&#39;, &#39;wheels&#39;, &#39;rear parking sensor&#39;}</span>
+<span class="x">     */</span>
+<span class="x">    public function getSystems(): array {</span>
+<span class="x">        return [&#39;motor&#39;, &#39;brakes&#39;, &#39;wheels&#39;, &#39;rear parking sensor&#39;];</span>
+<span class="x">    }</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<p><code>`ImplementedReturnTypeMismatch - StandardCar::getSystemsの継承された戻り値の型 'list{'motor', 'brakes', 'wheels'}' は、PremiumCar::getSystemsの実装された戻り値の型 'list{'motor', 'brakes', 'wheels', 'rear parking sensor'}' と異なります</code></p>
+<h4 id="findunusedbaselineentry">findUnusedBaselineEntry</h4>
+<p>使用されていないベースラインエントリに対して<a href="issues/UnusedBaselineEntry.md">UnusedBaselineEntry</a>を発行します。</p>
+<h4 id="findunusedissuehandlersuppression">findUnusedIssueHandlerSuppression</h4>
+<p>問題を抑制するために使用されていない抑制された問題ハンドラに対して<a href="../issues/UnusedIssueHandlerSuppression/">UnusedIssueHandlerSuppression</a>を発行します。</p>
+<h2 id="_3">プロジェクト設定</h2>
+<h4 id="projectfiles">&lt;projectFiles&gt;</h4>
+<p>Psalmが検査すべきすべてのディレクトリのリストを含みます。<code>&lt;ignoreFiles&gt;</code>ディレクティブを使用して、無視するファイルやフォルダのセットを指定することもできます。デフォルトでは、無視されるファイル/フォルダは存在する必要があります。存在しないかもしれない無視されるファイル/フォルダには<code>allowMissingFiles</code>属性を追加できます。</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;projectFiles&gt;</span>
+<span class="w">  </span><span class="nt">&lt;directory</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;src&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;ignoreFiles&gt;</span>
+<span class="w">    </span><span class="nt">&lt;directory</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;src/Stubs&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/ignoreFiles&gt;</span>
+<span class="w">  </span><span class="nt">&lt;ignoreFiles</span><span class="w"> </span><span class="na">allowMissingFiles=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;directory</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;path-that-may-not-exist&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/ignoreFiles&gt;</span>
+<span class="nt">&lt;/projectFiles&gt;</span>
+</code></pre></div>
+
+<h4 id="extrafiles">&lt;extraFiles&gt;</h4>
+<p>オプション。<code>&lt;projectFiles&gt;</code>と同じ形式です。Psalmが読み込むべきが検査しないディレクトリ。</p>
+<h4 id="fileextensions">&lt;fileExtensions&gt;</h4>
+<p>オプション。検索する拡張子のリスト。これを拡張する方法を理解するには、<a href="../checking_non_php_files/">非PHPファイルのチェック</a>を参照してください。</p>
+<h4 id="enableextensions">&lt;enableExtensions&gt;</h4>
+<p>オプション。有効にする拡張機能のリスト。デフォルトでは、composer.jsonで必要とされる拡張機能のみが有効になります。</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;enableExtensions&gt;</span>
+<span class="w">  </span><span class="nt">&lt;extension</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;decimal&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;extension</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;pdo&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/enableExtensions&gt;</span>
+</code></pre></div>
+
+<h4 id="disableextensions">&lt;disableExtensions&gt;</h4>
+<p>オプション。無効にする拡張機能のリスト。デフォルトでは、composer.jsonで必要とされる拡張機能のみが有効になります。</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;disableExtensions&gt;</span>
+<span class="w">  </span><span class="nt">&lt;extension</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;gmp&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/disableExtensions&gt;</span>
+</code></pre></div>
+
+<h4 id="plugins">&lt;plugins&gt;</h4>
+<p>オプション。<code>&lt;plugin filename="path_to_plugin.php" /&gt;</code>エントリのリスト。詳細は<a href="../plugins/using_plugins/">プラグイン</a>セクションを参照してください。</p>
+<h4 id="issuehandlers">&lt;issueHandlers&gt;</h4>
+<p>オプション。Psalmが見つけたすべての問題について苦情を言うことを望まない場合、issueHandlerタグを使用してそれを設定できます。詳細は<a href="../dealing_with_code_issues/">コードの問題への対処</a>を参照してください。</p>
+<h4 id="mockclasses">&lt;mockClasses&gt;</h4>
+<p>オプション。テストでモッククラスを使用していますか？ファイルをチェックする際にPsalmがそれらを無視するようにしたい場合は、<code>&lt;class name="Your\Namespace\ClassName" /&gt;</code>でクラスの完全修飾パスを含めてください。</p>
+<h4 id="universalobjectcrates">&lt;universalObjectCrates&gt;</h4>
+<p>オプション。静的に決定できないプロパティを持つオブジェクトがありますか？Psalmが特定のクラスライクのすべてのプロパティを混合として扱うようにしたい場合は、<code>&lt;class name="Your\Namespace\ClassName" /&gt;</code>でクラスの完全修飾パスを含めてください。デフォルトでは、<code>stdClass</code>と<code>SimpleXMLElement</code>が汎用オブジェクトクレートとして設定されています。</p>
+<h4 id="stubs">&lt;stubs&gt;</h4>
+<p>オプション。コードベースがPsalmにリフレクションを介して見えないクラスや関数を使用している場合（例えば、Psalmを実行しているマシンで利用できない内部パッケージにコードベースが依存している場合）、スタブファイルを使用できます。PhpStorm（人気のあるIDE）などで使用されているスタブは、実装なしでクラスと関数の説明を提供します。</p>
+<p>一般的なクラスのスタブのリストは<a href="https://github.com/JetBrains/phpstorm-stubs">こちら</a>で見つけることができます。</p>
+<p>各ファイルを<code>&lt;file name="path/to/file.php" /&gt;</code>でリストアップしてください。テストするクラスがスタブファイルで定義された親クラスまたはインターフェースを使用している場合、このスタブは<code>preloadClasses="true"</code>属性で設定する必要があります。</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;stubs&gt;</span>
+<span class="w">  </span><span class="nt">&lt;file</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;path/to/file.php&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;file</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;path/to/abstract-class.php&quot;</span><span class="w"> </span><span class="na">preloadClasses=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/stubs&gt;</span>
+</code></pre></div>
+
+<h4 id="ignoreexceptions">&lt;ignoreExceptions&gt;</h4>
+<p>オプション。<code>checkForThrowsDocblock</code>または<code>checkForThrowsInGlobalScope</code>で報告しない例外のリスト。<code>class</code>タグはspecifiedクラスのインスタンスのみをPsalmに無視させ、<code>classAndDescendants</code>はサブクラスも無視させます。例外に<code>onlyGlobalScope="true"</code>が設定されている場合、その例外に対しては<code>checkForThrowsInGlobalScope</code>のみが無視されます。例：</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;ignoreExceptions&gt;</span>
+<span class="w">  </span><span class="nt">&lt;class</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fully\qualified\path\Exc&quot;</span><span class="w"> </span><span class="na">onlyGlobalScope=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;classAndDescendants</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fully\qualified\path\OtherExc&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/ignoreExceptions&gt;</span>
+</code></pre></div>
+
+<h4 id="globals">&lt;globals&gt;</h4>
+<p>オプション。コードベースが<code>global</code>キーワードでアクセスするグローバル変数を使用している場合、その型を宣言できます。例：</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;globals&gt;</span>
+<span class="w">  </span><span class="nt">&lt;var</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;globalVariableName&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;type&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/globals&gt;</span>
+</code></pre></div>
+
+<p>一部のフレームワークやライブラリは、例えば<code>$GLOBALS[DB]-&gt;query($query)</code>を通じて機能を公開しています。
+以下の設定は、スーパーグローバル（<code>$GLOBALS</code>、<code>$_GET</code>など）にカスタム型を宣言します。</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;globals&gt;</span>
+<span class="w">  </span><span class="nt">&lt;var</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;GLOBALS&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;array{DB: MyVendor\DatabaseConnection, VIEW: MyVendor\TemplateView}&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;var</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;_GET&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;array{data: array&lt;string, string&gt;}&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/globals&gt;</span>
+</code></pre></div>
+
+<p>上の例は、以下のようにグローバル変数を宣言します：
+- <code>$GLOBALS</code>
+    - <code>DB</code>の型は<code>MyVendor\DatabaseConnection</code>
+    - <code>VIEW</code>の型は<code>MyVendor\TemplateView</code>
+- <code>$_GET</code>
+    - <code>data</code>は例えば<code>["id" =&gt; "123", "title" =&gt; "Nice"]</code>のような型</p>
+<h4 id="forbiddenfunctions">&lt;forbiddenFunctions&gt;</h4>
+<p>オプション。<a href="../issues/ForbiddenCode/"><code>ForbiddenCode</code></a>問題タイプを発行すべき関数のリストを指定できます。</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;forbiddenFunctions&gt;</span>
+<span class="w">  </span><span class="nt">&lt;function</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;var_dump&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;function</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;dd&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/forbiddenFunctions&gt;</span>
+</code></pre></div>
+
+<h2 id="psalm_2">プラグインでのPsalm設定へのアクセス</h2>
+<p>プラグインは、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Config.php">シングルトンPsalm\Config</a>を使用してプラグインでグローバル設定にアクセスまたは変更できます。</p>
+<div class="codehilite"><pre><span></span><code><span class="x">$config = \Psalm\Config::getInstance();</span>
+<span class="x">if (!isset($config-&gt;globals[&#39;$GLOBALS&#39;])) {</span>
+<span class="x">    $config-&gt;globals[&#39;$GLOBALS&#39;] = &#39;array{data: array&lt;string, string&gt;}&#39;;</span>
+<span class="x">}</span>
+</code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../installation/" class="btn btn-neutral float-left" title="インストール"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../plugins/using_plugins/" class="btn btn-neutral float-right" title="プラグインの使用">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../installation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../plugins/using_plugins/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

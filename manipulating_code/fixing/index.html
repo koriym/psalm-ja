@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/manipulating_code/fixing/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Psalterを使用したコードの修正 - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Psalter\u3092\u4f7f\u7528\u3057\u305f\u30b3\u30fc\u30c9\u306e\u4fee\u6b63";
+        var mkdocs_page_input_path = "manipulating_code/fixing.md";
+        var mkdocs_page_url = "/manipulating_code/fixing/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Psalterを使用したコードの修正</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">安全機能</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">プラグイン</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">サポートされている修正</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#missingreturntype">MissingReturnType</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#missingclosurereturntype">MissingClosureReturnType</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#invalidreturntype">InvalidReturnType</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#invalidnullablereturntype">InvalidNullableReturnType</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#invalidfalsablereturntype">InvalidFalsableReturnType</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#missingparamtype">MissingParamType</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#missingpropertytype">MissingPropertyType</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mismatchingdocblockparamtype">MismatchingDocblockParamType</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mismatchingdocblockreturntype">MismatchingDocblockReturnType</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lessspecificreturntype">LessSpecificReturnType</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#possiblyundefinedvariable">PossiblyUndefinedVariable</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#possiblyundefinedglobalvariable">PossiblyUndefinedGlobalVariable</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#unusedmethod">UnusedMethod</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#possiblyunusedmethod">PossiblyUnusedMethod</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#unusedproperty">UnusedProperty</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#possiblyunusedproperty">PossiblyUnusedProperty</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#unusedvariable">UnusedVariable</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#unnecessaryvarannotation">UnnecessaryVarAnnotation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#paramnamemismatch">ParamNameMismatch</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">コードの操作</li>
+      <li class="breadcrumb-item active">Psalterを使用したコードの修正</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/manipulating_code/fixing.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">コードの修正</h1>
+<p>Psalmは大規模なコードベースの潜在的な問題を見つけるのが得意ですが、一度見つかると、すべての問題を修正するのは途方もない作業になることがあります。</p>
+<p>Psalmには、Psalterという名前のツールが付属しており、コードの修正に役立ちます。</p>
+<p>以下のように、バイナリを通じて実行できます：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">vendor</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">psalter</span><span class="w"> </span><span class="o">[</span><span class="n">args</span><span class="o">]</span>
+</code></pre></div>
+
+<p>または、Psalmのバイナリを通じて：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">vendor</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">psalm</span><span class="w"> </span><span class="c1">--alter [args]</span>
+</code></pre></div>
+
+<h2 id="_2">安全機能</h2>
+<p>コードの更新には本質的にリスクがあり、自動的に行うとさらにリスクが高くなります。少し安心できるように、いくつかの機能を追加しました：</p>
+<ul>
+<li>Psalterが行う変更を事前に確認するには、<code>--dry-run</code>オプションを付けて実行できます。</li>
+<li><code>--php-version</code>を使用して特定のPHPバージョンを対象にできるので、例えばPHP 7.0のコードにnullable型ヒントを追加したり、PHP 5.6のコードに型ヒントを全く追加しないようにできます。<code>--php-version</code>はデフォルトで現在のバージョンになります。</li>
+<li><code>--safe-types</code>モードがあり、これはPsalmがdocblock以外のソース（例：型ヒント付きパラメータ、<code>instanceof</code>チェック、他の戻り値の型ヒントなど）から収集した情報のみを使用してPHP 7の戻り値の型ヒントを更新します。</li>
+<li><code>--allow-backwards-incompatible-changes=false</code>を使用すると、後方互換性のない変更が作成されないようにできます。</li>
+</ul>
+<h2 id="_3">プラグイン</h2>
+<p>独自の操作プラグインを渡すことができます。例：</p>
+<div class="codehilite"><pre><span></span><code>vendor/bin/psalter<span class="w"> </span>--plugin<span class="o">=</span>vendor/vimeo/psalm/examples/plugins/ClassUnqualifier.php<span class="w"> </span>--dry-run
+</code></pre></div>
+
+<p>上記の例のプラグインは、コード内の不必要に修飾されたクラス名をすべて、より短い別名バージョンに変換します。</p>
+<h2 id="_4">サポートされている修正</h2>
+<p>この初期リリースでは、Psalmが見つける問題の名前に対応する以下の変更をサポートしています。</p>
+<p>これらすべてを一度に修正するには、<code>vendor/bin/psalter --issues=all</code>を実行します。</p>
+<h3 id="missingreturntype">MissingReturnType</h3>
+<p><code>vendor/bin/psalter --issues=MissingReturnType --php-version=7.0</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><code>vendor/bin/psalter --issues=MissingReturnType --php-version=5.6</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @return string </span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="missingclosurereturntype">MissingClosureReturnType</h3>
+<p>上記と同様ですが、クロージャに対して適用されます。</p>
+<h3 id="invalidreturntype">InvalidReturnType</h3>
+<p><code>vendor/bin/psalter --issues=InvalidReturnType</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @return int </span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @return string </span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>戻り値の型ヒントもサポートされているので、<code>vendor/bin/psalter --issues=InvalidReturnType</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="invalidnullablereturntype">InvalidNullableReturnType</h3>
+<p><code>vendor/bin/psalter --issues=InvalidNullableReturnType  --php-version=7.1</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;hello&quot;</span> <span class="o">:</span> <span class="k">null</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">:</span> <span class="o">?</span><span class="nx">string</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;hello&quot;</span> <span class="o">:</span> <span class="k">null</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><code>vendor/bin/psalter --issues=InvalidNullableReturnType  --php-version=7.0</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;hello&quot;</span> <span class="o">:</span> <span class="k">null</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @return string|null </span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;hello&quot;</span> <span class="o">:</span> <span class="k">null</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="invalidfalsablereturntype">InvalidFalsableReturnType</h3>
+<p><code>vendor/bin/psalter --issues=InvalidFalsableReturnType</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;hello&quot;</span> <span class="o">:</span> <span class="k">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @return string|false </span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;hello&quot;</span> <span class="o">:</span> <span class="k">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="missingparamtype">MissingParamType</h3>
+<p><code>vendor/bin/psalter --issues=MissingParamType</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">C</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$s</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">C</span><span class="o">::</span><span class="na">foo</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">C</span> <span class="p">{</span>
+  <span class="sd">/**</span>
+<span class="sd">   * @param string $s</span>
+<span class="sd">   */</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$s</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">C</span><span class="o">::</span><span class="na">foo</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="missingpropertytype">MissingPropertyType</h3>
+<p><code>vendor/bin/psalter --issues=MissingPropertyType</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$foo</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$bar</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$baz</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">foo</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">foo</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">bar</span> <span class="o">=</span> <span class="s2">&quot;baz&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setBaz</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">baz</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var string|int</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="nv">$foo</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$bar</span><span class="p">;</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var array&lt;int, int&gt;|null</span>
+<span class="sd">     * @psalm-var non-empty-list&lt;int&gt;|null</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="nv">$baz</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">foo</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">foo</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">bar</span> <span class="o">=</span> <span class="s2">&quot;baz&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setBaz</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">baz</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="mismatchingdocblockparamtype">MismatchingDocblockParamType</h3>
+<p>以下のコードがある場合：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{}</span>
+<span class="k">class</span> <span class="nc">B</span> <span class="k">extends</span> <span class="nx">A</span> <span class="p">{}</span>
+<span class="k">class</span> <span class="nc">C</span> <span class="k">extends</span> <span class="nx">A</span> <span class="p">{}</span>
+<span class="k">class</span> <span class="nc">D</span> <span class="p">{}</span>
+</code></pre></div>
+
+<p><code>vendor/bin/psalter --issues=MismatchingDocblockParamType</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @param B|C $first</span>
+<span class="sd"> * @param D $second </span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">A</span> <span class="nv">$first</span><span class="p">,</span> <span class="nx">A</span> <span class="nv">$second</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @param B|C $first</span>
+<span class="sd"> * @param A $second </span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">A</span> <span class="nv">$first</span><span class="p">,</span> <span class="nx">A</span> <span class="nv">$second</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span>
+</code></pre></div>
+
+<h3 id="mismatchingdocblockreturntype">MismatchingDocblockReturnType</h3>
+<p><code>vendor/bin/psalter --issues=MismatchingDocblockReturnType</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @return int </span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="sd">/** </span>
+<span class="sd"> * @return string </span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="lessspecificreturntype">LessSpecificReturnType</h3>
+<p><code>vendor/bin/psalter --issues=LessSpecificReturnType</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">:</span> <span class="o">?</span><span class="nx">string</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="possiblyundefinedvariable">PossiblyUndefinedVariable</h3>
+<p><code>vendor/bin/psalter --issues=PossiblyUndefinedVariable</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nv">$a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">echo</span> <span class="nv">$a</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(){</span>
+    <span class="nv">$a</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nv">$a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">echo</span> <span class="nv">$a</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="possiblyundefinedglobalvariable">PossiblyUndefinedGlobalVariable</h3>
+<p><code>vendor/bin/psalter --issues=PossiblyUndefinedGlobalVariable</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+  <span class="nv">$a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">echo</span> <span class="nv">$a</span><span class="p">;</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+  <span class="nv">$a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">echo</span> <span class="nv">$a</span><span class="p">;</span>
+</code></pre></div>
+
+<h3 id="unusedmethod">UnusedMethod</h3>
+<p>これは使用されていないプライベートメソッドを削除します。</p>
+<p><code>vendor/bin/psalter --issues=UnusedMethod</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span>
+<span class="p">}</span>
+<span class="k">new</span> <span class="nx">A</span><span class="p">();</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{}</span>
+<span class="k">new</span> <span class="nx">A</span><span class="p">();</span>
+</code></pre></div>
+
+<h3 id="possiblyunusedmethod">PossiblyUnusedMethod</h3>
+<p>これは使用されていないprotected/publicメソッドを削除します。</p>
+<p><code>vendor/bin/psalter --issues=PossiblyUnusedMethod</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">bar</span><span class="p">()</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span>
+<span class="p">}</span>
+<span class="k">new</span> <span class="nx">A</span><span class="p">();</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{}</span>
+<span class="k">new</span> <span class="nx">A</span><span class="p">();</span>
+</code></pre></div>
+
+<h3 id="unusedproperty">UnusedProperty</h3>
+<p>これは使用されていないプライベートプロパティを削除します。</p>
+<p><code>vendor/bin/psalter --issues=UnusedProperty</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="sd">/** @var string */</span>
+    <span class="k">private</span> <span class="nv">$foo</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">new</span> <span class="nx">A</span><span class="p">();</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{}</span>
+<span class="k">new</span> <span class="nx">A</span><span class="p">();</span>
+</code></pre></div>
+
+<h3 id="possiblyunusedproperty">PossiblyUnusedProperty</h3>
+<p>これは使用されていないprotected/publicプロパティを削除します。</p>
+<p><code>vendor/bin/psalter --issues=PossiblyUnusedProperty</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="sd">/** @var string */</span>
+    <span class="k">public</span> <span class="nv">$foo</span><span class="p">;</span>
+    <span class="sd">/** @var string */</span>
+    <span class="k">protected</span> <span class="nv">$bar</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">new</span> <span class="nx">A</span><span class="p">();</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{}</span>
+<span class="k">new</span> <span class="nx">A</span><span class="p">();</span>
+</code></pre></div>
+
+<h3 id="unusedvariable">UnusedVariable</h3>
+<p>これは使用されていない変数を削除します。</p>
+<p><code>vendor/bin/psalter --issues=UnusedVariable</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="nv">$a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="nv">$b</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+    <span class="nv">$c</span> <span class="o">=</span> <span class="nv">$b</span> <span class="o">+=</span> <span class="nv">$a</span> <span class="o">-=</span> <span class="nb">intval</span><span class="p">(</span><span class="nv">$s</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="unnecessaryvarannotation">UnnecessaryVarAnnotation</h3>
+<p>これは使用されていない<code>@var</code>アノテーションを削除します。</p>
+<p><code>vendor/bin/psalter --issues=UnnecessaryVarAnnotation</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="sd">/** @var string */</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="nx">foo</span><span class="p">();</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="nx">foo</span><span class="p">();</span>
+</code></pre></div>
+
+<h3 id="paramnamemismatch">ParamNameMismatch</h3>
+<p>これは子クラスのパラメータ名を親クラスと一致させます。</p>
+<p><code>vendor/bin/psalter --issues=ParamNameMismatch</code>を以下のコードで実行すると：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$str</span><span class="p">,</span> <span class="nx">bool</span> <span class="nv">$b</span> <span class="o">=</span> <span class="k">false</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span>
+<span class="p">}</span>
+<span class="k">class</span> <span class="nc">AChild</span> <span class="k">extends</span> <span class="nx">A</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$string</span><span class="p">,</span> <span class="nx">bool</span> <span class="nv">$b</span> <span class="o">=</span> <span class="k">false</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$string</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>結果：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$str</span><span class="p">,</span> <span class="nx">bool</span> <span class="nv">$b</span> <span class="o">=</span> <span class="k">false</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span>
+<span class="p">}</span>
+<span class="k">class</span> <span class="nc">AChild</span> <span class="k">extends</span> <span class="nx">A</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$str</span><span class="p">,</span> <span class="nx">bool</span> <span class="nv">$b</span> <span class="o">=</span> <span class="k">false</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$str</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../annotating_code/adding_assertions/" class="btn btn-neutral float-left" title="アサートアノテーション"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../refactoring/" class="btn btn-neutral float-right" title="コードのリファクタリング">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../../annotating_code/adding_assertions/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../refactoring/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

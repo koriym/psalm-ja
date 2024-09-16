@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/contributing/how_psalm_works/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>psalmの働き - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "psalm\u306e\u50cd\u304d";
+        var mkdocs_page_input_path = "contributing/how_psalm_works.md";
+        var mkdocs_page_url = "/contributing/how_psalm_works/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../running_psalm/issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../running_psalm/checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">psalmの働き</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/contributing/how_psalm_works.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="psalm">psalmの働き</h1>
+<p>すべての分析の入り口は<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Analyzer/ProjectAnalyzer.php"><code>ProjectAnalyzer</code></a></p>
+<p><code>ProjectAnalyzer</code> は2つのことを担当する：スキャンと分析</p>
+<h2 id="_1">スキャン</h2>
+<p>解析フェーズをマルチスレッドで実行できるようにするため、Psalmはファイルやファイル群に対して、可能性のあるすべての依存関係を決定し、その関数のシグネチャと定数を取得する必要がある。</p>
+<p>スキャンは<code>Psalm\Internal\Codebase\Scanner</code> で行われます。</p>
+<p>最初のタスクは、ファイルを<a href="https://github.com/nikic/PHP-Parser">PHP Parser</a> の文の集合に変換することです。PHP Parserは、PHPコードを抽象構文木に変換し、Psalmがすべての解析に使用します。</p>
+<h3 id="_2">ディープスキャンとシャロースキャンの比較</h3>
+<p><code>NodeVisitor</code> <a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/PhpVisitor/ReflectorVisitor.php"><code>ReflectorVisitor</code></a> これは、関数のシグネチャ、戻り値型、定数、継承を取得するだけの浅いスキャンと、関数のすべての文に潜り込んで依存関係(関数がインスタンス化するクラス名など)を取得する深いスキャンの2つのモードがあります。ディープスキャンは、後で分析されることがわかっているファイルに対してのみ行われます（したがって、例えばベンダーディレクトリの大部分は、シャロースキャンを受けるだけです）。</p>
+<p>そのため、<code>src</code> ディレクトリを分析する場合、Psalm は以下のファイルをディープスキャンします：</p>
+<p>src/A.php</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span> <span class="k">use</span> <span class="nx">Vendor\VendorClass</span><span class="p">;</span> <span class="k">use</span> <span class="nx">Vendor\OtherVendorClass</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">A</span> <span class="k">extends</span> <span class="nx">VendorClass</span> <span class="p">{</span>     <span class="k">public</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">OtherVendorClass</span> <span class="nv">$c</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span> <span class="p">}</span>
+</code></pre></div>
+
+<p>また、<code>Vendor\VendorClass</code> に属するファイルもディープスキャンします。これは、ある時点でプロパティのインスタンスをチェックする必要があるかもしれないからです。</p>
+<p>変数<code>$c</code> のメソッドシグネチャと戻り値の型にしか関心がないため、<code>Vendor\OtherVendorClass</code> (および依存するすべてのファイル) を浅くスキャンします。</p>
+<h3 id="_3">クラス名からファイルを見つける</h3>
+<p><code>ClassName</code> =&gt;<code>src/FileName.php</code> のマッピングを把握するために、プロジェクト・ファイルにはリフレクションを使い、ベンダー・ファイルにはComposerクラスマップを使う。</p>
+<h3 id="_4">スキャンからデータを保存する</h3>
+<p><code>ReflectorVisitor</code> がアクセスする各ファイルに対して、Psalm は<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Storage/FileStorage.php"><code>FileStorage</code></a> インスタンスを作成し、ファイルの内容に応じて<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Storage/ClassLikeStorage.php"><code>ClassLikeStorage</code></a> と<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Storage/FunctionLikeStorage.php"><code>FunctionLikeStorage</code></a> インスタンスも作成する。</p>
+<p>すべてのファイルとそのクラスと関数シグネチャのセットができたら、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Codebase/Populator.php"><code>Populator</code></a> クラスのすべての継承を計算し、分析に移る。</p>
+<p>スキャン・ステップの最後には、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Codebase/ClassLikes.php"><code>ClassLikes</code></a> 、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Codebase/Functions.php"><code>Functions</code></a> 、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Codebase/Methods.php"><code>Methods</code></a> クラスに必要な情報をすべて入力し、プロジェクトで使用するすべてのクラスとファイルについて、<code>FileStorage</code> と<code>ClassLikeStorage</code> オブジェクトの完全なリスト（それぞれ<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Provider/FileStorageProvider.php"><code>FileStorageProvider</code></a> と<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Provider/ClassLikeStorageProvider.php"><code>ClassLikeStorageProvider</code></a> 内）を作成しました。</p>
+<h2 id="_5">分析</h2>
+<p>にあるファイルを分析する。<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Analyzer/FileAnalyzer.php"><code>FileAnalyzer</code></a></p>
+<p><code>FileAnalyzer</code> 、与えられたファイルを受け取り、トップレベルのコンポーネント（クラス、特性、インターフェイス、関数）を探します。名前空間の内部を調べ、その中のクラス、インターフェイス、特性、関数を抽出することもできます。</p>
+<p>これらのコンポーネントの解析は、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Analyzer/ClassAnalyzer.php"><code>ClassAnalyzer</code></a> 、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Analyzer/InterfaceAnalyzer.php"><code>InterfaceAnalyzer</code></a> 、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Analyzer/FunctionAnalyzer.php"><code>FunctionAnalyzer</code></a> に委譲されます。</p>
+<p>行ごとの解析は最も基本的なユースケースなので（クラス継承の心配はない）、<code>FunctionAnalyzer</code> 。</p>
+<h3 id="_6">関数解析</h3>
+<p><code>FunctionAnalyzer::analyze</code> は<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Analyzer/FunctionLikeAnalyzer.php"><code>FunctionLikeAnalyzer</code></a> で定義されています。このメソッドはまず、スキャン・ステップで作成した、指定された関数の<code>FunctionLikeStorage</code> オブジェクトを取得します。この<code>FunctionLikeStorage</code> オブジェクトには、関数のパラメータに関する情報があり、それを<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Context.php"><code>Context</code></a> オブジェクトに渡します。<code>Context</code> には、変数とプロパティに関するすべての型情報 (<code>Context::$vars_in_scope</code> に格納) が含まれています。</p>
+<p><code>FunctionLikeAnalyzer::analyze</code> のどこかで新しい<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Analyzer/StatementsAnalyzer.php"><code>StatementsAnalyzer</code></a> を作成し、その<code>analyze()</code> メソッドを呼び出して、PhpParser ノードのセットを渡します。<code>StatementAnalyzer::analyze</code> は、より詳細な分析を行うために、さまざまなチェッカー (<code>IfAnalyzer</code>,<code>ForeachAnalyzer</code>,<code>ExpressionAnalyzer</code> など) に渡します。</p>
+<p>各行では、<code>Context</code> オブジェクトが操作されたりされなかったりします。分岐点（if文、ループ、3項など）では、<code>Context</code> オブジェクトがクローンされ、分岐の最後で、Psalmが変更を解決する方法を見つけ出し、クローンされていない<code>Context</code> オブジェクトを更新します。</p>
+<p><code>NodeDataProvider</code> は各 PhpParser ノードの型を保存します。</p>
+<p>すべてのステートメントが分析された後、すべての戻り値の型を集め、与えられた戻り値の型と比較します。</p>
+<h3 id="_7">型の照合</h3>
+<p><code>Context</code> オブジェクトの更新は簡単なものもありますが、そうでないものもあります。新しい型情報に照らして<code>Context</code> オブジェクトを更新することは、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Type/Reconciler.php"><code>Reconciler</code></a> で行われる。 は、<code>[“$a” =&gt; “!null”]</code> のような配列アサーションと、<code>$a =&gt; string|null</code> のような既存の型情報のリストを受け取り、 のような更新された情報のセットを返す。<code>$a =&gt; string</code></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/security_analysis/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>はじめに - Psalm-Ja</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u306f\u3058\u3081\u306b";
+        var mkdocs_page_input_path = "security_analysis/index.md";
+        var mkdocs_page_url = "/security_analysis/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../running_psalm/installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running_psalm/configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../running_psalm/plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../running_psalm/plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../running_psalm/plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running_psalm/command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running_psalm/language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../running_psalm/dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../running_psalm/issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running_psalm/checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../annotating_code/typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../annotating_code/type_syntax/union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../annotating_code/type_syntax/atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../annotating_code/type_syntax/intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../annotating_code/supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../annotating_code/templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../annotating_code/adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">はじめに</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">汚染タイプ</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">汚染源</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">汚染シンク</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">偽陽性を避ける</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">制限事項</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">汚染分析でベースラインを使用する</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">ユーザーインターフェースで結果を表示する</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#github-code-scanning">GitHub Code Scanning</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sarif">その他のSARIF互換ソフトウェア</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">汚染グラフのデバッグ</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">セキュリティ分析</li>
+      <li class="breadcrumb-item active">はじめに</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/security_analysis/index.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="psalm">Psalmにおけるセキュリティ分析</h1>
+<p>Psalmは、ユーザーが制御できる入力（<code>$_GET['name']</code>など）と、エスケープされていないユーザー制御の入力が終わってほしくない場所（<code>echo "&lt;h1&gt;$name&lt;/h1&gt;"</code>など）との間のつながりを、アプリケーションを通じてデータがどのように流れるか（代入、関数/メソッド呼び出し、配列/プロパティアクセスを介して）を見ることで見つけようとします。</p>
+<p>このモードは<code>--taint-analysis</code>コマンドラインフラグで有効にできます。汚染分析が有効になると、他の分析は実行されません。<a href="https://github.com/vimeo/psalm/issues/6156">包括的な結果を確保するために</a>、汚染分析の前に通常通りPsalmを実行し、エラーを修正する必要があります。</p>
+<p>汚染された入力とは、アプリケーションのユーザーが全体的または部分的に制御できるものすべてです。汚染分析では、汚染された入力を_汚染源_と呼びます。</p>
+<p>例えば以下のようなものが汚染源です：
+- <code>$_GET['id']</code>
+- <code>$_POST['email']</code>
+- <code>$_COOKIE['token']</code></p>
+<p>汚染分析は、データが汚染源から_汚染シンク_にどのように流れるかを追跡します。汚染シンクは、信頼できないデータが決して到達してほしくない場所です。</p>
+<p>例えば以下のようなものが汚染シンクです：
+- <code>&lt;div id="section_&lt;?= $id ?&gt;"&gt;</code>
+- <code>$pdo-&gt;exec("select * from users where name='" . $name . "'")</code></p>
+<h2 id="_1">汚染タイプ</h2>
+<p>Psalmはデフォルトで、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Type/TaintKind.php">Psalm\Type\TaintKind</a>クラスで定義されている多くの汚染タイプを認識します：</p>
+<ul>
+<li><code>sql</code> - SQLを含む可能性のある文字列に使用</li>
+<li><code>ldap</code> - LDAPのDNまたはフィルタを含む可能性のある文字列に使用</li>
+<li><code>html</code> - 山括弧または引用符なしの文字列を含む可能性のある文字列に使用</li>
+<li><code>has_quotes</code> - 引用符なしの文字列を含む可能性のある文字列に使用</li>
+<li><code>shell</code> - シェルコマンドを含む可能性のある文字列に使用</li>
+<li><code>callable</code> - ユーザーが制御可能な呼び出し可能な文字列に使用</li>
+<li><code>unserialize</code> - シリアル化された文字列を含む可能性のある文字列に使用</li>
+<li><code>include</code> - インクルードされるパスを含む可能性のある文字列に使用</li>
+<li><code>eval</code> - コードを含む可能性のある文字列に使用</li>
+<li><code>ssrf</code> - Curlまたはそれらきのテキストを渡す可能性のある文字列に使用</li>
+<li><code>file</code> - パスを含む可能性のある文字列に使用</li>
+<li><code>cookie</code> - HTTPクッキーを含む可能性のある文字列に使用</li>
+<li><code>header</code> - HTTPヘッダーを含む可能性のある文字列に使用</li>
+<li><code>user_secret</code> - ユーザーが提供した秘密を含む可能性のある文字列に使用</li>
+<li><code>system_secret</code> - システムの秘密を含む可能性のある文字列に使用</li>
+</ul>
+<p>カスタム汚染源を定義する際に、独自の汚染タイプを自由に定義することもできます - これらは単なる文字列です。</p>
+<h2 id="_2">汚染源</h2>
+<p>Psalmは現在、デフォルトで3つの汚染源を定義しています：<code>$_GET</code>、<code>$_POST</code>、<code>$_COOKIE</code>サーバー変数です。</p>
+<p><a href="custom_taint_sources/">独自の汚染源を定義する</a>こともできます。</p>
+<h2 id="_3">汚染シンク</h2>
+<p>Psalmは現在、<code>echo</code>、<code>include</code>、<code>header</code>を含む組み込み関数やメソッドに対して、多くの異なるシンクを定義しています。</p>
+<p><a href="custom_taint_sinks/">独自の汚染シンクを定義する</a>こともできます。</p>
+<h2 id="_4">偽陽性を避ける</h2>
+<p>誰も大量の偽陽性をかき分けたくはありません - <a href="avoiding_false_positives/">ここに偽陽性を避けるためのガイドがあります</a>。</p>
+<h2 id="_5">制限事項</h2>
+<p>汚染分析は、値のエスケープ時にミスを犯さないことに依存しています。例えば：</p>
+<div class="codehilite"><pre><span></span><code><span class="x">$sql = &#39;SELECT * FROM users WHERE id = &#39; . $mysqli-&gt;real_escape_string((string) $_GET[&#39;id&#39;]);</span>
+
+<span class="x">$html = &quot;</span>
+<span class="x">  &lt;img src=&quot; . htmlentities((string) $_GET[&#39;img&#39;]) . &quot; alt=&#39;&#39; /&gt;</span>
+<span class="x">  &lt;a href=&#39;&quot; . htmlentities((string) $_GET[&#39;a1&#39;]) . &quot;&#39;&gt;Link 1&lt;/a&gt;</span>
+<span class="x">  &lt;a href=&#39;&quot; . htmlentities((string) $_GET[&#39;a2&#39;]) . &quot;&#39;&gt;Line 2&lt;/a&gt;&quot;;</span>
+
+<span class="x">// 詳細：</span>
+<span class="x">//    $id  = &#39;id&#39;                   - 引用符が不足</span>
+<span class="x">//    $img = &#39;/ onerror=alert(1)&#39;   - 引用符が不足</span>
+<span class="x">//    $a1  = &#39;javascript:alert(1)&#39;  - 通常のインラインJavaScript</span>
+<span class="x">//    $a2  = &#39;/&#39; onerror=&#39;alert(1)&#39; - PHP 8.1以前では、シングルクォートはデフォルトでエスケープされない</span>
+<span class="x">// テスト：</span>
+<span class="x">//    /?id=id&amp;img=%2F+onerror%3Dalert%281%29&amp;a1=javascript%3Aalert%281%29&amp;a2=%2F%27+onerror%3D%27alert%281%29</span>
+</code></pre></div>
+
+<p>これらの問題を避けるには、SQLとコマンド（例：<code>exec</code>）にはパラメータ化クエリを使用し、HTMLにはコンテキストを考慮したテンプレートエンジンを使用してください。そして、<a href="https://psalm.dev/docs/annotating_code/type_syntax/scalar_types/#literal-string">literal-string</a>型を使用して、機密な文字列がアプリケーションで定義されている（つまり、開発者によって書かれた）ことを確認してください。</p>
+<h2 id="_6">汚染分析でベースラインを使用する</h2>
+<p>汚染分析は他の静的コード分析とは別に実行されるため、別のベースラインを使用することが理にかなっています。</p>
+<p><code>--use-baseline=PATH</code>オプションを使用して、汚染分析に異なるベースラインを設定できます。</p>
+<h2 id="_7">ユーザーインターフェースで結果を表示する</h2>
+<p>Psalmは、静的分析結果を交換するための<a href="http://docs.oasis-open.org/sarif/sarif/v2.0/csprd01/sarif-v2.0-csprd01.html">SARIF</a>標準をサポートしています。これにより、汚染フローを含む結果を任意のSARIF互換ソフトウェアで表示できます。</p>
+<h3 id="github-code-scanning">GitHub Code Scanning</h3>
+<p><a href="https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning">GitHub code scanning</a>は、<a href="https://github.com/marketplace/actions/psalm-static-analysis-for-php">Psalm GitHub Action</a>を使用してセットアップできます。</p>
+<p>または、<a href="https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/uploading-a-sarif-file-to-github">GitHubのドキュメント</a>に記載されているように、生成されたSARIFファイルを手動でアップロードすることもできます。</p>
+<p>結果は、リポジトリの「Security」タブで利用可能になります。</p>
+<h3 id="sarif">その他のSARIF互換ソフトウェア</h3>
+<p>SARIFレポートを生成するには、<code>--report</code>フラグと<code>.sarif</code>拡張子を付けてPsalmを実行します。例：</p>
+<div class="codehilite"><pre><span></span><code>psalm<span class="w"> </span>--report<span class="o">=</span>results.sarif
+</code></pre></div>
+
+<h2 id="_8">汚染グラフのデバッグ</h2>
+<p>Psalmは、DOT言語を使用して汚染グラフを出力できます。これは、期待される汚染が検出されない場合に役立ちます。DOTグラフを生成するには、<code>--dump-taint-graph</code>フラグを付けてPsalmを実行します。例：</p>
+<div class="codehilite"><pre><span></span><code>psalm<span class="w"> </span>--taint-analysis<span class="w"> </span>--dump-taint-graph<span class="o">=</span>taints.dot
+dot<span class="w"> </span>-Tsvg<span class="w"> </span>-o<span class="w"> </span>taints.svg<span class="w"> </span>taints.dot
+</code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../manipulating_code/refactoring/" class="btn btn-neutral float-left" title="コードのリファクタリング"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="custom_taint_sources/" class="btn btn-neutral float-right" title="カスタム汚染源">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../manipulating_code/refactoring/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="custom_taint_sources/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

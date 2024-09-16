@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/running_psalm/command_line_usage/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>コマンドライン使用法 - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u30b3\u30de\u30f3\u30c9\u30e9\u30a4\u30f3\u4f7f\u7528\u6cd5";
+        var mkdocs_page_input_path = "running_psalm/command_line_usage.md";
+        var mkdocs_page_url = "/running_psalm/command_line_usage/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">コマンドライン使用法</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">コマンドラインオプション</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">終了ステータス</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#shepherd">Shepherd</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#psalm_1">Psalmをより速く実行する</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/type_syntax/intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../annotating_code/adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Psalmの実行</li>
+      <li class="breadcrumb-item active">コマンドライン使用法</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/running_psalm/command_line_usage.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="psalm">Psalmの実行</h1>
+<p>設定ファイルを設定したら、プロジェクトのルートディレクトリから以下のコマンドでPsalmを実行できます：</p>
+<div class="codehilite"><pre><span></span><code>./vendor/bin/psalm
+</code></pre></div>
+
+<p>Psalmは<code>&lt;projectFiles&gt;</code>で参照されているプロジェクト内のすべてのファイルをスキャンします。</p>
+<p>特定のファイルで実行したい場合は、以下のように使用します：</p>
+<div class="codehilite"><pre><span></span><code>./vendor/bin/psalm<span class="w"> </span>file1.php<span class="w"> </span><span class="o">[</span>file2.php...<span class="o">]</span>
+</code></pre></div>
+
+<h2 id="_1">コマンドラインオプション</h2>
+<p><code>--help</code>を付けて実行すると、Psalmがサポートするオプションのリストが表示されます。</p>
+<h2 id="_2">終了ステータス</h2>
+<p>Psalmは、正常に完了し問題が見つからなかった場合は<code>0</code>で終了します。Psalmの実行に問題があった場合は<code>1</code>、正常に完了したが問題が見つかった場合は<code>2</code>で終了します。これら以外の終了ステータスは、何らかの内部問題を示します。</p>
+<h2 id="shepherd">Shepherd</h2>
+<p>Psalmは現在、パブリックプロジェクトに対してGitHub統合を提供しています。
+<code>--shepherd</code>を追加して、ビルドに関する情報をhttps://shepherd.devに送信します。
+現在、Shepherdは<code>master</code>ブランチの型カバレッジ（Psalmが推論できる型の割合）を追跡しています。</p>
+<h2 id="psalm_1">Psalmをより速く実行する</h2>
+<p>Psalmには、ビルドを高速化するいくつかのコマンドラインオプションがあります：</p>
+<ul>
+<li><code>--threads=[n]</code> Psalmの分析を複数のスレッドで実行します</li>
+<li><code>--diff</code> 前回の実行以降に更新されたファイル（とその依存ファイル）のみをチェックします。</li>
+</ul>
+<p>Psalm 4では、<code>--diff</code>がデフォルトで有効になっています（<code>--no-diff</code>で無効にできます）。
+前回の実行からのデータは<em>キャッシュディレクトリ</em>に保存されます。キャッシュディレクトリは<a href="../configuration/">設定</a>で設定できます。
+ビルドサーバーでPsalmを実行している場合は、実行間でキャッシュディレクトリが保持されるようにサーバーを設定することをお勧めします。</p>
+<p>これらを組み合わせて実行する（例：<code>--threads=8 --diff</code>）と、最速のPsalm実行が可能になります。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../plugins/plugins_type_system/" class="btn btn-neutral float-left" title="Psalmの型表現"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../language_server/" class="btn btn-neutral float-right" title="IDE サポート">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../plugins/plugins_type_system/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../language_server/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

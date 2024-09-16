@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://psalm-ja.github.io/annotating_code/type_syntax/scalar_types/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>スカラー型 - Psalm-Ja</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u30b9\u30ab\u30e9\u30fc\u578b";
+        var mkdocs_page_input_path = "annotating_code/type_syntax/scalar_types.md";
+        var mkdocs_page_url = "/annotating_code/type_syntax/scalar_types/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Psalm-Ja
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">ドキュメンテーションホーム</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Psalmの実行</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/installation/">インストール</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/configuration/">設定</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >プラグイン</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/plugins/using_plugins/">プラグインの使用</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/plugins/authoring_plugins/">プラグインの作成</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/plugins/plugins_type_system/">Psalmの型表現</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/command_line_usage/">コマンドライン使用法</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/language_server/">IDE サポート</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >エラーの扱い</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/dealing_with_code_issues/">コードの問題への対処</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../running_psalm/issues/">問題の種類</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../running_psalm/checking_non_php_files/">PHP以外のファイルのチェック</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">型のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../typing_in_psalm/">型アノテーションの使用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../union_types/">ユニオン型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../atomic_types/">アトミック型リファレンス</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../intersection_types/">インターセクション型</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">その他のアノテーション</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../supported_annotations/">サポートされているアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../templated_annotations/">テンプレートアノテーション</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../adding_assertions/">アサートアノテーション</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">コードの操作</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../manipulating_code/fixing/">Psalterを使用したコードの修正</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../manipulating_code/refactoring/">コードのリファクタリング</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">セキュリティ分析</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/">はじめに</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/custom_taint_sources/">カスタム汚染源</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/custom_taint_sinks/">カスタム汚染シンク</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security_analysis/avoiding_false_positives/">偽陽性を避ける</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../contributing/">貢献</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Psalm-Ja</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">スカラー型</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/koriym/psalm-ja/edit/master/docs/annotating_code/type_syntax/scalar_types.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">スカラー型</h1>
+<h2 id="_2">スカラー</h2>
+<p><code>int</code>、<code>bool</code>、<code>float</code>、<code>string</code> はスカラー型の例です。スカラー型はPHPのスカラー値を表します。これらの型はPHP 7でも有効な型です。
+<code>scalar</code> 型はすべてのスカラー型のスーパータイプです。</p>
+<h2 id="int-range">int-range</h2>
+<p>整数範囲は、ジェネリック構文を使用して指定された範囲内の整数を示します：<code>int&lt;x, y&gt;</code><br />
+<code>x</code> と <code>y</code> は整数である必要があります。<br />
+<code>x</code> は <code>min</code> を使用して PHP_INT_MIN を示すこともでき、<code>y</code> は <code>max</code> を使用して PHP_INT_MAX を示すこともできます。</p>
+<p>例：</p>
+<ul>
+<li><code>int&lt;-1, 3&gt;</code></li>
+<li><code>int&lt;min, 0&gt;</code></li>
+<li><code>int&lt;1, max&gt;</code> （<code>positive-int</code> と同等）</li>
+<li><code>int&lt;0, max&gt;</code> （<code>non-negative-int</code> と同等）</li>
+<li><code>int&lt;min, -1&gt;</code> （<code>negative-int</code> と同等）</li>
+<li><code>int&lt;min, 0&gt;</code> （<code>non-positive-int</code> と同等）</li>
+<li><code>int&lt;min, max&gt;</code> （<code>int</code> と同等）</li>
+</ul>
+<h2 id="int-mask1-2-4">int-mask&lt;1, 2, 4&gt;</h2>
+<p>パラメータのビットマスク組み合わせの結果である型を表します。<br />
+<code>int-mask&lt;1, 2, 4&gt;</code> は <code>0|1|2|3|4|5|6|7</code> に対応します。</p>
+<h2 id="int-mask-ofmyclassclass_constant_">int-mask-of&lt;MyClass::CLASS_CONSTANT_*&gt;</h2>
+<p>パラメータのビットマスク組み合わせの結果である型を表します。<br />
+これは <a href="#int-mask1-2-4"><code>int-mask</code></a> と同じ概念ですが、この型はコード内の定数への参照とともに使用されます：<code>int-mask-of&lt;MyClass::CLASS_CONSTANT_*&gt;</code> は、値が1、2、4の <code>CLASS_CONSTANT_{A,B,C}</code> という3つの定数がある場合、<code>0|1|2|3|4|5|6|7</code> に対応します。</p>
+<h2 id="array-key">array-key</h2>
+<p><code>array-key</code> は <code>int</code> と <code>string</code> のスーパータイプです（ただし、ユニオンではありません）。</p>
+<h2 id="numeric">numeric</h2>
+<p><code>numeric</code> は <code>int</code> または <code>float</code> と <a href="#numeric-string"><code>numeric-string</code></a> のスーパータイプです。</p>
+<h2 id="class-string-interface-string">class-string, interface-string</h2>
+<p>Psalmは <code>MyClass::class</code> 定数のための特別なメタ型 <code>class-string</code> をサポートしており、これは <code>string</code> が使用できるどこでも使用できます。</p>
+<p>例えば、<code>string</code> パラメータ <code>$class_name</code> を持つ関数があるとき、アノテーション <code>@param class-string $class_name</code> を使用して、その位置に常に <code>::class</code> 定数が渡されることをPsalmに確認させることができます：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{}</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * @param class-string $s</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">takesClassName</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span>
+</code></pre></div>
+
+<p><code>takesClassName("A");</code> は <code>TypeCoercion</code> の問題を引き起こしますが、<code>takesClassName(A::class)</code> は問題ありません。</p>
+<p>また、<code>class-string</code> をオブジェクト名でパラメータ化することもできます。例：<a href="../value_types/#regular-class-constants"><code>class-string&lt;Foo&gt;</code></a>。これは、一致する型が <code>Foo</code> のクラス文字列またはその子孫のいずれかでなければならないことをPsalmに伝えます。</p>
+<h2 id="trait-string">trait-string</h2>
+<p>Psalmは存在するトレイトを示す <code>trait-string</code> アノテーションもサポートしています。</p>
+<h2 id="enum-string">enum-string</h2>
+<p>Psalmは存在する列挙型を示す <code>enum-string</code> アノテーションもサポートしています。</p>
+<h2 id="callable-string">callable-string</h2>
+<p><code>callable-string</code> は <code>is_callable</code> チェックを通過した文字列値を示します。</p>
+<h2 id="numeric-string">numeric-string</h2>
+<p><code>numeric-string</code> は <code>is_numeric</code> チェックを通過した文字列値を示します。</p>
+<h2 id="literal-string">literal-string</h2>
+<p><code>literal-string</code> はアプリケーション内の文字列のみで構成される文字列値を示します。</p>
+<p>例：</p>
+<ul>
+<li><code>"hello " . "world"</code></li>
+<li><code>"hello " . Person::DEFAULT_NAME</code></li>
+<li><code>implode(', ', ["one", "two"])</code></li>
+<li><code>implode(', ', [1, 2, 3])</code></li>
+<li><code>"hello " . &lt;another literal-string&gt;</code></li>
+</ul>
+<p>このタイプチェックを通過しない文字列：</p>
+<ul>
+<li><code>file_get_contents("foo.txt")</code></li>
+<li><code>$_GET["foo"]</code></li>
+<li><code>"hello " . $_GET["foo"]</code></li>
+</ul>
+<h2 id="literal-int">literal-int</h2>
+<p><code>literal-int</code> はアプリケーション内のリテラル整数のみで構成される整数値を示します。</p>
+<p>例：</p>
+<ul>
+<li><code>12</code></li>
+<li><code>12+42</code></li>
+</ul>
+<p>このタイプチェックを通過しない整数：</p>
+<ul>
+<li><code>(int) file_get_contents("foo.txt")</code></li>
+<li><code>(int) $_GET["foo"]</code></li>
+<li><code>((int)$_GET["foo"]) + 2</code></li>
+</ul>
+<h2 id="lowercase-string-non-empty-string-non-empty-lowercase-string">lowercase-string, non-empty-string, non-empty-lowercase-string</h2>
+<p>空でない文字列、小文字の文字列、または両方を同時に表します。</p>
+<p>ここでの <code>empty</code> は空文字列 <code>''</code> を除くすべての文字列として定義されています。別の型 <code>non-falsy-string</code> は事実上 <code>non-empty-string</code> のサブタイプであり、文字列値 <code>'0'</code> も除外します。</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/koriym/psalm-ja" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
