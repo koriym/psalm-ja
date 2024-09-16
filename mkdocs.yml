@@ -3,7 +3,7 @@ site_url: https://psalm-ja.github.io/
 repo_url: https://github.com/koriym/psalm-ja
 repo_name: GitHub
 site_dir: docs
-docs_dir: /Users/akihito/git/psalm/docs-ja
+docs_dir: docs-ja
 theme:
   name: 'readthedocs'
   locale: en
