@@ -1,0 +1,1751 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/psalm-ja/annotating_code/templated_annotations/">
+      
+      
+        <link rel="prev" href="../supported_annotations/">
+      
+      
+        <link rel="next" href="../adding_assertions/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>テンプレートアノテーション - Psalm日本語ドキュメント</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="../../assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="../../assets/css/php.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+
+
+
+
+
+<!-- Header -->
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="../.."
+            title="Psalm日本語ドキュメント"
+            class="md-header__button md-logo"
+            aria-label="Psalm日本語ドキュメント"
+            data-md-component="logo"
+    >
+      
+  <img src="../../assets/images/psalmlogo.jpg" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            Psalm日本語ドキュメント
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              テンプレートアノテーション
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Psalm日本語ドキュメント" class="md-nav__button md-logo" aria-label="Psalm日本語ドキュメント" data-md-component="logo">
+      
+  <img src="../../assets/images/psalmlogo.jpg" alt="logo">
+
+    </a>
+    Psalm日本語ドキュメント
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ドキュメンテーションホーム
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Psalmの実行
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Psalmの実行
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プラグイン
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            プラグイン
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/plugins/using_plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プラグインの使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/plugins/authoring_plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プラグインの作成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/plugins/plugins_type_system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Psalmの型表現
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/command_line_usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コマンドライン使用法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/language_server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IDE サポート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    エラーの扱い
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            エラーの扱い
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/dealing_with_code_issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コードの問題への対処
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    問題の種類
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/checking_non_php_files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PHP以外のファイルのチェック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    型のアノテーション
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            型のアノテーション
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../typing_in_psalm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    型アノテーションの使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../type_syntax/union_types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ユニオン型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../type_syntax/atomic_types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アトミック型リファレンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../type_syntax/intersection_types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インターセクション型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    その他のアノテーション
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            その他のアノテーション
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../supported_annotations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サポートされているアノテーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    テンプレートアノテーション
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    テンプレートアノテーション
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#template-psalm-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      @template, @psalm-template
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="@template, @psalm-template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      注意
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#param-class-stringt" class="md-nav__link">
+    <span class="md-ellipsis">
+      @param class-string&lt;T&gt;
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      テンプレートの継承
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      テンプレートの制約
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      テンプレートの共変性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="テンプレートの共変性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      不変性についてはどうでしょうか？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      ビルトインのテンプレート化されたクラスとインターフェース
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adding_assertions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アサートアノテーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    コードの操作
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            コードの操作
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manipulating_code/fixing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Psalterを使用したコードの修正
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manipulating_code/refactoring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コードのリファクタリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ分析
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/custom_taint_sources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    カスタム汚染源
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/custom_taint_sinks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    カスタム汚染シンク
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/avoiding_false_positives/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    偽陽性を避ける
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#template-psalm-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      @template, @psalm-template
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="@template, @psalm-template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      注意
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#param-class-stringt" class="md-nav__link">
+    <span class="md-ellipsis">
+      @param class-string&lt;T&gt;
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      テンプレートの継承
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      テンプレートの制約
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      テンプレートの共変性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="テンプレートの共変性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      不変性についてはどうでしょうか？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      ビルトインのテンプレート化されたクラスとインターフェース
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">テンプレート化されたアノテーション</h1>
+<p>Docblockを使用すると、コードの動作に関する簡単な情報をPsalmに伝えることができます。例えば、関数の戻り値の型で <code>@return int</code> を使用すると、その関数が <code>int</code> を返すべきであることをPsalmに伝えます。同様に、<code>@return MyContainer</code> は、関数がユーザー定義クラス <code>MyContainer</code> のインスタンスを返すべきであることを示します。いずれの場合も、Psalmは関数が実際にそれらの型を返しているかどうかをチェックし、さらにその関数を呼び出すコードが返される値を適切に使用しているかどうかもチェックします。</p>
+<p>テンプレート化された型を使用すると、コードの動作についてさらに多くの情報をPsalmに伝えることができます。</p>
+<p>簡単なクラス <code>MyContainer</code> を見てみましょう：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">MyContainer</span> {
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  <span style="color: #008000; font-weight: bold">private</span> <span style="color: #19177C">$value</span>;
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">__construct</span>(<span style="color: #19177C">$value</span>) {
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">value</span> <span style="color: #666666">=</span> <span style="color: #19177C">$value</span>;
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  }
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">getValue</span>() {
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">value</span>;
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  }
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>}
+</span></code></pre></div>
+<p>Psalmが <code>$my_container-&gt;getValue()</code> の戻り値の型を処理する際、値が任意のものになる可能性があるため、何が取得されるかわかりません。</p>
+<p>テンプレート化されたアノテーションは、この問題の解決策を提供します。<code>MyContainer</code> 内の値のプレースホルダーとして、ジェネリック/テンプレート化されたパラメータ <code>T</code> を定義できます：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span style="color: #BA2121; font-style: italic"> * @template T </span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">MyContainer</span> {
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  <span style="color: #BA2121; font-style: italic">/** @var T */</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  <span style="color: #008000; font-weight: bold">private</span> <span style="color: #19177C">$value</span>;
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  <span style="color: #BA2121; font-style: italic">/** @param T $value */</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>  <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">__construct</span>(<span style="color: #19177C">$value</span>) {
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">value</span> <span style="color: #666666">=</span> <span style="color: #19177C">$value</span>;
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>  }
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>  <span style="color: #BA2121; font-style: italic">/** @return T */</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>  <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">getValue</span>() {
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">value</span>;
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>  }
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>}
+</span></code></pre></div>
+<p>これで、docblockで <code>MyContainer</code> を参照する際に、そのテンプレート化されたパラメータに値を代入できます。例えば、<code>@return MyContainer&lt;int&gt;</code> と記述することで、Psalmはその戻り値の型を評価する際に <code>T</code> を <code>int</code> に置き換えます。これは実質的に次のようなクラスとして扱われます：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">One_off_instance_of_MyContainer</span> {
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  <span style="color: #BA2121; font-style: italic">/** @var int */</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  <span style="color: #008000; font-weight: bold">private</span> <span style="color: #19177C">$value</span>;
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  <span style="color: #BA2121; font-style: italic">/** @param int $value */</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">__construct</span>(<span style="color: #19177C">$value</span>) {
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">value</span> <span style="color: #666666">=</span> <span style="color: #19177C">$value</span>;
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>  }
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>  <span style="color: #BA2121; font-style: italic">/** @return int */</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>  <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">getValue</span>() {
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">value</span>;
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>  }
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>}
+</span></code></pre></div>
+<p>このパターンは、モッキング、コレクション、イテレータ、任意のオブジェクトのロードなど、さまざまな状況で使用できます。Psalmには、コードベースでテンプレート化された型を簡単に使用できるようにするための多くのアノテーションがあります。</p>
+<h2 id="template-psalm-template"><code>@template</code>, <code>@psalm-template</code></h2>
+<p><code>@template</code>/<code>@psalm-template</code> タグを使用すると、クラスや関数がジェネリック型パラメータを宣言できます。</p>
+<p>非常に簡単な例として、この関数は渡されたものをそのまま返します：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span style="color: #BA2121; font-style: italic"> * @template T</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span style="color: #BA2121; font-style: italic"> * @psalm-param T $t</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span style="color: #BA2121; font-style: italic"> * @return T</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">mirror</span>(<span style="color: #19177C">$t</span>) {
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #19177C">$t</span>;
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>}
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span style="color: #19177C">$a</span> <span style="color: #666666">=</span> <span style="color: #666666">5</span>;
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span style="color: #19177C">$b</span> <span style="color: #666666">=</span> mirror(<span style="color: #19177C">$a</span>); <span style="color: #3D7B7B; font-style: italic">// Psalmは結果がintであることを知っています</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span style="color: #19177C">$c</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;foo&quot;</span>;
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span style="color: #19177C">$d</span> <span style="color: #666666">=</span> mirror(<span style="color: #19177C">$c</span>); <span style="color: #3D7B7B; font-style: italic">// Psalmは結果がstringであることを知っています</span>
+</span></code></pre></div>
+<p>Psalmは、PHP配列関数のスタブ版でも <code>@template</code> アノテーションを使用しています。例えば：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span style="color: #BA2121; font-style: italic"> * キーを持つ1つの配列と値を持つもう1つの配列を取り、それらを組み合わせます</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span style="color: #BA2121; font-style: italic"> * </span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span style="color: #BA2121; font-style: italic"> * @template TKey</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span style="color: #BA2121; font-style: italic"> * @template TValue</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span style="color: #BA2121; font-style: italic"> * </span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span style="color: #BA2121; font-style: italic"> * @param array&lt;mixed, TKey&gt; $arr</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span style="color: #BA2121; font-style: italic"> * @param array&lt;mixed, TValue&gt; $arr2</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span style="color: #BA2121; font-style: italic"> * @return array&lt;TKey, TValue&gt;</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">array_combine</span>(<span style="color: #008000; font-weight: bold">array</span> <span style="color: #19177C">$arr</span>, <span style="color: #008000; font-weight: bold">array</span> <span style="color: #19177C">$arr2</span>) {}
+</span></code></pre></div>
+<h3 id="_2">注意</h3>
+<ul>
+<li>クラスのdocblockでは、<code>@template</code> タグの順序が重要です。これらはdocblockでそれらのジェネリックパラメータが参照される順序を決定します。</li>
+<li>テンプレート化された型の名前（例：<code>TKey</code>、<code>TValue</code>）は、それらが宣言されているクラスまたは関数のスコープ外では重要ではありません。</li>
+</ul>
+<h2 id="param-class-stringt">@param class-string&lt;T&gt;</h2>
+<p>Psalmではクラス型もパラメータ化できます：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span style="color: #BA2121; font-style: italic"> * @template T of Foo</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span style="color: #BA2121; font-style: italic"> * @psalm-param class-string&lt;T&gt; $class</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span style="color: #BA2121; font-style: italic"> * @return T</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">instantiator</span>(string <span style="color: #19177C">$class</span>) {
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #19177C">$class</span>();
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>}
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Foo</span> {
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">final</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">__construct</span>() {}
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>}
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">FooChild</span> <span style="color: #008000; font-weight: bold">extends</span> Foo {}
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span style="color: #19177C">$r</span> <span style="color: #666666">=</span> instantiator(FooChild<span style="color: #666666">::</span><span style="color: #687822">class</span>);
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span style="color: #3D7B7B; font-style: italic">// Psalmは$rがFooChildタイプのオブジェクトであることを知っています</span>
+</span></code></pre></div>
+<h2 id="_3">テンプレートの継承</h2>
+<p>Psalmでは、<code>@extends</code>/<code>@template-extends</code> を使用してテンプレート化されたクラスを拡張できます：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span style="color: #BA2121; font-style: italic"> * @template T </span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">ParentClass</span> {}
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span style="color: #BA2121; font-style: italic"> * @extends ParentClass&lt;int&gt; </span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">ChildClass</span> <span style="color: #008000; font-weight: bold">extends</span> ParentClass {}
+</span></code></pre></div>
+<p>同様に、<code>@implements</code>/<code>@template-implements</code> を使用してインターフェースを実装できます：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span style="color: #BA2121; font-style: italic"> * @template T </span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span style="color: #008000; font-weight: bold">interface</span> IFoo {}
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span style="color: #BA2121; font-style: italic"> * @implements IFoo&lt;int&gt; </span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Foo</span> <span style="color: #008000; font-weight: bold">implements</span> IFoo {}
+</span></code></pre></div>
+<p>そして、<code>@use</code>/<code>@template-use</code> を使用してトレイトをインポートできます：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span style="color: #BA2121; font-style: italic"> * @template T </span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span style="color: #008000; font-weight: bold">trait</span> MyTrait {}
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Foo</span> {
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span style="color: #BA2121; font-style: italic">/**</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span style="color: #BA2121; font-style: italic">     * @use MyTrait&lt;int&gt;</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span style="color: #BA2121; font-style: italic">     */</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span style="color: #008000; font-weight: bold">use</span> MyTrait;
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>}
+</span></code></pre></div>
+<p>また、あるテンプレート化されたクラスを別のテンプレート化されたクラスで拡張することもできます：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span style="color: #BA2121; font-style: italic"> * @template T1 </span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">ParentClass</span> {}
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span style="color: #BA2121; font-style: italic"> * @template T2</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span style="color: #BA2121; font-style: italic"> * @extends ParentClass&lt;T2&gt;</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">ChildClass</span> <span style="color: #008000; font-weight: bold">extends</span> ParentClass {}
+</span></code></pre></div>
+<h2 id="_4">テンプレートの制約</h2>
+<p>入力を制限するために <code>@template of &lt;type&gt;</code> を使用できます。例えば、特定のクラスに制限するには次のように使用できます：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Foo</span> {}
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">FooChild</span> <span style="color: #008000; font-weight: bold">extends</span> Foo {}
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span style="color: #BA2121; font-style: italic"> * @template T of Foo</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span style="color: #BA2121; font-style: italic"> * @psalm-param T $t</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span style="color: #BA2121; font-style: italic"> * @return array&lt;int, T&gt;</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">makeArray</span>(<span style="color: #19177C">$t</span>) {
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>    <span style="color: #008000; font-weight: bold">return</span> [<span style="color: #19177C">$t</span>];
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>}
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span style="color: #19177C">$a</span> <span style="color: #666666">=</span> makeArray(<span style="color: #008000; font-weight: bold">new</span> Foo()); <span style="color: #3D7B7B; font-style: italic">// array&lt;int, Foo&gt; と型付けされます</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span style="color: #19177C">$b</span> <span style="color: #666666">=</span> makeArray(<span style="color: #008000; font-weight: bold">new</span> FooChild()); <span style="color: #3D7B7B; font-style: italic">// array&lt;int, FooChild&gt; と型付けされます</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span style="color: #19177C">$c</span> <span style="color: #666666">=</span> makeArray(<span style="color: #008000; font-weight: bold">new</span> <span style="color: #008000; font-weight: bold">stdClass</span>()); <span style="color: #3D7B7B; font-style: italic">// 型エラー</span>
+</span></code></pre></div>
+<p>テンプレート化された型はキーと値のペアに限定されません。テンプレート対応の型の複数の引数にわたってテンプレートを再利用することもできます：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span style="color: #BA2121; font-style: italic"> * @template T0 of array-key</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span style="color: #BA2121; font-style: italic"> * </span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span style="color: #BA2121; font-style: italic"> * @template-implements IteratorAggregate&lt;T0, int&gt;</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span style="color: #008000; font-weight: bold">abstract</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Foo</span> <span style="color: #008000; font-weight: bold">implements</span> IteratorAggregate {
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>  <span style="color: #BA2121; font-style: italic">/**</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span style="color: #BA2121; font-style: italic">   * @var int</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span style="color: #BA2121; font-style: italic">   */</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>  <span style="color: #008000; font-weight: bold">protected</span> <span style="color: #19177C">$rand_min</span>;
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>  <span style="color: #BA2121; font-style: italic">/**</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span style="color: #BA2121; font-style: italic">   * @var int</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span style="color: #BA2121; font-style: italic">   */</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>  <span style="color: #008000; font-weight: bold">protected</span> <span style="color: #19177C">$rand_max</span>;
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>  <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">__construct</span>(int <span style="color: #19177C">$rand_min</span>, int <span style="color: #19177C">$rand_max</span>) {
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>    <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">rand_min</span> <span style="color: #666666">=</span> <span style="color: #19177C">$rand_min</span>;
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>    <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">rand_max</span> <span style="color: #666666">=</span> <span style="color: #19177C">$rand_max</span>;
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>  }
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>  <span style="color: #BA2121; font-style: italic">/**</span>
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span style="color: #BA2121; font-style: italic">   * @return Generator&lt;T0, int, mixed, T0&gt;</span>
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span style="color: #BA2121; font-style: italic">   */</span>
+</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>  <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">getIterator</span>() <span style="color: #666666">:</span> Generator {
+</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>    <span style="color: #19177C">$j</span> <span style="color: #666666">=</span> <span style="color: #008000">random_int</span>(<span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">rand_min</span>, <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">rand_max</span>);
+</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>    <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #19177C">$i</span> <span style="color: #666666">=</span> <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">rand_min</span>; <span style="color: #19177C">$i</span> <span style="color: #666666">&lt;=</span> <span style="color: #19177C">$j</span>; <span style="color: #19177C">$i</span> <span style="color: #666666">+=</span> <span style="color: #666666">1</span>) {
+</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a>      <span style="color: #008000; font-weight: bold">yield</span> <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">getFuzzyType</span>(<span style="color: #19177C">$i</span>) <span style="color: #666666">=&gt;</span> <span style="color: #19177C">$i</span> <span style="color: #666666">**</span> <span style="color: #19177C">$i</span>;
+</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a>    }
+</span><span id="__span-11-31"><a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a>    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">getFuzzyType</span>(<span style="color: #19177C">$j</span>);
+</span><span id="__span-11-32"><a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a>  }
+</span><span id="__span-11-33"><a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a>
+</span><span id="__span-11-34"><a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a>  <span style="color: #BA2121; font-style: italic">/**</span>
+</span><span id="__span-11-35"><a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a><span style="color: #BA2121; font-style: italic">   * @return T0</span>
+</span><span id="__span-11-36"><a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a><span style="color: #BA2121; font-style: italic">   */</span>
+</span><span id="__span-11-37"><a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a>  <span style="color: #008000; font-weight: bold">abstract</span> <span style="color: #008000; font-weight: bold">protected</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">getFuzzyType</span>(int <span style="color: #19177C">$i</span>);
+</span><span id="__span-11-38"><a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a>}
+</span><span id="__span-11-39"><a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a>
+</span><span id="__span-11-40"><a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-11-41"><a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a><span style="color: #BA2121; font-style: italic"> * @template-extends Foo&lt;int&gt;</span>
+</span><span id="__span-11-42"><a id="__codelineno-11-42" name="__codelineno-11-42" href="#__codelineno-11-42"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-11-43"><a id="__codelineno-11-43" name="__codelineno-11-43" href="#__codelineno-11-43"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Bar</span> <span style="color: #008000; font-weight: bold">extends</span> Foo {
+</span><span id="__span-11-44"><a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a>  <span style="color: #008000; font-weight: bold">protected</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">getFuzzyType</span>(int <span style="color: #19177C">$i</span>) <span style="color: #666666">:</span> int {
+</span><span id="__span-11-45"><a id="__codelineno-11-45" name="__codelineno-11-45" href="#__codelineno-11-45"></a>    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #19177C">$i</span>;
+</span><span id="__span-11-46"><a id="__codelineno-11-46" name="__codelineno-11-46" href="#__codelineno-11-46"></a>  }
+</span><span id="__span-11-47"><a id="__codelineno-11-47" name="__codelineno-11-47" href="#__codelineno-11-47"></a>}
+</span><span id="__span-11-48"><a id="__codelineno-11-48" name="__codelineno-11-48" href="#__codelineno-11-48"></a>
+</span><span id="__span-11-49"><a id="__codelineno-11-49" name="__codelineno-11-49" href="#__codelineno-11-49"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-11-50"><a id="__codelineno-11-50" name="__codelineno-11-50" href="#__codelineno-11-50"></a><span style="color: #BA2121; font-style: italic"> * @template-extends Foo&lt;string&gt;</span>
+</span><span id="__span-11-51"><a id="__codelineno-11-51" name="__codelineno-11-51" href="#__codelineno-11-51"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-11-52"><a id="__codelineno-11-52" name="__codelineno-11-52" href="#__codelineno-11-52"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Baz</span> <span style="color: #008000; font-weight: bold">extends</span> Foo {
+</span><span id="__span-11-53"><a id="__codelineno-11-53" name="__codelineno-11-53" href="#__codelineno-11-53"></a>  <span style="color: #008000; font-weight: bold">protected</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">getFuzzyType</span>(int <span style="color: #19177C">$i</span>) <span style="color: #666666">:</span> string {
+</span><span id="__span-11-54"><a id="__codelineno-11-54" name="__codelineno-11-54" href="#__codelineno-11-54"></a>    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">static</span><span style="color: #666666">::</span><span style="color: #687822">class</span> <span style="color: #666666">.</span> <span style="color: #BA2121">&#39;[&#39;</span> <span style="color: #666666">.</span> <span style="color: #19177C">$i</span> <span style="color: #666666">.</span> <span style="color: #BA2121">&#39;]&#39;</span>;
+</span><span id="__span-11-55"><a id="__codelineno-11-55" name="__codelineno-11-55" href="#__codelineno-11-55"></a>  }
+</span><span id="__span-11-56"><a id="__codelineno-11-56" name="__codelineno-11-56" href="#__codelineno-11-56"></a>}
+</span></code></pre></div>
+<h2 id="_5">テンプレートの共変性</h2>
+<p>次のようなコードを想像してみてください：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Animal</span> {}
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Dog</span> <span style="color: #008000; font-weight: bold">extends</span> Animal {}
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Cat</span> <span style="color: #008000; font-weight: bold">extends</span> Animal {}
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span style="color: #BA2121; font-style: italic"> * @template T</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Collection</span> {
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    <span style="color: #BA2121; font-style: italic">/**</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span style="color: #BA2121; font-style: italic">     * @var array&lt;int, T&gt;</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span style="color: #BA2121; font-style: italic">     */</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">array</span> <span style="color: #19177C">$list</span>;
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>    <span style="color: #BA2121; font-style: italic">/**</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span style="color: #BA2121; font-style: italic">     * @param array&lt;int, T&gt; $list</span>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span style="color: #BA2121; font-style: italic">     */</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">__construct</span>(<span style="color: #008000; font-weight: bold">array</span> <span style="color: #19177C">$list</span>) {
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>        <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">list</span> <span style="color: #666666">=</span> <span style="color: #19177C">$list</span>;
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>    }
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>    <span style="color: #BA2121; font-style: italic">/**</span>
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a><span style="color: #BA2121; font-style: italic">     * @param T $t</span>
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a><span style="color: #BA2121; font-style: italic">     */</span>
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">add</span>(<span style="color: #19177C">$t</span>) <span style="color: #666666">:</span> void {
+</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>        <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">list</span>[] <span style="color: #666666">=</span> <span style="color: #19177C">$t</span>;
+</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>    }
+</span><span id="__span-12-28"><a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>}
+</span><span id="__span-12-29"><a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>
+</span><span id="__span-12-30"><a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-12-31"><a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a><span style="color: #BA2121; font-style: italic"> * @param Collection&lt;Animal&gt; $collection </span>
+</span><span id="__span-12-32"><a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-12-33"><a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">addAnimal</span>(Collection <span style="color: #19177C">$collection</span>) <span style="color: #666666">:</span> void {
+</span><span id="__span-12-34"><a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a>    <span style="color: #19177C">$collection</span><span style="color: #666666">-&gt;</span><span style="color: #687822">add</span>(<span style="color: #008000; font-weight: bold">new</span> Cat());
+</span><span id="__span-12-35"><a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a>}
+</span><span id="__span-12-36"><a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a>
+</span><span id="__span-12-37"><a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-12-38"><a id="__codelineno-12-38" name="__codelineno-12-38" href="#__codelineno-12-38"></a><span style="color: #BA2121; font-style: italic"> * @param Collection&lt;Dog&gt; $dog_collection</span>
+</span><span id="__span-12-39"><a id="__codelineno-12-39" name="__codelineno-12-39" href="#__codelineno-12-39"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-12-40"><a id="__codelineno-12-40" name="__codelineno-12-40" href="#__codelineno-12-40"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">takesDogList</span>(Collection <span style="color: #19177C">$dog_collection</span>) <span style="color: #666666">:</span> void {
+</span><span id="__span-12-41"><a id="__codelineno-12-41" name="__codelineno-12-41" href="#__codelineno-12-41"></a>    addAnimal(<span style="color: #19177C">$dog_collection</span>);
+</span><span id="__span-12-42"><a id="__codelineno-12-42" name="__codelineno-12-42" href="#__codelineno-12-42"></a>}
+</span></code></pre></div>
+<p>最後の呼び出し <code>addAnimal($dog_collection)</code> はコレクションの型を壊します - 突然、犬のコレクションが犬または猫のコレクションになってしまいます。これは良くありません。</p>
+<p>これを防ぐために、Psalmは <code>addAnimal($dog_collection)</code> を呼び出すときに "addAnimal expects a <code>Collection&lt;Animal&gt;</code>, but <code>Collection&lt;Dog&gt;</code> was passed" というエラーを発します。もしこのルールに初めて遭遇したなら、おそらく混乱するでしょう - <code>Animal</code> を受け入れる関数は、その派生型も喜んで受け入れるはずです。しかし、上の例で見たように、そうすることで問題が発生する可能性があります。</p>
+<p>しかし、テンプレートパラメータのサブタイプを渡しても完全に安全な場合もあります：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span style="color: #008000; font-weight: bold">abstract</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Animal</span> {
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span style="color: #008000; font-weight: bold">abstract</span> <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">getNoise</span>() <span style="color: #666666">:</span> string;
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>}
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Dog</span> <span style="color: #008000; font-weight: bold">extends</span> Animal {
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">getNoise</span>() <span style="color: #666666">:</span> string { <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;woof&quot;</span>; }
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>}
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Cat</span> <span style="color: #008000; font-weight: bold">extends</span> Animal {
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">getNoise</span>() <span style="color: #666666">:</span> string { <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;miaow&quot;</span>; }
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>}
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span style="color: #BA2121; font-style: italic"> * @template T</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Collection</span> {
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>    <span style="color: #BA2121; font-style: italic">/** @var array&lt;int, T&gt; */</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">array</span> <span style="color: #19177C">$list</span> <span style="color: #666666">=</span> [];
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>}
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span style="color: #BA2121; font-style: italic"> * @param Collection&lt;Animal&gt; $collection</span>
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">getNoises</span>(Collection <span style="color: #19177C">$collection</span>) <span style="color: #666666">:</span> void {
+</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>    <span style="color: #008000; font-weight: bold">foreach</span> (<span style="color: #19177C">$collection</span><span style="color: #666666">-&gt;</span><span style="color: #687822">list</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #19177C">$animal</span>) {
+</span><span id="__span-13-27"><a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a>        <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$animal</span><span style="color: #666666">-&gt;</span><span style="color: #687822">getNoise</span>();
+</span><span id="__span-13-28"><a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a>    }
+</span><span id="__span-13-29"><a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a>}
+</span><span id="__span-13-30"><a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a>
+</span><span id="__span-13-31"><a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-13-32"><a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a><span style="color: #BA2121; font-style: italic"> * @param Collection&lt;Dog&gt; $dog_collection</span>
+</span><span id="__span-13-33"><a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-13-34"><a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">takesDogList</span>(Collection <span style="color: #19177C">$dog_collection</span>) <span style="color: #666666">:</span> void {
+</span><span id="__span-13-35"><a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a>    getNoises(<span style="color: #19177C">$dog_collection</span>);
+</span><span id="__span-13-36"><a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a>}
+</span></code></pre></div>
+<p>ここでは何も悪いことはしていません - 単にオブジェクトの配列を反復処理しているだけです。しかし、Psalmは依然として同じ基本的なエラーを出します - "getNoises expects a <code>Collection&lt;Animal&gt;</code>, but <code>Collection&lt;Dog&gt;</code> was passed"。</p>
+<p>テンプレート化されたパラメータ <code>T</code> のサブタイプを渡しても安全であることをPsalmに伝えるには、<code>@template-covariant T</code>（または <code>@psalm-template-covariant T</code>）アノテーションを使用できます：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span style="color: #BA2121; font-style: italic"> * @template-covariant T</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Collection</span> {
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span style="color: #BA2121; font-style: italic">/** @var array&lt;int, T&gt; */</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">array</span> <span style="color: #19177C">$list</span> <span style="color: #666666">=</span> [];
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>}
+</span></code></pre></div>
+<p>上の例でこれを行うとエラーは発生しません：<a href="https://psalm.dev/r/5254af7a8b">https://psalm.dev/r/5254af7a8b</a></p>
+<p>しかし、<code>@template-covariant</code> はすべてのエラーを取り除くわけではありません - 最初の例にこれを追加すると、新しいエラーが発生します - <a href="https://psalm.dev/r/0fcd699231">https://psalm.dev/r/0fcd699231</a> - 関数の入力に共変テンプレートパラメータを使用しようとしていることを警告します。これはよくありません。なぜなら、おそらくコレクションを何らかの方法で変更しようとしているからです（これは、再び、違反です）。</p>
+<h3 id="_6">不変性についてはどうでしょうか？</h3>
+<p>Psalmには<a href="https://psalm.dev/articles/immutability-and-beyond">関数的不変性を宣言するための包括的なサポート</a>があります。</p>
+<p>クラスが不変であることを確認すれば、共変パラメータを入力として受け取る <code>add</code> メソッドを持つクラスを宣言できますが、コレクションをまったく変更せず、代わりに新しいコレクションを返すようにできます：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span style="color: #BA2121; font-style: italic">/*** @template-covariant T</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span style="color: #BA2121; font-style: italic"> * @psalm-immutable</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Collection</span> {
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span style="color: #BA2121; font-style: italic">/**</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span style="color: #BA2121; font-style: italic">     * @var array&lt;int, T&gt;</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span style="color: #BA2121; font-style: italic">     */</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">array</span> <span style="color: #19177C">$list</span> <span style="color: #666666">=</span> [];
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span style="color: #BA2121; font-style: italic">/**</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span style="color: #BA2121; font-style: italic">     * @param array&lt;int, T&gt; $list</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span style="color: #BA2121; font-style: italic">     */</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">__construct</span>(<span style="color: #008000; font-weight: bold">array</span> <span style="color: #19177C">$list</span>) {
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>        <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">list</span> <span style="color: #666666">=</span> <span style="color: #19177C">$list</span>;
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>    }
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>    <span style="color: #BA2121; font-style: italic">/**</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span style="color: #BA2121; font-style: italic">     * @param T $t</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span style="color: #BA2121; font-style: italic">     * @return Collection&lt;T&gt;</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span style="color: #BA2121; font-style: italic">     */</span>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">add</span>(<span style="color: #19177C">$t</span>) <span style="color: #666666">:</span> Collection {
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">new</span> Collection(<span style="color: #008000">array_merge</span>(<span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">list</span>, [<span style="color: #19177C">$t</span>]));
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>    }
+</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>}
+</span></code></pre></div>
+<p>これは完全に有効で、Psalmは警告を出しません。</p>
+<h2 id="_7">ビルトインのテンプレート化されたクラスとインターフェース</h2>
+<p>Psalmには、独自のコードで拡張/実装できる多くのビルトインクラスとインターフェースのサポートがあります。</p>
+<ul>
+<li><code>interface Traversable&lt;TKey, TValue&gt;</code></li>
+<li><code>interface ArrayAccess&lt;TKey, TValue&gt;</code></li>
+<li><code>interface IteratorAggregate&lt;TKey, TValue&gt; extends Traversable&lt;TKey, TValue&gt;</code></li>
+<li><code>interface Iterator&lt;TKey, TValue&gt; extends Traversable&lt;TKey, TValue&gt;</code></li>
+<li><code>interface SeekableIterator&lt;TKey, TValue&gt; extends Iterator&lt;TKey, TValue&gt;</code></li>
+<li><code>class Generator&lt;TKey, TValue, TSend, TReturn&gt; extends Traversable&lt;TKey, TValue&gt;</code></li>
+<li><code>class ArrayObject&lt;TKey, TValue&gt; implements IteratorAggregate&lt;TKey, TValue&gt;, ArrayAccess&lt;TKey, TValue&gt;</code></li>
+<li><code>class ArrayIterator&lt;TKey of array-key, TValue&gt; implements SeekableIterator&lt;TKey, TValue&gt;, ArrayAccess&lt;TKey, TValue&gt;</code></li>
+<li><code>class DOMNodeList&lt;TNode of DOMNode&gt; implements Traversable&lt;int, TNode&gt;</code></li>
+<li><code>class SplDoublyLinkedList&lt;TValue&gt; implements Iterator&lt;TKey, TValue&gt;, ArrayAccess&lt;TKey, TValue&gt;</code></li>
+<li><code>class SplQueue&lt;TValue&gt; extends SplDoublyLinkedList&lt;TValue&gt;</code></li>
+<li><code>abstract class FilterIterator&lt;TKey, TValue, TIterator&gt;</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "hide_repository_button"], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2020 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/psalm-ja/manipulating_code/fixing/">
+      
+      
+        <link rel="prev" href="../../annotating_code/adding_assertions/">
+      
+      
+        <link rel="next" href="../refactoring/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>Psalterを使用したコードの修正 - Psalm日本語ドキュメント</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="../../assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="../../assets/css/php.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+
+
+
+
+
+<!-- Header -->
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="../.."
+            title="Psalm日本語ドキュメント"
+            class="md-header__button md-logo"
+            aria-label="Psalm日本語ドキュメント"
+            data-md-component="logo"
+    >
+      
+  <img src="../../assets/images/psalmlogo.jpg" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            Psalm日本語ドキュメント
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              Psalterを使用したコードの修正
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Psalm日本語ドキュメント" class="md-nav__button md-logo" aria-label="Psalm日本語ドキュメント" data-md-component="logo">
+      
+  <img src="../../assets/images/psalmlogo.jpg" alt="logo">
+
+    </a>
+    Psalm日本語ドキュメント
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ドキュメンテーションホーム
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Psalmの実行
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Psalmの実行
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プラグイン
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            プラグイン
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/plugins/using_plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プラグインの使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/plugins/authoring_plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プラグインの作成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/plugins/plugins_type_system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Psalmの型表現
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/command_line_usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コマンドライン使用法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/language_server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IDE サポート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    エラーの扱い
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            エラーの扱い
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/dealing_with_code_issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コードの問題への対処
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    問題の種類
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running_psalm/checking_non_php_files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PHP以外のファイルのチェック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    型のアノテーション
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            型のアノテーション
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/typing_in_psalm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    型アノテーションの使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/type_syntax/union_types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ユニオン型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/type_syntax/atomic_types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アトミック型リファレンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/type_syntax/intersection_types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インターセクション型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    その他のアノテーション
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            その他のアノテーション
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/supported_annotations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サポートされているアノテーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/templated_annotations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    テンプレートアノテーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/adding_assertions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アサートアノテーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    コードの操作
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            コードの操作
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Psalterを使用したコードの修正
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Psalterを使用したコードの修正
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      安全機能
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      プラグイン
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      サポートされている修正
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="サポートされている修正">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#missingreturntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      MissingReturnType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missingclosurereturntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      MissingClosureReturnType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalidreturntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      InvalidReturnType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalidnullablereturntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      InvalidNullableReturnType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalidfalsablereturntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      InvalidFalsableReturnType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missingparamtype" class="md-nav__link">
+    <span class="md-ellipsis">
+      MissingParamType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missingpropertytype" class="md-nav__link">
+    <span class="md-ellipsis">
+      MissingPropertyType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mismatchingdocblockparamtype" class="md-nav__link">
+    <span class="md-ellipsis">
+      MismatchingDocblockParamType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mismatchingdocblockreturntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      MismatchingDocblockReturnType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lessspecificreturntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      LessSpecificReturnType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possiblyundefinedvariable" class="md-nav__link">
+    <span class="md-ellipsis">
+      PossiblyUndefinedVariable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possiblyundefinedglobalvariable" class="md-nav__link">
+    <span class="md-ellipsis">
+      PossiblyUndefinedGlobalVariable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unusedmethod" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnusedMethod
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possiblyunusedmethod" class="md-nav__link">
+    <span class="md-ellipsis">
+      PossiblyUnusedMethod
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unusedproperty" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnusedProperty
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possiblyunusedproperty" class="md-nav__link">
+    <span class="md-ellipsis">
+      PossiblyUnusedProperty
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unusedvariable" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnusedVariable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unnecessaryvarannotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnnecessaryVarAnnotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paramnamemismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParamNameMismatch
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../refactoring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コードのリファクタリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ分析
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/custom_taint_sources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    カスタム汚染源
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/custom_taint_sinks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    カスタム汚染シンク
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/avoiding_false_positives/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    偽陽性を避ける
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      安全機能
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      プラグイン
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      サポートされている修正
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="サポートされている修正">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#missingreturntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      MissingReturnType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missingclosurereturntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      MissingClosureReturnType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalidreturntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      InvalidReturnType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalidnullablereturntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      InvalidNullableReturnType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalidfalsablereturntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      InvalidFalsableReturnType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missingparamtype" class="md-nav__link">
+    <span class="md-ellipsis">
+      MissingParamType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missingpropertytype" class="md-nav__link">
+    <span class="md-ellipsis">
+      MissingPropertyType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mismatchingdocblockparamtype" class="md-nav__link">
+    <span class="md-ellipsis">
+      MismatchingDocblockParamType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mismatchingdocblockreturntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      MismatchingDocblockReturnType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lessspecificreturntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      LessSpecificReturnType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possiblyundefinedvariable" class="md-nav__link">
+    <span class="md-ellipsis">
+      PossiblyUndefinedVariable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possiblyundefinedglobalvariable" class="md-nav__link">
+    <span class="md-ellipsis">
+      PossiblyUndefinedGlobalVariable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unusedmethod" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnusedMethod
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possiblyunusedmethod" class="md-nav__link">
+    <span class="md-ellipsis">
+      PossiblyUnusedMethod
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unusedproperty" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnusedProperty
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possiblyunusedproperty" class="md-nav__link">
+    <span class="md-ellipsis">
+      PossiblyUnusedProperty
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unusedvariable" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnusedVariable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unnecessaryvarannotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnnecessaryVarAnnotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paramnamemismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParamNameMismatch
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">コードの修正</h1>
+<p>Psalmは大規模なコードベースの潜在的な問題を見つけるのが得意ですが、一度見つかると、すべての問題を修正するのは途方もない作業になることがあります。</p>
+<p>Psalmには、Psalterという名前のツールが付属しており、コードの修正に役立ちます。</p>
+<p>以下のように、バイナリを通じて実行できます：</p>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>vendor/bin/psalter [args]
+</span></code></pre></div>
+<p>または、Psalmのバイナリを通じて：</p>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>vendor/bin/psalm --alter [args]
+</span></code></pre></div>
+<h2 id="_2">安全機能</h2>
+<p>コードの更新には本質的にリスクがあり、自動的に行うとさらにリスクが高くなります。少し安心できるように、いくつかの機能を追加しました：</p>
+<ul>
+<li>Psalterが行う変更を事前に確認するには、<code>--dry-run</code>オプションを付けて実行できます。</li>
+<li><code>--php-version</code>を使用して特定のPHPバージョンを対象にできるので、例えばPHP 7.0のコードにnullable型ヒントを追加したり、PHP 5.6のコードに型ヒントを全く追加しないようにできます。<code>--php-version</code>はデフォルトで現在のバージョンになります。</li>
+<li><code>--safe-types</code>モードがあり、これはPsalmがdocblock以外のソース（例：型ヒント付きパラメータ、<code>instanceof</code>チェック、他の戻り値の型ヒントなど）から収集した情報のみを使用してPHP 7の戻り値の型ヒントを更新します。</li>
+<li><code>--allow-backwards-incompatible-changes=false</code>を使用すると、後方互換性のない変更が作成されないようにできます。</li>
+</ul>
+<h2 id="_3">プラグイン</h2>
+<p>独自の操作プラグインを渡すことができます。例：</p>
+<div class="language-bash highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>vendor/bin/psalter<span style="color: #bbbbbb"> </span>--plugin<span style="color: #666666">=</span>vendor/vimeo/psalm/examples/plugins/ClassUnqualifier.php<span style="color: #bbbbbb"> </span>--dry-run
+</span></code></pre></div>
+<p>上記の例のプラグインは、コード内の不必要に修飾されたクラス名をすべて、より短い別名バージョンに変換します。</p>
+<h2 id="_4">サポートされている修正</h2>
+<p>この初期リリースでは、Psalmが見つける問題の名前に対応する以下の変更をサポートしています。</p>
+<p>これらすべてを一度に修正するには、<code>vendor/bin/psalter --issues=all</code>を実行します。</p>
+<h3 id="missingreturntype">MissingReturnType</h3>
+<p><code>vendor/bin/psalter --issues=MissingReturnType --php-version=7.0</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() {
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>}
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() <span style="color: #666666">:</span> string {
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>}
+</span></code></pre></div>
+<p><code>vendor/bin/psalter --issues=MissingReturnType --php-version=5.6</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() {
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>}
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span style="color: #BA2121; font-style: italic"> * @return string </span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() {
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>}
+</span></code></pre></div>
+<h3 id="missingclosurereturntype">MissingClosureReturnType</h3>
+<p>上記と同様ですが、クロージャに対して適用されます。</p>
+<h3 id="invalidreturntype">InvalidReturnType</h3>
+<p><code>vendor/bin/psalter --issues=InvalidReturnType</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span style="color: #BA2121; font-style: italic"> * @return int </span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() {
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>}
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span style="color: #BA2121; font-style: italic"> * @return string </span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() {
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>}
+</span></code></pre></div>
+<p>戻り値の型ヒントもサポートされているので、<code>vendor/bin/psalter --issues=InvalidReturnType</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() <span style="color: #666666">:</span> int {
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>}
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() <span style="color: #666666">:</span> string {
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>}
+</span></code></pre></div>
+<h3 id="invalidnullablereturntype">InvalidNullableReturnType</h3>
+<p><code>vendor/bin/psalter --issues=InvalidNullableReturnType  --php-version=7.1</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() <span style="color: #666666">:</span> string {
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000">rand</span>(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>) <span style="color: #666666">?</span> <span style="color: #BA2121">&quot;hello&quot;</span> <span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">null</span>;
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>}
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() <span style="color: #666666">:</span> <span style="color: #666666">?</span>string {
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000">rand</span>(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>) <span style="color: #666666">?</span> <span style="color: #BA2121">&quot;hello&quot;</span> <span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">null</span>;
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>}
+</span></code></pre></div>
+<p><code>vendor/bin/psalter --issues=InvalidNullableReturnType  --php-version=7.0</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() <span style="color: #666666">:</span> string {
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000">rand</span>(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>) <span style="color: #666666">?</span> <span style="color: #BA2121">&quot;hello&quot;</span> <span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">null</span>;
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>}
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span style="color: #BA2121; font-style: italic"> * @return string|null </span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() {
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000">rand</span>(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>) <span style="color: #666666">?</span> <span style="color: #BA2121">&quot;hello&quot;</span> <span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">null</span>;
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>}
+</span></code></pre></div>
+<h3 id="invalidfalsablereturntype">InvalidFalsableReturnType</h3>
+<p><code>vendor/bin/psalter --issues=InvalidFalsableReturnType</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() <span style="color: #666666">:</span> string {
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000">rand</span>(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>) <span style="color: #666666">?</span> <span style="color: #BA2121">&quot;hello&quot;</span> <span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">false</span>;
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>}
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span style="color: #BA2121; font-style: italic"> * @return string|false </span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() {
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000">rand</span>(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>) <span style="color: #666666">?</span> <span style="color: #BA2121">&quot;hello&quot;</span> <span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">false</span>;
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>}
+</span></code></pre></div>
+<h3 id="missingparamtype">MissingParamType</h3>
+<p><code>vendor/bin/psalter --issues=MissingParamType</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">C</span> {
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>  <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>(<span style="color: #19177C">$s</span>) <span style="color: #666666">:</span> void {
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$s</span>;
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>  }
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>}
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>C<span style="color: #666666">::</span><span style="color: #687822">foo</span>(<span style="color: #BA2121">&quot;hello&quot;</span>);
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">C</span> {
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>  <span style="color: #BA2121; font-style: italic">/**</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span style="color: #BA2121; font-style: italic">   * @param string $s</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span style="color: #BA2121; font-style: italic">   */</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>  <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>(<span style="color: #19177C">$s</span>) <span style="color: #666666">:</span> void {
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>    <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$s</span>;
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>  }
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>}
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>C<span style="color: #666666">::</span><span style="color: #687822">foo</span>(<span style="color: #BA2121">&quot;hello&quot;</span>);
+</span></code></pre></div>
+<h3 id="missingpropertytype">MissingPropertyType</h3>
+<p><code>vendor/bin/psalter --issues=MissingPropertyType</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">A</span> {
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #19177C">$foo</span>;
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #19177C">$bar</span>;
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #19177C">$baz</span>;
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">__construct</span>()
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>    {
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>        <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #008000">rand</span>(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>)) {
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>            <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">foo</span> <span style="color: #666666">=</span> <span style="color: #666666">5</span>;
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>        } <span style="color: #008000; font-weight: bold">else</span> {
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>            <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">foo</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>        }
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>        <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">bar</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;baz&quot;</span>;
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>    }
+</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>
+</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">setBaz</span>() {
+</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>        <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">baz</span> <span style="color: #666666">=</span> [<span style="color: #666666">1</span>, <span style="color: #666666">2</span>, <span style="color: #666666">3</span>];
+</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>    }
+</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>}
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">A</span> {
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span style="color: #BA2121; font-style: italic">/**</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span style="color: #BA2121; font-style: italic">     * @var string|int</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span style="color: #BA2121; font-style: italic">     */</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #19177C">$foo</span>;
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>    <span style="color: #008000; font-weight: bold">public</span> string <span style="color: #19177C">$bar</span>;
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>    <span style="color: #BA2121; font-style: italic">/**</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span style="color: #BA2121; font-style: italic">     * @var array&lt;int, int&gt;|null</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span style="color: #BA2121; font-style: italic">     * @psalm-var non-empty-list&lt;int&gt;|null</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span style="color: #BA2121; font-style: italic">     */</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #19177C">$baz</span>;
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">__construct</span>()
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>    {
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>        <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #008000">rand</span>(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>)) {
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>            <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">foo</span> <span style="color: #666666">=</span> <span style="color: #666666">5</span>;
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>        } <span style="color: #008000; font-weight: bold">else</span> {
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>            <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">foo</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>        }
+</span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>        <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">bar</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;baz&quot;</span>;
+</span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>    }
+</span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>
+</span><span id="__span-20-24"><a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">setBaz</span>() {
+</span><span id="__span-20-25"><a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>        <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #687822">baz</span> <span style="color: #666666">=</span> [<span style="color: #666666">1</span>, <span style="color: #666666">2</span>, <span style="color: #666666">3</span>];
+</span><span id="__span-20-26"><a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>    }
+</span><span id="__span-20-27"><a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>}
+</span></code></pre></div>
+<h3 id="mismatchingdocblockparamtype">MismatchingDocblockParamType</h3>
+<p>以下のコードがある場合：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">A</span> {}
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">B</span> <span style="color: #008000; font-weight: bold">extends</span> A {}
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">C</span> <span style="color: #008000; font-weight: bold">extends</span> A {}
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">D</span> {}
+</span></code></pre></div>
+<p><code>vendor/bin/psalter --issues=MismatchingDocblockParamType</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span style="color: #BA2121; font-style: italic"> * @param B|C $first</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span style="color: #BA2121; font-style: italic"> * @param D $second </span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>(A <span style="color: #19177C">$first</span>, A <span style="color: #19177C">$second</span>) <span style="color: #666666">:</span> void {}
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span style="color: #BA2121; font-style: italic"> * @param B|C $first</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span style="color: #BA2121; font-style: italic"> * @param A $second </span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>(A <span style="color: #19177C">$first</span>, A <span style="color: #19177C">$second</span>) <span style="color: #666666">:</span> void {}
+</span></code></pre></div>
+<h3 id="mismatchingdocblockreturntype">MismatchingDocblockReturnType</h3>
+<p><code>vendor/bin/psalter --issues=MismatchingDocblockReturnType</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span style="color: #BA2121; font-style: italic"> * @return int </span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() <span style="color: #666666">:</span> string {
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>}
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span style="color: #BA2121; font-style: italic">/** </span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span style="color: #BA2121; font-style: italic"> * @return string </span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span style="color: #BA2121; font-style: italic"> */</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() <span style="color: #666666">:</span> string {
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>}
+</span></code></pre></div>
+<h3 id="lessspecificreturntype">LessSpecificReturnType</h3>
+<p><code>vendor/bin/psalter --issues=LessSpecificReturnType</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() <span style="color: #666666">:</span> <span style="color: #666666">?</span>string {
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>}
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() <span style="color: #666666">:</span> string {
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>}
+</span></code></pre></div>
+<h3 id="possiblyundefinedvariable">PossiblyUndefinedVariable</h3>
+<p><code>vendor/bin/psalter --issues=PossiblyUndefinedVariable</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>(){
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>    <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #008000">rand</span>(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>)) {
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>      <span style="color: #19177C">$a</span> <span style="color: #666666">=</span> <span style="color: #666666">5</span>;
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>    }
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>    <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$a</span>;
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>}
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>(){
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>    <span style="color: #19177C">$a</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">null</span>;
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>    <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #008000">rand</span>(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>)) {
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>      <span style="color: #19177C">$a</span> <span style="color: #666666">=</span> <span style="color: #666666">5</span>;
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>    }
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>    <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$a</span>;
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>}
+</span></code></pre></div>
+<h3 id="possiblyundefinedglobalvariable">PossiblyUndefinedGlobalVariable</h3>
+<p><code>vendor/bin/psalter --issues=PossiblyUndefinedGlobalVariable</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span style="color: #008000; font-weight: bold">if</span> (<span style="color: #008000">rand</span>(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>)) {
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>  <span style="color: #19177C">$a</span> <span style="color: #666666">=</span> <span style="color: #666666">5</span>;
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>}
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$a</span>;
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span style="color: #19177C">$a</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">null</span>;
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span style="color: #008000; font-weight: bold">if</span> (<span style="color: #008000">rand</span>(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>)) {
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>  <span style="color: #19177C">$a</span> <span style="color: #666666">=</span> <span style="color: #666666">5</span>;
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>}
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$a</span>;
+</span></code></pre></div>
+<h3 id="unusedmethod">UnusedMethod</h3>
+<p>これは使用されていないプライベートメソッドを削除します。</p>
+<p><code>vendor/bin/psalter --issues=UnusedMethod</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">A</span> {
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>    <span style="color: #008000; font-weight: bold">private</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() <span style="color: #666666">:</span> void {}
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>}
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span style="color: #008000; font-weight: bold">new</span> A();
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">A</span> {}
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span style="color: #008000; font-weight: bold">new</span> A();
+</span></code></pre></div>
+<h3 id="possiblyunusedmethod">PossiblyUnusedMethod</h3>
+<p>これは使用されていないprotected/publicメソッドを削除します。</p>
+<p><code>vendor/bin/psalter --issues=PossiblyUnusedMethod</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">A</span> {
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>    <span style="color: #008000; font-weight: bold">protected</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() <span style="color: #666666">:</span> void {}
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">bar</span>() <span style="color: #666666">:</span> void {}
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>}
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span style="color: #008000; font-weight: bold">new</span> A();
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">A</span> {}
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span style="color: #008000; font-weight: bold">new</span> A();
+</span></code></pre></div>
+<h3 id="unusedproperty">UnusedProperty</h3>
+<p>これは使用されていないプライベートプロパティを削除します。</p>
+<p><code>vendor/bin/psalter --issues=UnusedProperty</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">A</span> {
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>    <span style="color: #BA2121; font-style: italic">/** @var string */</span>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>    <span style="color: #008000; font-weight: bold">private</span> <span style="color: #19177C">$foo</span>;
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>}
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span style="color: #008000; font-weight: bold">new</span> A();
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">A</span> {}
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span style="color: #008000; font-weight: bold">new</span> A();
+</span></code></pre></div>
+<h3 id="possiblyunusedproperty">PossiblyUnusedProperty</h3>
+<p>これは使用されていないprotected/publicプロパティを削除します。</p>
+<p><code>vendor/bin/psalter --issues=PossiblyUnusedProperty</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">A</span> {
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>    <span style="color: #BA2121; font-style: italic">/** @var string */</span>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #19177C">$foo</span>;
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>    <span style="color: #BA2121; font-style: italic">/** @var string */</span>
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>    <span style="color: #008000; font-weight: bold">protected</span> <span style="color: #19177C">$bar</span>;
+</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a>}
+</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a><span style="color: #008000; font-weight: bold">new</span> A();
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">A</span> {}
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span style="color: #008000; font-weight: bold">new</span> A();
+</span></code></pre></div>
+<h3 id="unusedvariable">UnusedVariable</h3>
+<p>これは使用されていない変数を削除します。</p>
+<p><code>vendor/bin/psalter --issues=UnusedVariable</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>(string <span style="color: #19177C">$s</span>) <span style="color: #666666">:</span> void {
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>    <span style="color: #19177C">$a</span> <span style="color: #666666">=</span> <span style="color: #666666">5</span>;
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>    <span style="color: #19177C">$b</span> <span style="color: #666666">=</span> <span style="color: #666666">6</span>;
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>    <span style="color: #19177C">$c</span> <span style="color: #666666">=</span> <span style="color: #19177C">$b</span> <span style="color: #666666">+=</span> <span style="color: #19177C">$a</span> <span style="color: #666666">-=</span> <span style="color: #008000">intval</span>(<span style="color: #19177C">$s</span>);
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>    <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #BA2121">&quot;foo&quot;</span>;
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a>}
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>(string <span style="color: #19177C">$s</span>) <span style="color: #666666">:</span> void {
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>    <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #BA2121">&quot;foo&quot;</span>;
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>}
+</span></code></pre></div>
+<h3 id="unnecessaryvarannotation">UnnecessaryVarAnnotation</h3>
+<p>これは使用されていない<code>@var</code>アノテーションを削除します。</p>
+<p><code>vendor/bin/psalter --issues=UnnecessaryVarAnnotation</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() <span style="color: #666666">:</span> string {
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>}
+</span><span id="__span-42-5"><a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span style="color: #BA2121; font-style: italic">/** @var string */</span>
+</span><span id="__span-42-6"><a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a><span style="color: #19177C">$a</span> <span style="color: #666666">=</span> foo();
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>() <span style="color: #666666">:</span> string {
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;hello&quot;</span>;
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>}
+</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a><span style="color: #19177C">$a</span> <span style="color: #666666">=</span> foo();
+</span></code></pre></div>
+<h3 id="paramnamemismatch">ParamNameMismatch</h3>
+<p>これは子クラスのパラメータ名を親クラスと一致させます。</p>
+<p><code>vendor/bin/psalter --issues=ParamNameMismatch</code>を以下のコードで実行すると：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">A</span> {
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>(string <span style="color: #19177C">$str</span>, bool <span style="color: #19177C">$b</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">false</span>) <span style="color: #666666">:</span> void {}
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>}
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">AChild</span> <span style="color: #008000; font-weight: bold">extends</span> A {
+</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>(string <span style="color: #19177C">$string</span>, bool <span style="color: #19177C">$b</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">false</span>) <span style="color: #666666">:</span> void {
+</span><span id="__span-44-7"><a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a>        <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$string</span>;
+</span><span id="__span-44-8"><a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a>    }
+</span><span id="__span-44-9"><a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a>}
+</span></code></pre></div>
+<p>結果：</p>
+<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span style="color: #9C6500">&lt;?php</span>
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">A</span> {
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>(string <span style="color: #19177C">$str</span>, bool <span style="color: #19177C">$b</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">false</span>) <span style="color: #666666">:</span> void {}
+</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a>}
+</span><span id="__span-45-5"><a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">AChild</span> <span style="color: #008000; font-weight: bold">extends</span> A {
+</span><span id="__span-45-6"><a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a>    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">foo</span>(string <span style="color: #19177C">$str</span>, bool <span style="color: #19177C">$b</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">false</span>) <span style="color: #666666">:</span> void {
+</span><span id="__span-45-7"><a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a>        <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$str</span>;
+</span><span id="__span-45-8"><a id="__codelineno-45-8" name="__codelineno-45-8" href="#__codelineno-45-8"></a>    }
+</span><span id="__span-45-9"><a id="__codelineno-45-9" name="__codelineno-45-9" href="#__codelineno-45-9"></a>}
+</span></code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "hide_repository_button"], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

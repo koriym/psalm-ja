@@ -1,0 +1,1542 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/psalm-ja/running_psalm/error_levels/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>エラーレベル - Psalm日本語ドキュメント</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="../../assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="../../assets/css/php.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+
+
+
+
+
+<!-- Header -->
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="../.."
+            title="Psalm日本語ドキュメント"
+            class="md-header__button md-logo"
+            aria-label="Psalm日本語ドキュメント"
+            data-md-component="logo"
+    >
+      
+  <img src="../../assets/images/psalmlogo.jpg" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            Psalm日本語ドキュメント
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              エラーレベル
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Psalm日本語ドキュメント" class="md-nav__button md-logo" aria-label="Psalm日本語ドキュメント" data-md-component="logo">
+      
+  <img src="../../assets/images/psalmlogo.jpg" alt="logo">
+
+    </a>
+    Psalm日本語ドキュメント
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ドキュメンテーションホーム
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Psalmの実行
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Psalmの実行
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プラグイン
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            プラグイン
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins/using_plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プラグインの使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins/authoring_plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プラグインの作成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins/plugins_type_system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Psalmの型表現
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../command_line_usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コマンドライン使用法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language_server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IDE サポート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    エラーの扱い
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            エラーの扱い
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dealing_with_code_issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コードの問題への対処
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    問題の種類
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checking_non_php_files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PHP以外のファイルのチェック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    型のアノテーション
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            型のアノテーション
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/typing_in_psalm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    型アノテーションの使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/type_syntax/union_types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ユニオン型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/type_syntax/atomic_types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アトミック型リファレンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/type_syntax/intersection_types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インターセクション型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    その他のアノテーション
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            その他のアノテーション
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/supported_annotations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サポートされているアノテーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/templated_annotations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    テンプレートアノテーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/adding_assertions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アサートアノテーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    コードの操作
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            コードの操作
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manipulating_code/fixing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Psalterを使用したコードの修正
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manipulating_code/refactoring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コードのリファクタリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ分析
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/custom_taint_sources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    カスタム汚染源
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/custom_taint_sinks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    カスタム汚染シンク
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/avoiding_false_positives/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    偽陽性を避ける
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      常にエラーとして扱われる問題
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      レベル7以下で表示されるエラー
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      レベル6以下で表示されるエラー
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      レベル5以下で表示されるエラー
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      レベル4以下で表示されるエラー
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      レベル3以下で表示されるエラー
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      レベル2以下で表示されるエラー
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      レベル1でのみ表示されるエラー
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      機能固有のエラー
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">エラーレベル</h1>
+<p>Psalmは1から8までの異なる厳格さのレベルで実行できます。
+レベル1が最も厳格で、レベル8が最も寛容です。
+レベルが明示的に定義されていない場合、Psalmはデフォルトでレベル2になります。</p>
+<p>一部の問題は常にエラーとして扱われます。これらは誤検出の可能性が非常に低い問題です。</p>
+<p>レベル1では、Psalmが見つけることができるすべての問題（オプトイン機能のために出力されるものを除く）がエラーとして扱われます。これらの問題には、Psalmが特定の式の型を推論できないあらゆる状況が含まれます。</p>
+<p>レベル2では、Psalmは<code>Mixed*</code>の問題を無視しますが、他のほとんどの問題をエラーとして扱います。</p>
+<p>レベル3では、Psalmはより寛容になり始めます。例えば、Psalmはパラメータの型、戻り値の型、プロパティの型の欠落を許可します。</p>
+<p>レベル4では、Psalmは_可能性のある_問題に対する問題を無視します。これらは誤検出である可能性が高くなります - アプリケーションコードがPsalmが推論できない動作を保証している可能性があります。</p>
+<p>レベル5以上では、より多くの検証不可能なコードを許可し、より高いレベルではさらに寛容になります。</p>
+<h2 id="_2">常にエラーとして扱われる問題</h2>
+<ul>
+<li><a href="../issues/AbstractMethodCall/">AbstractMethodCall</a></li>
+<li><a href="../issues/ComplexFunction/">ComplexFunction</a></li>
+<li><a href="issues/ComplexMethod.md">ComplexMethod</a></li>
+<li><a href="../issues/ConfigIssue/">ConfigIssue</a></li>
+<li><a href="../issues/DuplicateArrayKey/">DuplicateArrayKey</a></li>
+<li><a href="../issues/DuplicateClass/">DuplicateClass</a></li>
+<li><a href="issues/DuplicateFunction.md">DuplicateFunction</a></li>
+<li><a href="../issues/DuplicateMethod/">DuplicateMethod</a></li>
+<li><a href="issues/DuplicateParam.md">DuplicateParam</a></li>
+<li><a href="../issues/DuplicateProperty/">DuplicateProperty</a></li>
+<li><a href="issues/EmptyArrayAccess.md">EmptyArrayAccess</a></li>
+<li><a href="../issues/ExtensionRequirementViolation/">ExtensionRequirementViolation</a></li>
+<li><a href="issues/ImplementationRequirementViolation.md">ImplementationRequirementViolation</a></li>
+<li><a href="../issues/ImpureByReferenceAssignment/">ImpureByReferenceAssignment</a></li>
+<li><a href="issues/ImpureFunctionCall.md">ImpureFunctionCall</a></li>
+<li><a href="issues/ImpureMethodCall.md">ImpureMethodCall</a></li>
+<li><a href="../issues/ImpurePropertyAssignment/">ImpurePropertyAssignment</a></li>
+<li><a href="../issues/ImpurePropertyFetch/">ImpurePropertyFetch</a></li>
+<li><a href="../issues/ImpureStaticProperty/">ImpureStaticProperty</a></li>
+<li><a href="issues/ImpureStaticVariable.md">ImpureStaticVariable</a></li>
+<li><a href="../issues/ImpureVariable/">ImpureVariable</a></li>
+<li><a href="issues/InaccessibleClassConstant.md">InaccessibleClassConstant</a></li>
+<li><a href="../issues/InaccessibleMethod/">InaccessibleMethod</a></li>
+<li><a href="../issues/InaccessibleProperty/">InaccessibleProperty</a></li>
+<li><a href="../issues/InterfaceInstantiation/">InterfaceInstantiation</a></li>
+<li><a href="issues/InvalidAttribute.md">InvalidAttribute</a></li>
+<li><a href="../issues/InvalidEnumMethod/">InvalidEnumMethod</a></li>
+<li><a href="../issues/InvalidExtendClass/">InvalidExtendClass</a></li>
+<li><a href="../issues/InvalidGlobal/">InvalidGlobal</a></li>
+<li><a href="issues/InvalidInterfaceImplementation.md">InvalidInterfaceImplementation</a></li>
+<li><a href="issues/InvalidParamDefault.md">InvalidParamDefault</a></li>
+<li><a href="../issues/InvalidParent/">InvalidParent</a></li>
+<li><a href="issues/InvalidPassByReference.md">InvalidPassByReference</a></li>
+<li><a href="issues/InvalidScope.md">InvalidScope</a></li>
+<li><a href="issues/InvalidStaticInvocation.md">InvalidStaticInvocation</a></li>
+<li><a href="issues/InvalidThrow.md">InvalidThrow</a></li>
+<li><a href="issues/LoopInvalidation.md">LoopInvalidation</a></li>
+<li><a href="../issues/MethodSignatureMustOmitReturnType/">MethodSignatureMustOmitReturnType</a></li>
+<li><a href="../issues/MethodSignatureMustProvideReturnType/">MethodSignatureMustProvideReturnType</a></li>
+<li><a href="../issues/MissingDependency/">MissingDependency</a></li>
+<li><a href="issues/MissingFile.md">MissingFile</a></li>
+<li><a href="../issues/MissingImmutableAnnotation/">MissingImmutableAnnotation</a></li>
+<li><a href="../issues/MissingTemplateParam/">MissingTemplateParam</a></li>
+<li><a href="issues/MissingThrowsDocblock.md">MissingThrowsDocblock</a></li>
+<li><a href="../issues/NonStaticSelfCall/">NonStaticSelfCall</a></li>
+<li><a href="../issues/NoValue/">NoValue</a></li>
+<li><a href="../issues/NullArrayAccess/">NullArrayAccess</a></li>
+<li><a href="../issues/NullFunctionCall/">NullFunctionCall</a></li>
+<li><a href="issues/NullIterator.md">NullIterator</a></li>
+<li><a href="issues/NullPropertyAssignment.md">NullPropertyAssignment</a></li>
+<li><a href="issues/NullPropertyFetch.md">NullPropertyFetch</a></li>
+<li><a href="issues/NullReference.md">NullReference</a></li>
+<li><a href="../issues/OverriddenPropertyAccess/">OverriddenPropertyAccess</a></li>
+<li><a href="../issues/ParadoxicalCondition/">ParadoxicalCondition</a></li>
+<li><a href="../issues/ParentNotFound/">ParentNotFound</a></li>
+<li><a href="../issues/TooFewArguments/">TooFewArguments</a></li>
+<li><a href="../issues/UndefinedAttributeClass/">UndefinedAttributeClass</a></li>
+<li><a href="../issues/UndefinedClass/">UndefinedClass</a></li>
+<li><a href="../issues/UndefinedConstant/">UndefinedConstant</a></li>
+<li><a href="../issues/UndefinedDocblockClass/">UndefinedDocblockClass</a></li>
+<li><a href="../issues/UndefinedFunction/">UndefinedFunction</a></li>
+<li><a href="../issues/UndefinedGlobalVariable/">UndefinedGlobalVariable</a></li>
+<li><a href="../issues/UndefinedInterface/">UndefinedInterface</a></li>
+<li><a href="../issues/UndefinedTrait/">UndefinedTrait</a></li>
+<li><a href="../issues/UndefinedVariable/">UndefinedVariable</a></li>
+<li><a href="../issues/UnimplementedAbstractMethod/">UnimplementedAbstractMethod</a></li>
+<li><a href="issues/UnimplementedInterfaceMethod.md">UnimplementedInterfaceMethod</a></li>
+<li><a href="issues/UnrecognizedExpression.md">UnrecognizedExpression</a></li>
+<li><a href="../issues/UnrecognizedStatement/">UnrecognizedStatement</a></li>
+<li><a href="issues/UnusedFunctionCall.md">UnusedFunctionCall</a></li>
+<li><a href="../issues/UnusedMethodCall/">UnusedMethodCall</a></li>
+</ul>
+<h2 id="7">レベル7以下で表示されるエラー</h2>
+<ul>
+<li><a href="issues/AbstractInstantiation.md">AbstractInstantiation</a></li>
+<li><a href="../issues/AssignmentToVoid/">AssignmentToVoid</a></li>
+<li><a href="../issues/CircularReference/">CircularReference</a></li>
+<li><a href="../issues/ConflictingReferenceConstraint/">ConflictingReferenceConstraint</a></li>
+<li><a href="../issues/ContinueOutsideLoop/">ContinueOutsideLoop</a></li>
+<li><a href="issues/InvalidOverride.md">InvalidOverride</a></li>
+<li><a href="issues/InvalidTypeImport.md">InvalidTypeImport</a></li>
+<li><a href="issues/MethodSignatureMismatch.md">MethodSignatureMismatch</a></li>
+<li><a href="issues/NonVariableReferenceReturn.md">NonVariableReferenceReturn</a></li>
+<li><a href="../issues/OverriddenMethodAccess/">OverriddenMethodAccess</a></li>
+<li><a href="../issues/ParamNameMismatch/">ParamNameMismatch</a></li>
+<li><a href="../issues/ReservedWord/">ReservedWord</a></li>
+<li><a href="issues/UnhandledMatchCondition.md">UnhandledMatchCondition</a></li>
+<li><a href="../issues/UninitializedProperty/">UninitializedProperty</a></li>
+</ul>
+<h2 id="6">レベル6以下で表示されるエラー</h2>
+<ul>
+<li><a href="../issues/InvalidArgument/">InvalidArgument</a></li>
+<li><a href="issues/InvalidArrayAccess.md">InvalidArrayAccess</a></li>
+<li><a href="issues/InvalidArrayAssignment.md">InvalidArrayAssignment</a></li>
+<li><a href="../issues/InvalidArrayOffset/">InvalidArrayOffset</a></li>
+<li><a href="issues/InvalidCast.md">InvalidCast</a></li>
+<li><a href="issues/InvalidCatch.md">InvalidCatch</a></li>
+<li><a href="issues/InvalidClass.md">InvalidClass</a></li>
+<li><a href="../issues/InvalidClone/">InvalidClone</a></li>
+<li><a href="issues/InvalidFunctionCall.md">InvalidFunctionCall</a></li>
+<li><a href="../issues/InvalidIterator/">InvalidIterator</a></li>
+<li><a href="issues/InvalidMethodCall.md">InvalidMethodCall</a></li>
+<li><a href="../issues/InvalidNamedArgument/">InvalidNamedArgument</a></li>
+<li><a href="../issues/InvalidPropertyAssignment/">InvalidPropertyAssignment</a></li>
+<li><a href="../issues/InvalidPropertyAssignmentValue/">InvalidPropertyAssignmentValue</a></li>
+<li><a href="../issues/InvalidPropertyFetch/">InvalidPropertyFetch</a></li>
+<li><a href="issues/InvalidReturnStatement.md">InvalidReturnStatement</a></li>
+<li><a href="issues/InvalidReturnType.md">InvalidReturnType</a></li>
+<li><a href="issues/InvalidTemplateParam.md">InvalidTemplateParam</a></li>
+<li><a href="../issues/NullArgument/">NullArgument</a></li>
+<li><a href="issues/NullArrayOffset.md">NullArrayOffset</a></li>
+<li><a href="../issues/TooManyTemplateParams/">TooManyTemplateParams</a></li>
+<li><a href="../issues/TraitMethodSignatureMismatch/">TraitMethodSignatureMismatch</a></li>
+<li><a href="issues/UndefinedMethod.md">UndefinedMethod</a></li>
+<li><a href="../issues/UndefinedPropertyAssignment/">UndefinedPropertyAssignment</a></li>
+<li><a href="../issues/UndefinedPropertyFetch/">UndefinedPropertyFetch</a></li>
+<li><a href="issues/UndefinedThisPropertyFetch.md">UndefinedThisPropertyFetch</a></li>
+</ul>
+<h2 id="5">レベル5以下で表示されるエラー</h2>
+<ul>
+<li><a href="../issues/ConstructorSignatureMismatch/">ConstructorSignatureMismatch</a></li>
+<li><a href="../issues/FalsableReturnStatement/">FalsableReturnStatement</a></li>
+<li><a href="issues/InvalidNullableReturnType.md">InvalidNullableReturnType</a></li>
+<li><a href="../issues/LessSpecificImplementedReturnType/">LessSpecificImplementedReturnType</a></li>
+<li><a href="issues/MoreSpecificImplementedParamType.md">MoreSpecificImplementedParamType</a></li>
+<li><a href="issues/NullableReturnStatement.md">NullableReturnStatement</a></li>
+<li><a href="issues/UndefinedInterfaceMethod.md">UndefinedInterfaceMethod</a></li>
+<li><a href="../issues/UndefinedThisPropertyAssignment/">UndefinedThisPropertyAssignment</a></li>
+</ul>
+<h2 id="4">レベル4以下で表示されるエラー</h2>
+<ul>
+<li><a href="../issues/FalseOperand/">FalseOperand</a></li>
+<li><a href="../issues/ForbiddenCode/">ForbiddenCode</a></li>
+<li><a href="../issues/ImplementedParamTypeMismatch/">ImplementedParamTypeMismatch</a></li>
+<li><a href="../issues/ImplementedReturnTypeMismatch/">ImplementedReturnTypeMismatch</a></li>
+<li><a href="issues/ImplicitToStringCast.md">ImplicitToStringCast</a></li>
+<li><a href="../issues/InternalClass/">InternalClass</a></li>
+<li><a href="../issues/InternalMethod/">InternalMethod</a></li>
+<li><a href="issues/InternalProperty.md">InternalProperty</a></li>
+<li><a href="../issues/InvalidDocblock/">InvalidDocblock</a></li>
+<li><a href="issues/InvalidLiteralArgument.md">InvalidLiteralArgument</a></li>
+<li><a href="../issues/InvalidOperand/">InvalidOperand</a></li>
+<li><a href="../issues/InvalidScalarArgument/">InvalidScalarArgument</a></li>
+<li><a href="../issues/InvalidToString/">InvalidToString</a></li>
+<li><a href="../issues/MismatchingDocblockParamType/">MismatchingDocblockParamType</a></li>
+<li><a href="../issues/MismatchingDocblockReturnType/">MismatchingDocblockReturnType</a></li>
+<li><a href="../issues/MissingDocblockType/">MissingDocblockType</a></li>
+<li><a href="../issues/NoInterfaceProperties/">NoInterfaceProperties</a></li>
+<li><a href="../issues/PossibleRawObjectIteration/">PossibleRawObjectIteration</a></li>
+<li><a href="../issues/RedundantCondition/">RedundantCondition</a></li>
+<li><a href="../issues/RedundantFunctionCall/">RedundantFunctionCall</a></li>
+<li><a href="../issues/RedundantPropertyInitializationCheck/">RedundantPropertyInitializationCheck</a></li>
+<li><a href="issues/StringIncrement.md">StringIncrement</a></li>
+<li><a href="../issues/TooManyArguments/">TooManyArguments</a></li>
+<li><a href="../issues/TypeDoesNotContainNull/">TypeDoesNotContainNull</a></li>
+<li><a href="../issues/TypeDoesNotContainType/">TypeDoesNotContainType</a></li>
+<li><a href="../issues/UndefinedMagicMethod/">UndefinedMagicMethod</a></li>
+<li><a href="../issues/UndefinedMagicPropertyAssignment/">UndefinedMagicPropertyAssignment</a></li>
+<li><a href="../issues/UndefinedMagicPropertyFetch/">UndefinedMagicPropertyFetch</a></li>
+</ul>
+<h2 id="3">レベル3以下で表示されるエラー</h2>
+<ul>
+<li><a href="../issues/ArgumentTypeCoercion/">ArgumentTypeCoercion</a></li>
+<li><a href="../issues/LessSpecificReturnStatement/">LessSpecificReturnStatement</a></li>
+<li><a href="issues/MoreSpecificReturnType.md">MoreSpecificReturnType</a></li>
+<li><a href="issues/PossiblyFalseArgument.md">PossiblyFalseArgument</a></li>
+<li><a href="../issues/PossiblyFalseIterator/">PossiblyFalseIterator</a></li>
+<li><a href="../issues/PossiblyFalseOperand/">PossiblyFalseOperand</a></li>
+<li><a href="../issues/PossiblyFalsePropertyAssignmentValue/">PossiblyFalsePropertyAssignmentValue</a></li>
+<li><a href="issues/PossiblyFalseReference.md">PossiblyFalseReference</a></li>
+<li><a href="issues/PossiblyInvalidArgument.md">PossiblyInvalidArgument</a></li>
+<li><a href="../issues/PossiblyInvalidArrayAccess/">PossiblyInvalidArrayAccess</a></li>
+<li><a href="issues/PossiblyInvalidArrayAssignment.md">PossiblyInvalidArrayAssignment</a></li>
+<li><a href="../issues/PossiblyInvalidArrayOffset/">PossiblyInvalidArrayOffset</a></li>
+<li><a href="issues/PossiblyInvalidCast.md">PossiblyInvalidCast</a></li>
+<li><a href="../issues/PossiblyInvalidClone/">PossiblyInvalidClone</a></li>
+<li><a href="issues/PossiblyInvalidFunctionCall.md">PossiblyInvalidFunctionCall</a></li>
+<li><a href="../issues/PossiblyInvalidIterator/">PossiblyInvalidIterator</a></li>
+<li><a href="../issues/PossiblyInvalidMethodCall/">PossiblyInvalidMethodCall</a></li>
+<li><a href="../issues/PossiblyInvalidOperand/">PossiblyInvalidOperand</a></li>
+<li><a href="issues/PossiblyInvalidPropertyAssignment.md">PossiblyInvalidPropertyAssignment</a></li>
+<li><a href="../issues/PossiblyInvalidPropertyAssignmentValue/">PossiblyInvalidPropertyAssignmentValue</a></li>
+<li><a href="issues/PossiblyInvalidPropertyFetch.md">PossiblyInvalidPropertyFetch</a></li>
+<li><a href="../issues/PossiblyNullArgument/">PossiblyNullArgument</a></li>
+<li><a href="../issues/PossiblyNullArrayAccess/">PossiblyNullArrayAccess</a></li>
+<li><a href="../issues/PossiblyNullArrayAssignment/">PossiblyNullArrayAssignment</a></li>
+<li><a href="../issues/PossiblyNullArrayOffset/">PossiblyNullArrayOffset</a></li>
+<li><a href="../issues/PossiblyNullFunctionCall/">PossiblyNullFunctionCall</a></li>
+<li><a href="issues/PossiblyNullIterator.md">PossiblyNullIterator</a></li>
+<li><a href="issues/PossiblyNullPropertyAssignment.md">PossiblyNullPropertyAssignment</a></li>
+<li><a href="issues/PossiblyNullPropertyAssignmentValue.md">PossiblyNullPropertyAssignmentValue</a></li>
+<li><a href="../issues/PossiblyNullPropertyFetch/">PossiblyNullPropertyFetch</a></li>
+<li><a href="../issues/PossiblyNullReference/">PossiblyNullReference</a></li>
+<li><a href="issues/PossiblyUndefinedArrayOffset.md">PossiblyUndefinedArrayOffset</a></li>
+<li><a href="issues/PossiblyUndefinedGlobalVariable.md">PossiblyUndefinedGlobalVariable</a></li>
+<li><a href="../issues/PossiblyUndefinedMethod/">PossiblyUndefinedMethod</a></li>
+<li><a href="issues/PossiblyUndefinedVariable.md">PossiblyUndefinedVariable</a></li>
+<li><a href="../issues/PropertyTypeCoercion/">PropertyTypeCoercion</a></li>
+<li><a href="../issues/RiskyCast/">RiskyCast</a></li>
+</ul>
+<h2 id="2">レベル2以下で表示されるエラー</h2>
+<ul>
+<li><a href="../issues/DeprecatedClass/">DeprecatedClass</a></li>
+<li><a href="issues/DeprecatedConstant.md">DeprecatedConstant</a></li>
+<li><a href="issues/DeprecatedFunction.md">DeprecatedFunction</a></li>
+<li><a href="../issues/DeprecatedInterface/">DeprecatedInterface</a></li>
+<li><a href="issues/DeprecatedMethod.md">DeprecatedMethod</a></li>
+<li><a href="../issues/DeprecatedProperty/">DeprecatedProperty</a></li>
+<li><a href="issues/DeprecatedTrait.md">DeprecatedTrait</a></li>
+<li><a href="issues/DirectConstructorCall.md">DirectConstructorCall</a></li>
+<li><a href="issues/DocblockTypeContradiction.md">DocblockTypeContradiction</a></li>
+<li><a href="issues/InvalidDocblockParamName.md">InvalidDocblockParamName</a></li>
+<li><a href="issues/InvalidFalsableReturnType.md">InvalidFalsableReturnType</a></li>
+<li><a href="../issues/InvalidStringClass/">InvalidStringClass</a></li>
+<li><a href="issues/MissingClosureParamType.md">MissingClosureParamType</a></li>
+<li><a href="../issues/MissingClosureReturnType/">MissingClosureReturnType</a></li>
+<li><a href="issues/MissingConstructor.md">MissingConstructor</a></li>
+<li><a href="issues/MissingParamType.md">MissingParamType</a></li>
+<li><a href="../issues/MissingPropertyType/">MissingPropertyType</a></li>
+<li><a href="issues/MissingReturnType.md">MissingReturnType</a></li>
+<li><a href="issues/NullOperand.md">NullOperand</a></li>
+<li><a href="issues/PrivateFinalMethod.md">PrivateFinalMethod</a></li>
+<li><a href="../issues/PropertyNotSetInConstructor/">PropertyNotSetInConstructor</a></li>
+<li><a href="../issues/RawObjectIteration/">RawObjectIteration</a></li>
+<li><a href="issues/RedundantConditionGivenDocblockType.md">RedundantConditionGivenDocblockType</a></li>
+<li><a href="../issues/RedundantFunctionCallGivenDocblockType/">RedundantFunctionCallGivenDocblockType</a></li>
+<li><a href="../issues/ReferenceConstraintViolation/">ReferenceConstraintViolation</a></li>
+<li><a href="../issues/RiskyTruthyFalsyComparison/">RiskyTruthyFalsyComparison</a></li>
+<li><a href="../issues/UndefinedTrace/">UndefinedTrace</a></li>
+<li><a href="issues/UnresolvableInclude.md">UnresolvableInclude</a></li>
+<li><a href="issues/UnsafeInstantiation.md">UnsafeInstantiation</a></li>
+</ul>
+<h2 id="1">レベル1でのみ表示されるエラー</h2>
+<ul>
+<li><a href="../issues/LessSpecificReturnType/">LessSpecificReturnType</a></li>
+<li><a href="../issues/MixedArgument/">MixedArgument</a></li>
+<li><a href="issues/MixedArgumentTypeCoercion.md">MixedArgumentTypeCoercion</a></li>
+<li><a href="../issues/MixedArrayAccess/">MixedArrayAccess</a></li>
+<li><a href="../issues/MixedArrayAssignment/">MixedArrayAssignment</a></li>
+<li><a href="../issues/MixedArrayOffset/">MixedArrayOffset</a></li>
+<li><a href="issues/MixedArrayTypeCoercion.md">MixedArrayTypeCoercion</a></li>
+<li><a href="issues/MixedAssignment.md">MixedAssignment</a></li>
+<li><a href="issues/MixedClone.md">MixedClone</a></li>
+<li><a href="../issues/MixedFunctionCall/">MixedFunctionCall</a></li>
+<li><a href="issues/MixedMethodCall.md">MixedMethodCall</a></li>
+<li><a href="issues/MixedOperand.md">MixedOperand</a></li>
+<li><a href="../issues/MixedPropertyAssignment/">MixedPropertyAssignment</a></li>
+<li><a href="issues/MixedPropertyFetch.md">MixedPropertyFetch</a></li>
+<li><a href="issues/MixedPropertyTypeCoercion.md">MixedPropertyTypeCoercion</a></li>
+<li><a href="../issues/MixedReturnStatement/">MixedReturnStatement</a></li>
+<li><a href="../issues/MixedReturnTypeCoercion/">MixedReturnTypeCoercion</a></li>
+<li><a href="../issues/MixedStringOffsetAssignment/">MixedStringOffsetAssignment</a></li>
+<li><a href="../issues/MutableDependency/">MutableDependency</a></li>
+<li><a href="issues/PossiblyNullOperand.md">PossiblyNullOperand</a></li>
+<li><a href="issues/RedundantIdentityWithTrue.md">RedundantIdentityWithTrue</a></li>
+<li><a href="issues/Trace.md">Trace</a></li>
+</ul>
+<h2 id="_3">機能固有のエラー</h2>
+<ul>
+<li><a href="issues/MissingOverrideAttribute.md">MissingOverrideAttribute</a></li>
+<li><a href="issues/PossiblyUndefinedIntArrayOffset.md">PossiblyUndefinedIntArrayOffset</a></li>
+<li><a href="../issues/PossiblyUndefinedStringArrayOffset/">PossiblyUndefinedStringArrayOffset</a></li>
+<li><a href="../issues/PossiblyUnusedMethod/">PossiblyUnusedMethod</a></li>
+<li><a href="issues/PossiblyUnusedParam.md">PossiblyUnusedParam</a></li>
+<li><a href="issues/PossiblyUnusedProperty.md">PossiblyUnusedProperty</a></li>
+<li><a href="issues/TaintedCallable.md">TaintedCallable</a></li>
+<li><a href="../issues/TaintedCookie/">TaintedCookie</a></li>
+<li><a href="issues/TaintedCustom.md">TaintedCustom</a></li>
+<li><a href="../issues/TaintedEval/">TaintedEval</a></li>
+<li><a href="../issues/TaintedExtract/">TaintedExtract</a></li>
+<li><a href="../issues/TaintedFile/">TaintedFile</a></li>
+<li><a href="issues/TaintedHeader.md">TaintedHeader</a></li>
+<li><a href="issues/TaintedHtml.md">TaintedHtml</a></li>
+<li><a href="../issues/TaintedInclude/">TaintedInclude</a></li>
+<li><a href="issues/TaintedInput.md">TaintedInput</a></li>
+<li><a href="../issues/TaintedLdap/">TaintedLdap</a></li>
+<li><a href="issues/TaintedShell.md">TaintedShell</a></li>
+<li><a href="issues/TaintedSleep.md">TaintedSleep</a></li>
+<li><a href="issues/TaintedSql.md">TaintedSql</a></li>
+<li><a href="issues/TaintedSSRF.md">TaintedSSRF</a></li>
+<li><a href="issues/TaintedSystemSecret.md">TaintedSystemSecret</a></li>
+<li><a href="issues/TaintedUnserialize.md">TaintedUnserialize</a></li>
+<li><a href="../issues/TaintedUserSecret/">TaintedUserSecret</a></li>
+<li><a href="issues/TaintedXpath.md">TaintedXpath</a></li>
+<li><a href="../issues/UncaughtThrowInGlobalScope/">UncaughtThrowInGlobalScope</a></li>
+<li><a href="issues/UnevaluatedCode.md">UnevaluatedCode</a></li>
+<li><a href="../issues/UnnecessaryVarAnnotation/">UnnecessaryVarAnnotation</a></li>
+<li><a href="../issues/UnusedClass/">UnusedClass</a></li>
+<li><a href="../issues/UnusedClosureParam/">UnusedClosureParam</a></li>
+<li><a href="../issues/UnusedConstructor/">UnusedConstructor</a></li>
+<li><a href="issues/UnusedDocblockParam.md">UnusedDocblockParam</a></li>
+<li><a href="../issues/UnusedForeachValue/">UnusedForeachValue</a></li>
+<li><a href="issues/UnusedMethod.md">UnusedMethod</a></li>
+<li><a href="issues/UnusedParam.md">UnusedParam</a></li>
+<li><a href="../issues/UnusedProperty/">UnusedProperty</a></li>
+<li><a href="issues/UnusedPsalmSuppress.md">UnusedPsalmSuppress</a></li>
+<li><a href="issues/UnusedVariable.md">UnusedVariable</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "hide_repository_button"], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>
