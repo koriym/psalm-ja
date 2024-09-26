@@ -11,16 +11,16 @@
       
       
       
-      <link rel="icon" href="/koriym/psalm-ja/assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+      <link rel="icon" href="/psalm-ja/assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
     
     
       
-        <title>Psalm日本語ドキュメント</title>
+        <title>Psalm Docs JA</title>
       
     
     
-      <link rel="stylesheet" href="/koriym/psalm-ja/assets/stylesheets/main.35f28582.min.css">
+      <link rel="stylesheet" href="/psalm-ja/assets/stylesheets/main.35f28582.min.css">
       
       
 
@@ -31,13 +31,27 @@
     
 
     
-      <link rel="stylesheet" href="/koriym/psalm-ja/assets/css/mkdocs_material_extra.css">
+      <link rel="stylesheet" href="/psalm-ja/assets/css/php.css">
     
-      <link rel="stylesheet" href="/koriym/psalm-ja/assets/css/php.css">
+      <link rel="stylesheet" href="/psalm-ja/assets/css/mkdocs_material_extra.css">
     
-    <script>__md_scope=new URL("/koriym/psalm-ja/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+      <link rel="stylesheet" href="/psalm-ja/assets/css/extra.css">
+    
+      <link rel="stylesheet" href="/psalm-ja/assets/css/giscuss.css">
+    
+    <script>__md_scope=new URL("/psalm-ja/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -60,29 +74,7 @@
     </div>
     
     
-      <!--
-  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
-
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to
-  deal in the Software without restriction, including without limitation the
-  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-  sell copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be included in
-  all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-  IN THE SOFTWARE.
--->
-
-<!-- Determine classes -->
+      <!-- Determine classes -->
 
 
 
@@ -97,14 +89,14 @@
 
     <!-- Link to home -->
     <a
-            href="/koriym/psalm-ja/."
-            title="Psalm日本語ドキュメント"
+            href="/psalm-ja/index.html"
+            title="Psalm Docs JA"
             class="md-header__button md-logo"
-            aria-label="Psalm日本語ドキュメント"
+            aria-label="Psalm Docs JA"
             data-md-component="logo"
     >
       
-  <img src="/koriym/psalm-ja/assets/images/psalmlogo.jpg" alt="logo">
+  <img src="/psalm-ja/assets/images/logo.png" alt="logo">
 
     </a>
 
@@ -120,7 +112,7 @@
         <div class="md-header__topic">
           <span class="md-ellipsis">
             <span style="font-family: 'Noto Sans'; font-size: 20px" >
-            Psalm日本語ドキュメント
+            Psalm Docs JA
             </span>
           </span>
         </div>
@@ -191,6 +183,32 @@
 
     <!-- Repository information -->
     
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/psalm-ja/" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
   </nav>
 
   <!-- Navigation tabs (sticky) -->
@@ -218,13 +236,39 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/koriym/psalm-ja/." title="Psalm日本語ドキュメント" class="md-nav__button md-logo" aria-label="Psalm日本語ドキュメント" data-md-component="logo">
+    <a href="/psalm-ja/index.html" title="Psalm Docs JA" class="md-nav__button md-logo" aria-label="Psalm Docs JA" data-md-component="logo">
       
-  <img src="/koriym/psalm-ja/assets/images/psalmlogo.jpg" alt="logo">
+  <img src="/psalm-ja/assets/images/logo.png" alt="logo">
 
     </a>
-    Psalm日本語ドキュメント
+    Psalm Docs JA
   </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/psalm-ja/" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -235,7 +279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/." class="md-nav__link">
+      <a href="/psalm-ja/index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -290,7 +334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/running_psalm/installation/" class="md-nav__link">
+      <a href="/psalm-ja/running_psalm/installation.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -311,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/running_psalm/configuration/" class="md-nav__link">
+      <a href="/psalm-ja/running_psalm/configuration.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -367,7 +411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/running_psalm/plugins/using_plugins/" class="md-nav__link">
+      <a href="/psalm-ja/running_psalm/plugins/using_plugins.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -388,7 +432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/running_psalm/plugins/authoring_plugins/" class="md-nav__link">
+      <a href="/psalm-ja/running_psalm/plugins/authoring_plugins.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -409,7 +453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/running_psalm/plugins/plugins_type_system/" class="md-nav__link">
+      <a href="/psalm-ja/running_psalm/plugins/plugins_type_system.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -438,7 +482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/running_psalm/command_line_usage/" class="md-nav__link">
+      <a href="/psalm-ja/running_psalm/command_line_usage.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -459,7 +503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/running_psalm/language_server/" class="md-nav__link">
+      <a href="/psalm-ja/running_psalm/language_server.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -515,7 +559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/running_psalm/dealing_with_code_issues/" class="md-nav__link">
+      <a href="/psalm-ja/running_psalm/dealing_with_code_issues.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -536,7 +580,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/running_psalm/issues/" class="md-nav__link">
+      <a href="/psalm-ja/running_psalm/issues.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -565,7 +609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/running_psalm/checking_non_php_files/" class="md-nav__link">
+      <a href="/psalm-ja/running_psalm/checking_non_php_files.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -628,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/annotating_code/typing_in_psalm/" class="md-nav__link">
+      <a href="/psalm-ja/annotating_code/typing_in_psalm.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -649,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/annotating_code/type_syntax/union_types/" class="md-nav__link">
+      <a href="/psalm-ja/annotating_code/type_syntax/union_types.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -670,7 +714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/annotating_code/type_syntax/atomic_types/" class="md-nav__link">
+      <a href="/psalm-ja/annotating_code/type_syntax/atomic_types.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -691,7 +735,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/annotating_code/type_syntax/intersection_types/" class="md-nav__link">
+      <a href="/psalm-ja/annotating_code/type_syntax/intersection_types.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -754,7 +798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/annotating_code/supported_annotations/" class="md-nav__link">
+      <a href="/psalm-ja/annotating_code/supported_annotations.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -775,7 +819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/annotating_code/templated_annotations/" class="md-nav__link">
+      <a href="/psalm-ja/annotating_code/templated_annotations.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -796,7 +840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/annotating_code/adding_assertions/" class="md-nav__link">
+      <a href="/psalm-ja/annotating_code/adding_assertions.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -859,7 +903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/manipulating_code/fixing/" class="md-nav__link">
+      <a href="/psalm-ja/manipulating_code/fixing.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -880,7 +924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/manipulating_code/refactoring/" class="md-nav__link">
+      <a href="/psalm-ja/manipulating_code/refactoring.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -943,7 +987,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/security_analysis/" class="md-nav__link">
+      <a href="/psalm-ja/security_analysis/index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -964,7 +1008,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/security_analysis/custom_taint_sources/" class="md-nav__link">
+      <a href="/psalm-ja/security_analysis/custom_taint_sources.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -985,7 +1029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/security_analysis/custom_taint_sinks/" class="md-nav__link">
+      <a href="/psalm-ja/security_analysis/custom_taint_sinks.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1006,7 +1050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/security_analysis/avoiding_false_positives/" class="md-nav__link">
+      <a href="/psalm-ja/security_analysis/avoiding_false_positives.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1034,11 +1078,31 @@
   
   
     <li class="md-nav__item">
-      <a href="/koriym/psalm-ja/contributing/" class="md-nav__link">
+      <a href="/psalm-ja/contributing/index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     貢献
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/psalm-ja/LICENSE.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ライセンス
   </span>
   
 
@@ -1081,39 +1145,28 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
       </main>
       
-        <footer class="md-footer">
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-  
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
-    </a>
-  
-</div>
-      
-    </div>
-  </div>
-</footer>
-      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/koriym/psalm-ja/", "features": ["content.code.copy", "hide_repository_button"], "search": "/koriym/psalm-ja/assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "/psalm-ja/", "features": ["back-to-top", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "/psalm-ja/assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/koriym/psalm-ja/assets/javascripts/bundle.56dfad97.min.js"></script>
+      <script src="/psalm-ja/assets/javascripts/bundle.56dfad97.min.js"></script>
       
     
   </body>

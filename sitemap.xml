@@ -1,875 +1,867 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://github.com/koriym/psalm-ja/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/index.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/adding_assertions/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/adding_assertions.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/assertion_syntax/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/assertion_syntax.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/hello/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/supported_annotations.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/supported_annotations/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/templated_annotations.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/templated_annotations/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/typing_in_psalm.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/typing_in_psalm/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/type_syntax/array_types.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/type_syntax/array_types/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/type_syntax/atomic_types.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/type_syntax/atomic_types/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/type_syntax/callable_types.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/type_syntax/callable_types/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/type_syntax/conditional_types.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/type_syntax/conditional_types/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/type_syntax/intersection_types.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/type_syntax/intersection_types/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/type_syntax/object_types.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/type_syntax/object_types/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/type_syntax/other_types.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/type_syntax/other_types/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/type_syntax/scalar_types.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/type_syntax/scalar_types/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/type_syntax/top_bottom_types.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/type_syntax/top_bottom_types/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/type_syntax/union_types.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/type_syntax/union_types/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/type_syntax/utility_types.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/type_syntax/utility_types/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/annotating_code/type_syntax/value_types.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/annotating_code/type_syntax/value_types/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/contributing/index.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/contributing/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/contributing/adding_issues.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/contributing/adding_issues/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/contributing/editing_callmaps.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/contributing/editing_callmaps/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/contributing/how_psalm_works.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/contributing/how_psalm_works/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/contributing/philosophy.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/contributing/philosophy/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/contributing/what_makes_psalm_complicated.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/contributing/what_makes_psalm_complicated/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/manipulating_code/fixing.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/manipulating_code/fixing/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/manipulating_code/refactoring.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/manipulating_code/refactoring/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/checking_non_php_files.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/checking_non_php_files/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/command_line_usage.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/command_line_usage/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/configuration.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/configuration/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/dealing_with_code_issues.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/dealing_with_code_issues/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/error_levels.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/error_levels/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/installation.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/installation/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/language_server.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/language_server/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/AbstractMethodCall.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/AbstractMethodCall/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/AmbiguousConstantInheritance.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/AmbiguousConstantInheritance/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ArgumentTypeCoercion.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ArgumentTypeCoercion/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/AssignmentToVoid.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/AssignmentToVoid/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/CircularReference.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/CircularReference/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ComplexFunction.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ComplexFunction/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ConfigIssue.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ConfigIssue/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ConflictingReferenceConstraint.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ConflictingReferenceConstraint/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ConstructorSignatureMismatch.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ConstructorSignatureMismatch/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ContinueOutsideLoop.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ContinueOutsideLoop/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/DeprecatedClass.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/DeprecatedClass/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/DeprecatedInterface.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/DeprecatedInterface/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/DeprecatedProperty.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/DeprecatedProperty/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/DuplicateArrayKey.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/DuplicateArrayKey/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/DuplicateClass.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/DuplicateClass/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/DuplicateEnumCaseValue.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/DuplicateEnumCaseValue/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/DuplicateMethod.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/DuplicateMethod/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/DuplicateProperty.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/DuplicateProperty/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ExtensionRequirementViolation.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ExtensionRequirementViolation/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/FalsableReturnStatement.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/FalsableReturnStatement/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/FalseOperand.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/FalseOperand/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ForbiddenCode.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ForbiddenCode/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ImplementedParamTypeMismatch.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ImplementedParamTypeMismatch/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ImplementedReturnTypeMismatch.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ImplementedReturnTypeMismatch/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ImpureByReferenceAssignment.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ImpureByReferenceAssignment/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ImpurePropertyAssignment.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ImpurePropertyAssignment/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ImpurePropertyFetch.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ImpurePropertyFetch/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ImpureStaticProperty.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ImpureStaticProperty/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ImpureVariable.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ImpureVariable/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InaccessibleMethod.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InaccessibleMethod/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InaccessibleProperty.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InaccessibleProperty/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InheritorViolation.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InheritorViolation/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InterfaceInstantiation.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InterfaceInstantiation/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InternalClass.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InternalClass/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InternalMethod.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InternalMethod/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidArgument.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidArgument/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidArrayOffset.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidArrayOffset/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidClassConstantType.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidClassConstantType/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidClone.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidClone/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidDocblock.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidDocblock/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidEnumBackingType.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidEnumBackingType/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidEnumMethod.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidEnumMethod/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidExtendClass.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidExtendClass/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidGlobal.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidGlobal/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidIterator.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidIterator/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidNamedArgument.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidNamedArgument/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidOperand.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidOperand/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidParent.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidParent/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidPropertyAssignment.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidPropertyAssignment/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidPropertyAssignmentValue.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidPropertyAssignmentValue/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidPropertyFetch.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidPropertyFetch/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidScalarArgument.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidScalarArgument/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidStringClass.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidStringClass/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidToString.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidToString/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/InvalidTraversableImplementation.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/InvalidTraversableImplementation/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/LessSpecificImplementedReturnType.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/LessSpecificImplementedReturnType/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/LessSpecificReturnStatement.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/LessSpecificReturnStatement/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/LessSpecificReturnType.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/LessSpecificReturnType/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MethodSignatureMustOmitReturnType.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MethodSignatureMustOmitReturnType/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MethodSignatureMustProvideReturnType.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MethodSignatureMustProvideReturnType/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MismatchingDocblockParamType.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MismatchingDocblockParamType/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MismatchingDocblockReturnType.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MismatchingDocblockReturnType/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MissingClosureReturnType.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MissingClosureReturnType/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MissingDependency.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MissingDependency/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MissingDocblockType.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MissingDocblockType/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MissingImmutableAnnotation.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MissingImmutableAnnotation/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MissingPropertyType.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MissingPropertyType/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MissingTemplateParam.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MissingTemplateParam/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MixedArgument.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MixedArgument/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MixedArrayAccess.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MixedArrayAccess/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MixedArrayAssignment.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MixedArrayAssignment/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MixedArrayOffset.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MixedArrayOffset/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MixedFunctionCall.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MixedFunctionCall/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MixedPropertyAssignment.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MixedPropertyAssignment/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MixedReturnStatement.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MixedReturnStatement/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MixedReturnTypeCoercion.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MixedReturnTypeCoercion/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MixedStringOffsetAssignment.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MixedStringOffsetAssignment/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/MutableDependency.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/MutableDependency/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/NamedArgumentNotAllowed.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/NamedArgumentNotAllowed/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/NoInterfaceProperties.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/NoInterfaceProperties/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/NoValue.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/NoValue/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/NonInvariantPropertyType.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/NonInvariantPropertyType/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/NonStaticSelfCall.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/NonStaticSelfCall/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/NullArgument.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/NullArgument/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/NullArrayAccess.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/NullArrayAccess/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/NullFunctionCall.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/NullFunctionCall/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/OverriddenFinalConstant.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/OverriddenFinalConstant/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/OverriddenMethodAccess.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/OverriddenMethodAccess/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/OverriddenPropertyAccess.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/OverriddenPropertyAccess/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ParadoxicalCondition.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ParadoxicalCondition/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ParamNameMismatch.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ParamNameMismatch/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ParentNotFound.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ParentNotFound/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ParseError.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ParseError/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PluginIssue.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PluginIssue/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossibleRawObjectIteration.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossibleRawObjectIteration/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyFalseIterator.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyFalseIterator/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyFalseOperand.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyFalseOperand/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyFalsePropertyAssignmentValue.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyFalsePropertyAssignmentValue/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyInvalidArrayAccess.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyInvalidArrayAccess/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyInvalidArrayOffset.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyInvalidArrayOffset/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyInvalidClone.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyInvalidClone/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyInvalidIterator.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyInvalidIterator/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyInvalidMethodCall.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyInvalidMethodCall/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyInvalidOperand.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyInvalidOperand/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyInvalidPropertyAssignmentValue.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyInvalidPropertyAssignmentValue/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyNullArgument.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyNullArgument/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyNullArrayAccess.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyNullArrayAccess/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyNullArrayAssignment.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyNullArrayAssignment/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyNullArrayOffset.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyNullArrayOffset/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyNullFunctionCall.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyNullFunctionCall/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyNullPropertyFetch.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyNullPropertyFetch/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyNullReference.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyNullReference/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyUndefinedMethod.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyUndefinedMethod/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyUndefinedStringArrayOffset.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyUndefinedStringArrayOffset/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyUnusedMethod.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyUnusedMethod/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyUnusedReturnValue.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PossiblyUnusedReturnValue/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PropertyNotSetInConstructor.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PropertyNotSetInConstructor/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/PropertyTypeCoercion.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/PropertyTypeCoercion/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/RawObjectIteration.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/RawObjectIteration/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/RedundantCast.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/RedundantCast/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/RedundantCastGivenDocblockType.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/RedundantCastGivenDocblockType/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/RedundantCondition.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/RedundantCondition/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/RedundantFlag.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/RedundantFlag/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/RedundantFunctionCall.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/RedundantFunctionCall/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/RedundantFunctionCallGivenDocblockType.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/RedundantFunctionCallGivenDocblockType/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/RedundantPropertyInitializationCheck.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/RedundantPropertyInitializationCheck/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ReferenceConstraintViolation.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ReferenceConstraintViolation/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ReferenceReusedFromConfusingScope.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ReferenceReusedFromConfusingScope/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/ReservedWord.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/ReservedWord/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/RiskyCast.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/RiskyCast/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/RiskyTruthyFalsyComparison.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/RiskyTruthyFalsyComparison/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/TaintedCookie.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/TaintedCookie/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/TaintedEval.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/TaintedEval/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/TaintedExtract.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/TaintedExtract/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/TaintedFile.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/TaintedFile/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/TaintedInclude.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/TaintedInclude/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/TaintedLdap.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/TaintedLdap/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/TaintedUserSecret.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/TaintedSsrf/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/TooFewArguments.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/TaintedUserSecret/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/TooManyArguments.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/TooFewArguments/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/TooManyTemplateParams.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/TooManyArguments/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/TraitMethodSignatureMismatch.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/TooManyTemplateParams/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/TypeDoesNotContainNull.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/TraitMethodSignatureMismatch/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/TypeDoesNotContainType.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/TypeDoesNotContainNull/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UncaughtThrowInGlobalScope.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/TypeDoesNotContainType/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedAttributeClass.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UncaughtThrowInGlobalScope/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedClass.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedAttributeClass/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedConstant.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedClass/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedDocblockClass.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedConstant/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedFunction.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedDocblockClass/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedGlobalVariable.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedFunction/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedInterface.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedGlobalVariable/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedMagicMethod.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedInterface/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedMagicPropertyAssignment.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedMagicMethod/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedMagicPropertyFetch.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedMagicPropertyAssignment/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedPropertyAssignment.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedMagicPropertyFetch/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedPropertyFetch.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedPropertyAssignment/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedThisPropertyAssignment.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedPropertyFetch/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedTrace.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedThisPropertyAssignment/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedTrait.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedTrace/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UndefinedVariable.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedTrait/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UnimplementedAbstractMethod.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UndefinedVariable/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UninitializedProperty.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UnimplementedAbstractMethod/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UnnecessaryVarAnnotation.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UninitializedProperty/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UnrecognizedStatement.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UnnecessaryVarAnnotation/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UnusedClass.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UnrecognizedStatement/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UnusedClosureParam.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UnusedClass/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UnusedConstructor.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UnusedClosureParam/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UnusedForeachValue.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UnusedConstructor/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UnusedIssueHandlerSuppression.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UnusedForeachValue/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UnusedMethodCall.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UnusedIssueHandlerSuppression/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/issues/UnusedProperty.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UnusedMethodCall/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/plugins/authoring_plugins.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/issues/UnusedProperty/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/plugins/plugins_type_system.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/plugins/authoring_plugins/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/running_psalm/plugins/using_plugins.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/plugins/plugins_type_system/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/security_analysis/index.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/running_psalm/plugins/using_plugins/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/security_analysis/annotations.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/security_analysis/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/security_analysis/avoiding_false_negatives.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/security_analysis/annotations/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/security_analysis/avoiding_false_positives.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/security_analysis/avoiding_false_negatives/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/security_analysis/custom_taint_sinks.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/security_analysis/avoiding_false_positives/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/security_analysis/custom_taint_sources.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
     <url>
-         <loc>https://github.com/koriym/psalm-ja/security_analysis/custom_taint_sinks/</loc>
-         <lastmod>2024-09-16</lastmod>
-    </url>
-    <url>
-         <loc>https://github.com/koriym/psalm-ja/security_analysis/custom_taint_sources/</loc>
-         <lastmod>2024-09-16</lastmod>
-    </url>
-    <url>
-         <loc>https://github.com/koriym/psalm-ja/security_analysis/taint_flow/</loc>
-         <lastmod>2024-09-16</lastmod>
+         <loc>https://koriym.github.io/psalm-ja/security_analysis/taint_flow.html</loc>
+         <lastmod>2024-09-26</lastmod>
     </url>
 </urlset>

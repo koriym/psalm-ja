@@ -8,21 +8,21 @@
       
       
       
-        <link rel="canonical" href="https://github.com/koriym/psalm-ja/security_analysis/">
+        <link rel="canonical" href="https://koriym.github.io/psalm-ja/security_analysis/index.html">
       
       
-        <link rel="prev" href="../manipulating_code/refactoring/">
+        <link rel="prev" href="../manipulating_code/refactoring.html">
       
       
-        <link rel="next" href="custom_taint_sources/">
+        <link rel="next" href="custom_taint_sources.html">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+      <link rel="icon" href="../assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
     
     
       
-        <title>はじめに - Psalm日本語ドキュメント</title>
+        <title>はじめに - Psalm Docs JA</title>
       
     
     
@@ -37,13 +37,27 @@
     
 
     
+      <link rel="stylesheet" href="../assets/css/php.css">
+    
       <link rel="stylesheet" href="../assets/css/mkdocs_material_extra.css">
     
-      <link rel="stylesheet" href="../assets/css/php.css">
+      <link rel="stylesheet" href="../assets/css/extra.css">
+    
+      <link rel="stylesheet" href="../assets/css/giscuss.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -71,29 +85,7 @@
     </div>
     
     
-      <!--
-  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
-
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to
-  deal in the Software without restriction, including without limitation the
-  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-  sell copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be included in
-  all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-  IN THE SOFTWARE.
--->
-
-<!-- Determine classes -->
+      <!-- Determine classes -->
 
 
 
@@ -108,14 +100,14 @@
 
     <!-- Link to home -->
     <a
-            href=".."
-            title="Psalm日本語ドキュメント"
+            href="../index.html"
+            title="Psalm Docs JA"
             class="md-header__button md-logo"
-            aria-label="Psalm日本語ドキュメント"
+            aria-label="Psalm Docs JA"
             data-md-component="logo"
     >
       
-  <img src="../assets/images/psalmlogo.jpg" alt="logo">
+  <img src="../assets/images/logo.png" alt="logo">
 
     </a>
 
@@ -131,7 +123,7 @@
         <div class="md-header__topic">
           <span class="md-ellipsis">
             <span style="font-family: 'Noto Sans'; font-size: 20px" >
-            Psalm日本語ドキュメント
+            Psalm Docs JA
             </span>
           </span>
         </div>
@@ -202,6 +194,32 @@
 
     <!-- Repository information -->
     
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/psalm-ja/" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
   </nav>
 
   <!-- Navigation tabs (sticky) -->
@@ -229,13 +247,39 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Psalm日本語ドキュメント" class="md-nav__button md-logo" aria-label="Psalm日本語ドキュメント" data-md-component="logo">
+    <a href="../index.html" title="Psalm Docs JA" class="md-nav__button md-logo" aria-label="Psalm Docs JA" data-md-component="logo">
       
-  <img src="../assets/images/psalmlogo.jpg" alt="logo">
+  <img src="../assets/images/logo.png" alt="logo">
 
     </a>
-    Psalm日本語ドキュメント
+    Psalm Docs JA
   </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/psalm-ja/" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -246,7 +290,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -301,7 +345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/installation/" class="md-nav__link">
+      <a href="../running_psalm/installation.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -322,7 +366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/configuration/" class="md-nav__link">
+      <a href="../running_psalm/configuration.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -378,7 +422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/plugins/using_plugins/" class="md-nav__link">
+      <a href="../running_psalm/plugins/using_plugins.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -399,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/plugins/authoring_plugins/" class="md-nav__link">
+      <a href="../running_psalm/plugins/authoring_plugins.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -420,7 +464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/plugins/plugins_type_system/" class="md-nav__link">
+      <a href="../running_psalm/plugins/plugins_type_system.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -449,7 +493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/command_line_usage/" class="md-nav__link">
+      <a href="../running_psalm/command_line_usage.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -470,7 +514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/language_server/" class="md-nav__link">
+      <a href="../running_psalm/language_server.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -526,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/dealing_with_code_issues/" class="md-nav__link">
+      <a href="../running_psalm/dealing_with_code_issues.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -547,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/issues/" class="md-nav__link">
+      <a href="../running_psalm/issues.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -576,7 +620,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/checking_non_php_files/" class="md-nav__link">
+      <a href="../running_psalm/checking_non_php_files.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -639,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotating_code/typing_in_psalm/" class="md-nav__link">
+      <a href="../annotating_code/typing_in_psalm.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -660,7 +704,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotating_code/type_syntax/union_types/" class="md-nav__link">
+      <a href="../annotating_code/type_syntax/union_types.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -681,7 +725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotating_code/type_syntax/atomic_types/" class="md-nav__link">
+      <a href="../annotating_code/type_syntax/atomic_types.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -702,7 +746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotating_code/type_syntax/intersection_types/" class="md-nav__link">
+      <a href="../annotating_code/type_syntax/intersection_types.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -765,7 +809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotating_code/supported_annotations/" class="md-nav__link">
+      <a href="../annotating_code/supported_annotations.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -786,7 +830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotating_code/templated_annotations/" class="md-nav__link">
+      <a href="../annotating_code/templated_annotations.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -807,7 +851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotating_code/adding_assertions/" class="md-nav__link">
+      <a href="../annotating_code/adding_assertions.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -870,7 +914,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../manipulating_code/fixing/" class="md-nav__link">
+      <a href="../manipulating_code/fixing.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -891,7 +935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../manipulating_code/refactoring/" class="md-nav__link">
+      <a href="../manipulating_code/refactoring.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -976,7 +1020,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="./" class="md-nav__link md-nav__link--active">
+      <a href="index.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1113,7 +1157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="custom_taint_sources/" class="md-nav__link">
+      <a href="custom_taint_sources.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1134,7 +1178,7 @@
   
   
     <li class="md-nav__item">
-      <a href="custom_taint_sinks/" class="md-nav__link">
+      <a href="custom_taint_sinks.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1155,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="avoiding_false_positives/" class="md-nav__link">
+      <a href="avoiding_false_positives.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1183,11 +1227,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../contributing/" class="md-nav__link">
+      <a href="../contributing/index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     貢献
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LICENSE.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ライセンス
   </span>
   
 
@@ -1332,8 +1396,16 @@
                 
                   
 
+  
+    <a href="https://github.com/koriym/psalm-ja/edit/5.x-ja/docs-ja/security_analysis/index.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
 
-<h1 id="psalm">Psalmにおけるセキュリティ分析</h1>
+
+<h1 id="psalm">Psalmにおけるセキュリティ分析<a class="headerlink" href="#psalm" title="Permanent link">&para;</a></h1>
 <p>Psalmは、ユーザーが制御できる入力（<code>$_GET['name']</code>など）と、エスケープされていないユーザー制御の入力が終わってほしくない場所（<code>echo "&lt;h1&gt;$name&lt;/h1&gt;"</code>など）との間のつながりを、アプリケーションを通じてデータがどのように流れるか（代入、関数/メソッド呼び出し、配列/プロパティアクセスを介して）を見ることで見つけようとします。</p>
 <p>このモードは<code>--taint-analysis</code>コマンドラインフラグで有効にできます。汚染分析が有効になると、他の分析は実行されません。<a href="https://github.com/vimeo/psalm/issues/6156">包括的な結果を確保するために</a>、汚染分析の前に通常通りPsalmを実行し、エラーを修正する必要があります。</p>
 <p>汚染された入力とは、アプリケーションのユーザーが全体的または部分的に制御できるものすべてです。汚染分析では、汚染された入力を_汚染源_と呼びます。</p>
@@ -1345,7 +1417,7 @@
 <p>例えば以下のようなものが汚染シンクです：
 - <code>&lt;div id="section_&lt;?= $id ?&gt;"&gt;</code>
 - <code>$pdo-&gt;exec("select * from users where name='" . $name . "'")</code></p>
-<h2 id="_1">汚染タイプ</h2>
+<h2 id="_1">汚染タイプ<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>Psalmはデフォルトで、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Type/TaintKind.php">Psalm\Type\TaintKind</a>クラスで定義されている多くの汚染タイプを認識します：</p>
 <ul>
 <li><code>sql</code> - SQLを含む可能性のある文字列に使用</li>
@@ -1365,50 +1437,50 @@
 <li><code>system_secret</code> - システムの秘密を含む可能性のある文字列に使用</li>
 </ul>
 <p>カスタム汚染源を定義する際に、独自の汚染タイプを自由に定義することもできます - これらは単なる文字列です。</p>
-<h2 id="_2">汚染源</h2>
+<h2 id="_2">汚染源<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>Psalmは現在、デフォルトで3つの汚染源を定義しています：<code>$_GET</code>、<code>$_POST</code>、<code>$_COOKIE</code>サーバー変数です。</p>
-<p><a href="custom_taint_sources/">独自の汚染源を定義する</a>こともできます。</p>
-<h2 id="_3">汚染シンク</h2>
+<p><a href="custom_taint_sources.html">独自の汚染源を定義する</a>こともできます。</p>
+<h2 id="_3">汚染シンク<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>Psalmは現在、<code>echo</code>、<code>include</code>、<code>header</code>を含む組み込み関数やメソッドに対して、多くの異なるシンクを定義しています。</p>
-<p><a href="custom_taint_sinks/">独自の汚染シンクを定義する</a>こともできます。</p>
-<h2 id="_4">偽陽性を避ける</h2>
-<p>誰も大量の偽陽性をかき分けたくはありません - <a href="avoiding_false_positives/">ここに偽陽性を避けるためのガイドがあります</a>。</p>
-<h2 id="_5">制限事項</h2>
+<p><a href="custom_taint_sinks.html">独自の汚染シンクを定義する</a>こともできます。</p>
+<h2 id="_4">偽陽性を避ける<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>誰も大量の偽陽性をかき分けたくはありません - <a href="avoiding_false_positives.html">ここに偽陽性を避けるためのガイドがあります</a>。</p>
+<h2 id="_5">制限事項<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>汚染分析は、値のエスケープ時にミスを犯さないことに依存しています。例えば：</p>
-<div class="language-php highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$sql = &#39;SELECT * FROM users WHERE id = &#39; . $mysqli-&gt;real_escape_string((string) $_GET[&#39;id&#39;]);
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>$html = &quot;
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  &lt;img src=&quot; . htmlentities((string) $_GET[&#39;img&#39;]) . &quot; alt=&#39;&#39; /&gt;
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  &lt;a href=&#39;&quot; . htmlentities((string) $_GET[&#39;a1&#39;]) . &quot;&#39;&gt;Link 1&lt;/a&gt;
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  &lt;a href=&#39;&quot; . htmlentities((string) $_GET[&#39;a2&#39;]) . &quot;&#39;&gt;Line 2&lt;/a&gt;&quot;;
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>// 詳細：
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>//    $id  = &#39;id&#39;                   - 引用符が不足
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>//    $img = &#39;/ onerror=alert(1)&#39;   - 引用符が不足
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>//    $a1  = &#39;javascript:alert(1)&#39;  - 通常のインラインJavaScript
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>//    $a2  = &#39;/&#39; onerror=&#39;alert(1)&#39; - PHP 8.1以前では、シングルクォートはデフォルトでエスケープされない
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>// テスト：
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>//    /?id=id&amp;img=%2F+onerror%3Dalert%281%29&amp;a1=javascript%3Aalert%281%29&amp;a2=%2F%27+onerror%3D%27alert%281%29
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;SELECT * FROM users WHERE id = &#39;</span> <span class="o">.</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">real_escape_string</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]);</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">$html</span> <span class="o">=</span> <span class="s2">&quot;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="s2">  &lt;img src=&quot;</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot; alt=&#39;&#39; /&gt;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="s2">  &lt;a href=&#39;&quot;</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&#39;&gt;Link 1&lt;/a&gt;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="s2">  &lt;a href=&#39;&quot;</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&#39;&gt;Line 2&lt;/a&gt;&quot;</span><span class="p">;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1">// 詳細：</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1">//    $id  = &#39;id&#39;                   - 引用符が不足</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1">//    $img = &#39;/ onerror=alert(1)&#39;   - 引用符が不足</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1">//    $a1  = &#39;javascript:alert(1)&#39;  - 通常のインラインJavaScript</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1">//    $a2  = &#39;/&#39; onerror=&#39;alert(1)&#39; - PHP 8.1以前では、シングルクォートはデフォルトでエスケープされない</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1">// テスト：</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1">//    /?id=id&amp;img=%2F+onerror%3Dalert%281%29&amp;a1=javascript%3Aalert%281%29&amp;a2=%2F%27+onerror%3D%27alert%281%29</span>
+</code></pre></div>
 <p>これらの問題を避けるには、SQLとコマンド（例：<code>exec</code>）にはパラメータ化クエリを使用し、HTMLにはコンテキストを考慮したテンプレートエンジンを使用してください。そして、<a href="https://psalm.dev/docs/annotating_code/type_syntax/scalar_types/#literal-string">literal-string</a>型を使用して、機密な文字列がアプリケーションで定義されている（つまり、開発者によって書かれた）ことを確認してください。</p>
-<h2 id="_6">汚染分析でベースラインを使用する</h2>
+<h2 id="_6">汚染分析でベースラインを使用する<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>汚染分析は他の静的コード分析とは別に実行されるため、別のベースラインを使用することが理にかなっています。</p>
 <p><code>--use-baseline=PATH</code>オプションを使用して、汚染分析に異なるベースラインを設定できます。</p>
-<h2 id="_7">ユーザーインターフェースで結果を表示する</h2>
+<h2 id="_7">ユーザーインターフェースで結果を表示する<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p>Psalmは、静的分析結果を交換するための<a href="http://docs.oasis-open.org/sarif/sarif/v2.0/csprd01/sarif-v2.0-csprd01.html">SARIF</a>標準をサポートしています。これにより、汚染フローを含む結果を任意のSARIF互換ソフトウェアで表示できます。</p>
-<h3 id="github-code-scanning">GitHub Code Scanning</h3>
+<h3 id="github-code-scanning">GitHub Code Scanning<a class="headerlink" href="#github-code-scanning" title="Permanent link">&para;</a></h3>
 <p><a href="https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning">GitHub code scanning</a>は、<a href="https://github.com/marketplace/actions/psalm-static-analysis-for-php">Psalm GitHub Action</a>を使用してセットアップできます。</p>
 <p>または、<a href="https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/uploading-a-sarif-file-to-github">GitHubのドキュメント</a>に記載されているように、生成されたSARIFファイルを手動でアップロードすることもできます。</p>
 <p>結果は、リポジトリの「Security」タブで利用可能になります。</p>
-<h3 id="sarif">その他のSARIF互換ソフトウェア</h3>
+<h3 id="sarif">その他のSARIF互換ソフトウェア<a class="headerlink" href="#sarif" title="Permanent link">&para;</a></h3>
 <p>SARIFレポートを生成するには、<code>--report</code>フラグと<code>.sarif</code>拡張子を付けてPsalmを実行します。例：</p>
-<div class="language-bash highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>psalm<span style="color: #bbbbbb"> </span>--report<span style="color: #666666">=</span>results.sarif
-</span></code></pre></div>
-<h2 id="_8">汚染グラフのデバッグ</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>psalm<span class="w"> </span>--report<span class="o">=</span>results.sarif
+</code></pre></div>
+<h2 id="_8">汚染グラフのデバッグ<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>Psalmは、DOT言語を使用して汚染グラフを出力できます。これは、期待される汚染が検出されない場合に役立ちます。DOTグラフを生成するには、<code>--dump-taint-graph</code>フラグを付けてPsalmを実行します。例：</p>
-<div class="language-bash highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>psalm<span style="color: #bbbbbb"> </span>--taint-analysis<span style="color: #bbbbbb"> </span>--dump-taint-graph<span style="color: #666666">=</span>taints.dot
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>dot<span style="color: #bbbbbb"> </span>-Tsvg<span style="color: #bbbbbb"> </span>-o<span style="color: #bbbbbb"> </span>taints.svg<span style="color: #bbbbbb"> </span>taints.dot
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>psalm<span class="w"> </span>--taint-analysis<span class="w"> </span>--dump-taint-graph<span class="o">=</span>taints.dot
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>dot<span class="w"> </span>-Tsvg<span class="w"> </span>-o<span class="w"> </span>taints.svg<span class="w"> </span>taints.dot
+</code></pre></div>
 
 
 
@@ -1418,44 +1490,86 @@
 
 
 
+  
 
 
+
+
+<h2>ユーザーノート</h2>
+<div id="user-contribution-section">
+    <a href="#" id="toggle-contribution" class="toggle-link" aria-expanded="false" aria-controls="contribution-content">+ ユーザーノートを表示する</a>
+    <div id="contribution-content" style="display: none;">
+        <div id="giscus-container">
+            <!-- Giscus script here -->
+            <script src="https://giscus.app/client.js"
+                    data-repo="koriym/l11ja"
+                    data-repo-id="R_kgDOM2Kucw"
+                    data-category="Announcements"
+                    data-category-id="DIC_kwDOM2Kuc84Civbh"
+                    data-mapping="pathname"
+                    data-strict="0"
+                    data-reactions-enabled="0"
+                    data-emit-metadata="0"
+                    data-input-position="bottom"
+                    data-theme="light"
+                    data-lang="en"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+            <div id="terms-of-service">
+                <h4>ユーザーノートについて</h4>
+                <p>PHPマニュアルのように、マニュアルを補足する情報の共有を目的としてます。</p>
+                <ul>
+                    <li>掲示板ではありません。議論、質問、別のノートへの返信はできません。</li>
+                    <li>バグや改善要望、または翻訳の Issue は、該当する GitHub リポジトリで報告してください。</li>
+                    <li>ノートは事前の通知なく削除される場合があります。</li>
+                    <li>Giscussのコメントシステムを流用しています。そのためノートとしては最適化されてないことをご了承ください。</li>
+                    <li>保証されていません。投稿したノートが消失する事やノート機能全体が閉鎖する可能性があります。</li>
+                    <li>お願い：いいノートにはup voteを、この規約に違反しているノートを見つけた場合は、優しくdown voteしてください。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function() {
+        const toggleLink = document.getElementById('toggle-contribution');
+        const contributionContent = document.getElementById('contribution-content');
+
+        toggleLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const isHidden = contributionContent.style.display === 'none';
+            contributionContent.style.display = isHidden ? 'block' : 'none';
+            toggleLink.textContent = isHidden ? '- ノートを非表示にする' : '+ ノートを表示する';
+            toggleLink.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+        });
+    })();
+</script>
 
                 
               </article>
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
       </main>
       
-        <footer class="md-footer">
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-  
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
-    </a>
-  
-</div>
-      
-    </div>
-  </div>
-</footer>
-      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "hide_repository_button"], "search": "../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["back-to-top", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.56dfad97.min.js"></script>
