@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://koriym.github.io/psalm-ja/security_analysis/index.html">
+        <link rel="canonical" href="https://koriym.github.io/psalm-ja/contributing/philosophy.html">
       
       
-        <link rel="prev" href="../manipulating_code/refactoring.html">
-      
-      
-        <link rel="next" href="custom_taint_sources.html">
       
       
       <link rel="icon" href="../assets/images/favicon_io/favicon.ico">
@@ -22,7 +18,7 @@
     
     
       
-        <title>はじめに - Psalm Docs JA</title>
+        <title>哲学 - Psalm Docs JA</title>
       
     
     
@@ -65,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#psalm" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +117,7 @@
           <span class="md-ellipsis">
             <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
             
-              はじめに
+              哲学
             
             </span>
           </span>
@@ -950,19 +946,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -976,7 +970,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             セキュリティ分析
@@ -987,30 +981,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    はじめに
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../security_analysis/index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1019,122 +993,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染タイプ
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染源
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染シンク
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      偽陽性を避ける
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      制限事項
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染分析でベースラインを使用する
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      ユーザーインターフェースで結果を表示する
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ユーザーインターフェースで結果を表示する">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#github-code-scanning" class="md-nav__link">
-    <span class="md-ellipsis">
-      GitHub Code Scanning
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sarif" class="md-nav__link">
-    <span class="md-ellipsis">
-      その他のSARIF互換ソフトウェア
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染グラフのデバッグ
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1147,7 +1005,7 @@
   
   
     <li class="md-nav__item">
-      <a href="custom_taint_sources.html" class="md-nav__link">
+      <a href="../security_analysis/custom_taint_sources.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1168,7 +1026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="custom_taint_sinks.html" class="md-nav__link">
+      <a href="../security_analysis/custom_taint_sinks.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1189,7 +1047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="avoiding_false_positives.html" class="md-nav__link">
+      <a href="../security_analysis/avoiding_false_positives.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1217,7 +1075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../contributing/index.html" class="md-nav__link">
+      <a href="index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1277,82 +1135,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#psalmphpphp" class="md-nav__link">
     <span class="md-ellipsis">
-      汚染タイプ
+      PsalmはPHPで書かれたPHPのためのツールです。
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染源
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染シンク
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      偽陽性を避ける
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      制限事項
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染分析でベースラインを使用する
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      ユーザーインターフェースで結果を表示する
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ユーザーインターフェースで結果を表示する">
+    <nav class="md-nav" aria-label="PsalmはPHPで書かれたPHPのためのツールです。">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#github-code-scanning" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      GitHub Code Scanning
+      利点
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#sarif" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      その他のSARIF互換ソフトウェア
+      欠点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      他の言語やツールとの比較
     </span>
   </a>
   
@@ -1364,9 +1177,45 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#psalm" class="md-nav__link">
     <span class="md-ellipsis">
-      汚染グラフのデバッグ
+      Psalmの主な目的はバグを見つけることである。
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      構文的に正しいコードで実行されるように設計されている
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docblock" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docblockアノテーションは型提供プラグインよりも優れている
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docblock_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      検証可能なDocblockアノテーションは、検証不可能なアノテーションよりも優れています。
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docblockphp-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      状況によっては、docblockアノテーションはPHP 8の属性よりも優れています。
     </span>
   </a>
   
@@ -1387,7 +1236,7 @@
                   
 
   
-    <a href="https://github.com/koriym/psalm-ja/edit/5.x-ja/docs-ja/security_analysis/index.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/koriym/psalm-ja/edit/5.x-ja/docs-ja/contributing/philosophy.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1395,82 +1244,43 @@
   
 
 
-<h1 id="psalm">Psalmにおけるセキュリティ分析<a class="headerlink" href="#psalm" title="Permanent link">&para;</a></h1>
-<p>Psalmは、ユーザーが制御できる入力（<code>$_GET['name']</code>など）と、エスケープされていないユーザー制御の入力が終わってほしくない場所（<code>echo "&lt;h1&gt;$name&lt;/h1&gt;"</code>など）との間のつながりを、アプリケーションを通じてデータがどのように流れるか（代入、関数/メソッド呼び出し、配列/プロパティアクセスを介して）を見ることで見つけようとします。</p>
-<p>このモードは<code>--taint-analysis</code>コマンドラインフラグで有効にできます。汚染分析が有効になると、他の分析は実行されません。<a href="https://github.com/vimeo/psalm/issues/6156">包括的な結果を確保するために</a>、汚染分析の前に通常通りPsalmを実行し、エラーを修正する必要があります。</p>
-<p>汚染された入力とは、アプリケーションのユーザーが全体的または部分的に制御できるものすべてです。汚染分析では、汚染された入力を_汚染源_と呼びます。</p>
-<p>例えば以下のようなものが汚染源です：
-- <code>$_GET['id']</code>
-- <code>$_POST['email']</code>
-- <code>$_COOKIE['token']</code></p>
-<p>汚染分析は、データが汚染源から_汚染シンク_にどのように流れるかを追跡します。汚染シンクは、信頼できないデータが決して到達してほしくない場所です。</p>
-<p>例えば以下のようなものが汚染シンクです：
-- <code>&lt;div id="section_&lt;?= $id ?&gt;"&gt;</code>
-- <code>$pdo-&gt;exec("select * from users where name='" . $name . "'")</code></p>
-<h2 id="_1">汚染タイプ<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Psalmはデフォルトで、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Type/TaintKind.php">Psalm\Type\TaintKind</a>クラスで定義されている多くの汚染タイプを認識します：</p>
+<h1 id="_1">哲学<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>なぜpsalmはこうなのか？これは生きたドキュメントである！</p>
+<h2 id="psalmphpphp">PsalmはPHPで書かれたPHPのためのツールです。<a class="headerlink" href="#psalmphpphp" title="Permanent link">&para;</a></h2>
+<h3 id="_2">利点<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>sql</code> - SQLを含む可能性のある文字列に使用</li>
-<li><code>ldap</code> - LDAPのDNまたはフィルタを含む可能性のある文字列に使用</li>
-<li><code>html</code> - 山括弧または引用符なしの文字列を含む可能性のある文字列に使用</li>
-<li><code>has_quotes</code> - 引用符なしの文字列を含む可能性のある文字列に使用</li>
-<li><code>shell</code> - シェルコマンドを含む可能性のある文字列に使用</li>
-<li><code>callable</code> - ユーザーが制御可能な呼び出し可能な文字列に使用</li>
-<li><code>unserialize</code> - シリアル化された文字列を含む可能性のある文字列に使用</li>
-<li><code>include</code> - インクルードされるパスを含む可能性のある文字列に使用</li>
-<li><code>eval</code> - コードを含む可能性のある文字列に使用</li>
-<li><code>ssrf</code> - Curlまたはそれらきのテキストを渡す可能性のある文字列に使用</li>
-<li><code>file</code> - パスを含む可能性のある文字列に使用</li>
-<li><code>cookie</code> - HTTPクッキーを含む可能性のある文字列に使用</li>
-<li><code>header</code> - HTTPヘッダーを含む可能性のある文字列に使用</li>
-<li><code>user_secret</code> - ユーザーが提供した秘密を含む可能性のある文字列に使用</li>
-<li><code>system_secret</code> - システムの秘密を含む可能性のある文字列に使用</li>
+<li>PHPはほとんどのユースケースで十分に高速である - PHPで書かれたツールは、PHPコミュニティのメンバーがそれほど苦労せずに貢献できることを保証する。</li>
 </ul>
-<p>カスタム汚染源を定義する際に、独自の汚染タイプを自由に定義することもできます - これらは単なる文字列です。</p>
-<h2 id="_2">汚染源<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>Psalmは現在、デフォルトで3つの汚染源を定義しています：<code>$_GET</code>、<code>$_POST</code>、<code>$_COOKIE</code>サーバー変数です。</p>
-<p><a href="custom_taint_sources.html">独自の汚染源を定義する</a>こともできます。</p>
-<h2 id="_3">汚染シンク<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>Psalmは現在、<code>echo</code>、<code>include</code>、<code>header</code>を含む組み込み関数やメソッドに対して、多くの異なるシンクを定義しています。</p>
-<p><a href="custom_taint_sinks.html">独自の汚染シンクを定義する</a>こともできます。</p>
-<h2 id="_4">偽陽性を避ける<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>誰も大量の偽陽性をかき分けたくはありません - <a href="avoiding_false_positives.html">ここに偽陽性を避けるためのガイドがあります</a>。</p>
-<h2 id="_5">制限事項<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>汚染分析は、値のエスケープ時にミスを犯さないことに依存しています。例えば：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;SELECT * FROM users WHERE id = &#39;</span> <span class="o">.</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">real_escape_string</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]);</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">$html</span> <span class="o">=</span> <span class="s2">&quot;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="s2">  &lt;img src=&quot;</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot; alt=&#39;&#39; /&gt;</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="s2">  &lt;a href=&#39;&quot;</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&#39;&gt;Link 1&lt;/a&gt;</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="s2">  &lt;a href=&#39;&quot;</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&#39;&gt;Line 2&lt;/a&gt;&quot;</span><span class="p">;</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1">// 詳細：</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1">//    $id  = &#39;id&#39;                   - 引用符が不足</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1">//    $img = &#39;/ onerror=alert(1)&#39;   - 引用符が不足</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1">//    $a1  = &#39;javascript:alert(1)&#39;  - 通常のインラインJavaScript</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1">//    $a2  = &#39;/&#39; onerror=&#39;alert(1)&#39; - PHP 8.1以前では、シングルクォートはデフォルトでエスケープされない</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1">// テスト：</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1">//    /?id=id&amp;img=%2F+onerror%3Dalert%281%29&amp;a1=javascript%3Aalert%281%29&amp;a2=%2F%27+onerror%3D%27alert%281%29</span>
-</code></pre></div>
-<p>これらの問題を避けるには、SQLとコマンド（例：<code>exec</code>）にはパラメータ化クエリを使用し、HTMLにはコンテキストを考慮したテンプレートエンジンを使用してください。そして、<a href="https://psalm.dev/docs/annotating_code/type_syntax/scalar_types/#literal-string">literal-string</a>型を使用して、機密な文字列がアプリケーションで定義されている（つまり、開発者によって書かれた）ことを確認してください。</p>
-<h2 id="_6">汚染分析でベースラインを使用する<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>汚染分析は他の静的コード分析とは別に実行されるため、別のベースラインを使用することが理にかなっています。</p>
-<p><code>--use-baseline=PATH</code>オプションを使用して、汚染分析に異なるベースラインを設定できます。</p>
-<h2 id="_7">ユーザーインターフェースで結果を表示する<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p>Psalmは、静的分析結果を交換するための<a href="http://docs.oasis-open.org/sarif/sarif/v2.0/csprd01/sarif-v2.0-csprd01.html">SARIF</a>標準をサポートしています。これにより、汚染フローを含む結果を任意のSARIF互換ソフトウェアで表示できます。</p>
-<h3 id="github-code-scanning">GitHub Code Scanning<a class="headerlink" href="#github-code-scanning" title="Permanent link">&para;</a></h3>
-<p><a href="https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning">GitHub code scanning</a>は、<a href="https://github.com/marketplace/actions/psalm-static-analysis-for-php">Psalm GitHub Action</a>を使用してセットアップできます。</p>
-<p>または、<a href="https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/uploading-a-sarif-file-to-github">GitHubのドキュメント</a>に記載されているように、生成されたSARIFファイルを手動でアップロードすることもできます。</p>
-<p>結果は、リポジトリの「Security」タブで利用可能になります。</p>
-<h3 id="sarif">その他のSARIF互換ソフトウェア<a class="headerlink" href="#sarif" title="Permanent link">&para;</a></h3>
-<p>SARIFレポートを生成するには、<code>--report</code>フラグと<code>.sarif</code>拡張子を付けてPsalmを実行します。例：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>psalm<span class="w"> </span>--report<span class="o">=</span>results.sarif
-</code></pre></div>
-<h2 id="_8">汚染グラフのデバッグ<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<p>Psalmは、DOT言語を使用して汚染グラフを出力できます。これは、期待される汚染が検出されない場合に役立ちます。DOTグラフを生成するには、<code>--dump-taint-graph</code>フラグを付けてPsalmを実行します。例：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>psalm<span class="w"> </span>--taint-analysis<span class="w"> </span>--dump-taint-graph<span class="o">=</span>taints.dot
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>dot<span class="w"> </span>-Tsvg<span class="w"> </span>-o<span class="w"> </span>taints.svg<span class="w"> </span>taints.dot
-</code></pre></div>
+<h3 id="_3">欠点<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Psalmは非常に大きなモノレポ（チェックインされたコードが500万行以上）では遅い。- Psalmの言語サーバーは、同等のコンパイル言語ツールよりも提供できるものが限られている。例えば、あるシンボルを使用しているすべてのファイルにおいて、そのシンボルを入力するたびに、そのシンボルのすべての出現箇所を検索・変更することは不可能です。</li>
+</ul>
+<h3 id="_4">他の言語やツールとの比較<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>多くの言語には、同じ言語で書かれたタイプチェッカ/コンパイラがあります。人気のある例としては、Go、Rust、TypeScriptなどがある。Pythonは特別なケースで、半公式のタイプチェッカー<a href="https://github.com/python/mypy">MyPy</a> （Pythonで書かれている）も<a href="https://github.com/python/mypy/blame/master/mypyc/README.md#L6-L10">compile to a C Python extension</a> 、インタプリタ型の同等品より4倍速く実行できる。</p>
+<p>インタプリタ型言語の中には、より高速なコンパイル言語で書かれた非公式なオープンソースのタイプチェッカーがあるものもある。どのような場合にも、一つの中規模から大規模の企業がそれぞれの取り組みの背後にあり、その企業に雇用されていない少数の貢献者がいる：</p>
+<ul>
+<li>PHP -<a href="https://github.com/VKCOM/noverify">NoVerify</a> - Goで書かれている。Psalmよりはるかに高速に動作する（ただし、最新のPHPの機能の多くはサポートされていない） - Ruby -<a href="https://sorbet.org/">Sorbet</a> - Cで書かれている - Python -<a href="https://github.com/facebook/pyre-check">Pyre</a> - OCamlで書かれている -<a href="https://github.com/facebook/hhvm">Hack</a> - タイプチェッカーはOCamlとRustで書かれている。</li>
+</ul>
+<h2 id="psalm">Psalmの主な目的はバグを見つけることである。<a class="headerlink" href="#psalm" title="Permanent link">&para;</a></h2>
+<p>Psalmは多くの機能を持っているが、主にコードの潜在的なバグを見つけるために使われている。</p>
+<p>その他の機能-言語サーバー、セキュリティ分析、コードの操作/修正-はすべて二次的な関心事です。</p>
+<h2 id="_5">構文的に正しいコードで実行されるように設計されている<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>Psalmは、ほとんどの場合、リントチェック(<code>php -l &lt;filename&gt;</code>) を解析する PHP コード、つまり構文的に正しいコードで実行されます。Psalm は構文チェックの代わりではありません。</p>
+<p><code>nikic/php-parser</code> Psalm はほとんどの場合、構文的に正しいコードで使用されるため、 その目的のために構築されたパーサを使用する必要があります。</p>
+<p>Psalmが構文的に正しくないコードで動作する必要がある場合（言語サーバーモードなど）、Psalmは同じパーサーを使用する必要があります（そして、そのパーサーが生成する問題を回避する必要があります）。</p>
+<h2 id="docblock">Docblockアノテーションは型提供プラグインよりも優れている<a class="headerlink" href="#docblock" title="Permanent link">&para;</a></h2>
+<p>PsalmはプラグインAPIを提供しており、あなたのプログラムのプロパティ型、戻り値型、パラメータ型を指定することができます。</p>
+<p>Psalmは、他の静的解析ツールとの共存を目指している。ユーザーがプラグインに頼れば頼るほど、他のツールがユーザーの意図を理解する機会は減っていく。</p>
+<p>Psalmは、開発者が型を提供するプラグインではなく、docblockアノテーションを使用することを奨励すべきです。これは<a href="../annotating_code/type_syntax/conditional_types.html">Conditional Types</a> 、Psalmが内部の型提供プラグインの一部を置き換えることを可能にする原動力となった。</p>
+<p>ほとんどの場合、Psalmはdocblockアノテーションが正しいかどうかを検証することができますが、プラグインが使われている場合には多くの保証を提供することはできません。</p>
+<p>これはプラグイン全体が悪いとか、プラグインが有用な型を提供できないという意味ではありません。プラグインを使用することで、Psalm型アノテーションを持たないライブラリのために Psalm型アノテーションを持つスタブを提供することができます。これはPHPのエコシステムを助けることになります。 なぜなら、それらのスタブが最終的には現在スタブになっているプロジェクトに入るかもしれないからです。</p>
+<h2 id="docblock_1">検証可能なDocblockアノテーションは、検証不可能なアノテーションよりも優れています。<a class="headerlink" href="#docblock_1" title="Permanent link">&para;</a></h2>
+<p>Psalmは現在、検証できない多くの関数/クラスのdocblockアノテーションをサポートしています：</p>
+<p>-<code>@psalm-assert</code>,<code>@psalm-assert-if-true</code>,<code>@psalm-assert-if-false</code> -<code>@property</code>,<code>@method</code> 、<code>@mixin</code></p>
+<p>新しいdocblockアノテーションが追加されるたびに、Psalmがその正しさを検証できるように努力する必要があります。</p>
+<h2 id="docblockphp-8">状況によっては、docblockアノテーションはPHP 8の属性よりも優れています。<a class="headerlink" href="#docblockphp-8" title="Permanent link">&para;</a></h2>
+<p>静的解析ツールで利用することを目的とした情報については、 PHP 8 の属性よりも docblock の方が適しています。</p>
+<p>その根拠は<a href="https://psalm.dev/articles/php-8-attributes">this article</a> にあります。</p>
 
 
 

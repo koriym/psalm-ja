@@ -8,25 +8,21 @@
       
       
       
-        <link rel="canonical" href="https://koriym.github.io/psalm-ja/security_analysis/index.html">
+        <link rel="canonical" href="https://koriym.github.io/psalm-ja/running_psalm/issues/PossiblyInvalidPropertyAssignmentValue.html">
       
       
-        <link rel="prev" href="../manipulating_code/refactoring.html">
       
       
-        <link rel="next" href="custom_taint_sources.html">
-      
-      
-      <link rel="icon" href="../assets/images/favicon_io/favicon.ico">
+      <link rel="icon" href="../../assets/images/favicon_io/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
     
     
       
-        <title>はじめに - Psalm Docs JA</title>
+        <title>PossiblyInvalidPropertyAssignmentValue - Psalm Docs JA</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.35f28582.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
       
       
 
@@ -37,15 +33,15 @@
     
 
     
-      <link rel="stylesheet" href="../assets/css/php.css">
+      <link rel="stylesheet" href="../../assets/css/php.css">
     
-      <link rel="stylesheet" href="../assets/css/mkdocs_material_extra.css">
+      <link rel="stylesheet" href="../../assets/css/mkdocs_material_extra.css">
     
-      <link rel="stylesheet" href="../assets/css/extra.css">
+      <link rel="stylesheet" href="../../assets/css/extra.css">
     
-      <link rel="stylesheet" href="../assets/css/giscuss.css">
+      <link rel="stylesheet" href="../../assets/css/giscuss.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -65,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#psalm" class="md-skip">
+        <a href="#possiblyinvalidpropertyassignmentvalue" class="md-skip">
           Skip to content
         </a>
       
@@ -90,14 +86,14 @@
 
     <!-- Link to home -->
     <a
-            href="../index.html"
+            href="../../index.html"
             title="Psalm Docs JA"
             class="md-header__button md-logo"
             aria-label="Psalm Docs JA"
             data-md-component="logo"
     >
       
-  <img src="../assets/images/logo.png" alt="logo">
+  <img src="../../assets/images/logo.png" alt="logo">
 
     </a>
 
@@ -121,7 +117,7 @@
           <span class="md-ellipsis">
             <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
             
-              はじめに
+              PossiblyInvalidPropertyAssignmentValue
             
             </span>
           </span>
@@ -237,9 +233,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="Psalm Docs JA" class="md-nav__button md-logo" aria-label="Psalm Docs JA" data-md-component="logo">
+    <a href="../../index.html" title="Psalm Docs JA" class="md-nav__button md-logo" aria-label="Psalm Docs JA" data-md-component="logo">
       
-  <img src="../assets/images/logo.png" alt="logo">
+  <img src="../../assets/images/logo.png" alt="logo">
 
     </a>
     Psalm Docs JA
@@ -280,7 +276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../index.html" class="md-nav__link">
+      <a href="../../index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -335,7 +331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/installation.html" class="md-nav__link">
+      <a href="../installation.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -356,7 +352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/configuration.html" class="md-nav__link">
+      <a href="../configuration.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -412,7 +408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/plugins/using_plugins.html" class="md-nav__link">
+      <a href="../plugins/using_plugins.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -433,7 +429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/plugins/authoring_plugins.html" class="md-nav__link">
+      <a href="../plugins/authoring_plugins.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -454,7 +450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/plugins/plugins_type_system.html" class="md-nav__link">
+      <a href="../plugins/plugins_type_system.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -483,7 +479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/command_line_usage.html" class="md-nav__link">
+      <a href="../command_line_usage.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -504,7 +500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/language_server.html" class="md-nav__link">
+      <a href="../language_server.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -560,7 +556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/dealing_with_code_issues.html" class="md-nav__link">
+      <a href="../dealing_with_code_issues.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -581,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/issues.html" class="md-nav__link">
+      <a href="../issues.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -610,7 +606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/checking_non_php_files.html" class="md-nav__link">
+      <a href="../checking_non_php_files.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -673,7 +669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotating_code/typing_in_psalm.html" class="md-nav__link">
+      <a href="../../annotating_code/typing_in_psalm.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -694,7 +690,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotating_code/type_syntax/union_types.html" class="md-nav__link">
+      <a href="../../annotating_code/type_syntax/union_types.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -715,7 +711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotating_code/type_syntax/atomic_types.html" class="md-nav__link">
+      <a href="../../annotating_code/type_syntax/atomic_types.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -736,7 +732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotating_code/type_syntax/intersection_types.html" class="md-nav__link">
+      <a href="../../annotating_code/type_syntax/intersection_types.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -799,7 +795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotating_code/supported_annotations.html" class="md-nav__link">
+      <a href="../../annotating_code/supported_annotations.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -820,7 +816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotating_code/templated_annotations.html" class="md-nav__link">
+      <a href="../../annotating_code/templated_annotations.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -841,7 +837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annotating_code/adding_assertions.html" class="md-nav__link">
+      <a href="../../annotating_code/adding_assertions.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -904,7 +900,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../manipulating_code/fixing.html" class="md-nav__link">
+      <a href="../../manipulating_code/fixing.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -925,7 +921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../manipulating_code/refactoring.html" class="md-nav__link">
+      <a href="../../manipulating_code/refactoring.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -950,19 +946,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -976,7 +970,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             セキュリティ分析
@@ -987,30 +981,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    はじめに
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../security_analysis/index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1019,122 +993,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染タイプ
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染源
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染シンク
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      偽陽性を避ける
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      制限事項
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染分析でベースラインを使用する
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      ユーザーインターフェースで結果を表示する
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ユーザーインターフェースで結果を表示する">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#github-code-scanning" class="md-nav__link">
-    <span class="md-ellipsis">
-      GitHub Code Scanning
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sarif" class="md-nav__link">
-    <span class="md-ellipsis">
-      その他のSARIF互換ソフトウェア
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染グラフのデバッグ
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1147,7 +1005,7 @@
   
   
     <li class="md-nav__item">
-      <a href="custom_taint_sources.html" class="md-nav__link">
+      <a href="../../security_analysis/custom_taint_sources.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1168,7 +1026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="custom_taint_sinks.html" class="md-nav__link">
+      <a href="../../security_analysis/custom_taint_sinks.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1189,7 +1047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="avoiding_false_positives.html" class="md-nav__link">
+      <a href="../../security_analysis/avoiding_false_positives.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1217,7 +1075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../contributing/index.html" class="md-nav__link">
+      <a href="../../contributing/index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1237,7 +1095,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../LICENSE.md" class="md-nav__link">
+      <a href="../../LICENSE.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1270,110 +1128,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染タイプ
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染源
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染シンク
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      偽陽性を避ける
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      制限事項
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染分析でベースラインを使用する
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      ユーザーインターフェースで結果を表示する
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ユーザーインターフェースで結果を表示する">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#github-code-scanning" class="md-nav__link">
-    <span class="md-ellipsis">
-      GitHub Code Scanning
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sarif" class="md-nav__link">
-    <span class="md-ellipsis">
-      その他のSARIF互換ソフトウェア
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染グラフのデバッグ
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1387,7 +1141,7 @@
                   
 
   
-    <a href="https://github.com/koriym/psalm-ja/edit/5.x-ja/docs-ja/security_analysis/index.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/koriym/psalm-ja/edit/5.x-ja/docs-ja/running_psalm/issues/PossiblyInvalidPropertyAssignmentValue.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1395,81 +1149,21 @@
   
 
 
-<h1 id="psalm">Psalmにおけるセキュリティ分析<a class="headerlink" href="#psalm" title="Permanent link">&para;</a></h1>
-<p>Psalmは、ユーザーが制御できる入力（<code>$_GET['name']</code>など）と、エスケープされていないユーザー制御の入力が終わってほしくない場所（<code>echo "&lt;h1&gt;$name&lt;/h1&gt;"</code>など）との間のつながりを、アプリケーションを通じてデータがどのように流れるか（代入、関数/メソッド呼び出し、配列/プロパティアクセスを介して）を見ることで見つけようとします。</p>
-<p>このモードは<code>--taint-analysis</code>コマンドラインフラグで有効にできます。汚染分析が有効になると、他の分析は実行されません。<a href="https://github.com/vimeo/psalm/issues/6156">包括的な結果を確保するために</a>、汚染分析の前に通常通りPsalmを実行し、エラーを修正する必要があります。</p>
-<p>汚染された入力とは、アプリケーションのユーザーが全体的または部分的に制御できるものすべてです。汚染分析では、汚染された入力を_汚染源_と呼びます。</p>
-<p>例えば以下のようなものが汚染源です：
-- <code>$_GET['id']</code>
-- <code>$_POST['email']</code>
-- <code>$_COOKIE['token']</code></p>
-<p>汚染分析は、データが汚染源から_汚染シンク_にどのように流れるかを追跡します。汚染シンクは、信頼できないデータが決して到達してほしくない場所です。</p>
-<p>例えば以下のようなものが汚染シンクです：
-- <code>&lt;div id="section_&lt;?= $id ?&gt;"&gt;</code>
-- <code>$pdo-&gt;exec("select * from users where name='" . $name . "'")</code></p>
-<h2 id="_1">汚染タイプ<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Psalmはデフォルトで、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Type/TaintKind.php">Psalm\Type\TaintKind</a>クラスで定義されている多くの汚染タイプを認識します：</p>
-<ul>
-<li><code>sql</code> - SQLを含む可能性のある文字列に使用</li>
-<li><code>ldap</code> - LDAPのDNまたはフィルタを含む可能性のある文字列に使用</li>
-<li><code>html</code> - 山括弧または引用符なしの文字列を含む可能性のある文字列に使用</li>
-<li><code>has_quotes</code> - 引用符なしの文字列を含む可能性のある文字列に使用</li>
-<li><code>shell</code> - シェルコマンドを含む可能性のある文字列に使用</li>
-<li><code>callable</code> - ユーザーが制御可能な呼び出し可能な文字列に使用</li>
-<li><code>unserialize</code> - シリアル化された文字列を含む可能性のある文字列に使用</li>
-<li><code>include</code> - インクルードされるパスを含む可能性のある文字列に使用</li>
-<li><code>eval</code> - コードを含む可能性のある文字列に使用</li>
-<li><code>ssrf</code> - Curlまたはそれらきのテキストを渡す可能性のある文字列に使用</li>
-<li><code>file</code> - パスを含む可能性のある文字列に使用</li>
-<li><code>cookie</code> - HTTPクッキーを含む可能性のある文字列に使用</li>
-<li><code>header</code> - HTTPヘッダーを含む可能性のある文字列に使用</li>
-<li><code>user_secret</code> - ユーザーが提供した秘密を含む可能性のある文字列に使用</li>
-<li><code>system_secret</code> - システムの秘密を含む可能性のある文字列に使用</li>
-</ul>
-<p>カスタム汚染源を定義する際に、独自の汚染タイプを自由に定義することもできます - これらは単なる文字列です。</p>
-<h2 id="_2">汚染源<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>Psalmは現在、デフォルトで3つの汚染源を定義しています：<code>$_GET</code>、<code>$_POST</code>、<code>$_COOKIE</code>サーバー変数です。</p>
-<p><a href="custom_taint_sources.html">独自の汚染源を定義する</a>こともできます。</p>
-<h2 id="_3">汚染シンク<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>Psalmは現在、<code>echo</code>、<code>include</code>、<code>header</code>を含む組み込み関数やメソッドに対して、多くの異なるシンクを定義しています。</p>
-<p><a href="custom_taint_sinks.html">独自の汚染シンクを定義する</a>こともできます。</p>
-<h2 id="_4">偽陽性を避ける<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>誰も大量の偽陽性をかき分けたくはありません - <a href="avoiding_false_positives.html">ここに偽陽性を避けるためのガイドがあります</a>。</p>
-<h2 id="_5">制限事項<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>汚染分析は、値のエスケープ時にミスを犯さないことに依存しています。例えば：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;SELECT * FROM users WHERE id = &#39;</span> <span class="o">.</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">real_escape_string</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]);</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">$html</span> <span class="o">=</span> <span class="s2">&quot;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="s2">  &lt;img src=&quot;</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot; alt=&#39;&#39; /&gt;</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="s2">  &lt;a href=&#39;&quot;</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&#39;&gt;Link 1&lt;/a&gt;</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="s2">  &lt;a href=&#39;&quot;</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&#39;&gt;Line 2&lt;/a&gt;&quot;</span><span class="p">;</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1">// 詳細：</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1">//    $id  = &#39;id&#39;                   - 引用符が不足</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1">//    $img = &#39;/ onerror=alert(1)&#39;   - 引用符が不足</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1">//    $a1  = &#39;javascript:alert(1)&#39;  - 通常のインラインJavaScript</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1">//    $a2  = &#39;/&#39; onerror=&#39;alert(1)&#39; - PHP 8.1以前では、シングルクォートはデフォルトでエスケープされない</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1">// テスト：</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1">//    /?id=id&amp;img=%2F+onerror%3Dalert%281%29&amp;a1=javascript%3Aalert%281%29&amp;a2=%2F%27+onerror%3D%27alert%281%29</span>
-</code></pre></div>
-<p>これらの問題を避けるには、SQLとコマンド（例：<code>exec</code>）にはパラメータ化クエリを使用し、HTMLにはコンテキストを考慮したテンプレートエンジンを使用してください。そして、<a href="https://psalm.dev/docs/annotating_code/type_syntax/scalar_types/#literal-string">literal-string</a>型を使用して、機密な文字列がアプリケーションで定義されている（つまり、開発者によって書かれた）ことを確認してください。</p>
-<h2 id="_6">汚染分析でベースラインを使用する<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>汚染分析は他の静的コード分析とは別に実行されるため、別のベースラインを使用することが理にかなっています。</p>
-<p><code>--use-baseline=PATH</code>オプションを使用して、汚染分析に異なるベースラインを設定できます。</p>
-<h2 id="_7">ユーザーインターフェースで結果を表示する<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p>Psalmは、静的分析結果を交換するための<a href="http://docs.oasis-open.org/sarif/sarif/v2.0/csprd01/sarif-v2.0-csprd01.html">SARIF</a>標準をサポートしています。これにより、汚染フローを含む結果を任意のSARIF互換ソフトウェアで表示できます。</p>
-<h3 id="github-code-scanning">GitHub Code Scanning<a class="headerlink" href="#github-code-scanning" title="Permanent link">&para;</a></h3>
-<p><a href="https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning">GitHub code scanning</a>は、<a href="https://github.com/marketplace/actions/psalm-static-analysis-for-php">Psalm GitHub Action</a>を使用してセットアップできます。</p>
-<p>または、<a href="https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/uploading-a-sarif-file-to-github">GitHubのドキュメント</a>に記載されているように、生成されたSARIFファイルを手動でアップロードすることもできます。</p>
-<p>結果は、リポジトリの「Security」タブで利用可能になります。</p>
-<h3 id="sarif">その他のSARIF互換ソフトウェア<a class="headerlink" href="#sarif" title="Permanent link">&para;</a></h3>
-<p>SARIFレポートを生成するには、<code>--report</code>フラグと<code>.sarif</code>拡張子を付けてPsalmを実行します。例：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>psalm<span class="w"> </span>--report<span class="o">=</span>results.sarif
-</code></pre></div>
-<h2 id="_8">汚染グラフのデバッグ<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<p>Psalmは、DOT言語を使用して汚染グラフを出力できます。これは、期待される汚染が検出されない場合に役立ちます。DOTグラフを生成するには、<code>--dump-taint-graph</code>フラグを付けてPsalmを実行します。例：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>psalm<span class="w"> </span>--taint-analysis<span class="w"> </span>--dump-taint-graph<span class="o">=</span>taints.dot
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>dot<span class="w"> </span>-Tsvg<span class="w"> </span>-o<span class="w"> </span>taints.svg<span class="w"> </span>taints.dot
+<h1 id="possiblyinvalidpropertyassignmentvalue">PossiblyInvalidPropertyAssignmentValue<a class="headerlink" href="#possiblyinvalidpropertyassignmentvalue" title="Permanent link">&para;</a></h1>
+<p>可能性のある無効な値を型付きプロパティに割り当てようとした場合に発生します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="sd">/** @var int[] */</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">public</span> <span class="nv">$bb</span> <span class="o">=</span> <span class="p">[];</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">class</span> <span class="nc">B</span> <span class="p">{</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="sd">/** @var string[] */</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="k">public</span> <span class="nv">$bb</span><span class="p">;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">}</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="nv">$c</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">?</span> <span class="k">new</span> <span class="nx">A</span> <span class="o">:</span> <span class="k">new</span> <span class="nx">B</span><span class="p">;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nv">$c</span><span class="o">-&gt;</span><span class="na">bb</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span><span class="p">];</span>
 </code></pre></div>
 
 
@@ -1557,10 +1251,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["back-to-top", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["back-to-top", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.56dfad97.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
       
     
   </body>

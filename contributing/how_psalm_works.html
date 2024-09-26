@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://koriym.github.io/psalm-ja/security_analysis/index.html">
+        <link rel="canonical" href="https://koriym.github.io/psalm-ja/contributing/how_psalm_works.html">
       
       
-        <link rel="prev" href="../manipulating_code/refactoring.html">
-      
-      
-        <link rel="next" href="custom_taint_sources.html">
       
       
       <link rel="icon" href="../assets/images/favicon_io/favicon.ico">
@@ -22,7 +18,7 @@
     
     
       
-        <title>はじめに - Psalm Docs JA</title>
+        <title>psalmの働き - Psalm Docs JA</title>
       
     
     
@@ -121,7 +117,7 @@
           <span class="md-ellipsis">
             <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
             
-              はじめに
+              psalmの働き
             
             </span>
           </span>
@@ -950,19 +946,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -976,7 +970,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             セキュリティ分析
@@ -987,30 +981,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    はじめに
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../security_analysis/index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1019,122 +993,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染タイプ
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染源
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染シンク
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      偽陽性を避ける
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      制限事項
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染分析でベースラインを使用する
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      ユーザーインターフェースで結果を表示する
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ユーザーインターフェースで結果を表示する">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#github-code-scanning" class="md-nav__link">
-    <span class="md-ellipsis">
-      GitHub Code Scanning
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sarif" class="md-nav__link">
-    <span class="md-ellipsis">
-      その他のSARIF互換ソフトウェア
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染グラフのデバッグ
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1147,7 +1005,7 @@
   
   
     <li class="md-nav__item">
-      <a href="custom_taint_sources.html" class="md-nav__link">
+      <a href="../security_analysis/custom_taint_sources.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1168,7 +1026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="custom_taint_sinks.html" class="md-nav__link">
+      <a href="../security_analysis/custom_taint_sinks.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1189,7 +1047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="avoiding_false_positives.html" class="md-nav__link">
+      <a href="../security_analysis/avoiding_false_positives.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1217,7 +1075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../contributing/index.html" class="md-nav__link">
+      <a href="index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1279,80 +1137,35 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      汚染タイプ
+      スキャン
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染源
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染シンク
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      偽陽性を避ける
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      制限事項
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染分析でベースラインを使用する
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      ユーザーインターフェースで結果を表示する
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ユーザーインターフェースで結果を表示する">
+    <nav class="md-nav" aria-label="スキャン">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#github-code-scanning" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      GitHub Code Scanning
+      ディープスキャンとシャロースキャンの比較
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#sarif" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      その他のSARIF互換ソフトウェア
+      クラス名からファイルを見つける
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      スキャンからデータを保存する
     </span>
   </a>
   
@@ -1364,11 +1177,35 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      汚染グラフのデバッグ
+      分析
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      関数解析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      型の照合
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1387,7 +1224,7 @@
                   
 
   
-    <a href="https://github.com/koriym/psalm-ja/edit/5.x-ja/docs-ja/security_analysis/index.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/koriym/psalm-ja/edit/5.x-ja/docs-ja/contributing/how_psalm_works.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1395,82 +1232,42 @@
   
 
 
-<h1 id="psalm">Psalmにおけるセキュリティ分析<a class="headerlink" href="#psalm" title="Permanent link">&para;</a></h1>
-<p>Psalmは、ユーザーが制御できる入力（<code>$_GET['name']</code>など）と、エスケープされていないユーザー制御の入力が終わってほしくない場所（<code>echo "&lt;h1&gt;$name&lt;/h1&gt;"</code>など）との間のつながりを、アプリケーションを通じてデータがどのように流れるか（代入、関数/メソッド呼び出し、配列/プロパティアクセスを介して）を見ることで見つけようとします。</p>
-<p>このモードは<code>--taint-analysis</code>コマンドラインフラグで有効にできます。汚染分析が有効になると、他の分析は実行されません。<a href="https://github.com/vimeo/psalm/issues/6156">包括的な結果を確保するために</a>、汚染分析の前に通常通りPsalmを実行し、エラーを修正する必要があります。</p>
-<p>汚染された入力とは、アプリケーションのユーザーが全体的または部分的に制御できるものすべてです。汚染分析では、汚染された入力を_汚染源_と呼びます。</p>
-<p>例えば以下のようなものが汚染源です：
-- <code>$_GET['id']</code>
-- <code>$_POST['email']</code>
-- <code>$_COOKIE['token']</code></p>
-<p>汚染分析は、データが汚染源から_汚染シンク_にどのように流れるかを追跡します。汚染シンクは、信頼できないデータが決して到達してほしくない場所です。</p>
-<p>例えば以下のようなものが汚染シンクです：
-- <code>&lt;div id="section_&lt;?= $id ?&gt;"&gt;</code>
-- <code>$pdo-&gt;exec("select * from users where name='" . $name . "'")</code></p>
-<h2 id="_1">汚染タイプ<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Psalmはデフォルトで、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Type/TaintKind.php">Psalm\Type\TaintKind</a>クラスで定義されている多くの汚染タイプを認識します：</p>
-<ul>
-<li><code>sql</code> - SQLを含む可能性のある文字列に使用</li>
-<li><code>ldap</code> - LDAPのDNまたはフィルタを含む可能性のある文字列に使用</li>
-<li><code>html</code> - 山括弧または引用符なしの文字列を含む可能性のある文字列に使用</li>
-<li><code>has_quotes</code> - 引用符なしの文字列を含む可能性のある文字列に使用</li>
-<li><code>shell</code> - シェルコマンドを含む可能性のある文字列に使用</li>
-<li><code>callable</code> - ユーザーが制御可能な呼び出し可能な文字列に使用</li>
-<li><code>unserialize</code> - シリアル化された文字列を含む可能性のある文字列に使用</li>
-<li><code>include</code> - インクルードされるパスを含む可能性のある文字列に使用</li>
-<li><code>eval</code> - コードを含む可能性のある文字列に使用</li>
-<li><code>ssrf</code> - Curlまたはそれらきのテキストを渡す可能性のある文字列に使用</li>
-<li><code>file</code> - パスを含む可能性のある文字列に使用</li>
-<li><code>cookie</code> - HTTPクッキーを含む可能性のある文字列に使用</li>
-<li><code>header</code> - HTTPヘッダーを含む可能性のある文字列に使用</li>
-<li><code>user_secret</code> - ユーザーが提供した秘密を含む可能性のある文字列に使用</li>
-<li><code>system_secret</code> - システムの秘密を含む可能性のある文字列に使用</li>
-</ul>
-<p>カスタム汚染源を定義する際に、独自の汚染タイプを自由に定義することもできます - これらは単なる文字列です。</p>
-<h2 id="_2">汚染源<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>Psalmは現在、デフォルトで3つの汚染源を定義しています：<code>$_GET</code>、<code>$_POST</code>、<code>$_COOKIE</code>サーバー変数です。</p>
-<p><a href="custom_taint_sources.html">独自の汚染源を定義する</a>こともできます。</p>
-<h2 id="_3">汚染シンク<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>Psalmは現在、<code>echo</code>、<code>include</code>、<code>header</code>を含む組み込み関数やメソッドに対して、多くの異なるシンクを定義しています。</p>
-<p><a href="custom_taint_sinks.html">独自の汚染シンクを定義する</a>こともできます。</p>
-<h2 id="_4">偽陽性を避ける<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>誰も大量の偽陽性をかき分けたくはありません - <a href="avoiding_false_positives.html">ここに偽陽性を避けるためのガイドがあります</a>。</p>
-<h2 id="_5">制限事項<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>汚染分析は、値のエスケープ時にミスを犯さないことに依存しています。例えば：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;SELECT * FROM users WHERE id = &#39;</span> <span class="o">.</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">real_escape_string</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]);</span>
+<h1 id="psalm">psalmの働き<a class="headerlink" href="#psalm" title="Permanent link">&para;</a></h1>
+<p>すべての分析の入り口は<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Analyzer/ProjectAnalyzer.php"><code>ProjectAnalyzer</code></a></p>
+<p><code>ProjectAnalyzer</code> は2つのことを担当する：スキャンと分析</p>
+<h2 id="_1">スキャン<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>解析フェーズをマルチスレッドで実行できるようにするため、Psalmはファイルやファイル群に対して、可能性のあるすべての依存関係を決定し、その関数のシグネチャと定数を取得する必要がある。</p>
+<p>スキャンは<code>Psalm\Internal\Codebase\Scanner</code> で行われます。</p>
+<p>最初のタスクは、ファイルを<a href="https://github.com/nikic/PHP-Parser">PHP Parser</a> の文の集合に変換することです。PHP Parserは、PHPコードを抽象構文木に変換し、Psalmがすべての解析に使用します。</p>
+<h3 id="_2">ディープスキャンとシャロースキャンの比較<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><code>NodeVisitor</code> <a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/PhpVisitor/ReflectorVisitor.php"><code>ReflectorVisitor</code></a> これは、関数のシグネチャ、戻り値型、定数、継承を取得するだけの浅いスキャンと、関数のすべての文に潜り込んで依存関係(関数がインスタンス化するクラス名など)を取得する深いスキャンの2つのモードがあります。ディープスキャンは、後で分析されることがわかっているファイルに対してのみ行われます（したがって、例えばベンダーディレクトリの大部分は、シャロースキャンを受けるだけです）。</p>
+<p>そのため、<code>src</code> ディレクトリを分析する場合、Psalm は以下のファイルをディープスキャンします：</p>
+<p>src/A.php
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">use</span> <span class="nx">Vendor\VendorClass</span><span class="p">;</span> <span class="k">use</span> <span class="nx">Vendor\OtherVendorClass</span><span class="p">;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">$html</span> <span class="o">=</span> <span class="s2">&quot;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="s2">  &lt;img src=&quot;</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot; alt=&#39;&#39; /&gt;</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="s2">  &lt;a href=&#39;&quot;</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&#39;&gt;Link 1&lt;/a&gt;</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="s2">  &lt;a href=&#39;&quot;</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&#39;&gt;Line 2&lt;/a&gt;&quot;</span><span class="p">;</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1">// 詳細：</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1">//    $id  = &#39;id&#39;                   - 引用符が不足</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1">//    $img = &#39;/ onerror=alert(1)&#39;   - 引用符が不足</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1">//    $a1  = &#39;javascript:alert(1)&#39;  - 通常のインラインJavaScript</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1">//    $a2  = &#39;/&#39; onerror=&#39;alert(1)&#39; - PHP 8.1以前では、シングルクォートはデフォルトでエスケープされない</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1">// テスト：</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1">//    /?id=id&amp;img=%2F+onerror%3Dalert%281%29&amp;a1=javascript%3Aalert%281%29&amp;a2=%2F%27+onerror%3D%27alert%281%29</span>
-</code></pre></div>
-<p>これらの問題を避けるには、SQLとコマンド（例：<code>exec</code>）にはパラメータ化クエリを使用し、HTMLにはコンテキストを考慮したテンプレートエンジンを使用してください。そして、<a href="https://psalm.dev/docs/annotating_code/type_syntax/scalar_types/#literal-string">literal-string</a>型を使用して、機密な文字列がアプリケーションで定義されている（つまり、開発者によって書かれた）ことを確認してください。</p>
-<h2 id="_6">汚染分析でベースラインを使用する<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>汚染分析は他の静的コード分析とは別に実行されるため、別のベースラインを使用することが理にかなっています。</p>
-<p><code>--use-baseline=PATH</code>オプションを使用して、汚染分析に異なるベースラインを設定できます。</p>
-<h2 id="_7">ユーザーインターフェースで結果を表示する<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p>Psalmは、静的分析結果を交換するための<a href="http://docs.oasis-open.org/sarif/sarif/v2.0/csprd01/sarif-v2.0-csprd01.html">SARIF</a>標準をサポートしています。これにより、汚染フローを含む結果を任意のSARIF互換ソフトウェアで表示できます。</p>
-<h3 id="github-code-scanning">GitHub Code Scanning<a class="headerlink" href="#github-code-scanning" title="Permanent link">&para;</a></h3>
-<p><a href="https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning">GitHub code scanning</a>は、<a href="https://github.com/marketplace/actions/psalm-static-analysis-for-php">Psalm GitHub Action</a>を使用してセットアップできます。</p>
-<p>または、<a href="https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/uploading-a-sarif-file-to-github">GitHubのドキュメント</a>に記載されているように、生成されたSARIFファイルを手動でアップロードすることもできます。</p>
-<p>結果は、リポジトリの「Security」タブで利用可能になります。</p>
-<h3 id="sarif">その他のSARIF互換ソフトウェア<a class="headerlink" href="#sarif" title="Permanent link">&para;</a></h3>
-<p>SARIFレポートを生成するには、<code>--report</code>フラグと<code>.sarif</code>拡張子を付けてPsalmを実行します。例：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>psalm<span class="w"> </span>--report<span class="o">=</span>results.sarif
-</code></pre></div>
-<h2 id="_8">汚染グラフのデバッグ<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<p>Psalmは、DOT言語を使用して汚染グラフを出力できます。これは、期待される汚染が検出されない場合に役立ちます。DOTグラフを生成するには、<code>--dump-taint-graph</code>フラグを付けてPsalmを実行します。例：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>psalm<span class="w"> </span>--taint-analysis<span class="w"> </span>--dump-taint-graph<span class="o">=</span>taints.dot
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>dot<span class="w"> </span>-Tsvg<span class="w"> </span>-o<span class="w"> </span>taints.svg<span class="w"> </span>taints.dot
-</code></pre></div>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">class</span> <span class="nc">A</span> <span class="k">extends</span> <span class="nx">VendorClass</span> <span class="p">{</span>     <span class="k">public</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">OtherVendorClass</span> <span class="nv">$c</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span> <span class="p">}</span>
+</code></pre></div></p>
+<p>また、<code>Vendor\VendorClass</code> に属するファイルもディープスキャンします。これは、ある時点でプロパティのインスタンスをチェックする必要があるかもしれないからです。</p>
+<p>変数<code>$c</code> のメソッドシグネチャと戻り値の型にしか関心がないため、<code>Vendor\OtherVendorClass</code> (および依存するすべてのファイル) を浅くスキャンします。</p>
+<h3 id="_3">クラス名からファイルを見つける<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p><code>ClassName</code> =&gt;<code>src/FileName.php</code> のマッピングを把握するために、プロジェクト・ファイルにはリフレクションを使い、ベンダー・ファイルにはComposerクラスマップを使う。</p>
+<h3 id="_4">スキャンからデータを保存する<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p><code>ReflectorVisitor</code> がアクセスする各ファイルに対して、Psalm は<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Storage/FileStorage.php"><code>FileStorage</code></a> インスタンスを作成し、ファイルの内容に応じて<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Storage/ClassLikeStorage.php"><code>ClassLikeStorage</code></a> と<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Storage/FunctionLikeStorage.php"><code>FunctionLikeStorage</code></a> インスタンスも作成する。</p>
+<p>すべてのファイルとそのクラスと関数シグネチャのセットができたら、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Codebase/Populator.php"><code>Populator</code></a> クラスのすべての継承を計算し、分析に移る。</p>
+<p>スキャン・ステップの最後には、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Codebase/ClassLikes.php"><code>ClassLikes</code></a> 、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Codebase/Functions.php"><code>Functions</code></a> 、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Codebase/Methods.php"><code>Methods</code></a> クラスに必要な情報をすべて入力し、プロジェクトで使用するすべてのクラスとファイルについて、<code>FileStorage</code> と<code>ClassLikeStorage</code> オブジェクトの完全なリスト（それぞれ<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Provider/FileStorageProvider.php"><code>FileStorageProvider</code></a> と<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Provider/ClassLikeStorageProvider.php"><code>ClassLikeStorageProvider</code></a> 内）を作成しました。</p>
+<h2 id="_5">分析<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>にあるファイルを分析する。<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Analyzer/FileAnalyzer.php"><code>FileAnalyzer</code></a></p>
+<p><code>FileAnalyzer</code> 、与えられたファイルを受け取り、トップレベルのコンポーネント（クラス、特性、インターフェイス、関数）を探します。名前空間の内部を調べ、その中のクラス、インターフェイス、特性、関数を抽出することもできます。</p>
+<p>これらのコンポーネントの解析は、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Analyzer/ClassAnalyzer.php"><code>ClassAnalyzer</code></a> 、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Analyzer/InterfaceAnalyzer.php"><code>InterfaceAnalyzer</code></a> 、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Analyzer/FunctionAnalyzer.php"><code>FunctionAnalyzer</code></a> に委譲されます。</p>
+<p>行ごとの解析は最も基本的なユースケースなので（クラス継承の心配はない）、<code>FunctionAnalyzer</code> 。</p>
+<h3 id="_6">関数解析<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p><code>FunctionAnalyzer::analyze</code> は<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Analyzer/FunctionLikeAnalyzer.php"><code>FunctionLikeAnalyzer</code></a> で定義されています。このメソッドはまず、スキャン・ステップで作成した、指定された関数の<code>FunctionLikeStorage</code> オブジェクトを取得します。この<code>FunctionLikeStorage</code> オブジェクトには、関数のパラメータに関する情報があり、それを<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Context.php"><code>Context</code></a> オブジェクトに渡します。<code>Context</code> には、変数とプロパティに関するすべての型情報 (<code>Context::$vars_in_scope</code> に格納) が含まれています。</p>
+<p><code>FunctionLikeAnalyzer::analyze</code> のどこかで新しい<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Internal/Analyzer/StatementsAnalyzer.php"><code>StatementsAnalyzer</code></a> を作成し、その<code>analyze()</code> メソッドを呼び出して、PhpParser ノードのセットを渡します。<code>StatementAnalyzer::analyze</code> は、より詳細な分析を行うために、さまざまなチェッカー (<code>IfAnalyzer</code>,<code>ForeachAnalyzer</code>,<code>ExpressionAnalyzer</code> など) に渡します。</p>
+<p>各行では、<code>Context</code> オブジェクトが操作されたりされなかったりします。分岐点（if文、ループ、3項など）では、<code>Context</code> オブジェクトがクローンされ、分岐の最後で、Psalmが変更を解決する方法を見つけ出し、クローンされていない<code>Context</code> オブジェクトを更新します。</p>
+<p><code>NodeDataProvider</code> は各 PhpParser ノードの型を保存します。</p>
+<p>すべてのステートメントが分析された後、すべての戻り値の型を集め、与えられた戻り値の型と比較します。</p>
+<h3 id="_7">型の照合<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p><code>Context</code> オブジェクトの更新は簡単なものもありますが、そうでないものもあります。新しい型情報に照らして<code>Context</code> オブジェクトを更新することは、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Type/Reconciler.php"><code>Reconciler</code></a> で行われる。 は、<code>[“$a” =&gt; “!null”]</code> のような配列アサーションと、<code>$a =&gt; string|null</code> のような既存の型情報のリストを受け取り、 のような更新された情報のセットを返す。<code>$a =&gt; string</code></p>
 
 
 

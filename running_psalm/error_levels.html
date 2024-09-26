@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://koriym.github.io/psalm-ja/security_analysis/index.html">
+        <link rel="canonical" href="https://koriym.github.io/psalm-ja/running_psalm/error_levels.html">
       
       
-        <link rel="prev" href="../manipulating_code/refactoring.html">
-      
-      
-        <link rel="next" href="custom_taint_sources.html">
       
       
       <link rel="icon" href="../assets/images/favicon_io/favicon.ico">
@@ -22,7 +18,7 @@
     
     
       
-        <title>はじめに - Psalm Docs JA</title>
+        <title>エラーレベル - Psalm Docs JA</title>
       
     
     
@@ -65,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#psalm" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +117,7 @@
           <span class="md-ellipsis">
             <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
             
-              はじめに
+              エラーレベル
             
             </span>
           </span>
@@ -335,7 +331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/installation.html" class="md-nav__link">
+      <a href="installation.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -356,7 +352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/configuration.html" class="md-nav__link">
+      <a href="configuration.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -412,7 +408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/plugins/using_plugins.html" class="md-nav__link">
+      <a href="plugins/using_plugins.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -433,7 +429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/plugins/authoring_plugins.html" class="md-nav__link">
+      <a href="plugins/authoring_plugins.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -454,7 +450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/plugins/plugins_type_system.html" class="md-nav__link">
+      <a href="plugins/plugins_type_system.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -483,7 +479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/command_line_usage.html" class="md-nav__link">
+      <a href="command_line_usage.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -504,7 +500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/language_server.html" class="md-nav__link">
+      <a href="language_server.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -560,7 +556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/dealing_with_code_issues.html" class="md-nav__link">
+      <a href="dealing_with_code_issues.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -581,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/issues.html" class="md-nav__link">
+      <a href="issues.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -610,7 +606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running_psalm/checking_non_php_files.html" class="md-nav__link">
+      <a href="checking_non_php_files.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -950,19 +946,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -976,7 +970,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             セキュリティ分析
@@ -987,30 +981,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    はじめに
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../security_analysis/index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1019,122 +993,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染タイプ
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染源
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染シンク
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      偽陽性を避ける
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      制限事項
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染分析でベースラインを使用する
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      ユーザーインターフェースで結果を表示する
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ユーザーインターフェースで結果を表示する">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#github-code-scanning" class="md-nav__link">
-    <span class="md-ellipsis">
-      GitHub Code Scanning
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sarif" class="md-nav__link">
-    <span class="md-ellipsis">
-      その他のSARIF互換ソフトウェア
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染グラフのデバッグ
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1147,7 +1005,7 @@
   
   
     <li class="md-nav__item">
-      <a href="custom_taint_sources.html" class="md-nav__link">
+      <a href="../security_analysis/custom_taint_sources.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1168,7 +1026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="custom_taint_sinks.html" class="md-nav__link">
+      <a href="../security_analysis/custom_taint_sinks.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1189,7 +1047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="avoiding_false_positives.html" class="md-nav__link">
+      <a href="../security_analysis/avoiding_false_positives.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1277,18 +1135,72 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      汚染タイプ
+      常にエラーとして扱われる問題
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#7" class="md-nav__link">
     <span class="md-ellipsis">
-      汚染源
+      レベル7以下で表示されるエラー
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      レベル6以下で表示されるエラー
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      レベル5以下で表示されるエラー
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      レベル4以下で表示されるエラー
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      レベル3以下で表示されるエラー
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      レベル2以下で表示されるエラー
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      レベル1でのみ表示されるエラー
     </span>
   </a>
   
@@ -1297,76 +1209,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      汚染シンク
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      偽陽性を避ける
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      制限事項
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染分析でベースラインを使用する
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      ユーザーインターフェースで結果を表示する
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ユーザーインターフェースで結果を表示する">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#github-code-scanning" class="md-nav__link">
-    <span class="md-ellipsis">
-      GitHub Code Scanning
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sarif" class="md-nav__link">
-    <span class="md-ellipsis">
-      その他のSARIF互換ソフトウェア
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      汚染グラフのデバッグ
+      機能固有のエラー
     </span>
   </a>
   
@@ -1387,7 +1230,7 @@
                   
 
   
-    <a href="https://github.com/koriym/psalm-ja/edit/5.x-ja/docs-ja/security_analysis/index.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/koriym/psalm-ja/edit/5.x-ja/docs-ja/running_psalm/error_levels.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1395,82 +1238,316 @@
   
 
 
-<h1 id="psalm">Psalmにおけるセキュリティ分析<a class="headerlink" href="#psalm" title="Permanent link">&para;</a></h1>
-<p>Psalmは、ユーザーが制御できる入力（<code>$_GET['name']</code>など）と、エスケープされていないユーザー制御の入力が終わってほしくない場所（<code>echo "&lt;h1&gt;$name&lt;/h1&gt;"</code>など）との間のつながりを、アプリケーションを通じてデータがどのように流れるか（代入、関数/メソッド呼び出し、配列/プロパティアクセスを介して）を見ることで見つけようとします。</p>
-<p>このモードは<code>--taint-analysis</code>コマンドラインフラグで有効にできます。汚染分析が有効になると、他の分析は実行されません。<a href="https://github.com/vimeo/psalm/issues/6156">包括的な結果を確保するために</a>、汚染分析の前に通常通りPsalmを実行し、エラーを修正する必要があります。</p>
-<p>汚染された入力とは、アプリケーションのユーザーが全体的または部分的に制御できるものすべてです。汚染分析では、汚染された入力を_汚染源_と呼びます。</p>
-<p>例えば以下のようなものが汚染源です：
-- <code>$_GET['id']</code>
-- <code>$_POST['email']</code>
-- <code>$_COOKIE['token']</code></p>
-<p>汚染分析は、データが汚染源から_汚染シンク_にどのように流れるかを追跡します。汚染シンクは、信頼できないデータが決して到達してほしくない場所です。</p>
-<p>例えば以下のようなものが汚染シンクです：
-- <code>&lt;div id="section_&lt;?= $id ?&gt;"&gt;</code>
-- <code>$pdo-&gt;exec("select * from users where name='" . $name . "'")</code></p>
-<h2 id="_1">汚染タイプ<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Psalmはデフォルトで、<a href="https://github.com/vimeo/psalm/blob/master/src/Psalm/Type/TaintKind.php">Psalm\Type\TaintKind</a>クラスで定義されている多くの汚染タイプを認識します：</p>
+<h1 id="_1">エラーレベル<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>Psalmは1から8までの異なる厳格さのレベルで実行できます。
+レベル1が最も厳格で、レベル8が最も寛容です。
+レベルが明示的に定義されていない場合、Psalmはデフォルトでレベル2になります。</p>
+<p>一部の問題は常にエラーとして扱われます。これらは誤検出の可能性が非常に低い問題です。</p>
+<p>レベル1では、Psalmが見つけることができるすべての問題（オプトイン機能のために出力されるものを除く）がエラーとして扱われます。これらの問題には、Psalmが特定の式の型を推論できないあらゆる状況が含まれます。</p>
+<p>レベル2では、Psalmは<code>Mixed*</code>の問題を無視しますが、他のほとんどの問題をエラーとして扱います。</p>
+<p>レベル3では、Psalmはより寛容になり始めます。例えば、Psalmはパラメータの型、戻り値の型、プロパティの型の欠落を許可します。</p>
+<p>レベル4では、Psalmは_可能性のある_問題に対する問題を無視します。これらは誤検出である可能性が高くなります - アプリケーションコードがPsalmが推論できない動作を保証している可能性があります。</p>
+<p>レベル5以上では、より多くの検証不可能なコードを許可し、より高いレベルではさらに寛容になります。</p>
+<h2 id="_2">常にエラーとして扱われる問題<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>sql</code> - SQLを含む可能性のある文字列に使用</li>
-<li><code>ldap</code> - LDAPのDNまたはフィルタを含む可能性のある文字列に使用</li>
-<li><code>html</code> - 山括弧または引用符なしの文字列を含む可能性のある文字列に使用</li>
-<li><code>has_quotes</code> - 引用符なしの文字列を含む可能性のある文字列に使用</li>
-<li><code>shell</code> - シェルコマンドを含む可能性のある文字列に使用</li>
-<li><code>callable</code> - ユーザーが制御可能な呼び出し可能な文字列に使用</li>
-<li><code>unserialize</code> - シリアル化された文字列を含む可能性のある文字列に使用</li>
-<li><code>include</code> - インクルードされるパスを含む可能性のある文字列に使用</li>
-<li><code>eval</code> - コードを含む可能性のある文字列に使用</li>
-<li><code>ssrf</code> - Curlまたはそれらきのテキストを渡す可能性のある文字列に使用</li>
-<li><code>file</code> - パスを含む可能性のある文字列に使用</li>
-<li><code>cookie</code> - HTTPクッキーを含む可能性のある文字列に使用</li>
-<li><code>header</code> - HTTPヘッダーを含む可能性のある文字列に使用</li>
-<li><code>user_secret</code> - ユーザーが提供した秘密を含む可能性のある文字列に使用</li>
-<li><code>system_secret</code> - システムの秘密を含む可能性のある文字列に使用</li>
+<li><a href="issues/AbstractMethodCall.html">AbstractMethodCall</a></li>
+<li><a href="issues/ComplexFunction.html">ComplexFunction</a></li>
+<li><a href="issues/ComplexMethod.md">ComplexMethod</a></li>
+<li><a href="issues/ConfigIssue.html">ConfigIssue</a></li>
+<li><a href="issues/DuplicateArrayKey.html">DuplicateArrayKey</a></li>
+<li><a href="issues/DuplicateClass.html">DuplicateClass</a></li>
+<li><a href="issues/DuplicateFunction.md">DuplicateFunction</a></li>
+<li><a href="issues/DuplicateMethod.html">DuplicateMethod</a></li>
+<li><a href="issues/DuplicateParam.md">DuplicateParam</a></li>
+<li><a href="issues/DuplicateProperty.html">DuplicateProperty</a></li>
+<li><a href="issues/EmptyArrayAccess.md">EmptyArrayAccess</a></li>
+<li><a href="issues/ExtensionRequirementViolation.html">ExtensionRequirementViolation</a></li>
+<li><a href="issues/ImplementationRequirementViolation.md">ImplementationRequirementViolation</a></li>
+<li><a href="issues/ImpureByReferenceAssignment.html">ImpureByReferenceAssignment</a></li>
+<li><a href="issues/ImpureFunctionCall.md">ImpureFunctionCall</a></li>
+<li><a href="issues/ImpureMethodCall.md">ImpureMethodCall</a></li>
+<li><a href="issues/ImpurePropertyAssignment.html">ImpurePropertyAssignment</a></li>
+<li><a href="issues/ImpurePropertyFetch.html">ImpurePropertyFetch</a></li>
+<li><a href="issues/ImpureStaticProperty.html">ImpureStaticProperty</a></li>
+<li><a href="issues/ImpureStaticVariable.md">ImpureStaticVariable</a></li>
+<li><a href="issues/ImpureVariable.html">ImpureVariable</a></li>
+<li><a href="issues/InaccessibleClassConstant.md">InaccessibleClassConstant</a></li>
+<li><a href="issues/InaccessibleMethod.html">InaccessibleMethod</a></li>
+<li><a href="issues/InaccessibleProperty.html">InaccessibleProperty</a></li>
+<li><a href="issues/InterfaceInstantiation.html">InterfaceInstantiation</a></li>
+<li><a href="issues/InvalidAttribute.md">InvalidAttribute</a></li>
+<li><a href="issues/InvalidEnumMethod.html">InvalidEnumMethod</a></li>
+<li><a href="issues/InvalidExtendClass.html">InvalidExtendClass</a></li>
+<li><a href="issues/InvalidGlobal.html">InvalidGlobal</a></li>
+<li><a href="issues/InvalidInterfaceImplementation.md">InvalidInterfaceImplementation</a></li>
+<li><a href="issues/InvalidParamDefault.md">InvalidParamDefault</a></li>
+<li><a href="issues/InvalidParent.html">InvalidParent</a></li>
+<li><a href="issues/InvalidPassByReference.md">InvalidPassByReference</a></li>
+<li><a href="issues/InvalidScope.md">InvalidScope</a></li>
+<li><a href="issues/InvalidStaticInvocation.md">InvalidStaticInvocation</a></li>
+<li><a href="issues/InvalidThrow.md">InvalidThrow</a></li>
+<li><a href="issues/LoopInvalidation.md">LoopInvalidation</a></li>
+<li><a href="issues/MethodSignatureMustOmitReturnType.html">MethodSignatureMustOmitReturnType</a></li>
+<li><a href="issues/MethodSignatureMustProvideReturnType.html">MethodSignatureMustProvideReturnType</a></li>
+<li><a href="issues/MissingDependency.html">MissingDependency</a></li>
+<li><a href="issues/MissingFile.md">MissingFile</a></li>
+<li><a href="issues/MissingImmutableAnnotation.html">MissingImmutableAnnotation</a></li>
+<li><a href="issues/MissingTemplateParam.html">MissingTemplateParam</a></li>
+<li><a href="issues/MissingThrowsDocblock.md">MissingThrowsDocblock</a></li>
+<li><a href="issues/NonStaticSelfCall.html">NonStaticSelfCall</a></li>
+<li><a href="issues/NoValue.html">NoValue</a></li>
+<li><a href="issues/NullArrayAccess.html">NullArrayAccess</a></li>
+<li><a href="issues/NullFunctionCall.html">NullFunctionCall</a></li>
+<li><a href="issues/NullIterator.md">NullIterator</a></li>
+<li><a href="issues/NullPropertyAssignment.md">NullPropertyAssignment</a></li>
+<li><a href="issues/NullPropertyFetch.md">NullPropertyFetch</a></li>
+<li><a href="issues/NullReference.md">NullReference</a></li>
+<li><a href="issues/OverriddenPropertyAccess.html">OverriddenPropertyAccess</a></li>
+<li><a href="issues/ParadoxicalCondition.html">ParadoxicalCondition</a></li>
+<li><a href="issues/ParentNotFound.html">ParentNotFound</a></li>
+<li><a href="issues/TooFewArguments.html">TooFewArguments</a></li>
+<li><a href="issues/UndefinedAttributeClass.html">UndefinedAttributeClass</a></li>
+<li><a href="issues/UndefinedClass.html">UndefinedClass</a></li>
+<li><a href="issues/UndefinedConstant.html">UndefinedConstant</a></li>
+<li><a href="issues/UndefinedDocblockClass.html">UndefinedDocblockClass</a></li>
+<li><a href="issues/UndefinedFunction.html">UndefinedFunction</a></li>
+<li><a href="issues/UndefinedGlobalVariable.html">UndefinedGlobalVariable</a></li>
+<li><a href="issues/UndefinedInterface.html">UndefinedInterface</a></li>
+<li><a href="issues/UndefinedTrait.html">UndefinedTrait</a></li>
+<li><a href="issues/UndefinedVariable.html">UndefinedVariable</a></li>
+<li><a href="issues/UnimplementedAbstractMethod.html">UnimplementedAbstractMethod</a></li>
+<li><a href="issues/UnimplementedInterfaceMethod.md">UnimplementedInterfaceMethod</a></li>
+<li><a href="issues/UnrecognizedExpression.md">UnrecognizedExpression</a></li>
+<li><a href="issues/UnrecognizedStatement.html">UnrecognizedStatement</a></li>
+<li><a href="issues/UnusedFunctionCall.md">UnusedFunctionCall</a></li>
+<li><a href="issues/UnusedMethodCall.html">UnusedMethodCall</a></li>
 </ul>
-<p>カスタム汚染源を定義する際に、独自の汚染タイプを自由に定義することもできます - これらは単なる文字列です。</p>
-<h2 id="_2">汚染源<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>Psalmは現在、デフォルトで3つの汚染源を定義しています：<code>$_GET</code>、<code>$_POST</code>、<code>$_COOKIE</code>サーバー変数です。</p>
-<p><a href="custom_taint_sources.html">独自の汚染源を定義する</a>こともできます。</p>
-<h2 id="_3">汚染シンク<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>Psalmは現在、<code>echo</code>、<code>include</code>、<code>header</code>を含む組み込み関数やメソッドに対して、多くの異なるシンクを定義しています。</p>
-<p><a href="custom_taint_sinks.html">独自の汚染シンクを定義する</a>こともできます。</p>
-<h2 id="_4">偽陽性を避ける<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>誰も大量の偽陽性をかき分けたくはありません - <a href="avoiding_false_positives.html">ここに偽陽性を避けるためのガイドがあります</a>。</p>
-<h2 id="_5">制限事項<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>汚染分析は、値のエスケープ時にミスを犯さないことに依存しています。例えば：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;SELECT * FROM users WHERE id = &#39;</span> <span class="o">.</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">real_escape_string</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]);</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">$html</span> <span class="o">=</span> <span class="s2">&quot;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="s2">  &lt;img src=&quot;</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot; alt=&#39;&#39; /&gt;</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="s2">  &lt;a href=&#39;&quot;</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&#39;&gt;Link 1&lt;/a&gt;</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="s2">  &lt;a href=&#39;&quot;</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&#39;&gt;Line 2&lt;/a&gt;&quot;</span><span class="p">;</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1">// 詳細：</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1">//    $id  = &#39;id&#39;                   - 引用符が不足</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1">//    $img = &#39;/ onerror=alert(1)&#39;   - 引用符が不足</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1">//    $a1  = &#39;javascript:alert(1)&#39;  - 通常のインラインJavaScript</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1">//    $a2  = &#39;/&#39; onerror=&#39;alert(1)&#39; - PHP 8.1以前では、シングルクォートはデフォルトでエスケープされない</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1">// テスト：</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1">//    /?id=id&amp;img=%2F+onerror%3Dalert%281%29&amp;a1=javascript%3Aalert%281%29&amp;a2=%2F%27+onerror%3D%27alert%281%29</span>
-</code></pre></div>
-<p>これらの問題を避けるには、SQLとコマンド（例：<code>exec</code>）にはパラメータ化クエリを使用し、HTMLにはコンテキストを考慮したテンプレートエンジンを使用してください。そして、<a href="https://psalm.dev/docs/annotating_code/type_syntax/scalar_types/#literal-string">literal-string</a>型を使用して、機密な文字列がアプリケーションで定義されている（つまり、開発者によって書かれた）ことを確認してください。</p>
-<h2 id="_6">汚染分析でベースラインを使用する<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>汚染分析は他の静的コード分析とは別に実行されるため、別のベースラインを使用することが理にかなっています。</p>
-<p><code>--use-baseline=PATH</code>オプションを使用して、汚染分析に異なるベースラインを設定できます。</p>
-<h2 id="_7">ユーザーインターフェースで結果を表示する<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p>Psalmは、静的分析結果を交換するための<a href="http://docs.oasis-open.org/sarif/sarif/v2.0/csprd01/sarif-v2.0-csprd01.html">SARIF</a>標準をサポートしています。これにより、汚染フローを含む結果を任意のSARIF互換ソフトウェアで表示できます。</p>
-<h3 id="github-code-scanning">GitHub Code Scanning<a class="headerlink" href="#github-code-scanning" title="Permanent link">&para;</a></h3>
-<p><a href="https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning">GitHub code scanning</a>は、<a href="https://github.com/marketplace/actions/psalm-static-analysis-for-php">Psalm GitHub Action</a>を使用してセットアップできます。</p>
-<p>または、<a href="https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/uploading-a-sarif-file-to-github">GitHubのドキュメント</a>に記載されているように、生成されたSARIFファイルを手動でアップロードすることもできます。</p>
-<p>結果は、リポジトリの「Security」タブで利用可能になります。</p>
-<h3 id="sarif">その他のSARIF互換ソフトウェア<a class="headerlink" href="#sarif" title="Permanent link">&para;</a></h3>
-<p>SARIFレポートを生成するには、<code>--report</code>フラグと<code>.sarif</code>拡張子を付けてPsalmを実行します。例：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>psalm<span class="w"> </span>--report<span class="o">=</span>results.sarif
-</code></pre></div>
-<h2 id="_8">汚染グラフのデバッグ<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<p>Psalmは、DOT言語を使用して汚染グラフを出力できます。これは、期待される汚染が検出されない場合に役立ちます。DOTグラフを生成するには、<code>--dump-taint-graph</code>フラグを付けてPsalmを実行します。例：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>psalm<span class="w"> </span>--taint-analysis<span class="w"> </span>--dump-taint-graph<span class="o">=</span>taints.dot
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>dot<span class="w"> </span>-Tsvg<span class="w"> </span>-o<span class="w"> </span>taints.svg<span class="w"> </span>taints.dot
-</code></pre></div>
+<h2 id="7">レベル7以下で表示されるエラー<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="issues/AbstractInstantiation.md">AbstractInstantiation</a></li>
+<li><a href="issues/AssignmentToVoid.html">AssignmentToVoid</a></li>
+<li><a href="issues/CircularReference.html">CircularReference</a></li>
+<li><a href="issues/ConflictingReferenceConstraint.html">ConflictingReferenceConstraint</a></li>
+<li><a href="issues/ContinueOutsideLoop.html">ContinueOutsideLoop</a></li>
+<li><a href="issues/InvalidOverride.md">InvalidOverride</a></li>
+<li><a href="issues/InvalidTypeImport.md">InvalidTypeImport</a></li>
+<li><a href="issues/MethodSignatureMismatch.md">MethodSignatureMismatch</a></li>
+<li><a href="issues/NonVariableReferenceReturn.md">NonVariableReferenceReturn</a></li>
+<li><a href="issues/OverriddenMethodAccess.html">OverriddenMethodAccess</a></li>
+<li><a href="issues/ParamNameMismatch.html">ParamNameMismatch</a></li>
+<li><a href="issues/ReservedWord.html">ReservedWord</a></li>
+<li><a href="issues/UnhandledMatchCondition.md">UnhandledMatchCondition</a></li>
+<li><a href="issues/UninitializedProperty.html">UninitializedProperty</a></li>
+</ul>
+<h2 id="6">レベル6以下で表示されるエラー<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="issues/InvalidArgument.html">InvalidArgument</a></li>
+<li><a href="issues/InvalidArrayAccess.md">InvalidArrayAccess</a></li>
+<li><a href="issues/InvalidArrayAssignment.md">InvalidArrayAssignment</a></li>
+<li><a href="issues/InvalidArrayOffset.html">InvalidArrayOffset</a></li>
+<li><a href="issues/InvalidCast.md">InvalidCast</a></li>
+<li><a href="issues/InvalidCatch.md">InvalidCatch</a></li>
+<li><a href="issues/InvalidClass.md">InvalidClass</a></li>
+<li><a href="issues/InvalidClone.html">InvalidClone</a></li>
+<li><a href="issues/InvalidFunctionCall.md">InvalidFunctionCall</a></li>
+<li><a href="issues/InvalidIterator.html">InvalidIterator</a></li>
+<li><a href="issues/InvalidMethodCall.md">InvalidMethodCall</a></li>
+<li><a href="issues/InvalidNamedArgument.html">InvalidNamedArgument</a></li>
+<li><a href="issues/InvalidPropertyAssignment.html">InvalidPropertyAssignment</a></li>
+<li><a href="issues/InvalidPropertyAssignmentValue.html">InvalidPropertyAssignmentValue</a></li>
+<li><a href="issues/InvalidPropertyFetch.html">InvalidPropertyFetch</a></li>
+<li><a href="issues/InvalidReturnStatement.md">InvalidReturnStatement</a></li>
+<li><a href="issues/InvalidReturnType.md">InvalidReturnType</a></li>
+<li><a href="issues/InvalidTemplateParam.md">InvalidTemplateParam</a></li>
+<li><a href="issues/NullArgument.html">NullArgument</a></li>
+<li><a href="issues/NullArrayOffset.md">NullArrayOffset</a></li>
+<li><a href="issues/TooManyTemplateParams.html">TooManyTemplateParams</a></li>
+<li><a href="issues/TraitMethodSignatureMismatch.html">TraitMethodSignatureMismatch</a></li>
+<li><a href="issues/UndefinedMethod.md">UndefinedMethod</a></li>
+<li><a href="issues/UndefinedPropertyAssignment.html">UndefinedPropertyAssignment</a></li>
+<li><a href="issues/UndefinedPropertyFetch.html">UndefinedPropertyFetch</a></li>
+<li><a href="issues/UndefinedThisPropertyFetch.md">UndefinedThisPropertyFetch</a></li>
+</ul>
+<h2 id="5">レベル5以下で表示されるエラー<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="issues/ConstructorSignatureMismatch.html">ConstructorSignatureMismatch</a></li>
+<li><a href="issues/FalsableReturnStatement.html">FalsableReturnStatement</a></li>
+<li><a href="issues/InvalidNullableReturnType.md">InvalidNullableReturnType</a></li>
+<li><a href="issues/LessSpecificImplementedReturnType.html">LessSpecificImplementedReturnType</a></li>
+<li><a href="issues/MoreSpecificImplementedParamType.md">MoreSpecificImplementedParamType</a></li>
+<li><a href="issues/NullableReturnStatement.md">NullableReturnStatement</a></li>
+<li><a href="issues/UndefinedInterfaceMethod.md">UndefinedInterfaceMethod</a></li>
+<li><a href="issues/UndefinedThisPropertyAssignment.html">UndefinedThisPropertyAssignment</a></li>
+</ul>
+<h2 id="4">レベル4以下で表示されるエラー<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="issues/FalseOperand.html">FalseOperand</a></li>
+<li><a href="issues/ForbiddenCode.html">ForbiddenCode</a></li>
+<li><a href="issues/ImplementedParamTypeMismatch.html">ImplementedParamTypeMismatch</a></li>
+<li><a href="issues/ImplementedReturnTypeMismatch.html">ImplementedReturnTypeMismatch</a></li>
+<li><a href="issues/ImplicitToStringCast.md">ImplicitToStringCast</a></li>
+<li><a href="issues/InternalClass.html">InternalClass</a></li>
+<li><a href="issues/InternalMethod.html">InternalMethod</a></li>
+<li><a href="issues/InternalProperty.md">InternalProperty</a></li>
+<li><a href="issues/InvalidDocblock.html">InvalidDocblock</a></li>
+<li><a href="issues/InvalidLiteralArgument.md">InvalidLiteralArgument</a></li>
+<li><a href="issues/InvalidOperand.html">InvalidOperand</a></li>
+<li><a href="issues/InvalidScalarArgument.html">InvalidScalarArgument</a></li>
+<li><a href="issues/InvalidToString.html">InvalidToString</a></li>
+<li><a href="issues/MismatchingDocblockParamType.html">MismatchingDocblockParamType</a></li>
+<li><a href="issues/MismatchingDocblockReturnType.html">MismatchingDocblockReturnType</a></li>
+<li><a href="issues/MissingDocblockType.html">MissingDocblockType</a></li>
+<li><a href="issues/NoInterfaceProperties.html">NoInterfaceProperties</a></li>
+<li><a href="issues/PossibleRawObjectIteration.html">PossibleRawObjectIteration</a></li>
+<li><a href="issues/RedundantCondition.html">RedundantCondition</a></li>
+<li><a href="issues/RedundantFunctionCall.html">RedundantFunctionCall</a></li>
+<li><a href="issues/RedundantPropertyInitializationCheck.html">RedundantPropertyInitializationCheck</a></li>
+<li><a href="issues/StringIncrement.md">StringIncrement</a></li>
+<li><a href="issues/TooManyArguments.html">TooManyArguments</a></li>
+<li><a href="issues/TypeDoesNotContainNull.html">TypeDoesNotContainNull</a></li>
+<li><a href="issues/TypeDoesNotContainType.html">TypeDoesNotContainType</a></li>
+<li><a href="issues/UndefinedMagicMethod.html">UndefinedMagicMethod</a></li>
+<li><a href="issues/UndefinedMagicPropertyAssignment.html">UndefinedMagicPropertyAssignment</a></li>
+<li><a href="issues/UndefinedMagicPropertyFetch.html">UndefinedMagicPropertyFetch</a></li>
+</ul>
+<h2 id="3">レベル3以下で表示されるエラー<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="issues/ArgumentTypeCoercion.html">ArgumentTypeCoercion</a></li>
+<li><a href="issues/LessSpecificReturnStatement.html">LessSpecificReturnStatement</a></li>
+<li><a href="issues/MoreSpecificReturnType.md">MoreSpecificReturnType</a></li>
+<li><a href="issues/PossiblyFalseArgument.md">PossiblyFalseArgument</a></li>
+<li><a href="issues/PossiblyFalseIterator.html">PossiblyFalseIterator</a></li>
+<li><a href="issues/PossiblyFalseOperand.html">PossiblyFalseOperand</a></li>
+<li><a href="issues/PossiblyFalsePropertyAssignmentValue.html">PossiblyFalsePropertyAssignmentValue</a></li>
+<li><a href="issues/PossiblyFalseReference.md">PossiblyFalseReference</a></li>
+<li><a href="issues/PossiblyInvalidArgument.md">PossiblyInvalidArgument</a></li>
+<li><a href="issues/PossiblyInvalidArrayAccess.html">PossiblyInvalidArrayAccess</a></li>
+<li><a href="issues/PossiblyInvalidArrayAssignment.md">PossiblyInvalidArrayAssignment</a></li>
+<li><a href="issues/PossiblyInvalidArrayOffset.html">PossiblyInvalidArrayOffset</a></li>
+<li><a href="issues/PossiblyInvalidCast.md">PossiblyInvalidCast</a></li>
+<li><a href="issues/PossiblyInvalidClone.html">PossiblyInvalidClone</a></li>
+<li><a href="issues/PossiblyInvalidFunctionCall.md">PossiblyInvalidFunctionCall</a></li>
+<li><a href="issues/PossiblyInvalidIterator.html">PossiblyInvalidIterator</a></li>
+<li><a href="issues/PossiblyInvalidMethodCall.html">PossiblyInvalidMethodCall</a></li>
+<li><a href="issues/PossiblyInvalidOperand.html">PossiblyInvalidOperand</a></li>
+<li><a href="issues/PossiblyInvalidPropertyAssignment.md">PossiblyInvalidPropertyAssignment</a></li>
+<li><a href="issues/PossiblyInvalidPropertyAssignmentValue.html">PossiblyInvalidPropertyAssignmentValue</a></li>
+<li><a href="issues/PossiblyInvalidPropertyFetch.md">PossiblyInvalidPropertyFetch</a></li>
+<li><a href="issues/PossiblyNullArgument.html">PossiblyNullArgument</a></li>
+<li><a href="issues/PossiblyNullArrayAccess.html">PossiblyNullArrayAccess</a></li>
+<li><a href="issues/PossiblyNullArrayAssignment.html">PossiblyNullArrayAssignment</a></li>
+<li><a href="issues/PossiblyNullArrayOffset.html">PossiblyNullArrayOffset</a></li>
+<li><a href="issues/PossiblyNullFunctionCall.html">PossiblyNullFunctionCall</a></li>
+<li><a href="issues/PossiblyNullIterator.md">PossiblyNullIterator</a></li>
+<li><a href="issues/PossiblyNullPropertyAssignment.md">PossiblyNullPropertyAssignment</a></li>
+<li><a href="issues/PossiblyNullPropertyAssignmentValue.md">PossiblyNullPropertyAssignmentValue</a></li>
+<li><a href="issues/PossiblyNullPropertyFetch.html">PossiblyNullPropertyFetch</a></li>
+<li><a href="issues/PossiblyNullReference.html">PossiblyNullReference</a></li>
+<li><a href="issues/PossiblyUndefinedArrayOffset.md">PossiblyUndefinedArrayOffset</a></li>
+<li><a href="issues/PossiblyUndefinedGlobalVariable.md">PossiblyUndefinedGlobalVariable</a></li>
+<li><a href="issues/PossiblyUndefinedMethod.html">PossiblyUndefinedMethod</a></li>
+<li><a href="issues/PossiblyUndefinedVariable.md">PossiblyUndefinedVariable</a></li>
+<li><a href="issues/PropertyTypeCoercion.html">PropertyTypeCoercion</a></li>
+<li><a href="issues/RiskyCast.html">RiskyCast</a></li>
+</ul>
+<h2 id="2">レベル2以下で表示されるエラー<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="issues/DeprecatedClass.html">DeprecatedClass</a></li>
+<li><a href="issues/DeprecatedConstant.md">DeprecatedConstant</a></li>
+<li><a href="issues/DeprecatedFunction.md">DeprecatedFunction</a></li>
+<li><a href="issues/DeprecatedInterface.html">DeprecatedInterface</a></li>
+<li><a href="issues/DeprecatedMethod.md">DeprecatedMethod</a></li>
+<li><a href="issues/DeprecatedProperty.html">DeprecatedProperty</a></li>
+<li><a href="issues/DeprecatedTrait.md">DeprecatedTrait</a></li>
+<li><a href="issues/DirectConstructorCall.md">DirectConstructorCall</a></li>
+<li><a href="issues/DocblockTypeContradiction.md">DocblockTypeContradiction</a></li>
+<li><a href="issues/InvalidDocblockParamName.md">InvalidDocblockParamName</a></li>
+<li><a href="issues/InvalidFalsableReturnType.md">InvalidFalsableReturnType</a></li>
+<li><a href="issues/InvalidStringClass.html">InvalidStringClass</a></li>
+<li><a href="issues/MissingClosureParamType.md">MissingClosureParamType</a></li>
+<li><a href="issues/MissingClosureReturnType.html">MissingClosureReturnType</a></li>
+<li><a href="issues/MissingConstructor.md">MissingConstructor</a></li>
+<li><a href="issues/MissingParamType.md">MissingParamType</a></li>
+<li><a href="issues/MissingPropertyType.html">MissingPropertyType</a></li>
+<li><a href="issues/MissingReturnType.md">MissingReturnType</a></li>
+<li><a href="issues/NullOperand.md">NullOperand</a></li>
+<li><a href="issues/PrivateFinalMethod.md">PrivateFinalMethod</a></li>
+<li><a href="issues/PropertyNotSetInConstructor.html">PropertyNotSetInConstructor</a></li>
+<li><a href="issues/RawObjectIteration.html">RawObjectIteration</a></li>
+<li><a href="issues/RedundantConditionGivenDocblockType.md">RedundantConditionGivenDocblockType</a></li>
+<li><a href="issues/RedundantFunctionCallGivenDocblockType.html">RedundantFunctionCallGivenDocblockType</a></li>
+<li><a href="issues/ReferenceConstraintViolation.html">ReferenceConstraintViolation</a></li>
+<li><a href="issues/RiskyTruthyFalsyComparison.html">RiskyTruthyFalsyComparison</a></li>
+<li><a href="issues/UndefinedTrace.html">UndefinedTrace</a></li>
+<li><a href="issues/UnresolvableInclude.md">UnresolvableInclude</a></li>
+<li><a href="issues/UnsafeInstantiation.md">UnsafeInstantiation</a></li>
+</ul>
+<h2 id="1">レベル1でのみ表示されるエラー<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="issues/LessSpecificReturnType.html">LessSpecificReturnType</a></li>
+<li><a href="issues/MixedArgument.html">MixedArgument</a></li>
+<li><a href="issues/MixedArgumentTypeCoercion.md">MixedArgumentTypeCoercion</a></li>
+<li><a href="issues/MixedArrayAccess.html">MixedArrayAccess</a></li>
+<li><a href="issues/MixedArrayAssignment.html">MixedArrayAssignment</a></li>
+<li><a href="issues/MixedArrayOffset.html">MixedArrayOffset</a></li>
+<li><a href="issues/MixedArrayTypeCoercion.md">MixedArrayTypeCoercion</a></li>
+<li><a href="issues/MixedAssignment.md">MixedAssignment</a></li>
+<li><a href="issues/MixedClone.md">MixedClone</a></li>
+<li><a href="issues/MixedFunctionCall.html">MixedFunctionCall</a></li>
+<li><a href="issues/MixedMethodCall.md">MixedMethodCall</a></li>
+<li><a href="issues/MixedOperand.md">MixedOperand</a></li>
+<li><a href="issues/MixedPropertyAssignment.html">MixedPropertyAssignment</a></li>
+<li><a href="issues/MixedPropertyFetch.md">MixedPropertyFetch</a></li>
+<li><a href="issues/MixedPropertyTypeCoercion.md">MixedPropertyTypeCoercion</a></li>
+<li><a href="issues/MixedReturnStatement.html">MixedReturnStatement</a></li>
+<li><a href="issues/MixedReturnTypeCoercion.html">MixedReturnTypeCoercion</a></li>
+<li><a href="issues/MixedStringOffsetAssignment.html">MixedStringOffsetAssignment</a></li>
+<li><a href="issues/MutableDependency.html">MutableDependency</a></li>
+<li><a href="issues/PossiblyNullOperand.md">PossiblyNullOperand</a></li>
+<li><a href="issues/RedundantIdentityWithTrue.md">RedundantIdentityWithTrue</a></li>
+<li><a href="issues/Trace.md">Trace</a></li>
+</ul>
+<h2 id="_3">機能固有のエラー<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="issues/MissingOverrideAttribute.md">MissingOverrideAttribute</a></li>
+<li><a href="issues/PossiblyUndefinedIntArrayOffset.md">PossiblyUndefinedIntArrayOffset</a></li>
+<li><a href="issues/PossiblyUndefinedStringArrayOffset.html">PossiblyUndefinedStringArrayOffset</a></li>
+<li><a href="issues/PossiblyUnusedMethod.html">PossiblyUnusedMethod</a></li>
+<li><a href="issues/PossiblyUnusedParam.md">PossiblyUnusedParam</a></li>
+<li><a href="issues/PossiblyUnusedProperty.md">PossiblyUnusedProperty</a></li>
+<li><a href="issues/TaintedCallable.md">TaintedCallable</a></li>
+<li><a href="issues/TaintedCookie.html">TaintedCookie</a></li>
+<li><a href="issues/TaintedCustom.md">TaintedCustom</a></li>
+<li><a href="issues/TaintedEval.html">TaintedEval</a></li>
+<li><a href="issues/TaintedExtract.html">TaintedExtract</a></li>
+<li><a href="issues/TaintedFile.html">TaintedFile</a></li>
+<li><a href="issues/TaintedHeader.md">TaintedHeader</a></li>
+<li><a href="issues/TaintedHtml.md">TaintedHtml</a></li>
+<li><a href="issues/TaintedInclude.html">TaintedInclude</a></li>
+<li><a href="issues/TaintedInput.md">TaintedInput</a></li>
+<li><a href="issues/TaintedLdap.html">TaintedLdap</a></li>
+<li><a href="issues/TaintedShell.md">TaintedShell</a></li>
+<li><a href="issues/TaintedSleep.md">TaintedSleep</a></li>
+<li><a href="issues/TaintedSql.md">TaintedSql</a></li>
+<li><a href="issues/TaintedSSRF.md">TaintedSSRF</a></li>
+<li><a href="issues/TaintedSystemSecret.md">TaintedSystemSecret</a></li>
+<li><a href="issues/TaintedUnserialize.md">TaintedUnserialize</a></li>
+<li><a href="issues/TaintedUserSecret.html">TaintedUserSecret</a></li>
+<li><a href="issues/TaintedXpath.md">TaintedXpath</a></li>
+<li><a href="issues/UncaughtThrowInGlobalScope.html">UncaughtThrowInGlobalScope</a></li>
+<li><a href="issues/UnevaluatedCode.md">UnevaluatedCode</a></li>
+<li><a href="issues/UnnecessaryVarAnnotation.html">UnnecessaryVarAnnotation</a></li>
+<li><a href="issues/UnusedClass.html">UnusedClass</a></li>
+<li><a href="issues/UnusedClosureParam.html">UnusedClosureParam</a></li>
+<li><a href="issues/UnusedConstructor.html">UnusedConstructor</a></li>
+<li><a href="issues/UnusedDocblockParam.md">UnusedDocblockParam</a></li>
+<li><a href="issues/UnusedForeachValue.html">UnusedForeachValue</a></li>
+<li><a href="issues/UnusedMethod.md">UnusedMethod</a></li>
+<li><a href="issues/UnusedParam.md">UnusedParam</a></li>
+<li><a href="issues/UnusedProperty.html">UnusedProperty</a></li>
+<li><a href="issues/UnusedPsalmSuppress.md">UnusedPsalmSuppress</a></li>
+<li><a href="issues/UnusedVariable.md">UnusedVariable</a></li>
+</ul>
 
 
 

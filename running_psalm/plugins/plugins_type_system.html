@@ -1,0 +1,2009 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://koriym.github.io/psalm-ja/running_psalm/plugins/plugins_type_system.html">
+      
+      
+        <link rel="prev" href="authoring_plugins.html">
+      
+      
+        <link rel="next" href="../command_line_usage.html">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>Psalmの型表現 - Psalm Docs JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="../../assets/css/php.css">
+    
+      <link rel="stylesheet" href="../../assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="../../assets/css/extra.css">
+    
+      <link rel="stylesheet" href="../../assets/css/giscuss.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+
+
+<!-- Header -->
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="../../index.html"
+            title="Psalm Docs JA"
+            class="md-header__button md-logo"
+            aria-label="Psalm Docs JA"
+            data-md-component="logo"
+    >
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            Psalm Docs JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              Psalmの型表現
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/psalm-ja/" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Psalm Docs JA" class="md-nav__button md-logo" aria-label="Psalm Docs JA" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Psalm Docs JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/psalm-ja/" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ドキュメンテーションホーム
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Psalmの実行
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Psalmの実行
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プラグイン
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            プラグイン
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="using_plugins.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プラグインの使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authoring_plugins.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プラグインの作成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Psalmの型表現
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="plugins_type_system.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Psalmの型表現
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#union-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      共用体型（Union types）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atomic-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      原子型（Atomic types）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="原子型（Atomic types）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      その他
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      スカラースーパータイプ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      数値スーパータイプ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      スカラー型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="スカラー型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      整数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      浮動小数点数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ブール値
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      文字列
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      スカラークラス定数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      配列キースーパータイプ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      配列
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      呼び出し可能およびクロージャ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      オブジェクトスーパータイプ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      オブジェクト型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      テンプレート
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      型オブジェクトインスタンスの作成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="型オブジェクトインスタンスの作成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      型オブジェクトインスタンスを直接作成する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doc" class="md-nav__link">
+    <span class="md-ellipsis">
+      docストリング型から型オブジェクトインスタンスを作成する
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      型の操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="型の操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      型の結合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      型の交差
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      型の比較
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      型の絞り込み
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      プラグインでの型の使用
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../command_line_usage.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コマンドライン使用法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language_server.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IDE サポート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    エラーの扱い
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            エラーの扱い
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dealing_with_code_issues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コードの問題への対処
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../issues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    問題の種類
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checking_non_php_files.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PHP以外のファイルのチェック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    型のアノテーション
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            型のアノテーション
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/typing_in_psalm.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    型アノテーションの使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/type_syntax/union_types.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ユニオン型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/type_syntax/atomic_types.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アトミック型リファレンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/type_syntax/intersection_types.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インターセクション型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    その他のアノテーション
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            その他のアノテーション
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/supported_annotations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サポートされているアノテーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/templated_annotations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    テンプレートアノテーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotating_code/adding_assertions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アサートアノテーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    コードの操作
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            コードの操作
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manipulating_code/fixing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Psalterを使用したコードの修正
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manipulating_code/refactoring.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コードのリファクタリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ分析
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/custom_taint_sources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    カスタム汚染源
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/custom_taint_sinks.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    カスタム汚染シンク
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security_analysis/avoiding_false_positives.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    偽陽性を避ける
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LICENSE.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ライセンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#union-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      共用体型（Union types）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atomic-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      原子型（Atomic types）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="原子型（Atomic types）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      その他
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      スカラースーパータイプ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      数値スーパータイプ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      スカラー型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="スカラー型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      整数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      浮動小数点数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ブール値
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      文字列
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      スカラークラス定数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      配列キースーパータイプ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      配列
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      呼び出し可能およびクロージャ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      オブジェクトスーパータイプ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      オブジェクト型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      テンプレート
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      型オブジェクトインスタンスの作成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="型オブジェクトインスタンスの作成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      型オブジェクトインスタンスを直接作成する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doc" class="md-nav__link">
+    <span class="md-ellipsis">
+      docストリング型から型オブジェクトインスタンスを作成する
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      型の操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="型の操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      型の結合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      型の交差
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      型の比較
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      型の絞り込み
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      プラグインでの型の使用
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/psalm-ja/edit/5.x-ja/docs-ja/running_psalm/plugins/plugins_type_system.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="_1">プラグイン: 型システムの内部構造<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>Psalmの型システムは、プログラム内の変数の型を異なるクラスを使用して表現します。プラグインはこの型情報を受け取り、更新することができます。</p>
+<h2 id="union-types">共用体型（Union types）<a class="headerlink" href="#union-types" title="Permanent link">&para;</a></h2>
+<p>使用する可能性が高い全ての型情報は、<a href="../../annotating_code/type_syntax/union_types.html">共用体型</a>でラップされています。</p>
+<p><code>Union</code>クラスのコンストラクタは<code>Atomic</code>型の配列を受け取り、これらの型の1つ以上を同時に表現できます。これらはdocコメントの縦棒に対応します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">new</span> <span class="nx">Union</span><span class="p">([</span><span class="k">new</span> <span class="nx">TNamedObject</span><span class="p">(</span><span class="s1">&#39;Foo\\Bar\\SomeClass&#39;</span><span class="p">)]);</span> <span class="c1">// docblockのFoo\Bar\SomeClassに相当</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">new</span> <span class="nx">Union</span><span class="p">([</span><span class="k">new</span> <span class="nx">TString</span><span class="p">(),</span> <span class="k">new</span> <span class="nx">TInt</span><span class="p">()]);</span> <span class="c1">// docblockのstring|intに相当</span>
+</code></pre></div>
+<h2 id="atomic-types">原子型（Atomic types）<a class="headerlink" href="#atomic-types" title="Permanent link">&para;</a></h2>
+<p>浮動小数点数、整数、文字列などのプリミティブ型に加えて、配列やクラスがあります。これらは全て<a href="https://github.com/vimeo/psalm/tree/master/src/Psalm/Type/Atomic"><code>src/Psalm/Types/Atomic</code></a>にあります。</p>
+<p>このフォルダ内の全ての非抽象クラスが有効な型であることに注意してください。これらは全て'T'で始まります。</p>
+<p>クラスは以下の通りです：</p>
+<h3 id="_2">その他<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><code>TVoid</code> - <code>void</code>型を表し、通常は何も返さない関数/メソッドを注釈するために使用されます。</p>
+<p><code>TNull</code> - <code>null</code>型を表します。</p>
+<p><code>TNever</code> - 例外をスローするか終了する（ビルトインの<code>exit()</code>のような）、決して戻らない関数の<code>no-return</code>/<code>never-return</code>型を表します。また、可能な型がない共用体型（例えば不可能な交差型）にも使用されます。空の配列<code>[]</code>は<code>array&lt;never, never&gt;</code>型を持ちます。</p>
+<p><code>TMixed</code> - <code>mixed</code>型を表し、式の型が不明な場合に使用されます。</p>
+<p><code>TNonEmptyMixed</code> - 上記と同様ですが、空ではありません。外部で<code>$x</code>が<code>mixed</code>の場合、<code>if ($x) {...}</code>文の中の<code>$x</code>に対して生成されます。</p>
+<p><code>TEmptyMixed</code> - 上記と同様ですが、空です。外部で<code>$x</code>が<code>mixed</code>の場合、<code>if (!$x) {...}</code>文の中の<code>$x</code>に対して生成されます。</p>
+<p><code>TIterable</code> - <a href="https://www.php.net/manual/en/language.types.iterable.php"><code>iterable</code>型</a>を表します（<code>is_iterable</code>チェックの結果にもなり得ます）。</p>
+<p><code>TResource</code> - <code>resource</code>型を表します（例：ファイルハンドル）。</p>
+<p><code>TClosedResource</code> - クローズされた<code>resource</code>型を表します（例：<code>fclose()</code>を通じたファイルハンドル）。</p>
+<p><code>TAssertionFalsy</code> - ブールコンテキストで計算されたときにfalseに還元される任意の値を表します。これはアサーションに使用されます。</p>
+<p><code>TConditional</code> - phpdocの条件付き戻り値型の内部表現です。例えば ($param1 is int ? int : string)</p>
+<p><code>TIntMask</code> - そのパラメータのビットマスク組み合わせの結果である型を表します。<code>int-mask&lt;1, 2, 4&gt;</code>は<code>1|2|3|4|5|6|7</code>に対応します。</p>
+<p><code>TIntMaskOf</code> - 上記と同様ですが、コード内の定数への参照と共に使用されます。<code>int-mask-of&lt;MyClass::CLASS_CONSTANT_*&gt;</code>は、1、2、4の3つの定数がある場合、<code>1|2|3|4|5|6|7</code>に対応します。</p>
+<p><code>TKeyOf</code> - 配列のオフセットを表します（例：<code>key-of&lt;MyClass::CLASS_CONSTANT&gt;</code>）。</p>
+<p><code>TValueOf</code> - 配列または列挙型の値を表します（例：<code>value-of&lt;MyClass::CLASS_CONSTANT&gt;</code>）。</p>
+<p><code>TTemplateIndexedAccess</code> - ドキュメント化予定</p>
+<p><code>TTemplateKeyOf</code> - 配列の型がテンプレートの場合にTKeyOfを使用するときに使用される型を表します。</p>
+<p><code>TTemplateValueOf</code> - 配列または列挙型の型がテンプレートの場合にTValueOfを使用するときに使用される型を表します。</p>
+<p><code>TPropertiesOf</code> - クラスのプロパティとその型をキー付き配列として表します（例：<code>properties-of&lt;MyClass&gt;</code>）</p>
+<p><code>TTemplatePropertiesOf</code> - クラスの型がテンプレートの場合にTPropertiesOfを使用するときに使用される型を表します。</p>
+<p><code>TTypeAlias</code> - ドキュメント化予定</p>
+<h3 id="_3">スカラースーパータイプ<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p><code>TScalar</code> - <code>scalar</code>スーパータイプを表します（<code>is_scalar</code>チェックの結果にもなり得ます）。この型は<code>float</code>、<code>int</code>、<code>bool</code>、<code>string</code>を包含します。</p>
+<p><code>TEmptyScalar</code> - 空でもある<code>scalar</code>型を表します。</p>
+<p><code>TNonEmptyScalar</code> - 空でない<code>scalar</code>型を表します。</p>
+<h3 id="_4">数値スーパータイプ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p><code>TNumeric</code> - <code>numeric</code>型を表します（<code>is_numeric</code>チェックの結果にもなり得ます）。</p>
+<p><code>TEmptyNumeric</code> - 空でもある<code>numeric</code>型を表します（<code>is_numeric</code>と<code>empty</code>チェックの結果にもなり得ます）。</p>
+<h3 id="_5">スカラー型<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>全てのスカラー型にはリテラルバージョンがあります。例：<code>int</code>対<code>int(5)</code>。</p>
+<h4 id="_6">整数<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p><code>TInt</code> - 正確な値が不明な<code>int</code>型を表します。</p>
+<p><code>TLiteralInt</code> - 正確な数値が既知の整数値を表すために使用されます。</p>
+<p><code>TIntRange</code> - 境界のある値を持つintを記述できます（例：<code>int&lt;1, 5&gt;</code>）。</p>
+<h4 id="_7">浮動小数点数<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p><code>TFloat</code> - 正確な値が不明な<code>float</code>型を表します。</p>
+<p><code>TLiteralFloat</code> - 正確な数値が既知の浮動小数点値を表すために使用されます。</p>
+<h4 id="_8">ブール値<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p><code>TBool</code>、<code>TFalse</code>、<code>TTrue</code></p>
+<p><code>TBool</code> - 正確な値が不明な<code>bool</code>型を表します。</p>
+<p><code>TFalse</code> - <code>false</code>値型を表します。</p>
+<p><code>TTrue</code> - <code>true</code>値型を表します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">/** @return string|false    文字列が空の場合はfalse、それ以外はパラメータの最初の文字 */</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">function</span> <span class="nf">firstChar</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$s</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$s</span><span class="p">)</span> <span class="o">?</span> <span class="k">false</span> <span class="o">:</span> <span class="nv">$s</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="p">}</span>
+</code></pre></div>
+<p>ここで、関数はtrueを返すことはありませんが、falseをboolに置き換えなければならない場合、Psalmはtrueを可能な戻り値として考慮しなければなりません。より狭い型を使用することで、次のような無意味なコードを報告できます（https://psalm.dev/r/037291351d）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nv">$first</span> <span class="o">=</span> <span class="nx">firstChar</span><span class="p">(</span><span class="s2">&quot;sdf&quot;</span><span class="p">);</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">if</span> <span class="p">(</span><span class="k">true</span> <span class="o">===</span> <span class="nv">$first</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  <span class="k">echo</span> <span class="s2">&quot;これは実際にはデッドコードです&quot;</span><span class="p">;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">}</span>
+</code></pre></div>
+<h4 id="_9">文字列<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p><code>TString</code> - 正確な値が不明な<code>string</code>型を表します。</p>
+<p><code>TNonEmptyString</code> - 空でない文字列を表します。</p>
+<p><code>TNumericString</code> - 数値でもある文字列を表します（例：<code>"5"</code>）。<code>is_string($s) &amp;&amp; is_numeric($s)</code>の結果になり得ます。</p>
+<p><code>TLiteralString</code> - 値が既知の文字列を表すために使用されます。</p>
+<p><code>TClassString</code> - <code>class-string</code>型を表し、有効なPHPクラスを表す文字列を記述するために使用されます。クラスが派生する親タイプは、コンストラクタで指定される場合とされない場合があります。</p>
+<p><code>TLiteralClassString</code> - 特定のクラス文字列を表し、<code>A::class</code>のような式によって生成されます。</p>
+<p><code>TTraitString</code> - <code>trait-string</code>型を表し、有効なPHPトレイトを表す文字列を記述するために使用されます。</p>
+<p><code>TDependentGetClass</code> - get_class($var)によって見つかる完全修飾クラスである文字列の値を表します。</p>
+<p><code>TDependentGetDebugType</code> - get_debug_type($var)によって見つかる型の値である文字列を表します。</p>
+<p><code>TDependentGetType</code> - gettype($var)によって見つかる型の値である文字列を表します。</p>
+<p><code>TCallableString</code> - <code>callable-string</code>型を表し、<code>callable</code>でもある未知の文字列を表すために使用されます。</p>
+<p><code>TSqlSelectString</code> - これは特殊な型で、特にプラグインによる消費のためのものです。</p>
+<p><code>TLowercaseString</code> - 全ての文字が小文字である文字列を表します（<code>strtolower</code>呼び出しの結果にもなり得ます）。</p>
+<p><code>TNonEmptyLowercaseString</code> - 全ての文字が小文字である空でない文字列を表します（<code>strtolower</code>呼び出しの結果にもなり得ます）。</p>
+<p><code>TSingleLetter</code> - 長さが1の文字列を表します。</p>
+<h4 id="_10">スカラークラス定数<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<p><code>TScalarClassConstant</code> - 値がまだ知られていない可能性のあるクラス定数を表します。</p>
+<h4 id="_11">配列キースーパータイプ<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p><code>TArrayKey</code> - <code>array-key</code>型を表し、<code>array</code>のオフセットになり得るものに使用されます。</p>
+<h3 id="_12">配列<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p><code>TArray</code> - <code>array&lt;TKey, TValue&gt;</code>形式の単純な配列を表します。両方が共用体型である2つの要素を持つ配列を期待します。</p>
+<p><code>TNonEmptyArray</code> - 上記と同様ですが、空でないことが分かっている配列を表します。</p>
+<p><code>TKeyedArray</code> - 'オブジェクトライク配列'を表します - 既知のキーを持つ配列です。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">$x</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">];</span> <span class="c1">// TKeyedArrayです、array{a: int, b: int}</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">$y</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">?</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">]</span> <span class="o">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;b&quot;</span><span class="p">];</span> <span class="c1">// オプションのキー/値を持つTKeyedArrayです、array{a: ?int, b?: string}</span>
+</code></pre></div>
+<p>この型は、リストを表すためにも使用されます（現在非推奨の<code>TList</code>型の代わりに）。</p>
+<p>全ての連想配列がオブジェクトライクとみなされるわけではないことに注意してください。キーが不明な場合、配列は2つの型間のマッピングとして扱われます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">$a</span> <span class="o">=</span> <span class="p">[];</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">foreach</span> <span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="nv">$_</span><span class="p">)</span> <span class="nv">$a</span><span class="p">[(</span><span class="nx">string</span><span class="p">)</span><span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// array&lt;string,int&gt;</span>
+</code></pre></div>
+<p><code>TCallableKeyedArray</code> - <code>callable</code>でもあるオブジェクトライク配列を表します。</p>
+<p><code>TClassStringMap</code> - 各値の型がその文字列キー値の関数である配列を表します。</p>
+<h3 id="_13">呼び出し可能およびクロージャ<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p><code>TCallable</code> - <code>callable</code>型を表します。<code>is_callable</code>チェックの結果になり得ます。
+<code>TClosure</code> - <code>Closure</code>型を表します。</p>
+<p><code>TCallable</code>と<code>TClosure</code>はオプションでパラメータと戻り値の型も定義できます。</p>
+<h3 id="_14">オブジェクトスーパータイプ<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p><code>TObject</code> - <code>object</code>型を表します。</p>
+<p><code>TObjectWithProperties</code> - 指定されたメンバー変数を持つオブジェクト（例：<code>object{foo:int, bar:string}</code>）。</p>
+<h3 id="_15">オブジェクト型<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p><code>TNamedObject</code> - オブジェクトの型が既知のオブジェクト型を表します（例：<code>Exception</code>、<code>Throwable</code>、<code>Foo\Bar</code>）。</p>
+<p><code>TGenericObject</code> - ジェネリックパラメータを持つオブジェクト型を表します（例：<code>ArrayObject&lt;string, Foo\Bar&gt;</code>）。</p>
+<p><code>TCallableObject</code> - <code>callable</code>でもあるオブジェクトを表します（つまり、<code>__invoke</code>が定義されています）。</p>
+<p><code>TAnonymousClassInstance</code> - 潜在的なメソッドを持つ匿名クラス（つまり<code>new class{}</code>）を表します。</p>
+<h3 id="_16">テンプレート<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p><code>TTemplateParam</code> - 以前に<code>@template</code>タグで指定されたテンプレートパラメータを表します。</p>
+<p><code>TTemplateParamClass</code> - 以前に<code>@template</code>タグで指定されたテンプレートパラメータに対応する<code>class-string</code>を表します。</p>
+<h2 id="_17">型オブジェクトインスタンスの作成<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<p>与えられた型を記述するオブジェクトインスタンスを作成する方法は2つあります。直接newを使用して作成するか、docストリングから宣言的に作成することができます。通常、2番目のオプションを使用したいでしょう。しかし、このデータの構造を理解することは、プラグインに渡される型を理解するのに役立ちます。</p>
+<p>これらのクラスは時々変更されることがあるので、<code>Type::parseString</code>は常により堅牢なオプションになります。</p>
+<h3 id="_18">型オブジェクトインスタンスを直接作成する<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p>次の例は、文字列、浮動小数点数、'Foo\Bar\SomeClass'というクラスを表す型を構築します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">new</span> <span class="nx">TLiteralString</span><span class="p">(</span><span class="s1">&#39;テキスト文字列&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">new</span> <span class="nx">TLiteralFloat</span><span class="p">(</span><span class="mf">3.142</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">new</span> <span class="nx">TNamedObject</span><span class="p">(</span><span class="s1">&#39;Foo\Bar\SomeClass&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Psalm内の型は、利便性のため常に共用体でラップされています。型が期待される場所（プロパティ型、戻り値型、引数型など）のほとんどで、共用体も使用できます。したがって、単一の原子型（TIntなど）を共用体コンテナでラップすることで、他の場所でその型を均一に扱うことができ、以下のような繰り返しのチェックを避けることができます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">if</span> <span class="p">(</span><span class="nv">$type</span> <span class="nx">instanceof</span> <span class="nx">Union</span><span class="p">)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>   <span class="k">foreach</span> <span class="p">(</span><span class="nv">$types</span><span class="o">-&gt;</span><span class="na">getTypes</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$atomic</span><span class="p">)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>      <span class="nx">handleAtomic</span><span class="p">(</span><span class="nv">$atomic</span><span class="p">);</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">else</span> <span class="nx">handleAtomic</span><span class="p">(</span><span class="nv">$type</span><span class="p">);</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1">// 共用体コンテナを使用すると、以下のようになります</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$types</span><span class="o">-&gt;</span><span class="na">getTypes</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$atomic</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>   <span class="nx">handleAtomic</span><span class="p">(</span><span class="nv">$atomic</span><span class="p">);</span>
+</code></pre></div>
+<p>また、共用体ツリーは常に浅くなります。なぜなら、Psalmは共用体の共用体を単一レベルの共用体に平坦化するからです（<code>((A|B)|(C|D) =&gt; A|B|C|D)</code>）。</p>
+<p>より複雑な型は以下のように構築できます。以下は3つのキーを持つ連想配列を表しています。Psalmはこれを'オブジェクトライク配列'と呼び、'TKeyedArray'クラスで表現します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">new</span> <span class="nx">Union</span><span class="p">([</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="k">new</span> <span class="nx">TKeyedArray</span><span class="p">([</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>        <span class="s1">&#39;key_1&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">Union</span><span class="p">([</span><span class="k">new</span> <span class="nx">TString</span><span class="p">()]),</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>        <span class="s1">&#39;key_2&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">Union</span><span class="p">([</span><span class="k">new</span> <span class="nx">TInt</span><span class="p">()]),</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>        <span class="s1">&#39;key_3&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">Union</span><span class="p">([</span><span class="k">new</span> <span class="nx">TBool</span><span class="p">()])])]);</span>
+</code></pre></div>
+<p>Typeオブジェクトには、型を自動的に共用体でラップするいくつかの静的ヘルパーメソッドが含まれています。したがって、これはより簡潔に書くことができます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">new</span> <span class="nx">Union</span><span class="p">([</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="k">new</span> <span class="nx">Type\Atomic\TKeyedArray</span><span class="p">([</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>        <span class="s1">&#39;first&#39;</span> <span class="o">=&gt;</span> <span class="nx">Type</span><span class="o">::</span><span class="na">getInt</span><span class="p">(),</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>        <span class="s1">&#39;second&#39;</span> <span class="o">=&gt;</span> <span class="nx">Type</span><span class="o">::</span><span class="na">getString</span><span class="p">()])]);</span>
+</code></pre></div>
+<p>また、<code>Type::getInt(5)</code>を使用して、リテラル整数値5に対応する共用体型を生成することもできます。</p>
+<h3 id="doc">docストリング型から型オブジェクトインスタンスを作成する<a class="headerlink" href="#doc" title="Permanent link">&para;</a></h3>
+<p>これらのインスタンスを作成するもう一つの方法は、静的メソッド<code>parseString</code>を含む<code>Psalm\Type</code>クラスを使用することです。任意のdocストリング型記述をこれに渡すと、対応するオブジェクト表現を返します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nx">\Psalm\Type</span><span class="o">::</span><span class="na">parseString</span><span class="p">(</span><span class="s1">&#39;int|null&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>Psalmが与えられた型をオブジェクトとしてどのように表現するかを知るには、この関数への入力として型を指定し、結果に対して<code>var_dump</code>を呼び出すことで確認できます。</p>
+<h2 id="_19">型の操作<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<p>型を操作するためのいくつかの一般的な操作があります：</p>
+<h3 id="_20">型の結合<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<p>2つ以上の型を結合して新しい共用体型を作成するには：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nx">Type</span><span class="o">::</span><span class="na">combineUnionTypes</span><span class="p">(</span><span class="nv">$type1</span><span class="p">,</span> <span class="nv">$type2</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="_21">型の交差<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<p>2つ以上の型を交差させて新しい交差型を作成するには：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nx">Type</span><span class="o">::</span><span class="na">intersectUnionTypes</span><span class="p">(</span><span class="nv">$type1</span><span class="p">,</span> <span class="nv">$type2</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="_22">型の比較<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<p>2つの型が互換性があるかどうかを確認するには：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nx">TypeComparator</span><span class="o">::</span><span class="na">isContainedBy</span><span class="p">(</span><span class="nv">$codebase</span><span class="p">,</span> <span class="nv">$type1</span><span class="p">,</span> <span class="nv">$type2</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="_23">型の絞り込み<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<p>条件に基づいて型を絞り込むには：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nv">$newType</span> <span class="o">=</span> <span class="nx">TypeNarrower</span><span class="o">::</span><span class="na">narrowToNotNull</span><span class="p">(</span><span class="nv">$type</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="_24">プラグインでの型の使用<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h2>
+<p>プラグインを開発する際、これらの型オブジェクトを使用して、コードの型情報を分析したり操作したりすることができます。例えば：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">afterExpressionAnalysis</span><span class="p">(</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="nx">Expr</span> <span class="nv">$expr</span><span class="p">,</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="nx">Context</span> <span class="nv">$context</span><span class="p">,</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="nx">StatementsSource</span> <span class="nv">$statements_source</span><span class="p">,</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="nx">Codebase</span> <span class="nv">$codebase</span><span class="p">,</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="k">array</span> <span class="o">&amp;</span><span class="nv">$file_replacements</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="p">)</span><span class="o">:</span> <span class="o">?</span><span class="nx">bool</span> <span class="p">{</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>    <span class="k">if</span> <span class="p">(</span><span class="nv">$expr</span> <span class="nx">instanceof</span> <span class="nx">PhpParser\Node\Expr\Variable</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>        <span class="o">&amp;&amp;</span> <span class="nb">is_string</span><span class="p">(</span><span class="nv">$expr</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">)</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>    <span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>        <span class="nv">$type</span> <span class="o">=</span> <span class="nv">$statements_source</span><span class="o">-&gt;</span><span class="na">getNodeTypeProvider</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getType</span><span class="p">(</span><span class="nv">$expr</span><span class="p">);</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>        <span class="k">if</span> <span class="p">(</span><span class="nv">$type</span> <span class="nx">instanceof</span> <span class="nx">Union</span> <span class="o">&amp;&amp;</span> <span class="nv">$type</span><span class="o">-&gt;</span><span class="na">hasString</span><span class="p">())</span> <span class="p">{</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>            <span class="c1">// 文字列型を含む変数に対して何かを行う</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>        <span class="p">}</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>    <span class="p">}</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>    <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="p">}</span>
+</code></pre></div>
+<p>この例では、変数式を検査し、その型に文字列が含まれているかどうかをチェックしています。</p>
+<p>型システムを深く理解することで、Psalmプラグインの機能を最大限に活用し、より高度な静的解析を実装することができます。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>ユーザーノート</h2>
+<div id="user-contribution-section">
+    <a href="#" id="toggle-contribution" class="toggle-link" aria-expanded="false" aria-controls="contribution-content">+ ユーザーノートを表示する</a>
+    <div id="contribution-content" style="display: none;">
+        <div id="giscus-container">
+            <!-- Giscus script here -->
+            <script src="https://giscus.app/client.js"
+                    data-repo="koriym/psalm-ja"
+                    data-repo-id="R_kgDOMyFujg"
+                    data-category="Announcements"
+                    data-category-id="DIC_kwDOMyFujs4Ci0ZV"
+                    data-mapping="pathname"
+                    data-strict="0"
+                    data-reactions-enabled="0"
+                    data-emit-metadata="0"
+                    data-input-position="bottom"
+                    data-theme="preferred_color_scheme"
+                    data-lang="ja"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+            <div id="terms-of-service">
+                <h4>ユーザーノートについて</h4>
+                <p>PHPマニュアルのように、マニュアルを補足する情報の共有を目的としてます。</p>
+                <ul>
+                    <li>掲示板ではありません。議論、質問、別のノートへの返信はできません。</li>
+                    <li>バグや改善要望、または翻訳の Issue は、該当する GitHub リポジトリで報告してください。</li>
+                    <li>ノートは事前の通知なく削除される場合があります。</li>
+                    <li>Giscussのコメントシステムを流用しています。そのためノートとしては最適化されてないことをご了承ください。</li>
+                    <li>保証されていません。投稿したノートが消失する事やノート機能全体が閉鎖する可能性があります。</li>
+                    <li>お願い：いいノートにはup voteを、この規約に違反しているノートを見つけた場合は、優しくdown voteしてください。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function() {
+        const toggleLink = document.getElementById('toggle-contribution');
+        const contributionContent = document.getElementById('contribution-content');
+
+        toggleLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const isHidden = contributionContent.style.display === 'none';
+            contributionContent.style.display = isHidden ? 'block' : 'none';
+            toggleLink.textContent = isHidden ? '- ノートを非表示にする' : '+ ノートを表示する';
+            toggleLink.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+        });
+    })();
+</script>
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["back-to-top", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>
