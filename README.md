@@ -7,16 +7,16 @@ MITライセンスで公開されているThe Psalm Documentation (5.x)を翻訳
 
 ## 原著
 
-- オリジナルドキュメント: https://github.com/vimeo/psalm/tree/5.x/docs)
-- 公開サイト: [https://github.com/vimeo/psalm)
+- オリジナルドキュメント: https://github.com/vimeo/psalm/tree/5.x/docs
+- 公開サイト: https://github.com/vimeo/psalm
 - 著者: Vimeo
-- コントリビューター: [https://github.com/vimeo/psalm/graphs/contributors](https://github.com/vimeo/psalm/graphs/contributors)
+- コントリビューター: https://github.com/vimeo/psalm/graphs/contributors
 - ライセンス: MIT License
 
 ## 翻訳版
 
 - 対象バージョン: 5.x
-- 翻訳ドキュメント: [https://github.com/koriym/psalm-ja/tree/5.x-ja/docs-ja](https://github.com/koriym/psalm-ja/tree/5.x-ja/docs-ja)
+- 翻訳ドキュメント: https://github.com/koriym/psalm-ja/tree/5.x-ja/docs-ja
 - カットオーバー日: 2024-09-12
 - 製作者: Akihito Koriyama
 - ライセンス: MIT License
