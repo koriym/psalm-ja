@@ -40,7 +40,7 @@ public $foo;
 <?php
 namespace YourCode {
   function bar() : int {
-    $a = \ThirdPartyFoo();
+    $a = \ThirdParty\foo();
     return $a;
   }
 }
@@ -52,14 +52,14 @@ namespace ThirdParty {
 }
 ```
 
-Psalmは、サードパーティの関数`ThirdPartyFoo`が何を返すかわかりません。なぜなら、作者が戻り値の型を追加していないからです。関数が特定の値を返すことがわかっている場合は、次のように代入型ヒントを使用できます：
+Psalmは、サードパーティの関数`ThirdParty\foo`が何を返すかわかりません。なぜなら、作者が戻り値の型を追加していないからです。関数が特定の値を返すことがわかっている場合は、次のように代入型ヒントを使用できます：
 
 ```php
 <?php
 namespace YourCode {
   function bar() : int {
     /** @var int */
-    $a = \ThirdPartyFoo();
+    $a = \ThirdParty\foo();
     return $a;
   }
 }
